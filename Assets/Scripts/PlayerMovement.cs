@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     #region PrivateVariables
@@ -20,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     #region PrivateMethods
     void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponentInChildren<Rigidbody2D>();
     }
 
     void Update()
