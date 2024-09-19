@@ -1,62 +1,70 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-[RequireComponent(typeof(LineRenderer), typeof(CircleCollider2D))]
+
+[RequireComponent(typeof(LineRenderer), typeof(PolygonCollider2D))]
 public class SoundWave : MonoBehaviour
 {
     [Header("기본 설정")]
-    public int segments = 100;
-    public float growSpeed = 0.5f;
-    public float Disappear_Time = .5f;
-    private LineRenderer lineRenderer;
-    private CircleCollider2D polygonCollider;
-    public float radius = 0.5f;
-    private Dictionary<int, Vector2> fixedSegments = new Dictionary<int, Vector2>();
-    [HideInInspector]
+    [SerializeField] private int segments = 100;
+    [SerializeField] private float growSpeed = 0.5f;
+    [SerializeField] private float radius = 0.5f;
+
     public WaveManager waveManager;
-    float t_Destroy = 0f;
-    private void Start()
+
+    private LineRenderer lineRenderer;
+    private PolygonCollider2D polygonCollider;
+    private Dictionary<int, Vector2> fixedSegments = new Dictionary<int, Vector2>();
+    private float t_Destroy = 0f;
+    private Vector3[] positions;
+    private Vector2[] colliderPoints;
+
+    private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        polygonCollider = GetComponent<CircleCollider2D>();
+        polygonCollider = GetComponent<PolygonCollider2D>();
         lineRenderer.positionCount = segments + 1;
         lineRenderer.useWorldSpace = true;
-        DrawCircle();
+
+        positions = new Vector3[segments + 1];
+        colliderPoints = new Vector2[segments + 1];
     }
+
     private void Update()
     {
-        t_Destroy += Time.deltaTime;
-        Color startColor = new Color(.5f,.5f,.5f, 1f);
-        Color endColor = new Color(.5f, .5f, .5f, 0f);
-        lineRenderer.startColor = Color.Lerp(startColor, endColor, t_Destroy / waveManager.Destroy_Time);
-        lineRenderer.endColor = Color.Lerp(startColor, endColor, t_Destroy / waveManager.Destroy_Time);
-        radius += growSpeed * Time.deltaTime;
+        UpdateWaveProperties();
         DrawCircle();
-        //DetectCollision();
+        DetectCollision();
     }
+
+    private void UpdateWaveProperties()
+    {
+        t_Destroy += Time.deltaTime;
+        radius += growSpeed * Time.deltaTime;
+        float alpha = 1 - (t_Destroy / waveManager.Destroy_Time);
+        Color waveColor = new Color(0.5f, 0.5f, 0.5f, waveManager.Destroy_Time - t_Destroy);
+        lineRenderer.startColor = lineRenderer.endColor = waveColor;
+    }
+
     private void DrawCircle()
     {
-        float angle = 0f;
-        List<Vector2> colliderPoints = new List<Vector2>(); 
-
+        float angleStep = 360f / segments;
         for (int i = 0; i <= segments; i++)
         {
             if (fixedSegments.TryGetValue(i, out Vector2 fixedPosition))
-                lineRenderer.SetPosition(i, fixedPosition);
+            {
+                positions[i] = fixedPosition;
+            }
             else
             {
-                float x = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
-                float y = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-                Vector2 newPosition = transform.TransformPoint(new Vector2(x, y));
-                lineRenderer.SetPosition(i, newPosition);
+                float angle = i * angleStep * Mathf.Deg2Rad;
+                Vector2 pos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+                positions[i] = transform.TransformPoint(pos);
             }
-
-            colliderPoints.Add(lineRenderer.GetPosition(i));
-
-            angle += 360f / segments;
+            colliderPoints[i] = positions[i];
         }
 
-        polygonCollider.radius = radius;
+        lineRenderer.SetPositions(positions);
+        polygonCollider.SetPath(0, colliderPoints);
     }
 
     private void DetectCollision()
@@ -70,14 +78,19 @@ public class SoundWave : MonoBehaviour
             }
         }
     }
+
     private void DeformCircle(Collider2D wallCollider)
     {
         for (int i = 0; i <= segments; i++)
         {
             if (fixedSegments.ContainsKey(i)) continue;
-            Vector2 point = lineRenderer.GetPosition(i);
+            Vector2 point = positions[i];
             Vector2 closestPoint = wallCollider.ClosestPoint(point);
-            if (Vector2.Distance(point, closestPoint) < 0.01f) fixedSegments[i] = closestPoint;
+            if (Vector2.Distance(point, closestPoint) < 0.01f)
+            {
+                fixedSegments[i] = closestPoint;
+                positions[i] = closestPoint;
+            }
         }
     }
 }
