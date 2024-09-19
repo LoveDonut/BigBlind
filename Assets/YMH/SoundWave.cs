@@ -9,7 +9,8 @@ public class SoundWave : MonoBehaviour
     [SerializeField] private float growSpeed = 0.5f;
     [SerializeField] private float radius = 0.5f;
 
-    [SerializeField] Color WaveColor;
+    [HideInInspector]
+    public Color WaveColor;
 
 
     public WaveManager waveManager;
@@ -44,7 +45,7 @@ public class SoundWave : MonoBehaviour
         t_Destroy += Time.deltaTime;
         radius += growSpeed * Time.deltaTime;
         float alpha = 1 - (t_Destroy / waveManager.Destroy_Time);
-        Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, waveManager.Destroy_Time - t_Destroy);
+        Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
         lineRenderer.startColor = lineRenderer.endColor = waveColor;
     }
 
