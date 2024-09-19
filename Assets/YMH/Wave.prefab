@@ -153,6 +153,7 @@ MonoBehaviour:
   segments: 180
   growSpeed: 5
   radius: 0.5
+  WaveColor: {r: 1, g: 0, b: 0, a: 1}
   waveManager: {fileID: 0}
 --- !u!60 &2369123317398446388
 PolygonCollider2D:
