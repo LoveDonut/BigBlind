@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     #region PrivateMethods
     void Start()
     {
-        _rb = GetComponentInChildren<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()

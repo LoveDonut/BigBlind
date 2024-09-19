@@ -12,13 +12,13 @@ public class Patrol_DefaultEnemy : StateMachineBehaviour
     {
         _navMeshAgent = animator.GetComponent<NavMeshAgent>();
         _defualteEnemy = animator.GetComponent<DefaultEnemy>();
-        _navMeshAgent.SetDestination(_defualteEnemy.GetDestination().position);
+        Vector3 dest = _defualteEnemy.GetDestination().position;
+        _navMeshAgent.SetDestination(dest);
+        Debug.Log($"dest : {dest}");
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-//        Debug.Log($"enemy's position : {animator.transform.position}, destination : {_navMeshAgent.destination}");
-//        Debug.Log($"distance : {Vector3.Distance(animator.transform.position, _navMeshAgent.destination)}");
         if(Vector2.Distance(animator.transform.position, _navMeshAgent.destination) < 0.5f)
         {
             animator.SetTrigger("TrigerIdle");
