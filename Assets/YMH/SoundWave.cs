@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-[RequireComponent(typeof(LineRenderer), typeof(PolygonCollider2D))]
+[RequireComponent(typeof(LineRenderer), typeof(CircleCollider2D))]
 public class SoundWave : MonoBehaviour
 {
     [Header("기본 설정")]
@@ -9,8 +9,8 @@ public class SoundWave : MonoBehaviour
     public float growSpeed = 0.5f;
     public float Disappear_Time = .5f;
     private LineRenderer lineRenderer;
-    private PolygonCollider2D polygonCollider;
-    private float radius = 0.5f;
+    private CircleCollider2D polygonCollider;
+    public float radius = 0.5f;
     private Dictionary<int, Vector2> fixedSegments = new Dictionary<int, Vector2>();
     [HideInInspector]
     public WaveManager waveManager;
@@ -18,7 +18,7 @@ public class SoundWave : MonoBehaviour
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        polygonCollider = GetComponent<PolygonCollider2D>();
+        polygonCollider = GetComponent<CircleCollider2D>();
         lineRenderer.positionCount = segments + 1;
         lineRenderer.useWorldSpace = true;
         DrawCircle();
@@ -26,13 +26,13 @@ public class SoundWave : MonoBehaviour
     private void Update()
     {
         t_Destroy += Time.deltaTime;
-        Color startColor = Color.white;
-        Color endColor = Color.black;
+        Color startColor = new Color(.5f,.5f,.5f, 1f);
+        Color endColor = new Color(.5f, .5f, .5f, 0f);
         lineRenderer.startColor = Color.Lerp(startColor, endColor, t_Destroy / waveManager.Destroy_Time);
         lineRenderer.endColor = Color.Lerp(startColor, endColor, t_Destroy / waveManager.Destroy_Time);
         radius += growSpeed * Time.deltaTime;
         DrawCircle();
-        DetectCollision();
+        //DetectCollision();
     }
     private void DrawCircle()
     {
@@ -56,7 +56,7 @@ public class SoundWave : MonoBehaviour
             angle += 360f / segments;
         }
 
-        polygonCollider.SetPath(0, colliderPoints.ToArray());
+        polygonCollider.radius = radius;
     }
 
     private void DetectCollision()
