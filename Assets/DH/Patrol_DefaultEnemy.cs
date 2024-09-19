@@ -17,7 +17,9 @@ public class Patrol_DefaultEnemy : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(Vector3.Distance(animator.transform.position, _navMeshAgent.destination) < 0.1f)
+//        Debug.Log($"enemy's position : {animator.transform.position}, destination : {_navMeshAgent.destination}");
+//        Debug.Log($"distance : {Vector3.Distance(animator.transform.position, _navMeshAgent.destination)}");
+        if(Vector2.Distance(animator.transform.position, _navMeshAgent.destination) < 0.5f)
         {
             animator.SetTrigger("TrigerIdle");
         }
