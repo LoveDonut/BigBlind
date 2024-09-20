@@ -18,7 +18,7 @@ public class DefaultEnemy : MonoBehaviour
     NavMeshAgent _agent;
     PlayerMovement _movement;
 
-
+    [SerializeField] GameObject prefab;
     bool already_Detected;
     // enemy gets back starting point after arriving end point
     int currentPathIndex;
@@ -70,30 +70,38 @@ public class DefaultEnemy : MonoBehaviour
     {
         return _waitingTime;
     }
+    /*
 
     public void StartFadeOut()
     {
         if (already_Detected) return;
         StartCoroutine(Detected());
+
+
         already_Detected = true;
     }
 
     private IEnumerator Detected()
     {
+        var me = Instantiate(prefab, transform.position, Quaternion.identity);
+
         float elapsedTime = 0f;
-        Color startColor = spriteRenderer.color;
+        SpriteRenderer render = me.GetComponent<SpriteRenderer>();  
+        Color startColor = render.color;
 
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += delay;
             float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-            spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            render.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
             yield return new WaitForSeconds(delay);
         }
 
-        spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
         already_Detected = false;
+        Destroy(me);
+
     }
+    */
 }
 
 #endregion

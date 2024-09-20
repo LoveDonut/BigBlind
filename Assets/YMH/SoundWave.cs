@@ -83,15 +83,6 @@ public class SoundWave : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!isPlayerSound) return;
-        if (collision.CompareTag("Enemy"))
-        {
-            collision.GetComponent<DefaultEnemy>().StartFadeOut();
-        }
-    }
-
     private void DeformCircle(Collider2D wallCollider)
     {
         for (i = 0; i <= segments; i++)
