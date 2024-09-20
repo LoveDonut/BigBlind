@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     Vector2 _input;
     Vector2 _velocity;
     bool _isMovable = true;
+
+    [SerializeField] GameObject _cameraPos;
+    [SerializeField] GameObject _bulletPrefab;
     #endregion
 
     #region PrivateMethods
@@ -58,6 +61,16 @@ public class PlayerMovement : MonoBehaviour
 
         // set speed
         _rb.MovePosition(_rb.position + _velocity * Time.fixedDeltaTime);
+    }
+
+    void OnFire(InputValue value)
+    {
+        Debug.Log("A " + _cameraPos.GetComponent<CameraTarget>().targetPos);
+        Vector3 aimPos = _cameraPos.GetComponent<CameraTarget>().targetPos - transform.position;
+        aimPos.z = 0f;
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos, Quaternion.identity);
+        bullet.GetComponent<Rigidbody2D>().velocity = aimPos * 5f;
+        Destroy(bullet, 3f);
     }
     #endregion
 
