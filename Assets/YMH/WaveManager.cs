@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+
     [SerializeField] GameObject Wave_Object;
     public float BPM = 90;
     public float Destroy_Time = .5f;
@@ -13,11 +14,10 @@ public class WaveManager : MonoBehaviour
     [Header("BGM")]
     [SerializeField] AudioClip BPM_90;
 
-    AudioSource audio;
     private void Start()
     {
-        InvokeRepeating("Spawn_Wave", 0, 60/BPM);
-        audio = GetComponent<AudioSource>();
+        if(tag == "Player") GetComponent<AudioSource>().Play();
+        InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
     }
 
     void Spawn_Wave()
