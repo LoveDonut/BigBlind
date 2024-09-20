@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5851966990935035938}
   - component: {fileID: 8176889907395216734}
   - component: {fileID: 3257349472115863771}
-  - component: {fileID: 3211262559840607415}
+  - component: {fileID: 2369123317398446388}
   m_Layer: 0
   m_Name: BulletWave
   m_TagString: Untagged
@@ -152,11 +152,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segments: 360
   growSpeed: 5
-  Disappear_Time: 1
   radius: 0.05
+  WaveColor: {r: 0, g: 0, b: 0, a: 0}
   waveManager: {fileID: 0}
---- !u!58 &3211262559840607415
-CircleCollider2D:
+--- !u!60 &2369123317398446388
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -188,5 +188,20 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5}
+      - {x: -0.47552827, y: 0.15450849}
+      - {x: -0.2938926, y: -0.40450853}
+      - {x: 0.29389268, y: -0.40450847}
+      - {x: 0.47552824, y: 0.15450856}
+  m_UseDelaunayMesh: 0

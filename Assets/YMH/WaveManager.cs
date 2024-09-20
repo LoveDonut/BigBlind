@@ -5,12 +5,12 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] GameObject Wave_Object;
-    public float Wave_Spawn_Time = .5f;
+    public float BPM = 90;
     public float Destroy_Time = .5f;
     [SerializeField] Color wave_Color;
     private void Start()
     {
-        InvokeRepeating("Spawn_Wave", 0, Wave_Spawn_Time);
+        InvokeRepeating("Spawn_Wave", 0, 60/BPM);
     }
 
     void Spawn_Wave()
