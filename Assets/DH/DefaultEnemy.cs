@@ -18,6 +18,8 @@ public class DefaultEnemy : MonoBehaviour
     NavMeshAgent _agent;
     PlayerMovement _movement;
 
+
+    bool already_Detected;
     // enemy gets back starting point after arriving end point
     int currentPathIndex;
 
@@ -71,7 +73,9 @@ public class DefaultEnemy : MonoBehaviour
 
     public void StartFadeOut()
     {
+        if (already_Detected) return;
         StartCoroutine(Detected());
+        already_Detected = true;
     }
 
     private IEnumerator Detected()
@@ -82,12 +86,13 @@ public class DefaultEnemy : MonoBehaviour
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += delay;
-            float alpha = Mathf.Lerp(.8f, 0f, elapsedTime / fadeDuration);
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
             spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
             yield return new WaitForSeconds(delay);
         }
 
         spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        already_Detected = false;
     }
 }
 
