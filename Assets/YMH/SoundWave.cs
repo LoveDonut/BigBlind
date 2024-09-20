@@ -88,7 +88,6 @@ public class SoundWave : MonoBehaviour
         if (!isPlayerSound) return;
         if (collision.CompareTag("Enemy"))
         {
-            print(gameObject.name);
             collision.GetComponent<DefaultEnemy>().StartFadeOut();
         }
     }
