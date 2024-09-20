@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Patrol_DefaultEnemy : StateMachineBehaviour
+public class Patrol_PatrolEnemy : StateMachineBehaviour
 {
     NavMeshAgent _navMeshAgent;
-    DefaultEnemy _defualteEnemy;
+    PatrolEnemy _defualteEnemy;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _navMeshAgent = animator.GetComponent<NavMeshAgent>();
-        _defualteEnemy = animator.GetComponent<DefaultEnemy>();
+        _defualteEnemy = animator.GetComponent<PatrolEnemy>();
         Vector3 dest = _defualteEnemy.GetDestination().position;
         _navMeshAgent.SetDestination(dest);
-        Debug.Log($"dest : {dest}");
+//        Debug.Log($"dest : {dest}");
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
