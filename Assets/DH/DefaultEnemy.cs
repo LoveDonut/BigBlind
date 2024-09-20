@@ -9,12 +9,22 @@ public class DefaultEnemy : MonoBehaviour
 
     [SerializeField] float _waitingTime = 1f;
     [SerializeField] Transform _path;
+
+    [Header("°¨Áö")]
+    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private float delay = 0.1f;
+    private SpriteRenderer spriteRenderer;
     List<Transform> _paths;
     NavMeshAgent _agent;
     PlayerMovement _movement;
 
     // enemy gets back starting point after arriving end point
     int currentPathIndex;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     #endregion
 
@@ -59,5 +69,26 @@ public class DefaultEnemy : MonoBehaviour
         return _waitingTime;
     }
 
-    #endregion
+    public void StartFadeOut()
+    {
+        StartCoroutine(Detected());
+    }
+
+    private IEnumerator Detected()
+    {
+        float elapsedTime = 0f;
+        Color startColor = spriteRenderer.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += delay;
+            float alpha = Mathf.Lerp(.8f, 0f, elapsedTime / fadeDuration);
+            spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            yield return new WaitForSeconds(delay);
+        }
+
+        spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+    }
 }
+
+#endregion
