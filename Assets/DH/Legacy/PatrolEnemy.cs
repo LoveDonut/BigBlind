@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DefaultEnemy : MonoBehaviour
+public class PatrolEnemy : MonoBehaviour
 {
     #region PrivateVariables
 
@@ -31,7 +31,7 @@ public class DefaultEnemy : MonoBehaviour
         _movement = FindObjectOfType<PlayerMovement>();
         _agent = GetComponent<NavMeshAgent>();
 //        _agent.SetDestination(_movement.transform.position);
-        Debug.Log(_movement.transform.position);
+//        Debug.Log(_movement.transform.position);
     }
 
     void Update()

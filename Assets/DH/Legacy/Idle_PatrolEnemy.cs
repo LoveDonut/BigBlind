@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Idle_DefaultEnemy : StateMachineBehaviour
+public class Idle_PatrolEnemy : StateMachineBehaviour
 {
     float _elapsedTime;
-    DefaultEnemy _defaultEnemy;
+    PatrolEnemy _defaultEnemy;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _defaultEnemy = animator.GetComponent<DefaultEnemy>();
+        _defaultEnemy = animator.GetComponent<PatrolEnemy>();
         _elapsedTime = _defaultEnemy.GetWaitingTime();
     }
 
