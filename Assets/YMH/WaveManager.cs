@@ -16,7 +16,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        if(tag == "Player") GetComponent<AudioSource>().Play();
+        //if(tag == "Player") GetComponent<AudioSource>().Play();
         InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
     }
 

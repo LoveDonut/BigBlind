@@ -682,6 +682,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waitingTime: 2
   _path: {fileID: 1813818151}
+  fadeDuration: 1
+  delay: 0.1
+  prefab: {fileID: 0}
 --- !u!58 &1209067340
 CircleCollider2D:
   m_ObjectHideFlags: 0
