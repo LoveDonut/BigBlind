@@ -14,8 +14,6 @@ public class SoundWave : MonoBehaviour
 
     [HideInInspector]
     public Color WaveColor;
-
-
     public WaveManager waveManager;
 
     private LineRenderer lineRenderer;
@@ -24,7 +22,6 @@ public class SoundWave : MonoBehaviour
     private float t_Destroy = 0f;
     private Vector3[] positions;
     private Vector2[] colliderPoints;
-
     float alpha, angleStep, angle;
     int i;
 
@@ -33,8 +30,7 @@ public class SoundWave : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         polygonCollider = GetComponent<PolygonCollider2D>();
         lineRenderer.positionCount = segments + 1;
-        lineRenderer.useWorldSpace = true;
-
+        lineRenderer.useWorldSpace = false;  // 변경: 로컬 좌표 사용
         positions = new Vector3[segments + 1];
         colliderPoints = new Vector2[segments + 1];
     }
@@ -67,12 +63,10 @@ public class SoundWave : MonoBehaviour
             else
             {
                 angle = i * angleStep * Mathf.Deg2Rad;
-                Vector2 pos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-                positions[i] = transform.TransformPoint(pos);
+                positions[i] = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
             }
             colliderPoints[i] = positions[i];
         }
-
         lineRenderer.SetPositions(positions);
         polygonCollider.SetPath(0, colliderPoints);
     }
@@ -92,7 +86,11 @@ public class SoundWave : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isPlayerSound) return;
-        if (collision.CompareTag("Enemy")) collision.GetComponent<DefaultEnemy>().StartFadeOut();
+        if (collision.CompareTag("Enemy"))
+        {
+            print(gameObject.name);
+            collision.GetComponent<DefaultEnemy>().StartFadeOut();
+        }
     }
 
     private void DeformCircle(Collider2D wallCollider)
@@ -100,12 +98,13 @@ public class SoundWave : MonoBehaviour
         for (i = 0; i <= segments; i++)
         {
             if (fixedSegments.ContainsKey(i)) continue;
-            Vector2 point = positions[i];
-            Vector2 closestPoint = wallCollider.ClosestPoint(point);
-            if (Vector2.Distance(point, closestPoint) < 0.01f)
+            Vector2 worldPoint = transform.TransformPoint(positions[i]);
+            Vector2 closestPoint = wallCollider.ClosestPoint(worldPoint);
+            if (Vector2.Distance(worldPoint, closestPoint) < 0.01f)
             {
-                fixedSegments[i] = closestPoint;
-                positions[i] = closestPoint;
+                Vector2 localPoint = transform.InverseTransformPoint(closestPoint);
+                fixedSegments[i] = localPoint;
+                positions[i] = localPoint;
             }
         }
     }
