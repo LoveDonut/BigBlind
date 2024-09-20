@@ -9,10 +9,11 @@ public class SoundWave : MonoBehaviour
     [SerializeField] private float growSpeed = 0.5f;
     [SerializeField] private float radius = 0.5f;
 
+    [Header("플레이어 소리 체크")]
+    [SerializeField] private bool isPlayerSound = false;
+
     [HideInInspector]
     public Color WaveColor;
-
-
     public WaveManager waveManager;
 
     private LineRenderer lineRenderer;
@@ -21,14 +22,15 @@ public class SoundWave : MonoBehaviour
     private float t_Destroy = 0f;
     private Vector3[] positions;
     private Vector2[] colliderPoints;
+    float alpha, angleStep, angle;
+    int i;
 
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         polygonCollider = GetComponent<PolygonCollider2D>();
         lineRenderer.positionCount = segments + 1;
-        lineRenderer.useWorldSpace = true;
-
+        lineRenderer.useWorldSpace = false;  // 변경: 로컬 좌표 사용
         positions = new Vector3[segments + 1];
         colliderPoints = new Vector2[segments + 1];
     }
@@ -44,15 +46,15 @@ public class SoundWave : MonoBehaviour
     {
         t_Destroy += Time.deltaTime;
         radius += growSpeed * Time.deltaTime;
-        float alpha = 1 - (t_Destroy / waveManager.Destroy_Time);
+        alpha = 1 - (t_Destroy / waveManager.Destroy_Time);
         Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
         lineRenderer.startColor = lineRenderer.endColor = waveColor;
     }
 
     private void DrawCircle()
     {
-        float angleStep = 360f / segments;
-        for (int i = 0; i <= segments; i++)
+        angleStep = 360f / segments;
+        for (i = 0; i <= segments; i++)
         {
             if (fixedSegments.TryGetValue(i, out Vector2 fixedPosition))
             {
@@ -60,13 +62,11 @@ public class SoundWave : MonoBehaviour
             }
             else
             {
-                float angle = i * angleStep * Mathf.Deg2Rad;
-                Vector2 pos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-                positions[i] = transform.TransformPoint(pos);
+                angle = i * angleStep * Mathf.Deg2Rad;
+                positions[i] = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
             }
             colliderPoints[i] = positions[i];
         }
-
         lineRenderer.SetPositions(positions);
         polygonCollider.SetPath(0, colliderPoints);
     }
@@ -85,15 +85,16 @@ public class SoundWave : MonoBehaviour
 
     private void DeformCircle(Collider2D wallCollider)
     {
-        for (int i = 0; i <= segments; i++)
+        for (i = 0; i <= segments; i++)
         {
             if (fixedSegments.ContainsKey(i)) continue;
-            Vector2 point = positions[i];
-            Vector2 closestPoint = wallCollider.ClosestPoint(point);
-            if (Vector2.Distance(point, closestPoint) < 0.01f)
+            Vector2 worldPoint = transform.TransformPoint(positions[i]);
+            Vector2 closestPoint = wallCollider.ClosestPoint(worldPoint);
+            if (Vector2.Distance(worldPoint, closestPoint) < 0.01f)
             {
-                fixedSegments[i] = closestPoint;
-                positions[i] = closestPoint;
+                Vector2 localPoint = transform.InverseTransformPoint(closestPoint);
+                fixedSegments[i] = localPoint;
+                positions[i] = localPoint;
             }
         }
     }

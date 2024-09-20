@@ -87,7 +87,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0.49830067
-        value: 0.055561423
+        value: 0.20634878
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -151,8 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 180
-  growSpeed: 5
+  growSpeed: 10
   radius: 0.5
+  isPlayerSound: 1
   WaveColor: {r: 1, g: 0, b: 0, a: 1}
   waveManager: {fileID: 0}
 --- !u!60 &2369123317398446388
