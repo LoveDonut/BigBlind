@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour
         {
             bloodEffect.InstantiateBloodEffect(transform);
         }
+        CameraShake.instance.shakeCamera(5f, .1f);
         Destroy(gameObject);
     }
     #endregion

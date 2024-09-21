@@ -5,6 +5,8 @@ using Cinemachine;
 
 public class CameraShake : MonoBehaviour
 {
+    public static CameraShake instance { get; private set; }
+
     CinemachineVirtualCamera cinemachineVirtualCamera;
     float shakeTimer;
     float shakeTimerTotal;
@@ -12,6 +14,7 @@ public class CameraShake : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
@@ -28,8 +31,6 @@ public class CameraShake : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) shakeCamera(5f, .1f);
-
         if (shakeTimer > 0)
         {
             shakeTimer -= Time.deltaTime;

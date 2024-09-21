@@ -103,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Wave_Object: {fileID: 5202586336991198198, guid: 58360a0d91ace6448861ae8605dbc909, type: 3}
   BPM: 90
-  Destroy_Time: 0.5
-  wave_Color: {r: 1, g: 1, b: 1, a: 0}
+  Destroy_Time: 1
+  wave_Color: {r: 1, g: 0.5707547, b: 0.5707547, a: 1}
   BPM_90: {fileID: 0}
 --- !u!95 &2055021464969778517
 Animator:
