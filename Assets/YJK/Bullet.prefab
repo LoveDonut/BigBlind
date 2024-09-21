@@ -100,9 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Wave_Object: {fileID: 5202586336991198198, guid: 3b6a44f07eef6a648b8a18f3b3d78d3f, type: 3}
-  Wave_Spawn_Time: 0.2
+  BPM: 720
   Destroy_Time: 0.2
   wave_Color: {r: 1, g: 0, b: 0, a: 0}
+  BPM_90: {fileID: 0}
 --- !u!50 &-271006410265649914
 Rigidbody2D:
   serializedVersion: 4
