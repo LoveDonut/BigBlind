@@ -26,8 +26,11 @@ public class BloodEffect : MonoBehaviour
     {
         var _bloodObj = Instantiate(_bloodPrefab, obj.transform.position,Quaternion.identity);
         _bloodObj.transform.rotation = Quaternion.Euler(new Vector3(0,0,rotationZ));
-
+        
+        _bloodObj.GetComponent<SpriteRenderer>().sortingLayerName = "Blood";
+        _bloodObj.GetComponent<SpriteRenderer>().sortingOrder = GameManager.Instance.Set_New_Blood_Index();
         SpriteRenderer _bloodObjSr = _bloodObj.GetComponent<SpriteRenderer>();
+
         _bloodObjSr.sprite = _randomBloodSprite;
         _bloodObjSr.color = _randomColor;
 
@@ -42,7 +45,7 @@ public class BloodEffect : MonoBehaviour
             () => _bloodObjSr.color, x => _bloodObjSr.color = x,  0f, _deleteDuration                      
         ).SetEase(Ease.InExpo).OnComplete(() => { Destroy(_bloodObj); }));
 
-        // ½ÃÄö½º ½ÇÇà
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         sequence.Play();
 
     }
