@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("A " + _cameraPos.GetComponent<CameraTarget>().targetPos);
         HandCannon.PlayOneShot(HandCannonSound);
+        CameraShake.instance.shakeCamera(7f, .1f);
         Vector3 aimPos = _cameraPos.GetComponent<CameraTarget>().targetPos - transform.position;
         aimPos.z = 0f;
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos, Quaternion.identity);

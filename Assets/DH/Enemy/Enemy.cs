@@ -88,6 +88,7 @@ public class Enemy : MonoBehaviour
         {
             bloodEffect.InstantiateBloodEffect(transform);
         }
+        Direction.Instance.Show_Flash_Effect();
         CameraShake.instance.shakeCamera(5f, .1f);
         Destroy(gameObject);
     }
