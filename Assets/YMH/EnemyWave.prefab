@@ -87,7 +87,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.3015957
+        value: 0.14286613
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -151,9 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 180
-  growSpeed: 5
-  Disappear_Time: 1
-  radius: 0.5
+  growSpeed: 1
+  radius: 0
+  isPlayerSound: 0
+  WaveColor: {r: 0, g: 0, b: 0, a: 0}
   waveManager: {fileID: 0}
 --- !u!60 &2369123317398446388
 PolygonCollider2D:
