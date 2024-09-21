@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _acceleration = 50f;    // acceleration
     [SerializeField] float _deceleration = 20f;    // decceleration
     [SerializeField] float _maxSpeed = 5f;         // max move speed
+    [SerializeField] float _bulletSpeed = 5f;
 
     [Header("Sound")]
     [SerializeField] AudioSource HandCannonSound;     
@@ -72,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 aimPos = _cameraPos.GetComponent<CameraTarget>().targetPos - transform.position;
         aimPos.z = 0f;
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().velocity = aimPos * 5f;
+        bullet.GetComponent<Rigidbody2D>().velocity = aimPos * _bulletSpeed;
         Destroy(bullet, 3f);
     }
     #endregion
