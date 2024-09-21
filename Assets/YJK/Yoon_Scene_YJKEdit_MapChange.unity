@@ -6952,6 +6952,8 @@ MonoBehaviour:
   - {fileID: 1471561000, guid: 317e8883d0761184b89a456457c99384, type: 3}
   - {fileID: 1253861032, guid: 317e8883d0761184b89a456457c99384, type: 3}
   _createDuration: 0.1
+  _maintainDuration: 0
+  _deleteDuration: 0
 --- !u!4 &1697516239
 Transform:
   m_ObjectHideFlags: 0
