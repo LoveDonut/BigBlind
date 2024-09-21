@@ -81,5 +81,15 @@ public class Enemy : MonoBehaviour
             _navMeshAgent.isStopped = false;
         }
     }
+
+    public void Dead()
+    {
+        BloodEffect bloodEffect = FindObjectOfType<BloodEffect>();
+        if (bloodEffect != null)
+        {
+            bloodEffect.InstantiateBloodEffect(transform);
+        }
+        Destroy(gameObject);
+    }
     #endregion
 }
