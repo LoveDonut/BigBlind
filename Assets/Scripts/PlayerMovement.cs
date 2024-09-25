@@ -106,9 +106,8 @@ public class PlayerMovement : MonoBehaviour
         CameraShake.instance.shakeCamera(7f, .1f);
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
-        aimPos = aimPos.normalized;
-        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos * 0.5f, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().velocity = aimPos * _bulletSpeed;
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized, Quaternion.LookRotation(aimPos.normalized));
+
         Destroy(bullet, 3f);
     }
 
