@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 200;
         _ammo = _maxAmmo;
-
         _rb = GetComponent<Rigidbody2D>();
         if (AmmoCount != null) AmmoCount = GameObject.Find("AmmoCount").GetComponent<TMPro.TextMeshProUGUI>();
     }
