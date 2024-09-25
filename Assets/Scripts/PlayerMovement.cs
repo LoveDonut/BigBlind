@@ -36,8 +36,9 @@ public class PlayerMovement : MonoBehaviour
     int _ammo = 6;
     [SerializeField] float reloadTime = 2f;
     [SerializeField] bool reloadAll = true;
-    bool shootable = true;
+    bool shootable = true, reloadable = true;
     [SerializeField] TMPro.TextMeshProUGUI AmmoCount;
+    Coroutine reloadCoroutine;
     #endregion
 
     #region PrivateMethods
@@ -94,11 +95,12 @@ public class PlayerMovement : MonoBehaviour
             if(EmptySound != null) HandCannon.PlayOneShot(EmptySound);
             return;
         }
+        if(reloadCoroutine != null) StopCoroutine(reloadCoroutine);
+        reloadable = true;
         if (!shootable)
         {
             return;
         }
-        StopCoroutine(WaitReload());
         StartCoroutine(WaitNextBullet());
         _ammo--;
         HandCannon.PlayOneShot(HandCannonSound);
@@ -128,15 +130,16 @@ public class PlayerMovement : MonoBehaviour
 
     void OnReload(InputValue value)
     {
-        if(_ammo == _maxAmmo)
+        if(_ammo == _maxAmmo || !reloadable)
         {
             return;
         }
-        StartCoroutine(WaitReload());
+        reloadCoroutine = StartCoroutine(WaitReload());
     }
 
     IEnumerator WaitReload()
     {
+        reloadable = false;
         while(_ammo < _maxAmmo)
         {
             if (reloadAll)
@@ -163,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
                 _ammo++;
             }
         }
+        reloadable = true;
     }
     #endregion
 
