@@ -26,7 +26,7 @@ public class SoundWave : MonoBehaviour
     private Vector2[] colliderPoints;
     float alpha, angleStep, angle;
     int i;
-
+    int myFrame;
     //프레임 보정값
     float frameRate;
 
@@ -34,12 +34,13 @@ public class SoundWave : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = segments + 1;
-        lineRenderer.useWorldSpace = false;  // 변경: 로컬 좌표 사용
+        lineRenderer.useWorldSpace = false;
         positions = new Vector3[segments + 1];
         colliderPoints = new Vector2[segments + 1];
 
-        frameRate = 10 * (Mathf.Cos(Mathf.PI / (2 * Mathf.Clamp01((200 / 200))))) <= 1 ? 1 : 10 * (Mathf.Cos(Mathf.PI / (2 * Mathf.Clamp01((200 / 200)))));
-        print(frameRate);
+        myFrame = Application.targetFrameRate == -1 ? 100 : Application.targetFrameRate;
+        frameRate = 10 * Mathf.Cos(Mathf.PI / (2 * Mathf.Clamp01((myFrame / 200))));
+        if (frameRate <= 1 || float.IsNaN(frameRate)) frameRate = 1;
     }
 
     private void Update()
@@ -75,6 +76,7 @@ public class SoundWave : MonoBehaviour
             colliderPoints[i] = positions[i];
         }
         lineRenderer.SetPositions(positions);
+
     }
 
     private void DetectCollision()
