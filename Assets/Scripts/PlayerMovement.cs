@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
     #region PrivateMethods
     void Start()
     {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 200;
+        //QualitySettings.vSyncCount = 0;
+        //Application.targetFrameRate = 200;
 
         _rb = GetComponent<Rigidbody2D>();
     }
