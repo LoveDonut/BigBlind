@@ -7249,6 +7249,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1602834278}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _bulletSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _bulletPrefab
+      value: 
+      objectReference: {fileID: 7410300104924160160, guid: d10b0904f4c83744e904fba5295c2c43, type: 3}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: HandCannonSound
       value: 
       objectReference: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
