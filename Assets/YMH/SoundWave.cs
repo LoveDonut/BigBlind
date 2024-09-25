@@ -11,9 +11,6 @@ public class SoundWave : MonoBehaviour
     [SerializeField] private float growSpeed = 0.5f;
     [SerializeField] private float radius = 0.5f;
 
-    [Header("플레이어 소리 체크")]
-    [SerializeField] private bool isPlayerSound = false;
-
 
     [Header("웨이브 프레임")]
     [SerializeField] float Frame = 200;
@@ -32,10 +29,6 @@ public class SoundWave : MonoBehaviour
     int i;
 
 
-    [Header("테스트")]
-    [SerializeField] bool isPlayerCheck;
-    TMP_Text TestText;
-
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -50,7 +43,7 @@ public class SoundWave : MonoBehaviour
     {
         UpdateWaveProperties();
         DrawCircle();
-        // DetectCollision();
+        DetectCollision();
     }
 
     private void UpdateWaveProperties()
@@ -101,7 +94,7 @@ public class SoundWave : MonoBehaviour
             if (fixedSegments.ContainsKey(i)) continue;
             Vector2 worldPoint = transform.TransformPoint(positions[i]);
             Vector2 closestPoint = wallCollider.ClosestPoint(worldPoint);
-            if (Vector2.Distance(worldPoint, closestPoint) < 0.01f)
+            if (Vector2.Distance(worldPoint, closestPoint) <= 0.1f)
             {
                 Vector2 localPoint = transform.InverseTransformPoint(closestPoint);
                 fixedSegments[i] = localPoint;
