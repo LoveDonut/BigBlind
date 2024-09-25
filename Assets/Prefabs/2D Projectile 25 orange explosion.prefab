@@ -4847,8 +4847,8 @@ MonoBehaviour:
   hitOffset: 0.1
   UseFirePointRotation: 0
   rotationOffset: {x: 0, y: 0, z: 0}
-  hit: {fileID: 1714524745656972, guid: 2e33bbd89680b744a8f2b0727a31b0ca, type: 3}
-  flash: {fileID: 1258350160538612, guid: d6042f989cc140942a980eadd962e2db, type: 3}
+  hit: {fileID: 1714524745656972, guid: 89ca88b575f78b241a83f35bb82bb3ea, type: 3}
+  flash: {fileID: 1258350160538612, guid: 531296d0a8f5f4141912180b3386cedf, type: 3}
   Detached:
   - {fileID: 1666296132266488}
 --- !u!114 &7847197084867858718
