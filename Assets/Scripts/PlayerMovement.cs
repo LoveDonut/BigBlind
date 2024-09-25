@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sound")]
     [SerializeField] AudioSource HandCannon;
     [SerializeField] AudioClip HandCannonSound;
+    [SerializeField] AudioClip EmptySound;
+    [SerializeField] AudioClip ReloadAllSound;
+    [SerializeField] AudioClip ReloadOneSound;
     Rigidbody2D _rb;
     Vector2 _input;
     Vector2 _velocity;
@@ -26,6 +29,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject _HandCannonWave;
     [SerializeField] Color CannonColor;
     [SerializeField] float Destroy_Time;
+
+    [Header("HandCannon")]
+    [SerializeField] float RPM = 60f;
+    [SerializeField] int _maxAmmo = 6;
+    int _ammo = 6;
+    [SerializeField] float reloadTime = 2f;
+    [SerializeField] bool reloadAll = true;
+    bool shootable = true;
     #endregion
 
     #region PrivateMethods
@@ -33,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 200;
+        _ammo = _maxAmmo;
 
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -77,6 +89,18 @@ public class PlayerMovement : MonoBehaviour
 
     void OnFire(InputValue value)
     {
+        if (_ammo <= 0)
+        {
+            if(EmptySound != null) HandCannon.PlayOneShot(EmptySound);
+            return;
+        }
+        if (!shootable)
+        {
+            return;
+        }
+        StopCoroutine(WaitReload());
+        StartCoroutine(WaitNextBullet());
+        _ammo--;
         HandCannon.PlayOneShot(HandCannonSound);
         SpawnHandCannonWave();
         CameraShake.instance.shakeCamera(7f, .1f);
@@ -88,12 +112,58 @@ public class PlayerMovement : MonoBehaviour
         Destroy(bullet, 3f);
     }
 
+    IEnumerator WaitNextBullet()
+    {
+        shootable = false;
+        yield return new WaitForSeconds(60f / RPM);
+        shootable = true;
+    }
+
     void SpawnHandCannonWave()
     {
         var wave = Instantiate(_HandCannonWave, transform.position, Quaternion.identity);
         wave.GetComponent<SoundWave>().waveManager = GetComponent<WaveManager>();
         wave.GetComponent<SoundWave>().WaveColor = CannonColor;
         Destroy(wave, Destroy_Time);
+    }
+
+    void OnReload(InputValue value)
+    {
+        if(_ammo == _maxAmmo)
+        {
+            return;
+        }
+        StartCoroutine(WaitReload());
+    }
+
+    IEnumerator WaitReload()
+    {
+        while(_ammo < _maxAmmo)
+        {
+            if (reloadAll)
+            {
+                if (ReloadAllSound != null)
+                {
+                    HandCannon.PlayOneShot(ReloadAllSound);
+                }
+            }
+            else
+            {
+                if(ReloadOneSound != null)
+                {
+                    HandCannon.PlayOneShot(ReloadOneSound);
+                }
+            }
+            yield return new WaitForSeconds(reloadTime);
+            if (reloadAll)
+            {
+                _ammo = _maxAmmo;
+            }
+            else
+            {
+                _ammo++;
+            }
+        }
     }
     #endregion
 
