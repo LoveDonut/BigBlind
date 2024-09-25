@@ -21,13 +21,18 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] GameObject _cameraPos;
     [SerializeField] GameObject _bulletPrefab;
+
+    [Header("Bullet")]
+    [SerializeField] GameObject _HandCannonWave;
+    [SerializeField] Color CannonColor;
+    [SerializeField] float Destroy_Time;
     #endregion
 
     #region PrivateMethods
     void Start()
     {
-        //QualitySettings.vSyncCount = 0;
-        //Application.targetFrameRate = 200;
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 200;
 
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -74,12 +79,21 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("A " + _cameraPos.GetComponent<CameraTarget>().targetPos);
         HandCannon.PlayOneShot(HandCannonSound);
+        SpawnHandCannonWave();
         CameraShake.instance.shakeCamera(7f, .1f);
         Vector3 aimPos = _cameraPos.GetComponent<CameraTarget>().targetPos - transform.position;
         aimPos.z = 0f;
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos, Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().velocity = aimPos * _bulletSpeed;
         Destroy(bullet, 3f);
+    }
+
+    void SpawnHandCannonWave()
+    {
+        var wave = Instantiate(_HandCannonWave, transform.position, Quaternion.identity);
+        wave.GetComponent<SoundWave>().waveManager = GetComponent<WaveManager>();
+        wave.GetComponent<SoundWave>().WaveColor = CannonColor;
+        Destroy(wave, Destroy_Time);
     }
     #endregion
 

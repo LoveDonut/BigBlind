@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3257349472115863771}
   - component: {fileID: 2369123317398446388}
   m_Layer: 0
-  m_Name: Wave
+  m_Name: CannonWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,8 +86,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.50860035
-        value: 0.18253744
+        time: 0.5120336
+        value: 0.055553794
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 180
-  growSpeed: 10
-  radius: 0.5
+  growSpeed: 30
+  radius: 1
   Frame: 200
   WaveColor: {r: 1, g: 0, b: 0, a: 1}
   waveManager: {fileID: 0}
