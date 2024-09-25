@@ -8,9 +8,10 @@ public class AttackReady_Enemy : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(animator.TryGetComponent<Enemy>(out _enemy))
+        if(animator.TryGetComponent<Enemy>(out  _enemy))
         {
-            _enemy.ReadyForAttack();
+            _enemy.StartReadyForAttack();
+            Debug.Log("ReadyAttack");
         }
     }
 

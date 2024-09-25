@@ -10,8 +10,11 @@ public class Chase_Enemy : StateMachineBehaviour
     {
         if (animator.TryGetComponent<Enemy>(out _enemy))
         {
-            _enemy.StartMove();
-            _enemy.Chase();
+            if (!_enemy.IsInAttackRange())
+            {
+                _enemy.StartMove();
+                _enemy.Chase();
+            }
         }
     }
 
@@ -19,11 +22,12 @@ public class Chase_Enemy : StateMachineBehaviour
     {
         if (animator.TryGetComponent<Enemy>(out _enemy))
         {
-            _enemy.Chase();
-            if(_enemy.IsInAttackRange())
+            if (_enemy.IsInAttackRange())
             {
                 animator.SetTrigger("StartReady");
+                return;
             }
+            _enemy.Chase();
         }
     }
 

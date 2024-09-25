@@ -8,38 +8,34 @@ public class Enemy : MonoBehaviour
 {
     #region PrivateVariables
 
-    [SerializeField] float _attackRange = 1f;
-    [SerializeField] float _moveSpeed = 5f;
-    [SerializeField] float _readyDelay = 1f;
+    [SerializeField] protected float _attackRange = 1f;
+    [SerializeField] protected float _moveSpeed = 5f;
 
     Transform _playerTransform;
     NavMeshAgent _navMeshAgent;
     Animator _animator;
+    WaveManager _waveManager;
     #endregion
 
     #region PublicVariables
     #endregion
 
     #region PrivateMethods
-    void Awake()
+    protected virtual void Awake()
     {
         _playerTransform = FindObjectOfType<PlayerMovement>().transform;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+        _waveManager = GetComponent<WaveManager>();
     }
-    void Start()
+    protected virtual void Start()
     {
         _navMeshAgent.speed = _moveSpeed;
     }
-    void Update()
+
+    protected virtual void Update()
     {
         transform.rotation = Quaternion.identity;
-    }
-
-    IEnumerator ReadyDelay()
-    {
-        yield return new WaitForSeconds(_readyDelay);
-        _animator.SetTrigger("StartAttack");
     }
     #endregion
 
@@ -47,20 +43,25 @@ public class Enemy : MonoBehaviour
 
     public virtual void Chase()
     {
+        if (IsInAttackRange())
+        {
+            return;
+        }
         _navMeshAgent.SetDestination(_playerTransform.position);
     }
 
-    public virtual void ReadyForAttack()
+    public virtual void StartReadyForAttack()
     {
-        Debug.Log("Ready Attack");
-        StartCoroutine(ReadyDelay());
+        _waveManager.OnAttackReady += _waveManager.ChangeColorToReadyColor;
     }
 
     // default : close-range
-    public virtual void Attack()
+    public virtual void StartAttack()
     {
+        // attack only once
+        _waveManager.OnAttack -= _waveManager.OnAttack;
         // attack player
-        Debug.Log("Attack");
+        _animator.SetTrigger("StartAttack");
     }
 
     public bool IsInAttackRange()
