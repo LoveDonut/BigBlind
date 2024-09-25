@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float reloadTime = 2f;
     [SerializeField] bool reloadAll = true;
     bool shootable = true;
+    [SerializeField] TMPro.TextMeshProUGUI AmmoCount;
     #endregion
 
     #region PrivateMethods
@@ -47,11 +48,13 @@ public class PlayerMovement : MonoBehaviour
         _ammo = _maxAmmo;
 
         _rb = GetComponent<Rigidbody2D>();
+        if (AmmoCount != null) AmmoCount = GameObject.Find("AmmoCount").GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     void Update()
     {
         Move();
+        AmmoCount.text = _ammo + " / " + _maxAmmo;
     }
 
     void Move()
