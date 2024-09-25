@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using TMPro;
 
 [RequireComponent(typeof(LineRenderer), typeof(PolygonCollider2D))]
 public class SoundWave : MonoBehaviour
@@ -11,6 +13,10 @@ public class SoundWave : MonoBehaviour
 
     [Header("플레이어 소리 체크")]
     [SerializeField] private bool isPlayerSound = false;
+
+
+    [Header("웨이브 프레임")]
+    [SerializeField] float Frame = 200;
 
     [HideInInspector]
     public Color WaveColor;
@@ -24,6 +30,11 @@ public class SoundWave : MonoBehaviour
     private Vector2[] colliderPoints;
     float alpha, angleStep, angle;
     int i;
+
+
+    [Header("테스트")]
+    [SerializeField] bool isPlayerCheck;
+    TMP_Text TestText;
 
     private void Awake()
     {
@@ -39,14 +50,14 @@ public class SoundWave : MonoBehaviour
     {
         UpdateWaveProperties();
         DrawCircle();
-        DetectCollision();
+        // DetectCollision();
     }
 
     private void UpdateWaveProperties()
     {
         t_Destroy += Time.deltaTime;
         radius += growSpeed * Time.deltaTime;
-        alpha = 1 - (t_Destroy / waveManager.Destroy_Time);
+        alpha = WaveColor.a - (t_Destroy / waveManager.Destroy_Time);
         Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
         lineRenderer.startColor = lineRenderer.endColor = waveColor;
     }

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PlayScene.unity
-    guid: f788e2b13dc97a743b0694c3d00d53dc
+    path: Assets/YMH/Yoon_PlayScene.unity
+    guid: e474724127408294e9d237aba055cefc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1d5333b1920ff0546b784b88ecc03bac, type: 2}
