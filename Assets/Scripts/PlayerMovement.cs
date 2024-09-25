@@ -69,13 +69,13 @@ public class PlayerMovement : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        Debug.Log("A " + _cameraPos.GetComponent<CameraTarget>().targetPos);
         HandCannon.PlayOneShot(HandCannonSound);
         CameraShake.instance.shakeCamera(7f, .1f);
-        Vector3 aimPos = _cameraPos.GetComponent<CameraTarget>().targetPos - transform.position;
+        Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
-        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().velocity = aimPos.normalized * _bulletSpeed;
+        aimPos = aimPos.normalized;
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos * 0.5f, Quaternion.identity);
+        bullet.GetComponent<Rigidbody2D>().velocity = aimPos * _bulletSpeed;
         Destroy(bullet, 3f);
     }
     #endregion
