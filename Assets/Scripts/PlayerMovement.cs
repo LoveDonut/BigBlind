@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sound")]
     [SerializeField] AudioSource HandCannon;
     [SerializeField] AudioClip HandCannonSound;
+    [SerializeField] AudioClip EmptySound;
+    [SerializeField] AudioClip ReloadAllSound;
+    [SerializeField] AudioClip ReloadOneSound;
     Rigidbody2D _rb;
     Vector2 _input;
     Vector2 _velocity;
@@ -21,20 +24,34 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] GameObject _cameraPos;
     [SerializeField] GameObject _bulletPrefab;
+
+    [Header("Bullet")]
+    [SerializeField] GameObject _HandCannonWave;
+    [SerializeField] Color CannonColor;
+    [SerializeField] float Destroy_Time;
+
+    [Header("HandCannon")]
+    [SerializeField] float RPM = 60f;
+    [SerializeField] int _maxAmmo = 6;
+    int _ammo = 6;
+    [SerializeField] float reloadTime = 2f;
+    [SerializeField] bool reloadAll = true;
+    bool shootable = true;
+    [SerializeField] TMPro.TextMeshProUGUI AmmoCount;
     #endregion
 
     #region PrivateMethods
     void Start()
     {
-        //QualitySettings.vSyncCount = 0;
-        //Application.targetFrameRate = 200;
-
+        _ammo = _maxAmmo;
         _rb = GetComponent<Rigidbody2D>();
+        if (AmmoCount != null) AmmoCount = GameObject.Find("AmmoCount").GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     void Update()
     {
         Move();
+        AmmoCount.text = _ammo + " / " + _maxAmmo;
     }
 
     void Move()
@@ -72,14 +89,80 @@ public class PlayerMovement : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        Debug.Log("A " + _cameraPos.GetComponent<CameraTarget>().targetPos);
+        if (_ammo <= 0)
+        {
+            if(EmptySound != null) HandCannon.PlayOneShot(EmptySound);
+            return;
+        }
+        if (!shootable)
+        {
+            return;
+        }
+        StopCoroutine(WaitReload());
+        StartCoroutine(WaitNextBullet());
+        _ammo--;
         HandCannon.PlayOneShot(HandCannonSound);
+        SpawnHandCannonWave();
         CameraShake.instance.shakeCamera(7f, .1f);
-        Vector3 aimPos = _cameraPos.GetComponent<CameraTarget>().targetPos - transform.position;
+        Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
-        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos, Quaternion.LookRotation(aimPos.normalized));
-        //bullet.GetComponent<Rigidbody2D>().velocity = aimPos.normalized * _bulletSpeed;
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized, Quaternion.LookRotation(aimPos.normalized));
+
         Destroy(bullet, 3f);
+    }
+
+    IEnumerator WaitNextBullet()
+    {
+        shootable = false;
+        yield return new WaitForSeconds(60f / RPM);
+        shootable = true;
+    }
+
+    void SpawnHandCannonWave()
+    {
+        var wave = Instantiate(_HandCannonWave, transform.position, Quaternion.identity);
+        wave.GetComponent<SoundWave>().waveManager = GetComponent<WaveManager>();
+        wave.GetComponent<SoundWave>().WaveColor = CannonColor;
+        Destroy(wave, Destroy_Time);
+    }
+
+    void OnReload(InputValue value)
+    {
+        if(_ammo == _maxAmmo)
+        {
+            return;
+        }
+        StartCoroutine(WaitReload());
+    }
+
+    IEnumerator WaitReload()
+    {
+        while(_ammo < _maxAmmo)
+        {
+            if (reloadAll)
+            {
+                if (ReloadAllSound != null)
+                {
+                    HandCannon.PlayOneShot(ReloadAllSound);
+                }
+            }
+            else
+            {
+                if(ReloadOneSound != null)
+                {
+                    HandCannon.PlayOneShot(ReloadOneSound);
+                }
+            }
+            yield return new WaitForSeconds(reloadTime);
+            if (reloadAll)
+            {
+                _ammo = _maxAmmo;
+            }
+            else
+            {
+                _ammo++;
+            }
+        }
     }
     #endregion
 

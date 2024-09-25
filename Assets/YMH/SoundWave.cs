@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Collections;
 using TMPro;
 
-[RequireComponent(typeof(LineRenderer), typeof(PolygonCollider2D))]
+[RequireComponent(typeof(LineRenderer))]
 public class SoundWave : MonoBehaviour
 {
     [Header("기본 설정")]
     [SerializeField] private int segments = 100;
     [SerializeField] private float growSpeed = 0.5f;
     [SerializeField] private float radius = 0.5f;
-
-    [Header("플레이어 소리 체크")]
-    [SerializeField] private bool isPlayerSound = false;
 
 
     [Header("웨이브 프레임")]
@@ -23,34 +20,34 @@ public class SoundWave : MonoBehaviour
     public WaveManager waveManager;
 
     private LineRenderer lineRenderer;
-    private PolygonCollider2D polygonCollider;
     private Dictionary<int, Vector2> fixedSegments = new Dictionary<int, Vector2>();
     private float t_Destroy = 0f;
     private Vector3[] positions;
     private Vector2[] colliderPoints;
     float alpha, angleStep, angle;
     int i;
-
-
-    [Header("테스트")]
-    [SerializeField] bool isPlayerCheck;
-    TMP_Text TestText;
+    int myFrame;
+    //프레임 보정값
+    float frameRate;
 
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        polygonCollider = GetComponent<PolygonCollider2D>();
         lineRenderer.positionCount = segments + 1;
-        lineRenderer.useWorldSpace = false;  // 변경: 로컬 좌표 사용
+        lineRenderer.useWorldSpace = false;
         positions = new Vector3[segments + 1];
         colliderPoints = new Vector2[segments + 1];
+
+        myFrame = Application.targetFrameRate == -1 ? 100 : Application.targetFrameRate;
+        frameRate = 10 * Mathf.Cos(Mathf.PI / (2 * Mathf.Clamp01((myFrame / 200))));
+        if (frameRate <= 1 || float.IsNaN(frameRate)) frameRate = 1;
     }
 
     private void Update()
     {
         UpdateWaveProperties();
         DrawCircle();
-        // DetectCollision();
+        DetectCollision();
     }
 
     private void UpdateWaveProperties()
@@ -79,7 +76,7 @@ public class SoundWave : MonoBehaviour
             colliderPoints[i] = positions[i];
         }
         lineRenderer.SetPositions(positions);
-        polygonCollider.SetPath(0, colliderPoints);
+
     }
 
     private void DetectCollision()
@@ -101,7 +98,7 @@ public class SoundWave : MonoBehaviour
             if (fixedSegments.ContainsKey(i)) continue;
             Vector2 worldPoint = transform.TransformPoint(positions[i]);
             Vector2 closestPoint = wallCollider.ClosestPoint(worldPoint);
-            if (Vector2.Distance(worldPoint, closestPoint) < 0.01f)
+            if (Vector2.Distance(worldPoint, closestPoint) <= 0.1f * frameRate)
             {
                 Vector2 localPoint = transform.InverseTransformPoint(closestPoint);
                 fixedSegments[i] = localPoint;

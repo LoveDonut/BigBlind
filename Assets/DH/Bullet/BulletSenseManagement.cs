@@ -17,5 +17,9 @@ public class BulletSenseManagement : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        if (collision.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
