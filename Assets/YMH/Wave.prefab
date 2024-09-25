@@ -153,7 +153,7 @@ MonoBehaviour:
   segments: 180
   growSpeed: 10
   radius: 0.5
-  isPlayerSound: 1
+  Frame: 200
   WaveColor: {r: 1, g: 0, b: 0, a: 1}
   waveManager: {fileID: 0}
 --- !u!60 &2369123317398446388

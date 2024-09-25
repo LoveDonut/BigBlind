@@ -19,10 +19,16 @@ public class WaveManager : MonoBehaviour
     [Header("BGM")]
     [SerializeField] AudioClip BPM_90;
 
+    [SerializeField] bool isPlayer;
+
     private void Start()
     {
-        //if(tag == "Player") GetComponent<AudioSource>().Play();
-        InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
+        if(!isPlayer) InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftControl) && isPlayer) Spawn_Wave();
     }
 
     void Spawn_Wave()
