@@ -111,8 +111,9 @@ MonoBehaviour:
   Wave_Object: {fileID: 5202586336991198198, guid: c848eb2a56a0f844facbfe5b919a4cd1, type: 3}
   BPM: 90
   Destroy_Time: 1
-  wave_Color: {r: 1, g: 0.3977403, b: 0, a: 1}
+  wave_Color: {r: 1, g: 0, b: 0.8000001, a: 1}
   BPM_90: {fileID: 0}
+  isPlayer: 0
 --- !u!114 &3255988380246427408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,5 +129,6 @@ MonoBehaviour:
   Wave_Object: {fileID: 5202586336991198198, guid: a11af8c4d8e7eee40a505954fc7cf01b, type: 3}
   BPM: 90
   Destroy_Time: 2
-  wave_Color: {r: 1, g: 1, b: 1, a: 1}
+  wave_Color: {r: 0, g: 0, b: 0, a: 1}
   BPM_90: {fileID: 0}
+  isPlayer: 0
