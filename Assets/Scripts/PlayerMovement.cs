@@ -157,10 +157,10 @@ public class PlayerMovement : MonoBehaviour
     void SpawnHandCannonWave()
     {
         var wave = Instantiate(_HandCannonWave, transform.position, Quaternion.identity);
-        wave.GetComponent<SoundWave>().waveManager = GetComponent<WaveManager>();
-        wave.GetComponent<SoundWave>().Init();
-        wave.GetComponent<SoundWave>().WaveColor = CannonColor;
-        Destroy(wave, Destroy_Time);
+
+        wave.GetComponent<SoundRayWave>().WaveColor = CannonColor;
+        wave.GetComponent<SoundRayWave>().InitWave();
+        wave.GetComponent<SoundRayWave>().Destroy_Time = Destroy_Time;
     }
 
     void OnReload(InputValue value)

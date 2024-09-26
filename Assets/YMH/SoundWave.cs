@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(LineRenderer))]
 public class SoundWave : MonoBehaviour
@@ -59,6 +60,14 @@ public class SoundWave : MonoBehaviour
         DetectCollision();
     }
 
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < 1000; i++)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, float.PositiveInfinity, LayerMask.GetMask("Wall"));
+        }
+    }
+
     private void UpdateWaveProperties()
     {
         t_Destroy += Time.deltaTime;
@@ -107,13 +116,25 @@ public class SoundWave : MonoBehaviour
         {
             if (fixedSegments.ContainsKey(i)) continue;
             Vector2 worldPoint = transform.TransformPoint(positions[i]);
-            Vector2 closestPoint = wallCollider.ClosestPoint(worldPoint);
-            if (Vector2.Distance(worldPoint, closestPoint) <= 0.15f * frameRate)
+            Bounds bounds = wallCollider.bounds;
+            if (bounds.Contains(worldPoint))
             {
+                float closestX = (worldPoint.x < bounds.center.x) ? bounds.min.x : bounds.max.x;
+                float closestY = (worldPoint.y < bounds.center.y) ? bounds.min.y : bounds.max.y;
+                Vector2 closestPoint = new Vector2(closestX, closestY);
                 Vector2 localPoint = transform.InverseTransformPoint(closestPoint);
                 fixedSegments[i] = localPoint;
                 positions[i] = localPoint;
             }
+            /*
+            Vector2 closestPoint = wallCollider.ClosestPoint(worldPoint);
+            if (Vector2.Distance(worldPoint, closestPoint) <= 0.15f * frameRate)
+            {
+                Vector2 localPoint = worldPoint == closestPoint ? transform.InverseTransformPoint(wallCollider.ClosestPoint(closestPoint - (closestPoint - new Vector2(transform.position.x, transform.position.y)).normalized * 0.6f * frameRate)) : transform.InverseTransformPoint(closestPoint);
+                fixedSegments[i] = localPoint;
+                positions[i] = localPoint;
+            }
+            */
         }
     }
 }
