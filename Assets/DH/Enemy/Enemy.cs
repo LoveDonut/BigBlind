@@ -130,6 +130,7 @@ public class Enemy : MonoBehaviour
         CameraShake.instance.shakeCamera(5f, .1f);
         Destroy(gameObject);
     }
+
     public float GetAttackDelay()
     {
         return _attackDelay;

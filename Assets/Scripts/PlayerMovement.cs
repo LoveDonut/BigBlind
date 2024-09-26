@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D _rb;
     Vector2 _input;
     Vector2 _velocity;
-    bool _isMovable = true;
 
     [SerializeField] GameObject _cameraPos;
     [SerializeField] GameObject _bulletPrefab;
@@ -45,6 +44,10 @@ public class PlayerMovement : MonoBehaviour
     float elapsedTime = 0f;
     #endregion
 
+    #region PublicVariables
+    public bool _isMovable;
+    #endregion
+
     #region PrivateMethods
     void Start()
     {
@@ -55,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         if (AmmoCount != null) AmmoCount = GameObject.Find("AmmoCount").GetComponent<TMPro.TextMeshProUGUI>();
         if (ReloadCircle != null) ReloadCircle = GameObject.Find("ReloadCircle").GetComponent<Image>();
         ReloadCircle.fillAmount = 0f;
+        _isMovable = true;
     }
 
     void Update()
@@ -93,6 +97,8 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
+        if (!_isMovable) return;
+
         _input = value.Get<Vector2>();
 
         _input.Normalize(); // keep the speed in the diagonal direction the same
@@ -108,6 +114,8 @@ public class PlayerMovement : MonoBehaviour
 
     void OnFire(InputValue value)
     {
+        if (!_isMovable) return;
+
         if (_ammo <= 0)
         {
             if(EmptySound != null) HandCannon.PlayOneShot(EmptySound);
@@ -157,7 +165,9 @@ public class PlayerMovement : MonoBehaviour
 
     void OnReload(InputValue value)
     {
-        if(_ammo == _maxAmmo || !reloadable)
+        if (!_isMovable) return;
+
+        if (_ammo == _maxAmmo || !reloadable)
         {
             return;
         }

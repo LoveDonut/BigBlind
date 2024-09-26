@@ -12,6 +12,7 @@ public class WaveManager : MonoBehaviour
     public float Cannon_Destroy_Time = .5f;
     [SerializeField] Color wave_Color;
     [SerializeField] Color wave_ReadyColor;
+    [SerializeField] Color wave_AttackColor;
 
     GameObject Wave;
     Enemy _enemy;
@@ -41,7 +42,7 @@ public class WaveManager : MonoBehaviour
         if (TryGetComponent<Enemy>(out _enemy))
         {
             Color colorToChange;
-            if (_enemy._currentState.GetType() == typeof(ReadyState) && _colorBefore == wave_Color)
+            if (_enemy._currentState.GetType() == typeof(ReadyState) && _colorBefore != wave_ReadyColor)
             {
                 colorToChange = wave_ReadyColor;
             }
@@ -49,11 +50,12 @@ public class WaveManager : MonoBehaviour
             {
                 colorToChange = wave_Color;
             }
-            Wave.GetComponent<SoundWave>().WaveColor = colorToChange;
             if (_colorBefore == wave_ReadyColor)
             {
+                colorToChange = wave_AttackColor;
                 _enemy.StartAttack();
             }
+            Wave.GetComponent<SoundWave>().WaveColor = colorToChange;
         }
         _colorBefore = Wave.GetComponent<SoundWave>().WaveColor;
         Destroy(Wave, Destroy_Time);

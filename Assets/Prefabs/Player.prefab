@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 6247075768657541853}
   - component: {fileID: 1729256440109526895}
   - component: {fileID: 6756703532751236850}
+  - component: {fileID: 8781396948911583693}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -153,6 +154,8 @@ MonoBehaviour:
   reloadTime: 1
   reloadAll: 1
   AmmoCount: {fileID: 0}
+  ReloadCircle: {fileID: 0}
+  _isMovable: 1
 --- !u!114 &7866275109016283291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +174,7 @@ MonoBehaviour:
   Cannon_Destroy_Time: 0.5
   wave_Color: {r: 1, g: 1, b: 1, a: 1}
   wave_ReadyColor: {r: 0, g: 0, b: 0, a: 0}
+  wave_AttackColor: {r: 0, g: 0, b: 0, a: 0}
   BPM_90: {fileID: 0}
   isPlayer: 1
 --- !u!50 &1534208878423213486
@@ -361,6 +365,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8781396948911583693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747644532665568231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534e4577ea0e34a4fa53ce0e41e61a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damagedDuration: 2
+  _blinkCycle: 0.4
+  _slowDownDuration: 0.5
+  _slowDownOffset: 0.2
+  _knockbackSpeed: 1
+  _cameraShakeIntensity: 2
+  _maxHp: 3
 --- !u!1 &3145247379113328435
 GameObject:
   m_ObjectHideFlags: 0

@@ -60,6 +60,14 @@ public class ProjectileMover2D : MonoBehaviour
                 enemy.Dead(aimPos.normalized);
             }
         }
+        else if(collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth;
+            if(collision.gameObject.TryGetComponent<PlayerHealth>(out playerHealth))
+            {
+                playerHealth.GetDamaged(aimPos.normalized);
+            }
+        }
         //Lock all axes movement and rotation
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         speed = 0;

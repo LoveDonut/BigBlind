@@ -107,6 +107,7 @@ MonoBehaviour:
   Cannon_Destroy_Time: 0.5
   wave_Color: {r: 1, g: 0, b: 0.69612455, a: 1}
   wave_ReadyColor: {r: 1, g: 0.59621054, b: 0, a: 1}
+  wave_AttackColor: {r: 1, g: 0, b: 0, a: 1}
   BPM_90: {fileID: 0}
   isPlayer: 0
 --- !u!195 &4911851406652807806
