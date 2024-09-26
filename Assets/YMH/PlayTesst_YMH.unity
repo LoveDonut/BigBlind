@@ -6672,7 +6672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &461925586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6794,6 +6794,22 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8870526991651449485, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: AmmoCount
+      value: 
+      objectReference: {fileID: 674907482}
+    - target: {fileID: 8870526991651449485, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: CrossHair
+      value: 
+      objectReference: {fileID: 674907487}
+    - target: {fileID: 8870526991651449485, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 431575684}
+    - target: {fileID: 8870526991651449485, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: ReloadCircle
+      value: 
+      objectReference: {fileID: 674907486}
     - target: {fileID: 9115344339033710161, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -6829,6 +6845,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 231796987528140034, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
   m_PrefabInstance: {fileID: 674907481}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &674907486 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 199804775538882297, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+  m_PrefabInstance: {fileID: 674907481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &674907487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4862095088800743529, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+  m_PrefabInstance: {fileID: 674907481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1066357102
 GameObject:
   m_ObjectHideFlags: 0
@@ -7294,6 +7332,10 @@ PrefabInstance:
       propertyPath: reloadTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: ReloadCircle
+      value: 
+      objectReference: {fileID: 674907486}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: _bulletSpeed
       value: 100
