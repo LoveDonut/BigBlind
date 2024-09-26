@@ -40,12 +40,17 @@ public class SoundWave : MonoBehaviour
         lineRenderer.useWorldSpace = false;
         positions = new Vector3[segments + 1];
         colliderPoints = new Vector2[segments + 1];
-        myFrame = Application.targetFrameRate == -1 ? 70 : Application.targetFrameRate;
-        frameRate = 10 * Mathf.Cos(Mathf.PI / (2 * Mathf.Clamp01((myFrame / 200))));
-        if (frameRate <= 1 || float.IsNaN(frameRate)) frameRate = 1;
+        //myFrame = Application.targetFrameRate == -1 ? 70 : Application.targetFrameRate;
+        frameRate = 10 * Mathf.Cos(Mathf.PI / 2.5f);
+        print(frameRate);
+        //if (frameRate <= 1 || float.IsNaN(frameRate)) frameRate = 1;
     }
 
-    public void Init() => Destroy_Time = isCannonWave ? waveManager.Cannon_Destroy_Time : waveManager.Destroy_Time;
+    public void Init()
+    {
+        WaveColor = waveManager.wave_Color;
+        Destroy_Time = isCannonWave ? waveManager.Cannon_Destroy_Time : waveManager.Destroy_Time;
+    }
 
     private void Update()
     {
@@ -60,7 +65,8 @@ public class SoundWave : MonoBehaviour
         radius += growSpeed * Time.deltaTime;
         alpha = WaveColor.a - (t_Destroy / Destroy_Time);
         Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
-        lineRenderer.startColor = lineRenderer.endColor = waveColor;
+        lineRenderer.startColor  = waveColor;
+        lineRenderer.endColor = waveColor;
     }
 
     private void DrawCircle()

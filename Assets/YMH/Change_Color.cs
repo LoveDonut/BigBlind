@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ChangeColor : MonoBehaviour
 {
-    public Image CrossHair;
+    public Image CrossHair, ReloadCircle;
     public TMP_Text AmmoCount;
     public Camera mainCamera;
 
@@ -31,5 +31,6 @@ public class ChangeColor : MonoBehaviour
     {
         AmmoCount.color = color;
         CrossHair.color = color;
+        ReloadCircle.color = color;
     }
 }

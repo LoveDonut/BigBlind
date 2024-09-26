@@ -10,7 +10,7 @@ public class WaveManager : MonoBehaviour
     public float BPM = 90;
     public float Destroy_Time = .5f;
     public float Cannon_Destroy_Time = .5f;
-    [SerializeField] Color wave_Color;
+    public Color wave_Color;
     [SerializeField] Color wave_ReadyColor;
 
     GameObject Wave;
