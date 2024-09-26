@@ -10,7 +10,7 @@ public class AttackReady_Enemy : StateMachineBehaviour
     {
         if(animator.TryGetComponent<Enemy>(out  _enemy))
         {
-            _enemy.StartReadyForAttack();
+//            _enemy.ChangeWaveColorToReadyColor();
             Debug.Log("ReadyAttack");
         }
     }

@@ -51,11 +51,11 @@ public class ProjectileMover2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("collide with enemy!");
-            Animator enemyAnimator;
-            if (collision.gameObject.TryGetComponent<Animator>(out enemyAnimator))
+//            Debug.Log("collide with enemy!");
+            Enemy enemy;
+            if (collision.gameObject.TryGetComponent<Enemy>(out enemy))
             {
-                enemyAnimator.SetBool("IsDead", true);
+                enemy.Dead();
             }
         }
         //Lock all axes movement and rotation

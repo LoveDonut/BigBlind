@@ -35,7 +35,7 @@ public class Chase_Enemy : StateMachineBehaviour
     {
         if (animator.TryGetComponent<Enemy>(out _enemy))
         {
-            animator.ResetTrigger("StartReady");
+//            animator.ResetTrigger("StartReady");
             _enemy.StopMove();
         }
     }
