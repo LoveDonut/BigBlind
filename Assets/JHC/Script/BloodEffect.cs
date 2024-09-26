@@ -22,7 +22,7 @@ public class BloodEffect : MonoBehaviour
     {
     }
 
-   public void InstantiateBloodEffect(Transform obj,int rotationZ = 0)
+   public void InstantiateBloodEffect(Transform obj,float rotationZ = 0)
     {
         var _bloodObj = Instantiate(_bloodPrefab, obj.transform.position,Quaternion.identity);
         _bloodObj.transform.rotation = Quaternion.Euler(new Vector3(0,0,rotationZ));
