@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     #region PrivateVariables
-    Transform _playerTransform;
     NavMeshAgent _navMeshAgent;
     Animator _animator;
     WaveManager _waveManager;
@@ -17,6 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float _attackRange = 1f;
     [SerializeField] protected float _moveSpeed = 5f;
     [SerializeField] protected float _attackDelay = 1f;
+    protected Transform _playerTransform;
     #endregion
 
     #region PublicVariables
@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
         _currentState.SwitchState(this,attackState);
     }
 
-    public bool IsInAttackRange()
+    public virtual bool IsInAttackRange()
     {
         // check if the player is closed to enemy enough to attack
         if(_attackRange >= Vector2.Distance(transform.position, _playerTransform.position))
@@ -89,12 +89,10 @@ public class Enemy : MonoBehaviour
             
             if(hit.collider == null)
             {
-                Debug.Log("Find Player!");
                 return true;
             }
             else
             {
-                Debug.Log($"There is a wall {hit.collider.gameObject.name}");
                 return false;
             }
         }    

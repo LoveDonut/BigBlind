@@ -36,7 +36,7 @@ public class WaveManager : MonoBehaviour
     {
         Wave = Instantiate(Wave_Object, transform.position, Quaternion.identity);
         Wave.GetComponent<SoundWave>().waveManager = this;
-        wave.GetComponent<SoundWave>().Init();
+        Wave.GetComponent<SoundWave>().Init();
 
         if (TryGetComponent<Enemy>(out _enemy))
         {
