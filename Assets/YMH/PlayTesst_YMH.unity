@@ -6685,7 +6685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 208fa09617499cd4e8b2b0d289785572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 8459103721092605759, guid: e86a7ef8bc892da4e98e0b7c4f21b3af, type: 3}
+  _enemys: []
   _spawnTime: 2
 --- !u!4 &461925587
 Transform:
@@ -6796,7 +6796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9115344339033710161, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7278,6 +7278,10 @@ PrefabInstance:
       propertyPath: AmmoCount
       value: 
       objectReference: {fileID: 674907482}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: EmptySound
+      value: 
+      objectReference: {fileID: 8300000, guid: af056953c817e92448e70d791acb333f, type: 3}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: HandCannon
       value: 

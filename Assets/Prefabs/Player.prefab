@@ -141,7 +141,7 @@ MonoBehaviour:
   HandCannon: {fileID: 6528999214826757870}
   HandCannonSound: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
   EmptySound: {fileID: 0}
-  ReloadAllSound: {fileID: 0}
+  ReloadAllSound: {fileID: 8300000, guid: 94257015e6abe114ea579e53557b5aa6, type: 3}
   ReloadOneSound: {fileID: 0}
   _cameraPos: {fileID: 0}
   _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
@@ -170,6 +170,7 @@ MonoBehaviour:
   Destroy_Time: 2
   Cannon_Destroy_Time: 0.5
   wave_Color: {r: 1, g: 1, b: 1, a: 1}
+  wave_ReadyColor: {r: 0, g: 0, b: 0, a: 0}
   BPM_90: {fileID: 0}
   isPlayer: 1
 --- !u!50 &1534208878423213486
