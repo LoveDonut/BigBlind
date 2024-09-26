@@ -182,7 +182,8 @@ MonoBehaviour:
   _attackRange: 10
   _attackDelay: 1
   _readySFX: {fileID: 8300000, guid: 401012c68f7a7e04ebce4790045fcfe8, type: 3}
-  _AttackSFX: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
+  _AttackSFX: {fileID: 8300000, guid: 1a38c04298b996a4c8625bf2d80577cd, type: 3}
+  _audioSource: {fileID: 0}
   _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
 --- !u!82 &8812996667961951938
 AudioSource:
