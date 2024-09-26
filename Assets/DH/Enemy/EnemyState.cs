@@ -33,6 +33,10 @@ public class ReadyState : StateMachine
 {
     public override void EnterState(Enemy enemy)
     {
+        if (enemy._readySFX != null)
+        {
+            enemy._audioSource.PlayOneShot(enemy._readySFX);
+        }
         if (enemy == null) return;
     }
 
@@ -48,11 +52,18 @@ public class AttackState : StateMachine
     public override void EnterState(Enemy enemy)
     {
         if (enemy == null) return;
+
         elapsedTime = enemy.GetAttackDelay();
+
         if (enemy is Enemy_LongRange)
         {
             Enemy_LongRange enemy_LongRange = (Enemy_LongRange)enemy;
             enemy_LongRange.Fire();
+        }
+
+        if (enemy._AttackSFX != null)
+        {
+            enemy._audioSource.PlayOneShot(enemy._AttackSFX);
         }
     }
 
@@ -61,6 +72,7 @@ public class AttackState : StateMachine
         if (enemy == null) return;
 
         elapsedTime -= Time.deltaTime;
+
         if (elapsedTime < 0f)
         {
             ChaseState chaseState = new ChaseState();
