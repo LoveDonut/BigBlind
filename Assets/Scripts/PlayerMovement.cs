@@ -98,8 +98,16 @@ public class PlayerMovement : MonoBehaviour
             if(EmptySound != null) HandCannon.PlayOneShot(EmptySound);
             return;
         }
-        if(reloadCoroutine != null) StopCoroutine(reloadCoroutine);
-        reloadable = true;
+        if (reloadCoroutine != null)
+        {
+            StopCoroutine(reloadCoroutine);
+        }
+        if (!reloadable)
+        {
+            HandCannon.Stop();
+            HandCannon.pitch = 1f;
+            reloadable = true;
+        }
         if (!shootable)
         {
             return;
@@ -144,12 +152,14 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator WaitReload()
     {
         reloadable = false;
+        if (HandCannon.isPlaying) HandCannon.Stop();
         while(_ammo < _maxAmmo)
         {
             if (reloadAll)
             {
                 if (ReloadAllSound != null)
                 {
+                    HandCannon.pitch = ReloadAllSound.length / reloadTime;
                     HandCannon.PlayOneShot(ReloadAllSound);
                 }
             }
@@ -157,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(ReloadOneSound != null)
                 {
+                    HandCannon.pitch = ReloadOneSound.length / reloadTime;
                     HandCannon.PlayOneShot(ReloadOneSound);
                 }
             }
@@ -164,10 +175,12 @@ public class PlayerMovement : MonoBehaviour
             if (reloadAll)
             {
                 _ammo = _maxAmmo;
+                HandCannon.pitch = 1f;
             }
             else
             {
                 _ammo++;
+                HandCannon.pitch = 1f;
             }
         }
         reloadable = true;
