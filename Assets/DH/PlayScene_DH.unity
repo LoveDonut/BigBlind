@@ -6690,7 +6690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 208fa09617499cd4e8b2b0d289785572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 388095470878118029, guid: 10072571fd056c94493197151aee74c2, type: 3}
+  _enemys: []
   _spawnTime: 2
 --- !u!4 &461925587
 Transform:
@@ -6795,9 +6795,69 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2705271312862532292, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 99.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862095088800743529, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862095088800743529, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862095088800743529, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_fontSize
+      value: 30.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_margin.w
+      value: 15.513245
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_margin.z
+      value: 48.288086
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.97662324
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278254079
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870526991651449485, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: AmmoCount
+      value: 
+      objectReference: {fileID: 1661186647}
+    - target: {fileID: 8870526991651449485, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: CrossHair
+      value: 
+      objectReference: {fileID: 1451035126}
+    - target: {fileID: 8870526991651449485, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 431575684}
     - target: {fileID: 9115344339033710161, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6981,6 +7041,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1045175362219364439, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
   m_PrefabInstance: {fileID: 1012047632}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1451035126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4862095088800743529, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+  m_PrefabInstance: {fileID: 1012047632}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1481904132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8319063901168868693, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
