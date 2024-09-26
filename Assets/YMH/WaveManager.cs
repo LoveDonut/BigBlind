@@ -35,8 +35,8 @@ public class WaveManager : MonoBehaviour
     void Spawn_Wave()
     {
         Wave = Instantiate(Wave_Object, transform.position, Quaternion.identity);
-        Wave.GetComponent<SoundWave>().waveManager = this;
-        Wave.GetComponent<SoundWave>().Init();
+        //Wave.GetComponent<SoundWave>().waveManager = this;
+        //Wave.GetComponent<SoundWave>().Init();
 
         if (TryGetComponent<Enemy>(out _enemy))
         {
@@ -49,13 +49,13 @@ public class WaveManager : MonoBehaviour
             {
                 colorToChange = wave_Color;
             }
-            Wave.GetComponent<SoundWave>().WaveColor = colorToChange;
+            //Wave.GetComponent<SoundWave>().WaveColor = colorToChange;
             if (_colorBefore == wave_ReadyColor)
             {
                 _enemy.StartAttack();
             }
         }
-        _colorBefore = Wave.GetComponent<SoundWave>().WaveColor;
+        //_colorBefore = Wave.GetComponent<SoundWave>().WaveColor;
         Destroy(Wave, Destroy_Time);
     }
 }
