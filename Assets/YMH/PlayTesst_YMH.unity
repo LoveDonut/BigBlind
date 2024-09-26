@@ -6651,6 +6651,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c86408044143e4a8fccdc84abd6ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &461877218 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6528999214826757870, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+  m_PrefabInstance: {fileID: 1870866168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &461925585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6784,6 +6789,10 @@ PrefabInstance:
     - target: {fileID: 2644261840713813517, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9115344339033710161, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
       propertyPath: m_Name
@@ -6946,7 +6955,7 @@ MonoBehaviour:
   Flash: {fileID: 674907485}
   canvas: {fileID: 674907483}
   CrossHair: {fileID: 674907484}
-  smoothness: 0.1
+  smoothness: 0.5
 --- !u!1 &1268427345
 GameObject:
   m_ObjectHideFlags: 0
@@ -7270,9 +7279,73 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 674907482}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: HandCannon
+      value: 
+      objectReference: {fileID: 461877218}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: _cameraPos
       value: 
       objectReference: {fileID: 1602834278}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: reloadTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _bulletSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _bulletPrefab
+      value: 
+      objectReference: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: ReloadAllSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 94257015e6abe114ea579e53557b5aa6, type: 3}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: ReloadOneSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 94257015e6abe114ea579e53557b5aa6, type: 3}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: HandCannonSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
+    - target: {fileID: 5855339151436964431, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855339151436964431, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855339151436964431, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528999214826757870, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528999214826757870, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: wave_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: wave_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: wave_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8319063901168868693, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

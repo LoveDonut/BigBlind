@@ -151,9 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 180
-  growSpeed: 30
+  growSpeed: 100
   radius: 1
   Frame: 200
+  isCannonWave: 1
   WaveColor: {r: 1, g: 0, b: 0, a: 1}
   waveManager: {fileID: 0}
 --- !u!60 &2369123317398446388

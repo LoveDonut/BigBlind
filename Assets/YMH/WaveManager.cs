@@ -8,6 +8,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] GameObject Wave_Object;
     public float BPM = 90;
     public float Destroy_Time = .5f;
+    public float Cannon_Destroy_Time = .5f;
     [SerializeField] Color wave_Color;
 
 
@@ -30,6 +31,7 @@ public class WaveManager : MonoBehaviour
     {
         var wave = Instantiate(Wave_Object, transform.position, Quaternion.identity);
         wave.GetComponent<SoundWave>().waveManager = this;
+        wave.GetComponent<SoundWave>().Init();
         wave.GetComponent<SoundWave>().WaveColor = wave_Color;
         Destroy(wave, Destroy_Time);
     }
