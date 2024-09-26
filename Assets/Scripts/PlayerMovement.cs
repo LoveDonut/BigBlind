@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     #region PrivateMethods
     void Start()
     {
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         _ammo = _maxAmmo;
         _rb = GetComponent<Rigidbody2D>();
         if (AmmoCount != null) AmmoCount = GameObject.Find("AmmoCount").GetComponent<TMPro.TextMeshProUGUI>();
@@ -124,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var wave = Instantiate(_HandCannonWave, transform.position, Quaternion.identity);
         wave.GetComponent<SoundWave>().waveManager = GetComponent<WaveManager>();
+        wave.GetComponent<SoundWave>().Init();
         wave.GetComponent<SoundWave>().WaveColor = CannonColor;
         Destroy(wave, Destroy_Time);
     }
