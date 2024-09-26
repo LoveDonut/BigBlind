@@ -82,8 +82,10 @@ public class Enemy : MonoBehaviour
         // check if the player is closed to enemy enough to attack
         if(_attackRange >= Vector2.Distance(transform.position, _playerTransform.position))
         {
+            float rayLength = _attackRange > (_playerTransform.position - transform.position).magnitude ?
+                                (_playerTransform.position - transform.position).magnitude : _attackRange;
             // check if there is no wall between enemy and player
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, _playerTransform.position - transform.position, _attackRange, LayerMask.GetMask("Wall"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, _playerTransform.position - transform.position, rayLength, LayerMask.GetMask("Wall"));
             
             if(hit.collider == null)
             {
