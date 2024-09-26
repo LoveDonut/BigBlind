@@ -13,23 +13,25 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region ProtectedVariables
-    [SerializeField] protected float _attackRange = 1f;
+    [Header("Move")]
     [SerializeField] protected float _moveSpeed = 5f;
+    [Header("Attack")]
+    [SerializeField] protected float _attackRange = 1f;
     [SerializeField] protected float _attackDelay = 1f;
+
     protected Transform _playerTransform;
     #endregion
 
     #region PublicVariables
-    public StateMachine _currentState;
+    [Header("SFX")]
+    [SerializeField] public AudioClip _readySFX;
+    [SerializeField] public AudioClip _AttackSFX;
+
+    [HideInInspector] public StateMachine _currentState;
+    [HideInInspector] public AudioSource _audioSource;
     #endregion
 
     #region PrivateVariables
-    void OnDrawGizmos()
-    {
-        _playerTransform = FindObjectOfType<PlayerMovement>().transform;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(transform.position, (_playerTransform.position - transform.position).normalized * _attackRange);
-    }
     #endregion
 
     #region ProtectedMethods
@@ -39,6 +41,7 @@ public class Enemy : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _waveManager = GetComponent<WaveManager>();
+        _audioSource = GetComponent<AudioSource>();
     }
     protected virtual void Start()
     {
