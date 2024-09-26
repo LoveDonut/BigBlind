@@ -15,6 +15,8 @@ public class SoundWave : MonoBehaviour
     [Header("웨이브 프레임")]
     [SerializeField] float Frame = 200;
 
+    public bool isCannonWave;
+
     [HideInInspector]
     public Color WaveColor;
     public WaveManager waveManager;
@@ -30,6 +32,7 @@ public class SoundWave : MonoBehaviour
     //프레임 보정값
     float frameRate;
 
+    float Destroy_Time;
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -37,11 +40,12 @@ public class SoundWave : MonoBehaviour
         lineRenderer.useWorldSpace = false;
         positions = new Vector3[segments + 1];
         colliderPoints = new Vector2[segments + 1];
-
-        myFrame = Application.targetFrameRate == -1 ? 100 : Application.targetFrameRate;
+        myFrame = Application.targetFrameRate == -1 ? 70 : Application.targetFrameRate;
         frameRate = 10 * Mathf.Cos(Mathf.PI / (2 * Mathf.Clamp01((myFrame / 200))));
         if (frameRate <= 1 || float.IsNaN(frameRate)) frameRate = 1;
     }
+
+    public void Init() => Destroy_Time = isCannonWave ? waveManager.Cannon_Destroy_Time : waveManager.Destroy_Time;
 
     private void Update()
     {
@@ -54,7 +58,7 @@ public class SoundWave : MonoBehaviour
     {
         t_Destroy += Time.deltaTime;
         radius += growSpeed * Time.deltaTime;
-        alpha = WaveColor.a - (t_Destroy / waveManager.Destroy_Time);
+        alpha = WaveColor.a - (t_Destroy / Destroy_Time);
         Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
         lineRenderer.startColor = lineRenderer.endColor = waveColor;
     }
@@ -98,7 +102,7 @@ public class SoundWave : MonoBehaviour
             if (fixedSegments.ContainsKey(i)) continue;
             Vector2 worldPoint = transform.TransformPoint(positions[i]);
             Vector2 closestPoint = wallCollider.ClosestPoint(worldPoint);
-            if (Vector2.Distance(worldPoint, closestPoint) <= 0.1f * frameRate)
+            if (Vector2.Distance(worldPoint, closestPoint) <= 0.15f * frameRate)
             {
                 Vector2 localPoint = transform.InverseTransformPoint(closestPoint);
                 fixedSegments[i] = localPoint;

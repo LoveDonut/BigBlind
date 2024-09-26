@@ -36,13 +36,17 @@ public class PlayerMovement : MonoBehaviour
     int _ammo = 6;
     [SerializeField] float reloadTime = 2f;
     [SerializeField] bool reloadAll = true;
-    bool shootable = true;
+    bool shootable = true, reloadable = true;
     [SerializeField] TMPro.TextMeshProUGUI AmmoCount;
+    Coroutine reloadCoroutine;
     #endregion
 
     #region PrivateMethods
     void Start()
     {
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         _ammo = _maxAmmo;
         _rb = GetComponent<Rigidbody2D>();
         if (AmmoCount != null) AmmoCount = GameObject.Find("AmmoCount").GetComponent<TMPro.TextMeshProUGUI>();
@@ -94,11 +98,12 @@ public class PlayerMovement : MonoBehaviour
             if(EmptySound != null) HandCannon.PlayOneShot(EmptySound);
             return;
         }
+        if(reloadCoroutine != null) StopCoroutine(reloadCoroutine);
+        reloadable = true;
         if (!shootable)
         {
             return;
         }
-        StopCoroutine(WaitReload());
         StartCoroutine(WaitNextBullet());
         _ammo--;
         HandCannon.PlayOneShot(HandCannonSound);
@@ -122,21 +127,23 @@ public class PlayerMovement : MonoBehaviour
     {
         var wave = Instantiate(_HandCannonWave, transform.position, Quaternion.identity);
         wave.GetComponent<SoundWave>().waveManager = GetComponent<WaveManager>();
+        wave.GetComponent<SoundWave>().Init();
         wave.GetComponent<SoundWave>().WaveColor = CannonColor;
         Destroy(wave, Destroy_Time);
     }
 
     void OnReload(InputValue value)
     {
-        if(_ammo == _maxAmmo)
+        if(_ammo == _maxAmmo || !reloadable)
         {
             return;
         }
-        StartCoroutine(WaitReload());
+        reloadCoroutine = StartCoroutine(WaitReload());
     }
 
     IEnumerator WaitReload()
     {
+        reloadable = false;
         while(_ammo < _maxAmmo)
         {
             if (reloadAll)
@@ -163,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
                 _ammo++;
             }
         }
+        reloadable = true;
     }
     #endregion
 
