@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -38,24 +39,38 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool reloadAll = true;
     bool shootable = true, reloadable = true;
     [SerializeField] TMPro.TextMeshProUGUI AmmoCount;
+    [SerializeField] Image ReloadCircle;
     Coroutine reloadCoroutine;
+
+    float elapsedTime = 0f;
     #endregion
 
     #region PrivateMethods
     void Start()
     {
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         _ammo = _maxAmmo;
         _rb = GetComponent<Rigidbody2D>();
         if (AmmoCount != null) AmmoCount = GameObject.Find("AmmoCount").GetComponent<TMPro.TextMeshProUGUI>();
+        if (ReloadCircle != null) ReloadCircle = GameObject.Find("ReloadCircle").GetComponent<Image>();
+        ReloadCircle.fillAmount = 0f;
     }
 
     void Update()
     {
         Move();
         AmmoCount.text = _ammo + " / " + _maxAmmo;
+        if (!reloadable)
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime > reloadTime) elapsedTime -= reloadTime;
+            ReloadCircle.fillAmount = Mathf.Clamp01(elapsedTime / reloadTime);
+        }
+        else
+        {
+            ReloadCircle.fillAmount = 0f;
+        }
     }
 
     void Move()
@@ -151,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator WaitReload()
     {
+        elapsedTime = 0f;
         reloadable = false;
         if (HandCannon.isPlaying) HandCannon.Stop();
         while(_ammo < _maxAmmo)
