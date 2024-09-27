@@ -58,6 +58,7 @@ public class WaveManager : MonoBehaviour
             }
             Wave.GetComponent<SoundRayWave>().WaveColor = colorToChange;
         }
+        _colorBefore = Wave.GetComponent<SoundRayWave>().WaveColor;
         Destroy(Wave, Destroy_Time);
     }
 }
