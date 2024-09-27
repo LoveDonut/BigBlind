@@ -1,8 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 // made by KimDaehui
+public class PatrolState : StateMachine
+{
+    EnemyPatrol _enemyPatrol;
+    float _elapsedTime;
+    
+    public override void EnterState(Enemy enemy)
+    {
+        _enemyPatrol = enemy.GetComponent<EnemyPatrol>();
+        _elapsedTime = _enemyPatrol.GetWaitingTime();
+    }
+    public override void UpdateState(Enemy enemy)
+    {
+        if (_enemyPatrol == null) return;
+
+        if (_enemyPatrol.IsFindPlayer)
+        {
+            ChaseState chaseState = new ChaseState();
+            SwitchState(enemy, chaseState);
+        }
+
+
+        if (Vector2.Distance(enemy.transform.position, _enemyPatrol.GetCurrentDestination()) < 0.5f)
+        {
+            _elapsedTime -= Time.deltaTime;
+
+            if(_elapsedTime < 0f)
+            {
+                _enemyPatrol.SetDestination();
+                _elapsedTime = _enemyPatrol.GetWaitingTime();
+            }
+        }
+    }
+    public override void ExitState(Enemy enemy)
+    {
+    }
+}
+
 public class ChaseState : StateMachine
 {
     public override void EnterState(Enemy enemy)
@@ -71,17 +109,17 @@ public class AttackState : StateMachine
         elapsedTime = enemy.GetAttackDelay();
 
         // attack differently by enemy's type
-        if (enemy is Enemy_LongRange)
+        if (enemy is LongRangeEnemy)
         {
-            Enemy_LongRange enemy_LongRange = (Enemy_LongRange)enemy;
+            LongRangeEnemy enemy_LongRange = (LongRangeEnemy)enemy;
             enemy_LongRange.Fire();
         }
         else
         {
             enemy._weapon.SetActive(true);
 
-            ShortWeapon_Enemy shortWeapon;
-            if (enemy._weapon.TryGetComponent<ShortWeapon_Enemy>(out shortWeapon))
+            EnemyShortWeapon shortWeapon;
+            if (enemy._weapon.TryGetComponent<EnemyShortWeapon>(out shortWeapon))
             {
                 shortWeapon.StartAttack();
             }
@@ -112,9 +150,9 @@ public class AttackState : StateMachine
     public override void ExitState(Enemy enemy)
     {
         // attack ends
-        if (enemy is not Enemy_LongRange)
+        if (enemy is not LongRangeEnemy)
         {
-            ShortWeapon_Enemy shortWeapon = enemy.GetComponentInChildren<ShortWeapon_Enemy>();
+            EnemyShortWeapon shortWeapon = enemy.GetComponentInChildren<EnemyShortWeapon>();
             if (shortWeapon != null)
             {
                 shortWeapon.EndAttack();

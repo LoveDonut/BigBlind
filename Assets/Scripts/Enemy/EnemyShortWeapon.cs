@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // made by KimDaehui
-public class ShortWeapon_Enemy : MonoBehaviour
+public class EnemyShortWeapon : MonoBehaviour
 {
     #region References
     [Header("References")]

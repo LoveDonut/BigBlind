@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8929132951846263361}
   - component: {fileID: 4516303811493263649}
   - component: {fileID: 8300388939036434934}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 8938188415147047647}
   - component: {fileID: 5855339151436964431}
   - component: {fileID: 8109789852779394927}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 5641636318335650294}
   - component: {fileID: 4380838575343357491}
   - component: {fileID: 4676667843104605419}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 5107550275737303423}
   - component: {fileID: 7284820402685025833}
   - component: {fileID: 714455421158203368}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 1729256440109526895}
   - component: {fileID: 6756703532751236850}
   - component: {fileID: 8781396948911583693}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -529,10 +529,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e31e14c591763c489380db0533cff74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraPos: {fileID: 0}
+  _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
+  _HandCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
   _acceleration: 50
   _deceleration: 20
   _maxSpeed: 5
-  _bulletSpeed: 20
   _handCannon: {fileID: 6528999214826757870}
   HeartBeat: {fileID: 8109789852779394927}
   Beat: {fileID: 6756703532751236850}
@@ -542,16 +544,14 @@ MonoBehaviour:
   _OpenCylinder: {fileID: 8300000, guid: d27c64dd935a83a438e10764f3495147, type: 3}
   _reloadOneSound: {fileID: 8300000, guid: bfb2d5c8299492d488cfdfb972c35271, type: 3}
   _closeCylinder: {fileID: 8300000, guid: defec7b55867ef74292a8c8d340937f8, type: 3}
-  _cameraPos: {fileID: 0}
-  _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
-  _HandCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
-  CannonColor: {r: 1, g: 1, b: 0, a: 1}
-  Destroy_Time: 0.5
-  RPM: 60
+  _CannonColor: {r: 0, g: 0, b: 0, a: 0}
+  _DestroyTime: 0
+  _bulletSpeed: 20
+  _RPM: 60
   _maxAmmo: 6
-  reloadTime: 1
-  reloadAll: 0
-  _isMovable: 1
+  _reloadTime: 1
+  _reloadAll: 0
+  IsMovable: 0
 --- !u!114 &7866275109016283291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,8 +789,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1361864774329596642}
-  - component: {fileID: 8891174035448239315}
-  m_Layer: 5
+  - component: {fileID: 4835788094921081037}
+  m_Layer: 9
   m_Name: Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +822,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8891174035448239315
+--- !u!114 &4835788094921081037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -856,7 +856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6005919476584147066}
   - component: {fileID: 6528999214826757870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -986,7 +986,7 @@ GameObject:
   - component: {fileID: 5959625169520689637}
   - component: {fileID: 4966839081350571912}
   - component: {fileID: 5229065607049880232}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1062,7 +1062,7 @@ GameObject:
   - component: {fileID: 4310439188041642370}
   - component: {fileID: 9126055893926206189}
   - component: {fileID: 8663817221864790136}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1159,7 +1159,7 @@ GameObject:
   - component: {fileID: 8902726523193976623}
   - component: {fileID: 6231903256587277017}
   - component: {fileID: 8527883836808291665}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1235,7 @@ GameObject:
   - component: {fileID: 2328339535473448977}
   - component: {fileID: 2758880342732058259}
   - component: {fileID: 3001983457897840952}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1333,7 +1333,7 @@ GameObject:
   - component: {fileID: 1434869550909417536}
   - component: {fileID: 3507701970682852144}
   - component: {fileID: 5348055724021728695}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1430,7 +1430,7 @@ GameObject:
   - component: {fileID: 1180728108064643712}
   - component: {fileID: 2847422412431496987}
   - component: {fileID: 890686613258114768}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1505,7 +1505,7 @@ GameObject:
   - component: {fileID: 3213108283704007213}
   - component: {fileID: 8686733514332384697}
   - component: {fileID: 8234085541228523259}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1581,7 @@ GameObject:
   - component: {fileID: 2698464184900665112}
   - component: {fileID: 6370940252692372619}
   - component: {fileID: 378611754392490029}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1678,7 +1678,7 @@ GameObject:
   - component: {fileID: 8116325725819197055}
   - component: {fileID: 8807672641331120467}
   - component: {fileID: 5434645080396495188}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1754,7 +1754,7 @@ GameObject:
   - component: {fileID: 6340457846953905782}
   - component: {fileID: 2257979994572854563}
   - component: {fileID: 5122313928139235018}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
