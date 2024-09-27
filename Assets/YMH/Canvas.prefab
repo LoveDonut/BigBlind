@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 1045175362219364439}
   - component: {fileID: 3089145539356530370}
   - component: {fileID: 4862095088800743529}
+  - component: {fileID: 1621591573909554740}
   m_Layer: 5
   m_Name: CrossHair
   m_TagString: Untagged
@@ -511,7 +512,7 @@ RectTransform:
   m_GameObject: {fileID: 2205837205175600679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9153430323909491245}
@@ -560,6 +561,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1621591573909554740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205837205175600679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9fbb455765de644bbf10f64b928f49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullets:
+  - {fileID: 6849431170516917024}
+  - {fileID: 8939868344632149812}
+  - {fileID: 7755281524764936189}
+  - {fileID: 6263733820679084719}
+  - {fileID: 6540525388133211924}
+  - {fileID: 330999382195196833}
+  _ammo: 0
 --- !u!1 &2227216847843750277
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +656,55 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2447030648602628201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2145468797736141505}
+  - component: {fileID: 1192511376118975463}
+  m_Layer: 0
+  m_Name: SauceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2145468797736141505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447030648602628201}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 364.5, y: 300.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2644261840713813517}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1192511376118975463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447030648602628201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd892c0d4b7c78543836964cc76f981a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Flash: {fileID: 231796987528140034}
+  canvas: {fileID: 2560881098302409660}
+  CrossHair: {fileID: 1045175362219364439}
+  smoothness: 0.1
+  RevolverUI: {fileID: 1621591573909554740}
 --- !u!1 &2873262683322500140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,6 +1355,7 @@ RectTransform:
   m_Children:
   - {fileID: 5354507875633126937}
   - {fileID: 1045175362219364439}
+  - {fileID: 2145468797736141505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
