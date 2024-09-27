@@ -186,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
 
         _elapsedTime = 0f;
         _isReloadable = false;
-        if (_handCannon.isPlaying) _handCannon.Stop();
+        //if (_handCannon.isPlaying) _handCannon.Stop();
 
         if (!_reloadAll)
         {
