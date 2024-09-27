@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// made by KimDaehui
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float _damagedDuration = 2f;
@@ -21,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
 
     #region PriavteMethods
 
-    private void Awake()
+    void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -35,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Dead()
     {
-        _playerMovement._isMovable = false;
+        _playerMovement.IsMovable = false;
         Debug.Log("Dead!");
     }
 
@@ -86,7 +87,7 @@ public class PlayerHealth : MonoBehaviour
         CameraShake.instance.shakeCamera(_cameraShakeIntensity, _slowDownDuration);
 
         // slow down during get damaged
-        TimeManager.instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
+        TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
 
 
         // be invincible for a while
@@ -121,7 +122,7 @@ public class PlayerHealth : MonoBehaviour
         // can't move during get damaged
         if (_playerMovement != null)
         {
-            _playerMovement._isMovable = false;
+            _playerMovement.IsMovable = false;
         }
 
         float elapsedTime = duration;
@@ -149,7 +150,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (_playerMovement != null && _currentHp > 0)
         {
-            _playerMovement._isMovable = true;
+            _playerMovement.IsMovable = true;
         }
     }
 

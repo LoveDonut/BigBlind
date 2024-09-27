@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// made by KimDaehui
 public class ShortWeapon_Enemy : MonoBehaviour
 {
+    #region References
+    [Header("References")]
     [SerializeField] Transform _hitTransform;
     [SerializeField] float _hitRadius = 0.5f;
-    [SerializeField] Vector2 _weaponOffset = new Vector2(0f,0.55f);
+    [SerializeField] Vector2 _weaponOffset = new Vector2(0f, 0.55f);
+    #endregion
 
+    #region PrivateVariables
     Animator _animator;
-
+    #endregion
 
     #region PrivateMethods
     void Start()

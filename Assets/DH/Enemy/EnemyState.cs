@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// made by KimDaehui
 public class ChaseState : StateMachine
 {
     public override void EnterState(Enemy enemy)
