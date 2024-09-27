@@ -131,7 +131,7 @@ public class Enemy : MonoBehaviour
             bloodEffect.InstantiateBloodEffect(transform, angle);
         }
         Direction.Instance.Show_Flash_Effect();
-        CameraShake.instance.shakeCamera(5f, .1f);
+        CameraShake.Instance.shakeCamera(5f, .1f);
         Destroy(gameObject);
     }
 
