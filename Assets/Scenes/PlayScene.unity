@@ -6395,7 +6395,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1602834280}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 6.3636436
+    OrthographicSize: 10
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -6503,7 +6503,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.3636436
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6689,6 +6689,10 @@ PrefabInstance:
       propertyPath: _revolverUI
       value: 
       objectReference: {fileID: 1870866170}
+    - target: {fileID: 1192511376118975463, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: _smoothness
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2644261840713813517, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7374,9 +7378,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _DestroyTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: _OpenCylinder
       value: 
       objectReference: {fileID: 8300000, guid: d27c64dd935a83a438e10764f3495147, type: 3}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _CannonColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _CannonColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _CannonColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _CannonColor.r
+      value: 0.9887359
+      objectReference: {fileID: 0}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: _closeCylinder
       value: 
