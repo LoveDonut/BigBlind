@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector] public StateMachine _currentState;
     [HideInInspector] public AudioSource _audioSource;
+
+    [SerializeField] AudioClip DeadSound;
     #endregion
 
     #region PrivateVariables
@@ -121,6 +123,7 @@ public class Enemy : MonoBehaviour
     public void Dead(Vector3 aimPos)
     {
         BloodEffect bloodEffect = FindObjectOfType<BloodEffect>();
+        _audioSource.PlayOneShot(DeadSound);
         if (bloodEffect != null)
         {
             float angle = Mathf.Atan2(aimPos.y, aimPos.x) * Mathf.Rad2Deg - 90f;

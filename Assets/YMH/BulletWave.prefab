@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5851966990935035938}
   - component: {fileID: 8176889907395216734}
-  - component: {fileID: 3257349472115863771}
   - component: {fileID: 2369123317398446388}
+  - component: {fileID: -5769681917453162444}
   m_Layer: 0
   m_Name: BulletWave
   m_TagString: Untagged
@@ -138,24 +138,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &3257349472115863771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5202586336991198198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cb9e933c7dc2941b7d7a613de72675, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  segments: 180
-  growSpeed: 5
-  radius: 0
-  isPlayerSound: 0
-  WaveColor: {r: 0, g: 0, b: 0, a: 0}
-  waveManager: {fileID: 0}
 --- !u!60 &2369123317398446388
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -206,3 +188,19 @@ PolygonCollider2D:
       - {x: 0.29389268, y: -0.40450847}
       - {x: 0.47552824, y: 0.15450856}
   m_UseDelaunayMesh: 0
+--- !u!114 &-5769681917453162444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202586336991198198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0b16d1edbd3164b82fe1d12ba6203e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 100
+  growSpeed: 0.5
+  radius: 0.5
+  WaveColor: {r: 0, g: 0, b: 0, a: 0}

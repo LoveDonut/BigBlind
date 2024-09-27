@@ -151,6 +151,7 @@ MonoBehaviour:
   _readySFX: {fileID: 8300000, guid: 289d18b214d91d1468ed9fbc1c7d699e, type: 3}
   _AttackSFX: {fileID: 0}
   _audioSource: {fileID: 0}
+  DeadSound: {fileID: 8300000, guid: 0088508e8717b2c4f97696ba850c8c3e, type: 3}
 --- !u!58 &4786880582538516064
 CircleCollider2D:
   m_ObjectHideFlags: 0
