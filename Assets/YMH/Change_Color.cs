@@ -16,7 +16,6 @@ public class ChangeColor : MonoBehaviour
 
         if (hit.collider != null)
         {
-            print(hit.collider.gameObject.name);
             SpriteRenderer object2D = hit.collider.GetComponentInChildren<SpriteRenderer>();
 
             if (object2D != null)

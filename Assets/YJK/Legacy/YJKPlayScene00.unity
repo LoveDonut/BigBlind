@@ -6672,7 +6672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &461925586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6685,7 +6685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 208fa09617499cd4e8b2b0d289785572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 388095470878118029, guid: 10072571fd056c94493197151aee74c2, type: 3}
+  _enemys: []
   _spawnTime: 2
 --- !u!4 &461925587
 Transform:
@@ -6883,17 +6883,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1138651225 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7036603635778607291, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
-  m_PrefabInstance: {fileID: 940507469}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1249037716
 GameObject:
   m_ObjectHideFlags: 0
@@ -7268,7 +7257,7 @@ PrefabInstance:
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: AmmoCount
       value: 
-      objectReference: {fileID: 1138651225}
+      objectReference: {fileID: 0}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: HandCannon
       value: 
@@ -7277,6 +7266,10 @@ PrefabInstance:
       propertyPath: _cameraPos
       value: 
       objectReference: {fileID: 1602834278}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: ReloadCircle
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: _bulletSpeed
       value: 20
@@ -7500,6 +7493,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7260336702425476403, guid: 10072571fd056c94493197151aee74c2, type: 3}
+      propertyPath: _AttackSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 91e7cc7b3c43dd74e8940558b4d1defb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
