@@ -35,6 +35,7 @@ public class ReadyState : StateMachine
     {
         if (enemy._readySFX != null)
         {
+            enemy.CalcSound_Direction_Distance();
             enemy._audioSource.PlayOneShot(enemy._readySFX);
         }
         if (enemy == null) return;
@@ -63,6 +64,7 @@ public class AttackState : StateMachine
 
         if (enemy._AttackSFX != null)
         {
+            enemy.CalcSound_Direction_Distance();
             enemy._audioSource.PlayOneShot(enemy._AttackSFX);
         }
     }
