@@ -56,7 +56,7 @@ public class WaveManager : MonoBehaviour
                 colorToChange = wave_AttackColor;
                 _enemy.StartAttack();
             }
-            Wave.GetComponent<SoundWave>().WaveColor = colorToChange;
+            Wave.GetComponent<SoundRayWave>().WaveColor = colorToChange;
         }
         Destroy(Wave, Destroy_Time);
     }
