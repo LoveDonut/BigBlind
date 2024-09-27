@@ -83,7 +83,7 @@ public class PlayerHealth : MonoBehaviour
         DoKnockBack(_slowDownDuration, attackedDirection);
 
         // shake camera
-        CameraShake.instance.shakeCamera(_cameraShakeIntensity, _slowDownDuration);
+        CameraShake.Instance.shakeCamera(_cameraShakeIntensity, _slowDownDuration);
 
         // slow down during get damaged
         TimeManager.instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
@@ -94,6 +94,10 @@ public class PlayerHealth : MonoBehaviour
 
         // Update Hp
         _currentHp -= damage;
+        _playerMovement.HeartBeat.volume += .25f;
+        _playerMovement.Beat.volume -= .35f;
+
+        if (_currentHp <= 1) Direction.Instance.ShowLowHP();
 
         // TODO : Update HpUI
         //if (_healthUI != null)

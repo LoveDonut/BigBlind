@@ -7,22 +7,22 @@ using Unity.VisualScripting;
 [RequireComponent(typeof(LineRenderer))]
 public class SoundWave : MonoBehaviour
 {
-    [Header("기본 설정")]
-    [SerializeField] private int segments = 100;
-    [SerializeField] private float growSpeed = 0.5f;
-    [SerializeField] private float radius = 0.5f;
+    [Header("Default Settings")]
+    [SerializeField] private int _segments = 100;
+    [SerializeField] private float _growSpeed = 0.5f;
+    [SerializeField] private float _radius = 0.5f;
 
 
     [Header("웨이브 프레임")]
-    [SerializeField] float Frame = 200;
+    [SerializeField] float _frame = 200;
 
     public bool isCannonWave;
 
     [HideInInspector]
     public Color WaveColor;
-    public WaveManager waveManager;
+    public WaveManager WaveManager;
 
-    private LineRenderer lineRenderer;
+    private LineRenderer _lineRenderer;
     private Dictionary<int, Vector2> fixedSegments = new Dictionary<int, Vector2>();
     private float t_Destroy = 0f;
     private Vector3[] positions;
@@ -36,11 +36,11 @@ public class SoundWave : MonoBehaviour
     float Destroy_Time;
     private void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = segments + 1;
-        lineRenderer.useWorldSpace = false;
-        positions = new Vector3[segments + 1];
-        colliderPoints = new Vector2[segments + 1];
+        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer.positionCount = _segments + 1;
+        _lineRenderer.useWorldSpace = false;
+        positions = new Vector3[_segments + 1];
+        colliderPoints = new Vector2[_segments + 1];
         //myFrame = Application.targetFrameRate == -1 ? 70 : Application.targetFrameRate;
         frameRate = 10 * Mathf.Cos(Mathf.PI / 2.5f);
         print(frameRate);
@@ -49,8 +49,8 @@ public class SoundWave : MonoBehaviour
 
     public void Init()
     {
-        WaveColor = waveManager.wave_Color;
-        Destroy_Time = isCannonWave ? waveManager.Cannon_Destroy_Time : waveManager.Destroy_Time;
+        WaveColor = WaveManager.WaveColor;
+        Destroy_Time = isCannonWave ? WaveManager.CannonDestroyTime : WaveManager.DestroyTime;
     }
 
     private void Update()
@@ -71,17 +71,17 @@ public class SoundWave : MonoBehaviour
     private void UpdateWaveProperties()
     {
         t_Destroy += Time.deltaTime;
-        radius += growSpeed * Time.deltaTime;
+        _radius += _growSpeed * Time.deltaTime;
         alpha = WaveColor.a - (t_Destroy / Destroy_Time);
         Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
-        lineRenderer.startColor  = waveColor;
-        lineRenderer.endColor = waveColor;
+        _lineRenderer.startColor  = waveColor;
+        _lineRenderer.endColor = waveColor;
     }
 
     private void DrawCircle()
     {
-        angleStep = 360f / segments;
-        for (i = 0; i <= segments; i++)
+        angleStep = 360f / _segments;
+        for (i = 0; i <= _segments; i++)
         {
             if (fixedSegments.TryGetValue(i, out Vector2 fixedPosition))
             {
@@ -90,17 +90,17 @@ public class SoundWave : MonoBehaviour
             else
             {
                 angle = i * angleStep * Mathf.Deg2Rad;
-                positions[i] = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+                positions[i] = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * _radius;
             }
             colliderPoints[i] = positions[i];
         }
-        lineRenderer.SetPositions(positions);
+        _lineRenderer.SetPositions(positions);
 
     }
 
     private void DetectCollision()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _radius);
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Wall"))
@@ -112,7 +112,7 @@ public class SoundWave : MonoBehaviour
 
     private void DeformCircle(Collider2D wallCollider)
     {
-        for (i = 0; i <= segments; i++)
+        for (i = 0; i <= _segments; i++)
         {
             if (fixedSegments.ContainsKey(i)) continue;
             Vector2 worldPoint = transform.TransformPoint(positions[i]);

@@ -13,14 +13,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _bulletSpeed = 5f;
 
     [Header("SFX")]
-    [SerializeField] AudioSource HandCannon;
-    [SerializeField] AudioClip HandCannonSound;
-    [SerializeField] AudioClip EmptySound;
-    [SerializeField] AudioClip ReloadAllSound;
+    [SerializeField] AudioSource _handCannon;
+    public AudioSource HeartBeat;
+    public AudioSource Beat;
 
-    [SerializeField] AudioClip Cannon_Open_Cylinder;
-    [SerializeField] AudioClip ReloadOneSound;
-    [SerializeField] AudioClip Cannon_Close_Cylinder;
+    [SerializeField] AudioClip _handCannonSound;
+    [SerializeField] AudioClip _emptySound;
+    [SerializeField] AudioClip _reloadAllSound;
+
+    [SerializeField] AudioClip _OpenCylinder;
+    [SerializeField] AudioClip _reloadOneSound;
+    [SerializeField] AudioClip _closeCylinder;
 
     Rigidbody2D _rb;
     Vector2 _input;
@@ -112,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (_ammo <= 0)
         {
-            if(EmptySound != null) HandCannon.PlayOneShot(EmptySound);
+            if(_emptySound != null) _handCannon.PlayOneShot(_emptySound);
             return;
         }
         if (reloadCoroutine != null)
@@ -121,8 +124,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!reloadable)
         {
-            HandCannon.Stop();
-            HandCannon.pitch = 1f;
+            _handCannon.Stop();
+            _handCannon.pitch = 1f;
             reloadable = true;
         }
         if (!shootable)
@@ -133,9 +136,9 @@ public class PlayerMovement : MonoBehaviour
         _ammo--;
         Direction.Instance.Sync_BulletCount_UI(_ammo);
         Direction.Instance.Show_Revolver_Fire_Effect();
-        HandCannon.PlayOneShot(HandCannonSound);
+        _handCannon.PlayOneShot(_handCannonSound);
         SpawnHandCannonWave();
-        CameraShake.instance.shakeCamera(7f, .1f);
+        CameraShake.Instance.shakeCamera(7f, .1f);
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized, Quaternion.LookRotation(aimPos.normalized));
@@ -174,11 +177,11 @@ public class PlayerMovement : MonoBehaviour
     {
         elapsedTime = 0f;
         reloadable = false;
-        if (HandCannon.isPlaying) HandCannon.Stop();
+        //if (_handCannon.isPlaying) _handCannon.Stop();
 
         if (!reloadAll)
         {
-            HandCannon.PlayOneShot(Cannon_Open_Cylinder);
+            _handCannon.PlayOneShot(_OpenCylinder);
             yield return new WaitForSeconds(.2f);
         }
 
@@ -186,41 +189,41 @@ public class PlayerMovement : MonoBehaviour
         {
             if (reloadAll)
             {
-                if (ReloadAllSound != null)
+                if (_reloadAllSound != null)
                 {
                     //HandCannon.pitch = ReloadAllSound.length / reloadTime;
-                    HandCannon.PlayOneShot(ReloadAllSound);
+                    _handCannon.PlayOneShot(_reloadAllSound);
                 }
             }
             else
             {
-                if(ReloadOneSound != null)
+                if(_reloadOneSound != null)
                 {
                     //HandCannon.pitch = ReloadOneSound.length / reloadTime;
-                    HandCannon.PlayOneShot(ReloadOneSound);
+                    _handCannon.PlayOneShot(_reloadOneSound);
                 }
             }
             yield return new WaitForSeconds(reloadAll ? reloadTime : reloadTime / 2f);
             if (reloadAll)
             {
                 _ammo = _maxAmmo;
-                HandCannon.pitch = 1f;
+                _handCannon.pitch = 1f;
                 Direction.Instance.Show_Revolver_Reload_Effect(true);
             }
             else
             {
                 _ammo++;
                 Direction.Instance.Sync_BulletCount_UI(_ammo);
-                HandCannon.pitch = 1f;
+                _handCannon.pitch = 1f;
                 Direction.Instance.Show_Revolver_Reload_Effect(false);
             }
         }
 
         if (!reloadAll)
         {
-            HandCannon.PlayOneShot(ReloadOneSound);
+            _handCannon.PlayOneShot(_reloadOneSound);
             yield return new WaitForSeconds(.2f);
-            HandCannon.PlayOneShot(Cannon_Close_Cylinder);
+            _handCannon.PlayOneShot(_closeCylinder);
         }
 
         reloadable = true;
