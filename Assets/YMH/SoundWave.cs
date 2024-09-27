@@ -55,13 +55,6 @@ public class SoundWave : MonoBehaviour
         DetectCollision();
     }
 
-    private void FixedUpdate()
-    {
-        for (int i = 0; i < 1000; i++)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, float.PositiveInfinity, LayerMask.GetMask("Wall"));
-        }
-    }
 
     private void UpdateWaveProperties()
     {
