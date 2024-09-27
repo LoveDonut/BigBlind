@@ -27,6 +27,10 @@ public class ChaseState : StateMachine
         }
         enemy.Chase();
     }
+
+    public override void ExitState(Enemy enemy)
+    {
+    }
 }
 
 public class ReadyState : StateMachine
@@ -44,6 +48,10 @@ public class ReadyState : StateMachine
     {
         if (enemy == null) return;
     }
+
+    public override void ExitState(Enemy enemy)
+    {
+    }
 }
 
 public class AttackState : StateMachine
@@ -60,7 +68,14 @@ public class AttackState : StateMachine
             Enemy_LongRange enemy_LongRange = (Enemy_LongRange)enemy;
             enemy_LongRange.Fire();
         }
-
+        else
+        {
+            ShortWeapon_Enemy shortWeapon = enemy.GetComponentInChildren<ShortWeapon_Enemy>();
+            if (shortWeapon != null)
+            {
+                shortWeapon.StartAttack();
+            }
+        }
         if (enemy._AttackSFX != null)
         {
             enemy._audioSource.PlayOneShot(enemy._AttackSFX);
@@ -77,6 +92,18 @@ public class AttackState : StateMachine
         {
             ChaseState chaseState = new ChaseState();
             SwitchState(enemy, chaseState);
+        }
+    }
+
+    public override void ExitState(Enemy enemy)
+    {
+        if (enemy is not Enemy_LongRange)
+        {
+            ShortWeapon_Enemy shortWeapon = enemy.GetComponentInChildren<ShortWeapon_Enemy>();
+            if (shortWeapon != null)
+            {
+                shortWeapon.EndAttack();
+            }
         }
     }
 }
