@@ -102,14 +102,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89db4292bdee3b0498d7991a2630721d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wave_Object: {fileID: 5202586336991198198, guid: 58360a0d91ace6448861ae8605dbc909, type: 3}
+  _waveObject: {fileID: 5202586336991198198, guid: 58360a0d91ace6448861ae8605dbc909, type: 3}
   BPM: 90
-  Destroy_Time: 1
-  Cannon_Destroy_Time: 0.5
-  wave_Color: {r: 1, g: 0, b: 0.69612455, a: 1}
-  wave_ReadyColor: {r: 1, g: 0.59621054, b: 0, a: 1}
-  wave_AttackColor: {r: 1, g: 0, b: 0, a: 1}
-  BPM_90: {fileID: 0}
+  DestroyTime: 0.4
+  CannonDestroyTime: 1
+  WaveColor: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
+  WaveReadyColor: {r: 1, g: 0.828821, b: 0.5330188, a: 1}
+  WaveAttackColor: {r: 1, g: 0, b: 0, a: 1}
+  _90BPM: {fileID: 0}
   isPlayer: 0
 --- !u!195 &4061514212785497342
 NavMeshAgent:

@@ -9,15 +9,6 @@ public class PlayerMovement : MonoBehaviour
 {
     #region References
     [Header("References")]
-    [SerializeField] AudioSource _handCannon;
-    [SerializeField] AudioClip _handCannonSound;
-    [SerializeField] AudioClip _emptySound;
-    [SerializeField] AudioClip _reloadAllSound;
-
-    [SerializeField] AudioClip _cannonOpenCylinder;
-    [SerializeField] AudioClip _reloadOneSound;
-    [SerializeField] AudioClip _cannonCloseCylinder;
-
     [SerializeField] GameObject _cameraPos;
     [SerializeField] GameObject _bulletPrefab;
 
@@ -31,6 +22,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _maxSpeed = 5f;         // max move speed
 
     [Header("SFX")]
+    [SerializeField] AudioSource _handCannon;
+    public AudioSource HeartBeat;
+    public AudioSource Beat;
+
+    [SerializeField] AudioClip _handCannonSound;
+    [SerializeField] AudioClip _emptySound;
+    [SerializeField] AudioClip _reloadAllSound;
+
+    [SerializeField] AudioClip _OpenCylinder;
+    [SerializeField] AudioClip _reloadOneSound;
+    [SerializeField] AudioClip _closeCylinder;
+    
     Rigidbody2D _rb;
     Vector2 _input;
     Vector2 _velocity;
@@ -143,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         Direction.Instance.Show_Revolver_Fire_Effect();
         _handCannon.PlayOneShot(_handCannonSound);
         SpawnHandCannonWave();
-        CameraShake.instance.shakeCamera(7f, .1f);
+        CameraShake.Instance.shakeCamera(7f, .1f);
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized, Quaternion.LookRotation(aimPos.normalized));
@@ -180,13 +183,15 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator WaitReload()
     {
+
         _elapsedTime = 0f;
         _isReloadable = false;
         if (_handCannon.isPlaying) _handCannon.Stop();
 
         if (!_reloadAll)
         {
-            _handCannon.PlayOneShot(_cannonOpenCylinder);
+            _handCannon.PlayOneShot(_OpenCylinder);
+
             yield return new WaitForSeconds(.2f);
         }
 
@@ -228,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _handCannon.PlayOneShot(_reloadOneSound);
             yield return new WaitForSeconds(.2f);
-            _handCannon.PlayOneShot(_cannonCloseCylinder);
+            _handCannon.PlayOneShot(_closeCylinder);
         }
 
         _isReloadable = true;

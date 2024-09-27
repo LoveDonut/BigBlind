@@ -9,27 +9,31 @@ public class Direction : MonoBehaviour
     public static Direction Instance { get; private set; }
 
     [Header("Direction_UI")]
-    [SerializeField] GameObject Flash;
+    [SerializeField] GameObject _flash;
 
-    [SerializeField] Canvas canvas;
-    [SerializeField] RectTransform CrossHair;
-    [SerializeField] float smoothness = 0.1f;
+    Canvas _canvas;
+    [SerializeField] RectTransform _crossHair;
+    [SerializeField] float _smoothness = 0.1f;
 
     [Header("Revolver_UI")]
-    [SerializeField] Revolver_UI RevolverUI;
+    [SerializeField] Revolver_UI _revolverUI;
+
+    [Header("LowBlood_UI")]
+    [SerializeField] Image _lowHpImage;
 
     private void Update()
     {
         Vector2 mousePosition = Input.mousePosition;
 
-        if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+        if (_canvas.renderMode == RenderMode.ScreenSpaceOverlay)
         {
-            CrossHair.position = Vector2.Lerp(CrossHair.position, mousePosition, smoothness);
+            _crossHair.position = Vector2.Lerp(_crossHair.position, mousePosition, _smoothness);
         }
     }
 
     private void Awake()
     {
+        _canvas = GetComponentInParent<Canvas>();
         Instance = this;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
@@ -37,11 +41,13 @@ public class Direction : MonoBehaviour
 
     public void Show_Flash_Effect()
     {
-        Flash.GetComponent<Animator>().Play("Flash");
+        _flash.GetComponent<Animator>().Play("Flash");
     }
 
-    public void Sync_BulletCount_UI(int ammo) => RevolverUI._ammo = ammo;
-    public void Show_Revolver_Fire_Effect() => RevolverUI.FireBullet();
-    public void Show_Revolver_Reload_Effect(bool isReloadAll) => RevolverUI.ReloadBullet(isReloadAll);
+    public void Sync_BulletCount_UI(int ammo) => _revolverUI.Ammo = ammo;
+    public void Show_Revolver_Fire_Effect() => _revolverUI.FireBullet();
+    public void Show_Revolver_Reload_Effect(bool isReloadAll) => _revolverUI.ReloadBullet(isReloadAll);
+
+    public void ShowLowHP() => _lowHpImage.GetComponent<Animator>().Play("LowHP");
 
 }
