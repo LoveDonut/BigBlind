@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// made by Chun Jin Ha
 public class BloodEffect : MonoBehaviour
 {
     [Header("Reference")]
@@ -14,7 +15,7 @@ public class BloodEffect : MonoBehaviour
     [SerializeField] float _createDuration;
     [SerializeField] float _maintainDuration;
     [SerializeField] float _deleteDuration;
-    public bool _haveDirection;
+    public bool HasDirection;
 
     Sprite _randomBloodSprite => _bloodSpriteList[UnityEngine.Random.Range(0, _bloodSpriteList.Count)];
     Color _randomColor => _colorList[UnityEngine.Random.Range(0, _colorList.Count)];
@@ -23,37 +24,27 @@ public class BloodEffect : MonoBehaviour
     {
     }
 
-   public void InstantiateBloodEffect(Transform obj,float rotationZ = 0)
+    public void InstantiateBloodEffect(Transform obj, float rotationZ = 0)
     {
-        var _bloodObj = Instantiate(_bloodPrefab, obj.transform.position,Quaternion.identity);
-        _bloodObj.transform.rotation = Quaternion.Euler(new Vector3(0,0,rotationZ));
+        var bloodObj = Instantiate(_bloodPrefab, obj.transform.position, Quaternion.identity);
+        SpriteRenderer bloodObjSr = bloodObj.GetComponent<SpriteRenderer>();
 
-        SpriteRenderer _bloodObjSr = _bloodObj.GetComponent<SpriteRenderer>();
-        _bloodObjSr.sortingLayerName = "Blood";
-        _bloodObjSr.sortingOrder = GameManager.Instance.Set_New_Blood_Index();
+        bloodObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationZ));
+        bloodObj.transform.localScale = Vector3.zero;
 
-        _bloodObjSr.sprite = _randomBloodSprite;
-        _bloodObjSr.color = _randomColor;
+        bloodObjSr.sortingLayerName = "Blood";
+        bloodObjSr.sortingOrder = GameManager.Instance.Set_New_Blood_Index();
+        bloodObjSr.sprite = _randomBloodSprite;
+        bloodObjSr.color = _randomColor;
 
-        _bloodObj.transform.localScale = Vector3.zero;
         Sequence sequence = DOTween.Sequence();
-        sequence.Append( _bloodObj.transform.DOScale(UnityEngine.Random.Range(0.5f, 1f), _createDuration).SetEase(Ease.InExpo));
-
+        sequence.Append(bloodObj.transform.DOScale(UnityEngine.Random.Range(0.5f, 1f), _createDuration).SetEase(Ease.InExpo));
         sequence.AppendInterval(_maintainDuration);
-        //sequence.Append( _bloodObj.transform.DOScale(0, _deleteDuration).SetEase(Ease.InExpo).OnComplete(() => { Destroy(_bloodObj); }));
-
         sequence.Append(DOTween.ToAlpha(
-            () => _bloodObjSr.color, x => _bloodObjSr.color = x,  0f, _deleteDuration                      
-        ).SetEase(Ease.InExpo).OnComplete(() => { Destroy(_bloodObj); }));
+            () => bloodObjSr.color, x => bloodObjSr.color = x, 0f, _deleteDuration
+        ).SetEase(Ease.InExpo).OnComplete(() => { Destroy(bloodObj); }));
 
-        // ������ ����
         sequence.Play();
 
-    }
-
-    [ContextMenu("TestBlood")]
-    void Test()
-    {
-        InstantiateBloodEffect(GameObject.Find("Player").transform,UnityEngine.Random.Range(0,360));
     }
 }

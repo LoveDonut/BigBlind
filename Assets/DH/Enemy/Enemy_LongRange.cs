@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// made by KimDaehui
 public class Enemy_LongRange : Enemy
 {
     [SerializeField] GameObject _bulletPrefab;
