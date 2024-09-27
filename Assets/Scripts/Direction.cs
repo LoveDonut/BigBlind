@@ -15,6 +15,9 @@ public class Direction : MonoBehaviour
     [SerializeField] RectTransform CrossHair;
     [SerializeField] float smoothness = 0.1f;
 
+    [Header("Revolver_UI")]
+    [SerializeField] Revolver_UI RevolverUI;
+
     private void Update()
     {
         Vector2 mousePosition = Input.mousePosition;
@@ -36,4 +39,9 @@ public class Direction : MonoBehaviour
     {
         Flash.GetComponent<Animator>().Play("Flash");
     }
+
+    public void Sync_BulletCount_UI(int ammo) => RevolverUI._ammo = ammo;
+    public void Show_Revolver_Fire_Effect() => RevolverUI.FireBullet();
+    public void Show_Revolver_Reload_Effect(bool isReloadAll) => RevolverUI.ReloadBullet(isReloadAll);
+
 }
