@@ -7221,7 +7221,7 @@ MonoBehaviour:
   _createDuration: 0.1
   _maintainDuration: 30
   _deleteDuration: 5
-  _haveDirection: 0
+  HasDirection: 0
 --- !u!4 &1697516239
 Transform:
   m_ObjectHideFlags: 0
@@ -7362,9 +7362,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1602834278}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _reloadAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: _emptySound
       value: 
       objectReference: {fileID: 8300000, guid: af056953c817e92448e70d791acb333f, type: 3}
+    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: _reloadTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: _OpenCylinder
       value: 
