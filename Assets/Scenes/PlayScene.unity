@@ -6651,11 +6651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c86408044143e4a8fccdc84abd6ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &461877218 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6528999214826757870, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-  m_PrefabInstance: {fileID: 1870866168}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &569678687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6664,6 +6659,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1192511376118975463, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: RevolverUI
+      value: 
+      objectReference: {fileID: 1870866170}
     - target: {fileID: 2644261840713813517, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7152,69 +7151,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: AmmoCount
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: HandCannon
-      value: 
-      objectReference: {fileID: 461877218}
-    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: _cameraPos
       value: 
       objectReference: {fileID: 1602834278}
-    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: ReloadCircle
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: _bulletSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: _bulletPrefab
-      value: 
-      objectReference: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
-    - target: {fileID: 3400016723742585044, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: HandCannonSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
-    - target: {fileID: 5855339151436964431, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5855339151436964431, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5855339151436964431, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6528999214826757870, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6528999214826757870, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756703532751236850, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: Pan2D
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: wave_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: wave_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: wave_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8319063901168868693, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7260,6 +7199,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+--- !u!114 &1870866170 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4676667843104605419, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+  m_PrefabInstance: {fileID: 1870866168}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9fbb455765de644bbf10f64b928f49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1650045854967841576
 PrefabInstance:
   m_ObjectHideFlags: 0
