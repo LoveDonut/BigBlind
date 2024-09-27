@@ -6780,6 +6780,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 431575684}
+    - target: {fileID: 8870526991651449485, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
+      propertyPath: ReloadCircle
+      value: 
+      objectReference: {fileID: 523936528}
     - target: {fileID: 9115344339033710161, guid: be538411c2a47a3468f5af352ff9e87c, type: 3}
       propertyPath: m_Name
       value: Canvas (1)
