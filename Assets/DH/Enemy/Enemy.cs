@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region PublicVariables
+    public GameObject _weapon;
+
     [Header("SFX")]
     [SerializeField] public AudioClip _readySFX;
     [SerializeField] public AudioClip _AttackSFX;
@@ -137,6 +139,11 @@ public class Enemy : MonoBehaviour
     public float GetAttackDelay()
     {
         return _attackDelay;
+    }
+
+    public Vector2 GetdirectionToPlayer()
+    {
+        return (_playerTransform.position - transform.position).normalized;
     }
     #endregion
 }
