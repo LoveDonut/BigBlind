@@ -141,9 +141,18 @@ public class Enemy : MonoBehaviour
         return _attackDelay;
     }
 
+
     public Vector2 GetdirectionToPlayer()
     {
         return (_playerTransform.position - transform.position).normalized;
+	}
+
+    public void CalcSound_Direction_Distance()
+    {
+        var player = GameObject.FindGameObjectWithTag("Player");
+        _audioSource.panStereo = (player.transform.position.x - transform.position.x) / -10;
+        float final_Sound = (5f / Vector2.Distance(player.transform.position, transform.position));
+        _audioSource.volume = final_Sound >= 1 ? 1 : final_Sound;
     }
     #endregion
 }
