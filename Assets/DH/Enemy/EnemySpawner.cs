@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
             int enemyIndex = Random.Range(0, _enemys.Length);
 
-            Instantiate(_enemys[enemyIndex], new Vector3(0f,6f,0f), Quaternion.identity);
+            Instantiate(_enemys[enemyIndex], this.transform.position, Quaternion.identity);
         }
     }
 }
