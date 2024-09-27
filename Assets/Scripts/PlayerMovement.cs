@@ -12,12 +12,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _maxSpeed = 5f;         // max move speed
     [SerializeField] float _bulletSpeed = 5f;
 
-    [Header("Sound")]
+    [Header("SFX")]
     [SerializeField] AudioSource HandCannon;
     [SerializeField] AudioClip HandCannonSound;
     [SerializeField] AudioClip EmptySound;
     [SerializeField] AudioClip ReloadAllSound;
+
+    [SerializeField] AudioClip Cannon_Open_Cylinder;
     [SerializeField] AudioClip ReloadOneSound;
+    [SerializeField] AudioClip Cannon_Close_Cylinder;
+
     Rigidbody2D _rb;
     Vector2 _input;
     Vector2 _velocity;
@@ -37,8 +41,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float reloadTime = 2f;
     [SerializeField] bool reloadAll = true;
     bool shootable = true, reloadable = true;
-    [SerializeField] TMPro.TextMeshProUGUI AmmoCount;
-    [SerializeField] Image ReloadCircle;
     Coroutine reloadCoroutine;
 
     float elapsedTime = 0f;
@@ -54,26 +56,18 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         _ammo = _maxAmmo;
+        Direction.Instance.Sync_BulletCount_UI(_ammo);
         _rb = GetComponent<Rigidbody2D>();
-        if (AmmoCount != null) AmmoCount = GameObject.Find("AmmoCount").GetComponent<TMPro.TextMeshProUGUI>();
-        if (ReloadCircle != null) ReloadCircle = GameObject.Find("ReloadCircle").GetComponent<Image>();
-        ReloadCircle.fillAmount = 0f;
         _isMovable = true;
     }
 
     void Update()
     {
         Move();
-        AmmoCount.text = _ammo + " / " + _maxAmmo;
         if (!reloadable)
         {
             elapsedTime += Time.deltaTime;
             if (elapsedTime > reloadTime) elapsedTime -= reloadTime;
-            ReloadCircle.fillAmount = Mathf.Clamp01(elapsedTime / reloadTime);
-        }
-        else
-        {
-            ReloadCircle.fillAmount = 0f;
         }
     }
 
@@ -137,6 +131,8 @@ public class PlayerMovement : MonoBehaviour
         }
         StartCoroutine(WaitNextBullet());
         _ammo--;
+        Direction.Instance.Sync_BulletCount_UI(_ammo);
+        Direction.Instance.Show_Revolver_Fire_Effect();
         HandCannon.PlayOneShot(HandCannonSound);
         SpawnHandCannonWave();
         CameraShake.instance.shakeCamera(7f, .1f);
@@ -179,13 +175,20 @@ public class PlayerMovement : MonoBehaviour
         elapsedTime = 0f;
         reloadable = false;
         if (HandCannon.isPlaying) HandCannon.Stop();
+
+        if (!reloadAll)
+        {
+            HandCannon.PlayOneShot(Cannon_Open_Cylinder);
+            yield return new WaitForSeconds(.2f);
+        }
+
         while(_ammo < _maxAmmo)
         {
             if (reloadAll)
             {
                 if (ReloadAllSound != null)
                 {
-                    HandCannon.pitch = ReloadAllSound.length / reloadTime;
+                    //HandCannon.pitch = ReloadAllSound.length / reloadTime;
                     HandCannon.PlayOneShot(ReloadAllSound);
                 }
             }
@@ -193,22 +196,33 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(ReloadOneSound != null)
                 {
-                    HandCannon.pitch = ReloadOneSound.length / reloadTime;
+                    //HandCannon.pitch = ReloadOneSound.length / reloadTime;
                     HandCannon.PlayOneShot(ReloadOneSound);
                 }
             }
-            yield return new WaitForSeconds(reloadTime);
+            yield return new WaitForSeconds(reloadAll ? reloadTime : reloadTime / 2f);
             if (reloadAll)
             {
                 _ammo = _maxAmmo;
                 HandCannon.pitch = 1f;
+                Direction.Instance.Show_Revolver_Reload_Effect(true);
             }
             else
             {
                 _ammo++;
+                Direction.Instance.Sync_BulletCount_UI(_ammo);
                 HandCannon.pitch = 1f;
+                Direction.Instance.Show_Revolver_Reload_Effect(false);
             }
         }
+
+        if (!reloadAll)
+        {
+            HandCannon.PlayOneShot(ReloadOneSound);
+            yield return new WaitForSeconds(.2f);
+            HandCannon.PlayOneShot(Cannon_Close_Cylinder);
+        }
+
         reloadable = true;
     }
     #endregion
