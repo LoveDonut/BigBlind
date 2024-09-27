@@ -109,7 +109,7 @@ LineRenderer:
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -153,8 +153,8 @@ MonoBehaviour:
   segments: 180
   growSpeed: 20
   radius: 0.5
-  WaveColor: {r: 0, g: 0, b: 0, a: 0}
-  waveManager: {fileID: 0}
+  WaveColor: {r: 0.07075471, g: 1, b: 0.9732528, a: 1}
+  Destroy_Time: 1
 --- !u!60 &2369123317398446388
 PolygonCollider2D:
   m_ObjectHideFlags: 0

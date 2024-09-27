@@ -10,7 +10,7 @@ public class Dead_Enemy : StateMachineBehaviour
     {
         if (animator.TryGetComponent<Enemy>(out _enemy))
         {
-            _enemy.Dead();
+//            _enemy.Dead();
         }
     }
 

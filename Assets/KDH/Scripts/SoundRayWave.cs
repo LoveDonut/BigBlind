@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,13 +10,17 @@ public class SoundRayWave : MonoBehaviour
     [SerializeField] private float growSpeed = 0.5f;
     [SerializeField] private float radius = 0.5f;
 
-    [HideInInspector]
     public Color WaveColor;
-    public WaveManager waveManager;
 
     private LineRenderer lineRenderer;
     private Vector3[] wavePositions;
     private float waveExistTime = 0f;
+
+
+    float t_Destroy = 0, alpha;
+
+    public float Destroy_Time = 1f;
+
 
     void Awake()
     {
@@ -24,15 +29,21 @@ public class SoundRayWave : MonoBehaviour
         lineRenderer.useWorldSpace = false;
         lineRenderer.loop = true;
         wavePositions = new Vector3[segments];
-        lineRenderer.startColor = lineRenderer.endColor = Color.white;
     }
 
-    // Update is called once per frame
+    public void InitWave()
+    {
+        lineRenderer.startColor = WaveColor;
+        lineRenderer.endColor = WaveColor;
+    }
+
     void FixedUpdate()
     {
         radius += growSpeed * Time.fixedDeltaTime;
         SpreadRay();
+        UpdateWaveColor();
     }
+
 
     void SpreadRay()
     {
@@ -51,5 +62,16 @@ public class SoundRayWave : MonoBehaviour
             }
         }
         lineRenderer.SetPositions(wavePositions);
+    }
+
+    void UpdateWaveColor()
+    {
+        t_Destroy += Time.fixedDeltaTime;
+        radius += growSpeed * Time.fixedDeltaTime;
+        alpha = WaveColor.a - (t_Destroy / Destroy_Time);
+        Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
+        lineRenderer.startColor  = waveColor;
+        lineRenderer.endColor = waveColor;
+        //if (alpha <= 0) Destroy(gameObject);
     }
 }

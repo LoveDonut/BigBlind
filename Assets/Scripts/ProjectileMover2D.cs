@@ -13,6 +13,8 @@ public class ProjectileMover2D : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject[] Detached;
 
+    public Vector3 aimPos;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,7 +57,15 @@ public class ProjectileMover2D : MonoBehaviour
             Enemy enemy;
             if (collision.gameObject.TryGetComponent<Enemy>(out enemy))
             {
-                enemy.Dead();
+                enemy.Dead(aimPos.normalized);
+            }
+        }
+        else if(collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth;
+            if(collision.gameObject.TryGetComponent<PlayerHealth>(out playerHealth))
+            {
+                playerHealth.GetDamaged(aimPos.normalized);
             }
         }
         //Lock all axes movement and rotation

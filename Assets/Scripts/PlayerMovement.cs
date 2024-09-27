@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D _rb;
     Vector2 _input;
     Vector2 _velocity;
-    bool _isMovable = true;
 
     [SerializeField] GameObject _cameraPos;
     [SerializeField] GameObject _bulletPrefab;
@@ -38,24 +38,43 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool reloadAll = true;
     bool shootable = true, reloadable = true;
     [SerializeField] TMPro.TextMeshProUGUI AmmoCount;
+    [SerializeField] Image ReloadCircle;
     Coroutine reloadCoroutine;
+
+    float elapsedTime = 0f;
+    #endregion
+
+    #region PublicVariables
+    public bool _isMovable;
     #endregion
 
     #region PrivateMethods
     void Start()
     {
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         _ammo = _maxAmmo;
         _rb = GetComponent<Rigidbody2D>();
         if (AmmoCount != null) AmmoCount = GameObject.Find("AmmoCount").GetComponent<TMPro.TextMeshProUGUI>();
+        if (ReloadCircle != null) ReloadCircle = GameObject.Find("ReloadCircle").GetComponent<Image>();
+        ReloadCircle.fillAmount = 0f;
+        _isMovable = true;
     }
 
     void Update()
     {
         Move();
         AmmoCount.text = _ammo + " / " + _maxAmmo;
+        if (!reloadable)
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime > reloadTime) elapsedTime -= reloadTime;
+            ReloadCircle.fillAmount = Mathf.Clamp01(elapsedTime / reloadTime);
+        }
+        else
+        {
+            ReloadCircle.fillAmount = 0f;
+        }
     }
 
     void Move()
@@ -78,6 +97,8 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
+        if (!_isMovable) return;
+
         _input = value.Get<Vector2>();
 
         _input.Normalize(); // keep the speed in the diagonal direction the same
@@ -93,13 +114,23 @@ public class PlayerMovement : MonoBehaviour
 
     void OnFire(InputValue value)
     {
+        if (!_isMovable) return;
+
         if (_ammo <= 0)
         {
             if(EmptySound != null) HandCannon.PlayOneShot(EmptySound);
             return;
         }
-        if(reloadCoroutine != null) StopCoroutine(reloadCoroutine);
-        reloadable = true;
+        if (reloadCoroutine != null)
+        {
+            StopCoroutine(reloadCoroutine);
+        }
+        if (!reloadable)
+        {
+            HandCannon.Stop();
+            HandCannon.pitch = 1f;
+            reloadable = true;
+        }
         if (!shootable)
         {
             return;
@@ -112,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized, Quaternion.LookRotation(aimPos.normalized));
-
+        bullet.GetComponent<ProjectileMover2D>().aimPos = aimPos;
         Destroy(bullet, 3f);
     }
 
@@ -126,15 +157,17 @@ public class PlayerMovement : MonoBehaviour
     void SpawnHandCannonWave()
     {
         var wave = Instantiate(_HandCannonWave, transform.position, Quaternion.identity);
-        wave.GetComponent<SoundWave>().waveManager = GetComponent<WaveManager>();
-        wave.GetComponent<SoundWave>().Init();
-        wave.GetComponent<SoundWave>().WaveColor = CannonColor;
-        Destroy(wave, Destroy_Time);
+
+        wave.GetComponent<SoundRayWave>().WaveColor = CannonColor;
+        wave.GetComponent<SoundRayWave>().InitWave();
+        wave.GetComponent<SoundRayWave>().Destroy_Time = Destroy_Time;
     }
 
     void OnReload(InputValue value)
     {
-        if(_ammo == _maxAmmo || !reloadable)
+        if (!_isMovable) return;
+
+        if (_ammo == _maxAmmo || !reloadable)
         {
             return;
         }
@@ -143,13 +176,16 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator WaitReload()
     {
+        elapsedTime = 0f;
         reloadable = false;
+        if (HandCannon.isPlaying) HandCannon.Stop();
         while(_ammo < _maxAmmo)
         {
             if (reloadAll)
             {
                 if (ReloadAllSound != null)
                 {
+                    HandCannon.pitch = ReloadAllSound.length / reloadTime;
                     HandCannon.PlayOneShot(ReloadAllSound);
                 }
             }
@@ -157,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(ReloadOneSound != null)
                 {
+                    HandCannon.pitch = ReloadOneSound.length / reloadTime;
                     HandCannon.PlayOneShot(ReloadOneSound);
                 }
             }
@@ -164,10 +201,12 @@ public class PlayerMovement : MonoBehaviour
             if (reloadAll)
             {
                 _ammo = _maxAmmo;
+                HandCannon.pitch = 1f;
             }
             else
             {
                 _ammo++;
+                HandCannon.pitch = 1f;
             }
         }
         reloadable = true;

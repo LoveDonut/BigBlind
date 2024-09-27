@@ -13,23 +13,25 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region ProtectedVariables
-    [SerializeField] protected float _attackRange = 1f;
+    [Header("Move")]
     [SerializeField] protected float _moveSpeed = 5f;
+    [Header("Attack")]
+    [SerializeField] protected float _attackRange = 1f;
     [SerializeField] protected float _attackDelay = 1f;
+
     protected Transform _playerTransform;
     #endregion
 
     #region PublicVariables
-    public StateMachine _currentState;
+    [Header("SFX")]
+    [SerializeField] public AudioClip _readySFX;
+    [SerializeField] public AudioClip _AttackSFX;
+
+    [HideInInspector] public StateMachine _currentState;
+    [HideInInspector] public AudioSource _audioSource;
     #endregion
 
     #region PrivateVariables
-    void OnDrawGizmos()
-    {
-        _playerTransform = FindObjectOfType<PlayerMovement>().transform;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(transform.position, (_playerTransform.position - transform.position).normalized * _attackRange);
-    }
     #endregion
 
     #region ProtectedMethods
@@ -39,6 +41,7 @@ public class Enemy : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _waveManager = GetComponent<WaveManager>();
+        _audioSource = GetComponent<AudioSource>();
     }
     protected virtual void Start()
     {
@@ -115,17 +118,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Dead()
+    public void Dead(Vector3 aimPos)
     {
         BloodEffect bloodEffect = FindObjectOfType<BloodEffect>();
         if (bloodEffect != null)
         {
-            bloodEffect.InstantiateBloodEffect(transform);
+            float angle = Mathf.Atan2(aimPos.y, aimPos.x) * Mathf.Rad2Deg - 90f;
+            bloodEffect.InstantiateBloodEffect(transform, angle);
         }
         Direction.Instance.Show_Flash_Effect();
         CameraShake.instance.shakeCamera(5f, .1f);
         Destroy(gameObject);
     }
+
     public float GetAttackDelay()
     {
         return _attackDelay;

@@ -14,6 +14,7 @@ public class BloodEffect : MonoBehaviour
     [SerializeField] float _createDuration;
     [SerializeField] float _maintainDuration;
     [SerializeField] float _deleteDuration;
+    public bool _haveDirection;
 
     Sprite _randomBloodSprite => _bloodSpriteList[UnityEngine.Random.Range(0, _bloodSpriteList.Count)];
     Color _randomColor => _colorList[UnityEngine.Random.Range(0, _colorList.Count)];
@@ -22,14 +23,14 @@ public class BloodEffect : MonoBehaviour
     {
     }
 
-   public void InstantiateBloodEffect(Transform obj,int rotationZ = 0)
+   public void InstantiateBloodEffect(Transform obj,float rotationZ = 0)
     {
         var _bloodObj = Instantiate(_bloodPrefab, obj.transform.position,Quaternion.identity);
         _bloodObj.transform.rotation = Quaternion.Euler(new Vector3(0,0,rotationZ));
-        
-        _bloodObj.GetComponent<SpriteRenderer>().sortingLayerName = "Blood";
-        _bloodObj.GetComponent<SpriteRenderer>().sortingOrder = GameManager.Instance.Set_New_Blood_Index();
+
         SpriteRenderer _bloodObjSr = _bloodObj.GetComponent<SpriteRenderer>();
+        _bloodObjSr.sortingLayerName = "Blood";
+        _bloodObjSr.sortingOrder = GameManager.Instance.Set_New_Blood_Index();
 
         _bloodObjSr.sprite = _randomBloodSprite;
         _bloodObjSr.color = _randomColor;
