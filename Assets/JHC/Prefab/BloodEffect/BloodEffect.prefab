@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4873187292857630546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8935336393414316129}
+  - component: {fileID: 8443770600113597959}
+  m_Layer: 0
+  m_Name: PlayerBloodEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8935336393414316129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4873187292857630546}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8662851381964846937}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8443770600113597959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4873187292857630546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f402835cc457084ba57a9e9833e0da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bloodPrefab: {fileID: 1342065978392705050, guid: 86083d33e3d45b045a4056b6acfd9b31, type: 3}
+  _colorList:
+  - {r: 0.5188679, g: 0, b: 0, a: 1}
+  _bloodSpriteList:
+  - {fileID: 1777475430, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: -372876118, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: 1902075585, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: -1656913015, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: 1253861032, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: -332869857, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: 797670491, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  _createDuration: 0.15
+  _maintainDuration: 1
+  _deleteDuration: 1
+  HasDirection: 0
+  IsEnemy: 0
+--- !u!1 &8004930959767579899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8662851381964846937}
+  m_Layer: 0
+  m_Name: BloodEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8662851381964846937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004930959767579899}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6782087, y: -0.8189666, z: 0.04340932}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4794809591033617436}
+  - {fileID: 8935336393414316129}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8257232202459541677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4794809591033617436}
+  - component: {fileID: 707047681743321234}
+  m_Layer: 0
+  m_Name: EnemyBloodEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4794809591033617436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8257232202459541677}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8662851381964846937}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &707047681743321234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8257232202459541677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f402835cc457084ba57a9e9833e0da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bloodPrefab: {fileID: 1342065978392705050, guid: 86083d33e3d45b045a4056b6acfd9b31, type: 3}
+  _colorList:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.301291, b: 1, a: 1}
+  - {r: 0.066278934, g: 1, b: 0, a: 1}
+  - {r: 0.9101163, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.538739, b: 0, a: 1}
+  - {r: 0.759434, g: 1, b: 0.96792454, a: 1}
+  - {r: 0.50472736, g: 0, b: 1, a: 1}
+  _bloodSpriteList:
+  - {fileID: 750945017, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
+  - {fileID: 910976270, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
+  - {fileID: 871380191, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
+  - {fileID: 668455179, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
+  - {fileID: -1246306417, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
+  - {fileID: 1561193797, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
+  _createDuration: 0.15
+  _maintainDuration: 30
+  _deleteDuration: 5
+  HasDirection: 0
+  IsEnemy: 1
