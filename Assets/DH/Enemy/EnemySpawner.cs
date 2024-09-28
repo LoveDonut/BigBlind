@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// made by KimDaehui
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject[] _enemys;

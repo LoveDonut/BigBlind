@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// made by KimDaehui
 public class TimeManager : MonoBehaviour
 {
-    public static TimeManager instance;
+    public static TimeManager Instance;
 
-    Coroutine coroutine;
+    Coroutine _coroutine;
 
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -26,7 +27,7 @@ public class TimeManager : MonoBehaviour
         UnityEngine.Time.timeScale = slowDownFactor;
         UnityEngine.Time.fixedDeltaTime = slowDownFactor * 0.02f;
 
-        coroutine = StartCoroutine(ResetTimeScale(slowDownDuration));
+        _coroutine = StartCoroutine(ResetTimeScale(slowDownDuration));
     }
 
     IEnumerator ResetTimeScale(float slowDownDuration)

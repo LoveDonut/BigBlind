@@ -6,12 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    private int BloodIndex = 0;
+    private int _bloodIndex = 0;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public int Set_New_Blood_Index() { return BloodIndex++; }
+    public int Set_New_Blood_Index() { return _bloodIndex++; }
 }

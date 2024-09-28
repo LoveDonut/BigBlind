@@ -5,8 +5,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
+// made by KimDaehui
 public class Enemy : MonoBehaviour
 {
+    #region References
+    [Header("References")]
+    [SerializeField] protected float _moveSpeed = 5f;
+    [SerializeField] protected float _attackRange = 1f;
+    [SerializeField] protected float _attackDelay = 1f;
+    [SerializeField] public AudioClip _readySFX;
+    [SerializeField] public AudioClip _AttackSFX;
+    [SerializeField] AudioClip DeadSound;
+    #endregion
+
     #region PrivateVariables
     NavMeshAgent _navMeshAgent;
     Animator _animator;
@@ -14,24 +25,14 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region ProtectedVariables
-    [Header("Move")]
-    [SerializeField] protected float _moveSpeed = 5f;
-    [Header("Attack")]
-    [SerializeField] protected float _attackRange = 1f;
-    [SerializeField] protected float _attackDelay = 1f;
-
     protected Transform _playerTransform;
     #endregion
 
     #region PublicVariables
-    [Header("SFX")]
-    [SerializeField] public AudioClip _readySFX;
-    [SerializeField] public AudioClip _AttackSFX;
+    public GameObject _weapon;
 
     [HideInInspector] public StateMachine _currentState;
     [HideInInspector] public AudioSource _audioSource;
-
-    [SerializeField] AudioClip DeadSound;
     #endregion
 
     #region PrivateVariables
@@ -49,7 +50,21 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         _navMeshAgent.speed = _moveSpeed;
-        _currentState = new ChaseState();
+        SetStartState();
+    }
+
+    private void SetStartState()
+    {
+        EnemyPatrol enemyPatrol;
+
+        if(TryGetComponent<EnemyPatrol>(out enemyPatrol))
+        {
+            _currentState = new PatrolState();
+        }
+        else
+        {
+            _currentState = new ChaseState();
+        }
         _currentState.EnterState(this);
     }
 
@@ -131,7 +146,7 @@ public class Enemy : MonoBehaviour
             bloodEffect.InstantiateBloodEffect(transform.position, angle);
         }
         Direction.Instance.Show_Flash_Effect();
-        CameraShake.instance.shakeCamera(5f, .1f);
+        CameraShake.Instance.shakeCamera(5f, .1f);
         Destroy(gameObject);
     }
 
@@ -139,6 +154,12 @@ public class Enemy : MonoBehaviour
     {
         return _attackDelay;
     }
+
+
+    public Vector2 GetdirectionToPlayer()
+    {
+        return (_playerTransform.position - transform.position).normalized;
+	}
 
     public void CalcSound_Direction_Distance()
     {

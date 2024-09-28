@@ -16,7 +16,6 @@ public class SoundRayWave : MonoBehaviour
     private Vector3[] wavePositions;
     private float waveExistTime = 0f;
 
-
     float t_Destroy = 0, alpha;
 
     public float Destroy_Time = 1f;
@@ -68,10 +67,9 @@ public class SoundRayWave : MonoBehaviour
     {
         t_Destroy += Time.fixedDeltaTime;
         radius += growSpeed * Time.fixedDeltaTime;
-        alpha = WaveColor.a - (t_Destroy / Destroy_Time);
+        alpha = WaveColor.a * (1 - (t_Destroy / Destroy_Time));
         Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
         lineRenderer.startColor  = waveColor;
         lineRenderer.endColor = waveColor;
-        //if (alpha <= 0) Destroy(gameObject);
     }
 }
