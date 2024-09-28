@@ -116,6 +116,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (_currentHp <= 0)
         {
+            _currentHp = 0;
             Dead();
         }
     }

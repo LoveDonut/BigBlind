@@ -285,7 +285,7 @@ RectTransform:
   m_GameObject: {fileID: 1093811688363496874}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0017499999, y: 0.00075, z: 1}
+  m_LocalScale: {x: 0.0036875, y: 0.0011900001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1361864774329596642}
@@ -545,10 +545,10 @@ MonoBehaviour:
   _OpenCylinder: {fileID: 8300000, guid: d27c64dd935a83a438e10764f3495147, type: 3}
   _reloadOneSound: {fileID: 8300000, guid: bfb2d5c8299492d488cfdfb972c35271, type: 3}
   _closeCylinder: {fileID: 8300000, guid: defec7b55867ef74292a8c8d340937f8, type: 3}
-  _CannonColor: {r: 0, g: 0, b: 0, a: 0}
-  _DestroyTime: 0
+  _CannonColor: {r: 0.9887359, g: 1, b: 0, a: 1}
+  _DestroyTime: 0.2
   _bulletSpeed: 20
-  _RPM: 60
+  _RPM: 200
   _maxAmmo: 6
   _reloadTime: 1
   _reloadAll: 0
@@ -566,14 +566,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 127a663366e1068499c02d940e52c808, type: 3}
-  BPM: 90
+  BPM: 22.5
   DestroyTime: 1
   CannonDestroyTime: 0.5
   WaveColor: {r: 1, g: 1, b: 1, a: 1}
   WaveReadyColor: {r: 0, g: 0, b: 0, a: 0}
   WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
   _90BPM: {fileID: 0}
-  isPlayer: 1
+  isPlayer: 0
 --- !u!50 &1534208878423213486
 Rigidbody2D:
   serializedVersion: 4
@@ -802,7 +802,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1361864774329596642}
-  - component: {fileID: 4835788094921081037}
+  - component: {fileID: 7627593076000617827}
   m_Layer: 9
   m_Name: Ammo
   m_TagString: Untagged
@@ -835,7 +835,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4835788094921081037
+--- !u!114 &7627593076000617827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
