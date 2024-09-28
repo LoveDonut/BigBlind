@@ -7358,77 +7358,63 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!1 &1697516237
-GameObject:
+--- !u!1001 &1663493372
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1697516239}
-  - component: {fileID: 1697516238}
-  m_Layer: 0
-  m_Name: BloodEffect
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1697516238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697516237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f402835cc457084ba57a9e9833e0da9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bloodPrefab: {fileID: 1342065978392705050, guid: 86083d33e3d45b045a4056b6acfd9b31, type: 3}
-  _colorList:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.301291, b: 1, a: 1}
-  - {r: 0.066278934, g: 1, b: 0, a: 1}
-  - {r: 0.9101163, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.538739, b: 0, a: 1}
-  - {r: 0.759434, g: 1, b: 0.96792454, a: 1}
-  - {r: 0.50472736, g: 0, b: 1, a: 1}
-  _bloodSpriteList:
-  - {fileID: 571644320, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: 39097094, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: -1441718079, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: -31176138, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: 797670491, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: -1180332659, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: 1777475430, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: -1656913015, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: 1902075585, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: -372876118, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: -332869857, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: 1471561000, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  - {fileID: 1253861032, guid: 317e8883d0761184b89a456457c99384, type: 3}
-  _createDuration: 0.1
-  _maintainDuration: 30
-  _deleteDuration: 5
-  HasDirection: 0
---- !u!4 &1697516239
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697516237}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6782087, y: -0.8189666, z: 0.04340932}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8004930959767579899, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_Name
+      value: BloodEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662851381964846937, guid: e4610c9c91b416040839d607574e8572, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e4610c9c91b416040839d607574e8572, type: 3}
 --- !u!1001 &1870866168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8199,7 +8185,7 @@ SceneRoots:
   - {fileID: 122763693}
   - {fileID: 1870866168}
   - {fileID: 1066357105}
-  - {fileID: 1697516239}
+  - {fileID: 1663493372}
   - {fileID: 1602834280}
   - {fileID: 4133266333878782785}
   - {fileID: 453011317}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -137,12 +138,12 @@ public class Enemy : MonoBehaviour
 
     public void Dead(Vector3 aimPos)
     {
-        BloodEffect bloodEffect = FindObjectOfType<BloodEffect>();
+        BloodEffect bloodEffect = FindObjectsOfType<BloodEffect>().Where(x=>x.IsEnemy).First();
         _audioSource.PlayOneShot(DeadSound);
         if (bloodEffect != null)
         {
             float angle = Mathf.Atan2(aimPos.y, aimPos.x) * Mathf.Rad2Deg - 90f;
-            bloodEffect.InstantiateBloodEffect(transform, angle);
+            bloodEffect.InstantiateBloodEffect(transform.position, angle);
         }
         Direction.Instance.Show_Flash_Effect();
         CameraShake.Instance.shakeCamera(5f, .1f);
