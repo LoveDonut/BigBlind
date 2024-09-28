@@ -50,4 +50,5 @@ public class Direction : MonoBehaviour
 
     public void ShowLowHP() => _lowHpImage.GetComponent<Animator>().Play("LowHP");
 
+
 }

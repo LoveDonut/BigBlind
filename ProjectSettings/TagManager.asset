@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Wave
+    uniqueID: 830608503
+    locked: 0
   - name: UI
     uniqueID: 4049357291
     locked: 0
