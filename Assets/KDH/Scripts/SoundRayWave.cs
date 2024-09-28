@@ -50,7 +50,7 @@ public class SoundRayWave : MonoBehaviour
         for (int i = 0; i < segments; i++)
         {
             float angle = angleStep * i * Mathf.Deg2Rad;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), radius, LayerMask.GetMask("Wall"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), radius, LayerMask.GetMask("Wall") | LayerMask.GetMask("Glass"));
             if (hit.collider != null)
             {
                 wavePositions[i] = transform.InverseTransformPoint(hit.point);
