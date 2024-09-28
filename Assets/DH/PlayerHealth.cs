@@ -19,6 +19,10 @@ public class PlayerHealth : MonoBehaviour
     int _currentHp;
     float _originalAlpha;
 
+    //made by Chun Jin Ha
+    public int GetCurrentHp => _currentHp;
+    public int GetMaxHp => _maxHp;
+    public bool IsFullHealth => _currentHp == _maxHp;
     #region PriavteMethods
 
     private void Awake()

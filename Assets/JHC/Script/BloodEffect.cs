@@ -16,6 +16,7 @@ public class BloodEffect : MonoBehaviour
     [SerializeField] float _maintainDuration;
     [SerializeField] float _deleteDuration;
     public bool HasDirection;
+    public bool IsEnemy;
 
     Sprite _randomBloodSprite => _bloodSpriteList[UnityEngine.Random.Range(0, _bloodSpriteList.Count)];
     Color _randomColor => _colorList[UnityEngine.Random.Range(0, _colorList.Count)];
@@ -24,9 +25,9 @@ public class BloodEffect : MonoBehaviour
     {
     }
 
-    public void InstantiateBloodEffect(Transform obj, float rotationZ = 0)
+    public void InstantiateBloodEffect(Vector2 pos, float rotationZ = 0, float scale = 1f)
     {
-        var bloodObj = Instantiate(_bloodPrefab, obj.transform.position, Quaternion.identity);
+        var bloodObj = Instantiate(_bloodPrefab, pos, Quaternion.identity);
         SpriteRenderer bloodObjSr = bloodObj.GetComponent<SpriteRenderer>();
 
         bloodObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationZ));
@@ -38,7 +39,7 @@ public class BloodEffect : MonoBehaviour
         bloodObjSr.color = _randomColor;
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(bloodObj.transform.DOScale(UnityEngine.Random.Range(0.5f, 1f), _createDuration).SetEase(Ease.InExpo));
+        sequence.Append(bloodObj.transform.DOScale(UnityEngine.Random.Range(scale/2, scale), _createDuration).SetEase(Ease.InExpo));
         sequence.AppendInterval(_maintainDuration);
         sequence.Append(DOTween.ToAlpha(
             () => bloodObjSr.color, x => bloodObjSr.color = x, 0f, _deleteDuration
