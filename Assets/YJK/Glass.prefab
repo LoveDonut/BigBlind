@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1737125046951953416}
   - component: {fileID: 4171693716620686658}
   - component: {fileID: 7937604969774526819}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Glass
   m_TagString: Wall
   m_Icon: {fileID: 0}
