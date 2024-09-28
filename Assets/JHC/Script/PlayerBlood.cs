@@ -12,7 +12,7 @@ public class PlayerBlood : MonoBehaviour
     int _currentHealth => _playerHealth.GetCurrentHp;
     int _maxHealth => _playerHealth.GetMaxHp;
     bool _isFullHealth => _playerHealth.IsFullHealth;
-    float _bleedRate =>1f/(1f +  _maxHealth - _currentHealth);
+    float _bleedRate =>1f/(1f +  (_maxHealth - _currentHealth)*2);
     bool _isBleeding;
     void Start()
     {
@@ -37,15 +37,20 @@ public class PlayerBlood : MonoBehaviour
 
     IEnumerator BloodEffect()
     {
+        BloodEffect bloodEffect = FindObjectsOfType<BloodEffect>().Where(x => !x.IsEnemy).First();
         while (true)
         {
-                BloodEffect bloodEffect = FindObjectsOfType<BloodEffect>().Where(x => !x.IsEnemy).First();
                 if (bloodEffect != null)
                 {
-                    bloodEffect.InstantiateBloodEffect(transform.position, 0,0.3f);
+                    float randomX = transform.position.x + UnityEngine.Random.Range(-.5f, .5f);
+                    float randomY = transform.position.y + UnityEngine.Random.Range(-.5f, .5f);
+                    float randomScale = UnityEngine.Random.Range(0.1f, .5f);
+                    float randomRotation = UnityEngine.Random.Range(0, 360);
+                    Vector2 randomPos = new Vector2(randomX, randomY);
+                    bloodEffect.InstantiateBloodEffect(randomPos, randomRotation, randomScale);
                 }
-            
-            yield return new WaitForSeconds(_bleedRate);
+            float randomRate = UnityEngine.Random.Range(0.5f, 1f);
+            yield return new WaitForSeconds(_bleedRate*randomRate);
         }    
     }
 

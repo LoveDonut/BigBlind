@@ -46,23 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bloodPrefab: {fileID: 1342065978392705050, guid: 86083d33e3d45b045a4056b6acfd9b31, type: 3}
   _colorList:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.301291, b: 1, a: 1}
-  - {r: 0.066278934, g: 1, b: 0, a: 1}
-  - {r: 0.9101163, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.538739, b: 0, a: 1}
-  - {r: 0.759434, g: 1, b: 0.96792454, a: 1}
-  - {r: 0.50472736, g: 0, b: 1, a: 1}
+  - {r: 0.5188679, g: 0, b: 0, a: 1}
   _bloodSpriteList:
-  - {fileID: 750945017, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
-  - {fileID: 910976270, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
-  - {fileID: 871380191, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
-  - {fileID: 668455179, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
-  - {fileID: -1246306417, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
-  - {fileID: 1561193797, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
+  - {fileID: 1777475430, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: -372876118, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: 1902075585, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: -1656913015, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: 1253861032, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: -332869857, guid: 317e8883d0761184b89a456457c99384, type: 3}
+  - {fileID: 797670491, guid: 317e8883d0761184b89a456457c99384, type: 3}
   _createDuration: 0.15
-  _maintainDuration: 30
-  _deleteDuration: 5
+  _maintainDuration: 1
+  _deleteDuration: 1
   HasDirection: 0
   IsEnemy: 0
 --- !u!1 &8004930959767579899
