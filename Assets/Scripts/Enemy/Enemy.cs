@@ -49,7 +49,21 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         _navMeshAgent.speed = _moveSpeed;
-        _currentState = new ChaseState();
+        SetStartState();
+    }
+
+    private void SetStartState()
+    {
+        EnemyPatrol enemyPatrol;
+
+        if(TryGetComponent<EnemyPatrol>(out enemyPatrol))
+        {
+            _currentState = new PatrolState();
+        }
+        else
+        {
+            _currentState = new ChaseState();
+        }
         _currentState.EnterState(this);
     }
 
