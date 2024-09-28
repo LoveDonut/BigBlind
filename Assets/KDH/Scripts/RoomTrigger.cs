@@ -13,7 +13,10 @@ public class RoomTrigger : MonoBehaviour
                 if (child.CompareTag("Enemy"))
                 {
                     child.gameObject.SetActive(true);
-                    // child.gameObject.TryGetComponent<EnemyPatrol>().IsFindPlayer = true;
+                    if (child.gameObject.TryGetComponent<EnemyPatrol>(out EnemyPatrol enemyPatrol))
+                    {
+                        enemyPatrol.IsFindPlayer = true;
+                    }
                 }
             }
         }
