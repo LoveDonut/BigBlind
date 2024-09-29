@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Made by JK3WN
+// Made By JK3WN
 public class DoorKick : MonoBehaviour
 {
     private AudioSource _as;
