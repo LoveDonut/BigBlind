@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f402835cc457084ba57a9e9833e0da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bloodPrefab: {fileID: 1342065978392705050, guid: 86083d33e3d45b045a4056b6acfd9b31, type: 3}
+  _bloodEffectPool: {fileID: 1173320373079680895}
   _colorList:
   - {r: 0.5188679, g: 0, b: 0, a: 1}
   _bloodSpriteList:
@@ -69,6 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8662851381964846937}
+  - component: {fileID: 1173320373079680895}
   m_Layer: 0
   m_Name: BloodEffect
   m_TagString: Untagged
@@ -93,6 +94,20 @@ Transform:
   - {fileID: 8935336393414316129}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1173320373079680895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004930959767579899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ead3d71307b1d47a0e0dcbd59b1fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectPrefab: {fileID: 1342065978392705050, guid: 86083d33e3d45b045a4056b6acfd9b31, type: 3}
+  _poolSize: 20
 --- !u!1 &8257232202459541677
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f402835cc457084ba57a9e9833e0da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bloodPrefab: {fileID: 1342065978392705050, guid: 86083d33e3d45b045a4056b6acfd9b31, type: 3}
+  _bloodEffectPool: {fileID: 1173320373079680895}
   _colorList:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.301291, b: 1, a: 1}

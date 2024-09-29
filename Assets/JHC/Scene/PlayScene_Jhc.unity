@@ -6413,7 +6413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f402835cc457084ba57a9e9833e0da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bloodPrefab: {fileID: 1342065978392705050, guid: 86083d33e3d45b045a4056b6acfd9b31, type: 3}
+  _bloodEffectPool: {fileID: 0}
   _colorList:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.301291, b: 1, a: 1}
@@ -6623,6 +6623,10 @@ PrefabInstance:
     - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: isPlayer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: DestroyTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: Destroy_Time

@@ -2,12 +2,13 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // made by Chun Jin Ha
 public class BloodEffect : MonoBehaviour
 {
     [Header("Reference")]
-    [SerializeField] GameObject _bloodPrefab;
+    [SerializeField] ObjectPool _bloodEffectPool;
     [SerializeField] List<Color> _colorList;
     [SerializeField] List<Sprite> _bloodSpriteList;
 
@@ -28,9 +29,10 @@ public class BloodEffect : MonoBehaviour
 
     public void InstantiateBloodEffect(Vector2 pos, float rotationZ = 0, float scale = 1f)
     {
-        var bloodObj = Instantiate(_bloodPrefab, pos, Quaternion.identity);
+        GameObject bloodObj = _bloodEffectPool.GetObject();
         SpriteRenderer bloodObjSr = bloodObj.GetComponent<SpriteRenderer>();
 
+        bloodObj.transform.position = pos;
         bloodObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationZ));
         bloodObj.transform.localScale = Vector3.zero;
 
@@ -46,7 +48,7 @@ public class BloodEffect : MonoBehaviour
             () => bloodObjSr.color, x => bloodObjSr.color = x, 0f, _deleteDuration
         ).SetEase(Ease.InExpo).OnComplete(() => {
             bloodObj.transform.DOKill();
-            Destroy(bloodObj); 
+            _bloodEffectPool.ReturnObject(bloodObj);
         }));
 
         sequence.Play();
