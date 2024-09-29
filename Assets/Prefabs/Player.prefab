@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 6756703532751236850}
   - component: {fileID: 5321453073708916642}
   - component: {fileID: 8781396948911583693}
+  - component: {fileID: 4468351286469248840}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -530,7 +531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e31e14c591763c489380db0533cff74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraPos: {fileID: 0}
   _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
   _HandCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
   _acceleration: 50
@@ -793,6 +793,34 @@ MonoBehaviour:
   _knockbackSpeed: 1
   _cameraShakeIntensity: 2
   _maxHp: 3
+--- !u!114 &4468351286469248840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747644532665568231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7b39c5a032cc043ab13849a16b3dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
+  _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
+  _RPM: 200
+  _maxAmmo: 6
+  _reloadTime: 1
+  _reloadAll: 0
+  _cannonColor: {r: 0.9882353, g: 1, b: 0, a: 1}
+  _destroyTime: 0.2
+  _bulletSpeed: 60
+  _handCannon: {fileID: 6528999214826757870}
+  _handCannonSound: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
+  _emptySound: {fileID: 8300000, guid: af056953c817e92448e70d791acb333f, type: 3}
+  _reloadAllSound: {fileID: 8300000, guid: 94257015e6abe114ea579e53557b5aa6, type: 3}
+  _OpenCylinder: {fileID: 8300000, guid: d27c64dd935a83a438e10764f3495147, type: 3}
+  _reloadOneSound: {fileID: 8300000, guid: bfb2d5c8299492d488cfdfb972c35271, type: 3}
+  _closeCylinder: {fileID: 8300000, guid: defec7b55867ef74292a8c8d340937f8, type: 3}
 --- !u!1 &2131980394706722103
 GameObject:
   m_ObjectHideFlags: 0
