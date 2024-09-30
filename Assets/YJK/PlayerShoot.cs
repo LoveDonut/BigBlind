@@ -50,6 +50,7 @@ public class PlayerShoot : MonoBehaviour
         _ammo = _maxAmmo;
         Direction.Instance.Sync_BulletCount_UI(_ammo);
         InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
+
     }
 
     // Update is called once per frame
@@ -66,20 +67,17 @@ public class PlayerShoot : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        if (!GetComponent<PlayerMovement>().IsMovable) return;
+        if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable) return;
 
-        if(_ammo <= 0)
+        if (_ammo <= 0)
         {
             if (_emptySound != null) _handCannon.PlayOneShot(_emptySound);
             return;
         }
-        if(_reloadCoroutine != null)
+        if (_reloadCoroutine != null)
         {
+            _isReloading = false;
             StopCoroutine(_reloadCoroutine);
-        }
-        if (!_isShootable)
-        {
-            return;
         }
         StartCoroutine(WaitNextBullet());
         _ammo--;
