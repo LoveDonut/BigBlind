@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // made by KimDaehui
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamage
 {
     [SerializeField] float _damagedDuration = 2f;
     [SerializeField] float _blinkCycle = 0.4f;
@@ -17,13 +17,12 @@ public class PlayerHealth : MonoBehaviour
     SpriteRenderer _spriteRenderer;
     Coroutine _invincibleCoroutine;
     bool _isInvincible;
-    int _currentHp;
     float _originalAlpha;
 
     //made by Chun Jin Ha
-    public int GetCurrentHp => _currentHp;
-    public int GetMaxHp => _maxHp;
-    public bool IsFullHealth => _currentHp == _maxHp;
+    public int CurrentHp { get; private set; }
+    public int MaxHp { get; private set; }
+    public bool IsFullHealth => CurrentHp == MaxHp;
     #region PriavteMethods
 
     void Awake()
@@ -34,14 +33,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         _isInvincible = false;
-        _currentHp = _maxHp;
+        CurrentHp = MaxHp = _maxHp;
         _originalAlpha = _spriteRenderer.color.a;
-    }
-
-    void Dead()
-    {
-        _playerMovement.IsMovable = false;
-        Debug.Log("Dead!");
     }
 
     IEnumerator ResetInvincible(float invincibleDuration, bool isBlink)
@@ -98,11 +91,7 @@ public class PlayerHealth : MonoBehaviour
         MakeInvincible(_damagedDuration, true);
 
         // Update Hp
-        _currentHp -= damage;
-        _playerMovement.HeartBeat.volume += .25f;
-        _playerMovement.Beat.volume -= .35f;
-
-        if (_currentHp <= 1) Direction.Instance.ShowLowHP();
+        CurrentHp -= damage;
 
         // TODO : Update HpUI
         //if (_healthUI != null)
@@ -114,11 +103,21 @@ public class PlayerHealth : MonoBehaviour
         //    Debug.Log("Can't find HeartUI Script...");
         //}
 
-        if (_currentHp <= 0)
+        if (CurrentHp <= 0)
         {
-            _currentHp = 0;
+            CurrentHp = 0;
             Dead();
         }
+
+        _playerMovement.HeartBeat.volume += .25f;
+        _playerMovement.Beat.volume -= .35f;
+
+        if (CurrentHp <= 1) Direction.Instance.ShowLowHP();
+    }
+
+    public void Dead()
+    {
+        _playerMovement.IsMovable = false;
     }
     public void DoKnockBack(float duration, Vector2 knockBackDirection)
     {
@@ -128,6 +127,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator KnockBack(float duration, Vector2 knockBackDirection)
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
         // can't move during get damaged
         if (_playerMovement != null)
         {
@@ -137,27 +137,22 @@ public class PlayerHealth : MonoBehaviour
         float elapsedTime = duration;
 
         Vector2 playerVelocity = knockBackDirection * _knockbackSpeed;
-        while (elapsedTime > 0)
+        while (elapsedTime > 0 && Time.timeScale < 1f)
         {
-            yield return new WaitForSecondsRealtime(Time.fixedDeltaTime);
+            yield return new WaitForSecondsRealtime(Time.deltaTime);
 
             if (rb != null)
             {
-                rb.MovePosition(rb.position + playerVelocity * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + playerVelocity * Time.deltaTime);
             }
-            elapsedTime -= Time.fixedDeltaTime;
-
-            if (Time.timeScale >= 1f)
-            {
-                break;
-            }
+            elapsedTime -= Time.deltaTime;
         }
 
         if (rb != null)
         {
             rb.velocity = Vector2.zero;
         }
-        if (_playerMovement != null && _currentHp > 0)
+        if (_playerMovement != null && CurrentHp > 0)
         {
             _playerMovement.IsMovable = true;
         }

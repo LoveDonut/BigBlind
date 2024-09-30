@@ -11,12 +11,15 @@ GameObject:
   - component: {fileID: 5263252498553381721}
   - component: {fileID: 6940595732247966516}
   - component: {fileID: 3534211307138092006}
+  - component: {fileID: -1293890874375102752}
+  - component: {fileID: 1748687152004927236}
   - component: {fileID: 4061514212785497342}
   - component: {fileID: 7260336702425476403}
   - component: {fileID: 4786880582538516064}
   - component: {fileID: 7018472285391731851}
   - component: {fileID: -2733522766508696287}
-  m_Layer: 0
+  - component: {fileID: 3798567980923647224}
+  m_Layer: 3
   m_Name: Enemy_Patrol
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -114,6 +117,37 @@ MonoBehaviour:
   _distanceFadeNumerator: 2.5
   _90BPM: {fileID: 0}
   isPlayer: 0
+--- !u!114 &-1293890874375102752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388095470878118029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffdcf1e421e43fa4fb77dd1cbab35b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 1
+  _deadSound: {fileID: 8300000, guid: 0088508e8717b2c4f97696ba850c8c3e, type: 3}
+--- !u!114 &1748687152004927236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388095470878118029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0170a1a4e595ef141a031718bc36c42f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackRange: 1
+  _attackDelay: 1
+  _readySFX: {fileID: 8300000, guid: 289d18b214d91d1468ed9fbc1c7d699e, type: 3}
+  _attackSFX: {fileID: 8300000, guid: 91e7cc7b3c43dd74e8940558b4d1defb, type: 3}
+  _weapon: {fileID: 4087812566467731332}
 --- !u!195 &4061514212785497342
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -149,12 +183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
-  _attackRange: 1
-  _attackDelay: 1
-  _readySFX: {fileID: 8300000, guid: 289d18b214d91d1468ed9fbc1c7d699e, type: 3}
-  _AttackSFX: {fileID: 8300000, guid: 91e7cc7b3c43dd74e8940558b4d1defb, type: 3}
-  DeadSound: {fileID: 8300000, guid: 0088508e8717b2c4f97696ba850c8c3e, type: 3}
-  _weapon: {fileID: 4087812566467731332}
   _audioSource: {fileID: 0}
 --- !u!58 &4786880582538516064
 CircleCollider2D:
@@ -302,6 +330,33 @@ MonoBehaviour:
   _path: {fileID: 0}
   IsFindPlayer: 0
   _waitingTime: 1
+--- !u!50 &3798567980923647224
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388095470878118029}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1012819312081637314
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7518002792236143597}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HitTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +400,7 @@ GameObject:
   - component: {fileID: 622160566012864210}
   - component: {fileID: 2631302503350403850}
   - component: {fileID: 677330599342688994}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
