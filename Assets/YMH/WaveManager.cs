@@ -14,6 +14,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField] Color WaveReadyColor;
     [SerializeField] Color WaveAttackColor;
 
+    [SerializeField] float _blockAlphaAmount = 2;
+    [SerializeField] float _distanceFadeNumerator = 3;
+
     GameObject _wave;
     Enemy _enemy;
     Color _colorBefore;
@@ -43,10 +46,10 @@ public class WaveManager : MonoBehaviour
     {
         _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
 
-        float dist = isPlayer ? 1 : 3 / Vector2.Distance(transform.position, _player.transform.position);
+        float dist = isPlayer ? 1 : _distanceFadeNumerator / Vector2.Distance(transform.position, _player.transform.position);
         dist = dist >= 1 ? 1 : dist;
 
-        WaveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, dist);
+        WaveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, IsBlockedByWalls() ? dist / _blockAlphaAmount : dist);
         _wave.GetComponent<SoundRayWave>().WaveColor = WaveColor;
         _wave.GetComponent<SoundRayWave>().InitWave();
         _wave.GetComponent<SoundRayWave>().Destroy_Time = DestroyTime;
@@ -71,4 +74,14 @@ public class WaveManager : MonoBehaviour
         _colorBefore = _wave.GetComponent<SoundRayWave>().WaveColor;
         Destroy(_wave, DestroyTime);
     }
+
+    bool IsBlockedByWalls()
+    {
+        Vector2 directionToPlayer = (_player.transform.position - transform.position).normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, Vector2.Distance(transform.position, _player.transform.position), 1 << 8);
+
+        return hit.collider != null;
+    }
+
 }
