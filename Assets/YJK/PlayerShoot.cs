@@ -67,7 +67,7 @@ public class PlayerShoot : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        if (!GetComponent<PlayerMovement>().IsMovable) return;
+        if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable) return;
 
         if (_ammo <= 0)
         {
