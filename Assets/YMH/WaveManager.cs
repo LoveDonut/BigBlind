@@ -28,6 +28,8 @@ public class WaveManager : MonoBehaviour
 
     private GameObject _player;
 
+    float _dist;
+
     private void Start()
     {
         if (!isPlayer)
@@ -46,10 +48,10 @@ public class WaveManager : MonoBehaviour
     {
         _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
 
-        float dist = isPlayer ? 1 : _distanceFadeNumerator / Vector2.Distance(transform.position, _player.transform.position);
-        dist = dist >= 1 ? 1 : dist;
+        _dist = isPlayer ? 1 : _distanceFadeNumerator / Vector2.Distance(transform.position, _player.transform.position);
+        _dist = _dist >= 1 ? 1 : _dist;
 
-        WaveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, IsBlockedByWalls() ? dist / _blockAlphaAmount : dist);
+        WaveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, isPlayer ? 1 : (IsBlockedByWalls() ? _dist / _blockAlphaAmount : _dist));
         _wave.GetComponent<SoundRayWave>().WaveColor = WaveColor;
         _wave.GetComponent<SoundRayWave>().InitWave();
         _wave.GetComponent<SoundRayWave>().Destroy_Time = DestroyTime;
