@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8812996667961951938}
   - component: {fileID: 3178899564426334723}
   - component: {fileID: -8531400401522536048}
+  - component: {fileID: 2862201442116228523}
   m_Layer: 3
   m_Name: Enemy_Patrol_LongRange
   m_TagString: Enemy
@@ -110,6 +111,8 @@ MonoBehaviour:
   WaveColor: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
   WaveReadyColor: {r: 1, g: 0.828821, b: 0.5330188, a: 1}
   WaveAttackColor: {r: 1, g: 0, b: 0, a: 1}
+  _blockAlphaAmount: 2
+  _distanceFadeNumerator: 3
   _90BPM: {fileID: 0}
   isPlayer: 0
 --- !u!114 &-7658386197591761845
@@ -311,3 +314,30 @@ MonoBehaviour:
   _attackSFX: {fileID: 8300000, guid: 1a38c04298b996a4c8625bf2d80577cd, type: 3}
   _weapon: {fileID: 0}
   _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
+--- !u!50 &2862201442116228523
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5654355175682110470}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

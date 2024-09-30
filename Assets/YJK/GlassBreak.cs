@@ -1,5 +1,7 @@
+using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 // Made By JK3WN
@@ -37,6 +39,8 @@ public class GlassBreak : MonoBehaviour
         if(GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
         _spriteRenderer.enabled = false;
         _collider.enabled = false;
+        GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;
+        GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
     }
 
     IEnumerator DestroyAfterSound()
