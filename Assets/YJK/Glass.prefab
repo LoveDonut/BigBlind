@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1737125046951953416}
   - component: {fileID: 4171693716620686658}
   - component: {fileID: 7937604969774526819}
+  - component: {fileID: 8060289483732360982}
   m_Layer: 10
   m_Name: Glass
   m_TagString: Wall
@@ -261,3 +262,24 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &8060289483732360982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5265297225063049290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89db4292bdee3b0498d7991a2630721d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveObject: {fileID: 5202586336991198198, guid: 127a663366e1068499c02d940e52c808, type: 3}
+  BPM: 90
+  DestroyTime: 0.5
+  CannonDestroyTime: 0.5
+  WaveColor: {r: 0.21176472, g: 0.50980395, b: 0.8000001, a: 0}
+  WaveReadyColor: {r: 0, g: 0, b: 0, a: 0}
+  WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
+  _90BPM: {fileID: 0}
+  isPlayer: 1

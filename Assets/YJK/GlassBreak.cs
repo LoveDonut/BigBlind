@@ -34,6 +34,7 @@ public class GlassBreak : MonoBehaviour
     {
         _clipNum = Random.Range(0, _brokenGlass.Length);
         _as.PlayOneShot(_brokenGlass[_clipNum]);
+        if(GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
         _spriteRenderer.enabled = false;
         _collider.enabled = false;
     }
