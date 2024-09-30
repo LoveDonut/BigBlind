@@ -18,7 +18,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] float _reloadTime = 1f;
     [SerializeField] bool _reloadAll = false;
     int _ammo = 6;
-    bool _isShootable = true, _isReloadable = true;
+    bool _isShootable = true, _isReloadable = false, _isReloading = false;
 
     [Header("Bullet")]
     [SerializeField] Color _cannonColor;
@@ -46,8 +46,10 @@ public class PlayerShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<AudioSource>().Play();
         _ammo = _maxAmmo;
         Direction.Instance.Sync_BulletCount_UI(_ammo);
+        InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
     }
 
     // Update is called once per frame
@@ -59,6 +61,8 @@ public class PlayerShoot : MonoBehaviour
             if (_elapsedTime > _reloadTime) _elapsedTime -= _reloadTime;
         }
     }
+
+    void startCheckReloadable() => _isReloadable = !_isReloadable;
 
     void OnFire(InputValue value)
     {
@@ -72,12 +76,6 @@ public class PlayerShoot : MonoBehaviour
         if(_reloadCoroutine != null)
         {
             StopCoroutine(_reloadCoroutine);
-        }
-        if (!_isReloadable)
-        {
-            _handCannon.Stop();
-            _handCannon.pitch = 1f;
-            _isReloadable = true;
         }
         if (!_isShootable)
         {
@@ -118,7 +116,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if (!GetComponent<PlayerMovement>().IsMovable) return;
 
-        if (_ammo == _maxAmmo || !_isReloadable)
+        if (_ammo == _maxAmmo || _isReloading)
         {
             return;
         }
@@ -127,16 +125,16 @@ public class PlayerShoot : MonoBehaviour
 
     IEnumerator WaitReload()
     {
-
+        yield return new WaitUntil(() => _isReloadable);
+        _isReloading = true;
         _elapsedTime = 0f;
-        _isReloadable = false;
         //if (_handCannon.isPlaying) _handCannon.Stop();
 
         if (!_reloadAll)
         {
             _handCannon.PlayOneShot(_OpenCylinder);
 
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(_reloadTime / 2);
         }
 
         while (_ammo < _maxAmmo)
@@ -145,41 +143,32 @@ public class PlayerShoot : MonoBehaviour
             {
                 if (_reloadAllSound != null)
                 {
+                    _ammo = _maxAmmo;
+
                     //HandCannon.pitch = ReloadAllSound.length / reloadTime;
                     _handCannon.PlayOneShot(_reloadAllSound);
+                    Direction.Instance.Show_Revolver_Reload_Effect(true);
+
                 }
             }
             else
             {
                 if (_reloadOneSound != null)
                 {
+                    _ammo++;
+                    Direction.Instance.Sync_BulletCount_UI(_ammo);
+
                     //HandCannon.pitch = ReloadOneSound.length / reloadTime;
                     _handCannon.PlayOneShot(_reloadOneSound);
+                    Direction.Instance.Show_Revolver_Reload_Effect(false);
+
                 }
             }
             yield return new WaitForSeconds(_reloadAll ? _reloadTime : _reloadTime / 2f);
-            if (_reloadAll)
-            {
-                _ammo = _maxAmmo;
-                _handCannon.pitch = 1f;
-                Direction.Instance.Show_Revolver_Reload_Effect(true);
-            }
-            else
-            {
-                _ammo++;
-                Direction.Instance.Sync_BulletCount_UI(_ammo);
-                _handCannon.pitch = 1f;
-                Direction.Instance.Show_Revolver_Reload_Effect(false);
-            }
         }
 
-        if (!_reloadAll)
-        {
-            _handCannon.PlayOneShot(_reloadOneSound);
-            yield return new WaitForSeconds(.2f);
-            _handCannon.PlayOneShot(_closeCylinder);
-        }
+        if (!_reloadAll) _handCannon.PlayOneShot(_closeCylinder);
 
-        _isReloadable = true;
+        _isReloading = false;
     }
 }
