@@ -38,6 +38,7 @@ public class WaveManager : MonoBehaviour
             InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
             _player = GameObject.FindGameObjectWithTag("Player");
         }
+        _colorBefore = WaveAttackColor;
     }
 
     private void Update()
@@ -65,7 +66,7 @@ public class WaveManager : MonoBehaviour
         if (TryGetComponent<EnemyAttack>(out _enemyAttack) && TryGetComponent<EnemyMovement>(out _enemyMovement))
         {
             Color colorToChange;
-            if (_enemyMovement._currentState.GetType() == typeof(ReadyState) && _colorBefore != WaveReadyColor)
+            if (_enemyMovement._currentState.GetType() == typeof(ReadyState))
             {
                 colorToChange = WaveReadyColor;
             }
@@ -73,8 +74,9 @@ public class WaveManager : MonoBehaviour
             {
                 colorToChange = WaveColor;
             }
-            if (_colorBefore == WaveReadyColor)
+            if (_colorBefore == WaveReadyColor && _enemyAttack.IsReadyToAttack())
             {
+                Debug.Log(("Attack!"));
                 colorToChange = WaveAttackColor;
                 _enemyAttack.StartAttack();
             }

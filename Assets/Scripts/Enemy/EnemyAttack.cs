@@ -7,13 +7,16 @@ public class EnemyAttack : MonoBehaviour
 {
     #region References
     [Header("References")]
-    [SerializeField] protected float _attackRange = 1f;
-    [SerializeField] protected float _attackDelay = 1f;
     [SerializeField] public AudioClip _readySFX;
     [SerializeField] public AudioClip _attackSFX;
     #endregion
 
     #region PrivateVariables
+    [Header("")]
+    [SerializeField] protected float _attackRange = 1f;
+    [SerializeField] protected float _attackDelay = 1f;
+    [SerializeField] protected int _readyBeatCount = 2;
+
     #endregion
 
     #region ProtectedVariables
@@ -21,7 +24,8 @@ public class EnemyAttack : MonoBehaviour
     #endregion
 
     #region PublicVariables
-    public GameObject _weapon;
+    public GameObject Weapon;
+    public int CurrentReadyBeatCount { get; private set; }
     #endregion
 
     #region PrivateVariables
@@ -32,6 +36,12 @@ public class EnemyAttack : MonoBehaviour
     {
         _playerTransform = FindObjectOfType<PlayerMovement>().transform;
     }
+
+    protected virtual void Start()
+    {
+        CurrentReadyBeatCount = _readyBeatCount;
+    }
+
     #endregion
 
     #region PublicMethods
@@ -42,6 +52,7 @@ public class EnemyAttack : MonoBehaviour
     }
     public virtual void StartAttack()
     {
+        CurrentReadyBeatCount = _readyBeatCount;
         AttackState attackState = new AttackState();
         EnemyMovement enemyMovement;
 
@@ -82,6 +93,8 @@ public class EnemyAttack : MonoBehaviour
     {
         return (_playerTransform.position - transform.position).normalized;
     }
+
+    public bool IsReadyToAttack() => --CurrentReadyBeatCount <= 0;
     #endregion
 
 }

@@ -142,11 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0170a1a4e595ef141a031718bc36c42f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRange: 1
-  _attackDelay: 1
   _readySFX: {fileID: 8300000, guid: 289d18b214d91d1468ed9fbc1c7d699e, type: 3}
   _attackSFX: {fileID: 8300000, guid: 91e7cc7b3c43dd74e8940558b4d1defb, type: 3}
-  _weapon: {fileID: 4087812566467731332}
+  _attackRange: 1
+  _attackDelay: 1
+  _readyBeatCount: 2
+  Weapon: {fileID: 4087812566467731332}
 --- !u!195 &4061514212785497342
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -123,10 +123,10 @@ public class AttackState : EnemyStateMachine
             }
             else
             {
-                _enemyAttack._weapon.SetActive(true);
+                _enemyAttack.Weapon.SetActive(true);
 
                 EnemyShortWeapon shortWeapon;
-                if (_enemyAttack._weapon.TryGetComponent<EnemyShortWeapon>(out shortWeapon))
+                if (_enemyAttack.Weapon.TryGetComponent<EnemyShortWeapon>(out shortWeapon))
                 {
                     shortWeapon.StartAttack();
                 }
