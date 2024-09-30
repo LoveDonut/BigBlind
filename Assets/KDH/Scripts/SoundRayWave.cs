@@ -34,8 +34,6 @@ public class SoundRayWave : MonoBehaviour
     {
         lineRenderer.startColor = WaveColor;
         lineRenderer.endColor = WaveColor;
-
-
     }
 
     void FixedUpdate()
@@ -73,5 +71,7 @@ public class SoundRayWave : MonoBehaviour
         Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
         lineRenderer.startColor  = waveColor;
         lineRenderer.endColor = waveColor;
+
+        if (alpha <= 0) Destroy(gameObject);
     }
 }
