@@ -110,6 +110,8 @@ MonoBehaviour:
   WaveColor: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
   WaveReadyColor: {r: 1, g: 0.828821, b: 0.5330188, a: 1}
   WaveAttackColor: {r: 1, g: 0, b: 0, a: 1}
+  _blockAlphaAmount: 3
+  _distanceFadeNumerator: 2.5
   _90BPM: {fileID: 0}
   isPlayer: 0
 --- !u!195 &4061514212785497342
@@ -297,6 +299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d675839fac1af4fb8807becd15953e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _path: {fileID: 0}
+  IsFindPlayer: 0
+  _waitingTime: 1
 --- !u!1 &1012819312081637314
 GameObject:
   m_ObjectHideFlags: 0

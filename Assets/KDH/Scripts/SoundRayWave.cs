@@ -34,6 +34,8 @@ public class SoundRayWave : MonoBehaviour
     {
         lineRenderer.startColor = WaveColor;
         lineRenderer.endColor = WaveColor;
+
+
     }
 
     void FixedUpdate()
