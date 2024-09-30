@@ -16,6 +16,10 @@ public class DoorKick : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_rb.angularVelocity > 200 || _rb.angularVelocity < -200) _as.Play();
+        if (_rb.angularVelocity > 100 || _rb.angularVelocity < -100)
+        {
+            _as.Play();
+            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
+        }
     }
 }

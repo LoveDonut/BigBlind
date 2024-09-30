@@ -42,7 +42,7 @@ public class WaveManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftControl) && isPlayer) Spawn_Wave();
     }
 
-    void Spawn_Wave()
+    public void Spawn_Wave()
     {
         _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
 
