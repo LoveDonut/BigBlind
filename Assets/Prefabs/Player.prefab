@@ -533,7 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _acceleration: 50
   _deceleration: 20
-  _maxSpeed: 5
+  _maxSpeed: 7.5
   HeartBeat: {fileID: 8109789852779394927}
   Beat: {fileID: 6756703532751236850}
   IsMovable: 0
@@ -550,12 +550,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 127a663366e1068499c02d940e52c808, type: 3}
-  BPM: 22.5
-  DestroyTime: 1
+  BPM: 33.75
+  DestroyTime: 1.1
   CannonDestroyTime: 0.5
   WaveColor: {r: 1, g: 1, b: 1, a: 1}
   WaveReadyColor: {r: 0, g: 0, b: 0, a: 0}
   WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
+  _blockAlphaAmount: 2
+  _distanceFadeNumerator: 3
   _90BPM: {fileID: 0}
   isPlayer: 0
 --- !u!114 &8781396948911583693
@@ -605,7 +607,7 @@ MonoBehaviour:
   _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
   _RPM: 200
   _maxAmmo: 6
-  _reloadTime: 1
+  _reloadTime: 0.8888889
   _reloadAll: 0
   _cannonColor: {r: 0.9882353, g: 1, b: 0, a: 1}
   _destroyTime: 0.2
@@ -719,8 +721,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bca2ec2305a904a4bbc5f0b714417ecf, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 8ea387111ffd067488829483a78b666d, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
