@@ -9,8 +9,8 @@ public class PlayerBlood : MonoBehaviour
 {
     PlayerHealth _playerHealth;
 
-    int _currentHealth => _playerHealth.GetCurrentHp;
-    int _maxHealth => _playerHealth.GetMaxHp;
+    int _currentHealth => _playerHealth.CurrentHp;
+    int _maxHealth => _playerHealth.MaxHp;
     bool _isFullHealth => _playerHealth.IsFullHealth;
     float _bleedRate =>1f/(1f +  (_maxHealth - _currentHealth)*2);
     bool _isBleeding;

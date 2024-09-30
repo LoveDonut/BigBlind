@@ -15,7 +15,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] Color WaveAttackColor;
 
     GameObject _wave;
-    Enemy _enemy;
+    EnemyAttack _enemyAttack;
+    EnemyMovement _enemyMovement;
     Color _colorBefore;
 
     [Header("BGM")]
@@ -50,10 +51,16 @@ public class WaveManager : MonoBehaviour
         _wave.GetComponent<SoundRayWave>().WaveColor = WaveColor;
         _wave.GetComponent<SoundRayWave>().InitWave();
         _wave.GetComponent<SoundRayWave>().Destroy_Time = DestroyTime;
-        if (TryGetComponent<Enemy>(out _enemy))
+        ChamgeWaveColorAccordingToState();
+        Destroy(_wave, DestroyTime);
+    }
+
+    private void ChamgeWaveColorAccordingToState()
+    {
+        if (TryGetComponent<EnemyAttack>(out _enemyAttack) && TryGetComponent<EnemyMovement>(out _enemyMovement))
         {
             Color colorToChange;
-            if (_enemy._currentState.GetType() == typeof(ReadyState) && _colorBefore != WaveReadyColor)
+            if (_enemyMovement._currentState.GetType() == typeof(ReadyState) && _colorBefore != WaveReadyColor)
             {
                 colorToChange = WaveReadyColor;
             }
@@ -64,11 +71,10 @@ public class WaveManager : MonoBehaviour
             if (_colorBefore == WaveReadyColor)
             {
                 colorToChange = WaveAttackColor;
-                _enemy.StartAttack();
+                _enemyAttack.StartAttack();
             }
             _wave.GetComponent<SoundRayWave>().WaveColor = colorToChange;
         }
         _colorBefore = _wave.GetComponent<SoundRayWave>().WaveColor;
-        Destroy(_wave, DestroyTime);
     }
 }

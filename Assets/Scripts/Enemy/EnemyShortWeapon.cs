@@ -14,21 +14,27 @@ public class EnemyShortWeapon : MonoBehaviour
 
     #region PrivateVariables
     Animator _animator;
+    Collider2D[] _hits;
+    EnemyAttack _enemyAttack;
     #endregion
 
     #region PrivateMethods
+    void Awake()
+    {
+        _enemyAttack = GetComponentInParent<EnemyAttack>();
+    }
+
     void Start()
     {
         gameObject.SetActive(false);
+        _hits = new Collider2D[5];
     }
 
     void RotateToPlayer()
     {
-        Enemy enemy = GetComponentInParent<Enemy>();
-
-        if (enemy != null)
+        if (_enemyAttack != null)
         {
-            Vector2 direction = enemy.GetdirectionToPlayer();
+            Vector2 direction = _enemyAttack.GetdirectionToPlayer();
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
@@ -50,7 +56,7 @@ public class EnemyShortWeapon : MonoBehaviour
     #region PublicMethods
     public void StartAttack()
     {
-        Enemy enemy = GetComponentInParent<Enemy>();
+        EnemyAttack enemy = GetComponentInParent<EnemyAttack>();
 
         if (TryGetComponent<Animator>(out _animator))
         {
@@ -67,15 +73,15 @@ public class EnemyShortWeapon : MonoBehaviour
 
     public void AttackCollideWithPlayer()
     {
-        Collider2D hit = Physics2D.OverlapCircle(_hitTransform.position, _hitRadius, LayerMask.GetMask("Player"));
+        Physics2D.OverlapCircleNonAlloc(_hitTransform.position, _hitRadius, _hits, LayerMask.GetMask("Player", "Enemy"));
+        IDamage damagable;
 
-        if (hit != null)
+        for (int i=0; i<_hits.Length; i++)
         {
-            PlayerHealth playerHealth;
-
-            if(hit.gameObject.TryGetComponent<PlayerHealth>(out playerHealth))
+            if(_hits[i] != null && _hits[i].gameObject != _enemyAttack.gameObject &&_hits[i].TryGetComponent<IDamage>(out damagable))
             {
-                playerHealth.GetDamaged(transform.position);
+                Debug.Log("Damaged!");
+                damagable.GetDamaged(transform.position);
             }
         }
     }

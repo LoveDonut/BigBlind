@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // made by KimDaehui
-public class LongRangeEnemy : Enemy
+public class LongRangeEnemyAttack : EnemyAttack
 {
     [SerializeField] GameObject _bulletPrefab;
     float _bulletRadius;
-    protected override void Start()
+    void Start()
     {
-        base.Start();
         CircleCollider2D bulletCollider;
 
-        if(_bulletPrefab.TryGetComponent<CircleCollider2D>(out bulletCollider))
+        if (_bulletPrefab.TryGetComponent<CircleCollider2D>(out bulletCollider))
         {
             _bulletRadius = bulletCollider.radius;
         }
@@ -22,7 +21,8 @@ public class LongRangeEnemy : Enemy
     {
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
-        GameObject bullet = Instantiate(_bulletPrefab, transform.position + (Vector3)DirectionToPlayer(), Quaternion.LookRotation(DirectionToPlayer().normalized));
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + (Vector3)GetdirectionToPlayer(),
+            Quaternion.LookRotation(GetdirectionToPlayer().normalized));
 
         Destroy(bullet, 3f);
     }
@@ -35,7 +35,8 @@ public class LongRangeEnemy : Enemy
             float rayLength = _attackRange > (_playerTransform.position - transform.position).magnitude ?
                                 (_playerTransform.position - transform.position).magnitude : _attackRange;
             // check if there is no wall between enemy and player
-            RaycastHit2D hit = Physics2D.CircleCast(transform.position, _bulletRadius, _playerTransform.position - transform.position, rayLength, LayerMask.GetMask("Wall"));
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, _bulletRadius,
+                _playerTransform.position - transform.position, rayLength, LayerMask.GetMask("Wall"));
 
             if (hit.collider == null)
             {

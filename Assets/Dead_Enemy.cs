@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Dead_Enemy : StateMachineBehaviour
 {
-    Enemy _enemy;
+    EnemyAttack _enemy;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.TryGetComponent<Enemy>(out _enemy))
+        if (animator.TryGetComponent<EnemyAttack>(out _enemy))
         {
 //            _enemy.Dead();
         }

@@ -51,23 +51,13 @@ public class ProjectileMover2D : MonoBehaviour
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        IDamage damagable = collision.gameObject.GetComponent<IDamage>();
+
+        if (damagable != null)
         {
-//            Debug.Log("collide with enemy!");
-            Enemy enemy;
-            if (collision.gameObject.TryGetComponent<Enemy>(out enemy))
-            {
-                enemy.Dead(aimPos.normalized);
-            }
+            damagable.GetDamaged(aimPos.normalized);
         }
-        else if(collision.gameObject.CompareTag("Player"))
-        {
-            PlayerHealth playerHealth;
-            if(collision.gameObject.TryGetComponent<PlayerHealth>(out playerHealth))
-            {
-                playerHealth.GetDamaged(aimPos.normalized);
-            }
-        }
+
         //Lock all axes movement and rotation
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         speed = 0;

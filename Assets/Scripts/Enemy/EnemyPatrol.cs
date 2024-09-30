@@ -30,7 +30,6 @@ public class EnemyPatrol : MonoBehaviour
         SetPaths();
         _agent = GetComponent<NavMeshAgent>();
         IsFindPlayer = false;
-        _currentPathIndex = -1;
     }
 
     void SetPaths()
@@ -39,6 +38,8 @@ public class EnemyPatrol : MonoBehaviour
         _paths.RemoveAt(0);
 
         _isGoForward = true;
+
+        _currentPathIndex = -1;
     }
     Vector3 GetNextDestination()
     {
