@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6952884893091900273}
   - component: {fileID: 5281341409408935039}
   - component: {fileID: 4129672699434866827}
+  - component: {fileID: 8831615329333525828}
   m_Layer: 8
   m_Name: DoorBig
   m_TagString: Wall
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 0.25, z: 1}
+  m_LocalScale: {x: 2, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -294,3 +295,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb0541a7e4a3c942851876730c0bb53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8831615329333525828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711140697441368410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89db4292bdee3b0498d7991a2630721d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveObject: {fileID: 5202586336991198198, guid: 127a663366e1068499c02d940e52c808, type: 3}
+  BPM: 90
+  DestroyTime: 0.5
+  CannonDestroyTime: 0.5
+  WaveColor: {r: 0.39607847, g: 0.18431373, b: 0.003921569, a: 0}
+  WaveReadyColor: {r: 0, g: 0, b: 0, a: 0}
+  WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
+  _90BPM: {fileID: 0}
+  isPlayer: 1
