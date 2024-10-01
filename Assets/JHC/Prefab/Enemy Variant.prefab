@@ -112,11 +112,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89db4292bdee3b0498d7991a2630721d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wave_Object: {fileID: 5202586336991198198, guid: c848eb2a56a0f844facbfe5b919a4cd1, type: 3}
+  _waveObject: {fileID: 5202586336991198198, guid: bb909064d2ad1c94f81568870d0a1c68, type: 3}
   BPM: 90
-  Destroy_Time: 1
-  wave_Color: {r: 1, g: 0, b: 0.8000001, a: 1}
-  BPM_90: {fileID: 0}
+  DestroyTime: 0.5
+  CannonDestroyTime: 0.5
+  WaveColor: {r: 0, g: 0, b: 0, a: 0}
+  WaveReadyColor: {r: 0, g: 0, b: 0, a: 0}
+  WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
+  _blockAlphaAmount: 2
+  _distanceFadeNumerator: 3
+  _90BPM: {fileID: 0}
   isPlayer: 0
 --- !u!114 &3255988380246427408
 MonoBehaviour:
@@ -130,9 +135,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89db4292bdee3b0498d7991a2630721d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wave_Object: {fileID: 5202586336991198198, guid: a11af8c4d8e7eee40a505954fc7cf01b, type: 3}
+  _waveObject: {fileID: 0}
   BPM: 90
-  Destroy_Time: 2
-  wave_Color: {r: 0, g: 0, b: 0, a: 1}
-  BPM_90: {fileID: 0}
+  DestroyTime: 0.5
+  CannonDestroyTime: 0.5
+  WaveColor: {r: 0, g: 0, b: 0, a: 0}
+  WaveReadyColor: {r: 0, g: 0, b: 0, a: 0}
+  WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
+  _blockAlphaAmount: 2
+  _distanceFadeNumerator: 3
+  _90BPM: {fileID: 0}
   isPlayer: 0
