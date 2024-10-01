@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5851966990935035938}
   - component: {fileID: 8176889907395216734}
-  - component: {fileID: 3257349472115863771}
   - component: {fileID: 2369123317398446388}
+  - component: {fileID: 9071482068068324694}
   m_Layer: 6
-  m_Name: EnemyWave3
+  m_Name: EnemyWave_foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,8 +73,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 830608503
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -87,7 +87,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.14286846
+        value: 0.12
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -138,26 +138,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &3257349472115863771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5202586336991198198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cb9e933c7dc2941b7d7a613de72675, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  segments: 180
-  growSpeed: 0
-  radius: 0.4
-  isPlayerSound: 0
-  Frame: 200
-  WaveColor: {r: 0, g: 0, b: 0, a: 0}
-  waveManager: {fileID: 0}
-  isPlayerCheck: 0
 --- !u!60 &2369123317398446388
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -208,3 +188,20 @@ PolygonCollider2D:
       - {x: 0.29389268, y: -0.40450847}
       - {x: 0.47552824, y: 0.15450856}
   m_UseDelaunayMesh: 0
+--- !u!114 &9071482068068324694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202586336991198198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0b16d1edbd3164b82fe1d12ba6203e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 30
+  growSpeed: 0
+  radius: 0.25
+  WaveColor: {r: 0, g: 0, b: 0, a: 1}
+  Destroy_Time: 1

@@ -11,12 +11,14 @@ GameObject:
   - component: {fileID: 5263252498553381721}
   - component: {fileID: 6940595732247966516}
   - component: {fileID: 3534211307138092006}
+  - component: {fileID: -9019425756591279055}
   - component: {fileID: 7702086288267926573}
   - component: {fileID: -4313632495758409854}
   - component: {fileID: 4061514212785497342}
   - component: {fileID: 7260336702425476403}
   - component: {fileID: 4786880582538516064}
   - component: {fileID: 7018472285391731851}
+  - component: {fileID: -7257909280031456150}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -105,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 58360a0d91ace6448861ae8605dbc909, type: 3}
-  BPM: 90
+  BPM: 135
   DestroyTime: 0.4
   CannonDestroyTime: 1
   WaveColor: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
@@ -113,6 +115,29 @@ MonoBehaviour:
   WaveAttackColor: {r: 1, g: 0, b: 0, a: 1}
   _blockAlphaAmount: 2
   _distanceFadeNumerator: 3
+  _90BPM: {fileID: 0}
+  isPlayer: 0
+--- !u!114 &-9019425756591279055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388095470878118029}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89db4292bdee3b0498d7991a2630721d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveObject: {fileID: 5202586336991198198, guid: bb909064d2ad1c94f81568870d0a1c68, type: 3}
+  BPM: 90
+  DestroyTime: 0.8
+  CannonDestroyTime: 0.5
+  WaveColor: {r: 0, g: 0, b: 0, a: 1}
+  WaveReadyColor: {r: 0, g: 0, b: 0, a: 1}
+  WaveAttackColor: {r: 0, g: 0, b: 0, a: 1}
+  _blockAlphaAmount: 1
+  _distanceFadeNumerator: 10
   _90BPM: {fileID: 0}
   isPlayer: 0
 --- !u!114 &7702086288267926573
