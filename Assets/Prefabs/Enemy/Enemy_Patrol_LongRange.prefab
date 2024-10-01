@@ -35,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.06, y: 6.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -308,11 +308,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16027a840cb07714eb7dba726fbb0ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRange: 10
-  _attackDelay: 1
   _readySFX: {fileID: 8300000, guid: 401012c68f7a7e04ebce4790045fcfe8, type: 3}
   _attackSFX: {fileID: 8300000, guid: 1a38c04298b996a4c8625bf2d80577cd, type: 3}
-  _weapon: {fileID: 0}
+  _attackRange: 10
+  _attackDelay: 1
+  _readyBeatCount: 2
+  Weapon: {fileID: 0}
   _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
 --- !u!50 &2862201442116228523
 Rigidbody2D:
@@ -322,7 +323,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5654355175682110470}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
