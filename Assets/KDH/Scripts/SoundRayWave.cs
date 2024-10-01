@@ -53,6 +53,7 @@ public class SoundRayWave : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), radius, LayerMask.GetMask("Wall") | LayerMask.GetMask("Glass"));
             if (hit.collider != null)
             {
+                if (hit.collider.CompareTag("Obstacle")) hit.collider.GetComponent<OutlineColorController>().ShowOutline();
                 wavePositions[i] = transform.InverseTransformPoint(hit.point);
             }
             else
