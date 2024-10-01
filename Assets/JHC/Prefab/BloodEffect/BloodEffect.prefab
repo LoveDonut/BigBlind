@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectPrefab: {fileID: 1342065978392705050, guid: 86083d33e3d45b045a4056b6acfd9b31, type: 3}
   _poolSize: 20
+  _poolObjects: []
 --- !u!1 &8257232202459541677
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +170,7 @@ MonoBehaviour:
   - {fileID: -1246306417, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
   - {fileID: 1561193797, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
   _createDuration: 0.15
-  _maintainDuration: 30
+  _maintainDuration: 99999
   _deleteDuration: 5
   HasDirection: 0
   IsEnemy: 1
