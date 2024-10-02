@@ -15,6 +15,8 @@ public class PlayerShoot : MonoBehaviour
     [Header("HandCannon")]
     [SerializeField] float _RPM = 200f;
     [SerializeField] int _maxAmmo = 6;
+    [SerializeField] int _reserveAmmo = 30;
+    [SerializeField] bool _infiniteReserve = false;
     [SerializeField] float _reloadTime = 1f;
     [SerializeField] bool _reloadAll = false;
     int _ammo = 6;
@@ -112,7 +114,7 @@ public class PlayerShoot : MonoBehaviour
 
     void OnReload(InputValue value)
     {
-        if (!GetComponent<PlayerMovement>().IsMovable) return;
+        if (!GetComponent<PlayerMovement>().IsMovable || _reserveAmmo <= 0) return;
 
         if (_ammo == _maxAmmo || _isReloading)
         {
@@ -135,13 +137,24 @@ public class PlayerShoot : MonoBehaviour
             yield return new WaitForSeconds(_reloadTime / 2);
         }
 
-        while (_ammo < _maxAmmo)
+        while (_ammo < _maxAmmo && _reserveAmmo > 0)
         {
             if (_reloadAll)
             {
                 if (_reloadAllSound != null)
                 {
-                    _ammo = _maxAmmo;
+                    if(_reserveAmmo < (_maxAmmo - _ammo))
+                    {
+                        if (!_infiniteReserve) _reserveAmmo = 0;
+                        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
+                        _ammo += _reserveAmmo;
+                    }
+                    else
+                    {
+                        if(!_infiniteReserve) _reserveAmmo -= (_maxAmmo - _ammo);
+                        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
+                        _ammo = _maxAmmo;
+                    }
 
                     //HandCannon.pitch = ReloadAllSound.length / reloadTime;
                     _handCannon.PlayOneShot(_reloadAllSound);
@@ -153,6 +166,8 @@ public class PlayerShoot : MonoBehaviour
             {
                 if (_reloadOneSound != null)
                 {
+                    if(!_infiniteReserve) _reserveAmmo--;
+                    Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
                     _ammo++;
                     Direction.Instance.Sync_BulletCount_UI(_ammo);
 
@@ -168,5 +183,11 @@ public class PlayerShoot : MonoBehaviour
         if (!_reloadAll) _handCannon.PlayOneShot(_closeCylinder);
 
         _isReloading = false;
+    }
+
+    public void AddReserveAmmo(int count)
+    {
+        _reserveAmmo += count;
+        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
     }
 }

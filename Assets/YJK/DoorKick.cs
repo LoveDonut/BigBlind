@@ -14,7 +14,6 @@ public class DoorKick : MonoBehaviour
     private Collider2D _collider;
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
-    bool _destroyable = true;
 
     private void Start()
     {
