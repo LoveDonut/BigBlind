@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 4786880582538516064}
   - component: {fileID: 7018472285391731851}
   - component: {fileID: -7257909280031456150}
+  - component: {fileID: -2470111362033579581}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -62,7 +63,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -117,6 +118,7 @@ MonoBehaviour:
   _distanceFadeNumerator: 3
   _90BPM: {fileID: 0}
   isPlayer: 0
+  IsContactedPlayerWave: 0
 --- !u!114 &-9019425756591279055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +142,7 @@ MonoBehaviour:
   _distanceFadeNumerator: 10
   _90BPM: {fileID: 0}
   isPlayer: 0
+  IsContactedPlayerWave: 0
 --- !u!114 &7702086288267926573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +369,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-2470111362033579581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388095470878118029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 1
+  _color: {r: 1, g: 1, b: 0, a: 1}
 --- !u!1 &1012819312081637314
 GameObject:
   m_ObjectHideFlags: 0
