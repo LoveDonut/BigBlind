@@ -58,6 +58,10 @@ public class WaveManager : MonoBehaviour
         _wave.GetComponent<SoundRayWave>().InitWave();
         _wave.GetComponent<SoundRayWave>().Destroy_Time = DestroyTime;
         ChamgeWaveColorAccordingToState();
+        if(CompareTag("Enemy"))
+        {
+            GetComponent<EnemyWaveOnBlood>().WaveOnBlood();
+        }
         Destroy(_wave, DestroyTime);
     }
 
