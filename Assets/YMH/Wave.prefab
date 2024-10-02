@@ -155,6 +155,7 @@ MonoBehaviour:
   radius: 0.5
   WaveColor: {r: 0.07075471, g: 1, b: 0.9732528, a: 1}
   Destroy_Time: 1
+  _isPlayerWave: 1
 --- !u!60 &2369123317398446388
 PolygonCollider2D:
   m_ObjectHideFlags: 0

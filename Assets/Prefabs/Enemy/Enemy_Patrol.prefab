@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -2733522766508696287}
   - component: {fileID: 3798567980923647224}
   - component: {fileID: -2666897587312423056}
+  - component: {fileID: 5895989029706466804}
   m_Layer: 3
   m_Name: Enemy_Patrol
   m_TagString: Enemy
@@ -64,7 +65,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -373,6 +374,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _circle: {fileID: 2901792663984663958}
+--- !u!114 &5895989029706466804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388095470878118029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 0}
+  _instancedMaterial: {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
+  _duration: 1
+  _color: {r: 0.968729, g: 1, b: 0, a: 1}
 --- !u!1 &1012819312081637314
 GameObject:
   m_ObjectHideFlags: 0

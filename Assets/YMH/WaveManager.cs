@@ -31,19 +31,16 @@ public class WaveManager : MonoBehaviour
 
     float _dist;
 
+    bool _isReadyAttack;
+
     private void Start()
     {
         if (!isPlayer)
         {
-            InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
             _player = GameObject.FindGameObjectWithTag("Player");
         }
+        InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
         _colorBefore = WaveAttackColor;
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.LeftControl) && isPlayer) Spawn_Wave();
     }
 
     public void Spawn_Wave()
@@ -53,7 +50,7 @@ public class WaveManager : MonoBehaviour
         _dist = isPlayer ? 1 : _distanceFadeNumerator / Vector2.Distance(transform.position, _player.transform.position);
         _dist = _dist >= 1 ? 1 : _dist;
 
-        WaveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, isPlayer ? 1 : (IsBlockedByWalls() ? _dist / _blockAlphaAmount : _dist));
+        WaveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, (isPlayer || (!isPlayer && _isReadyAttack)) ? 1 : 0/*(IsBlockedByWalls() ? _dist / _blockAlphaAmount : _dist)*/);
         _wave.GetComponent<SoundRayWave>().WaveColor = WaveColor;
         _wave.GetComponent<SoundRayWave>().InitWave();
         _wave.GetComponent<SoundRayWave>().Destroy_Time = DestroyTime;
@@ -73,6 +70,7 @@ public class WaveManager : MonoBehaviour
             if (_enemyMovement._currentState.GetType() == typeof(ReadyState))
             {
                 colorToChange = WaveReadyColor;
+                _isReadyAttack = true;
             }
             else
             {
@@ -80,7 +78,7 @@ public class WaveManager : MonoBehaviour
             }
             if (_colorBefore == WaveReadyColor && _enemyAttack.IsReadyToAttack())
             {
-                Debug.Log(("Attack!"));
+                _isReadyAttack = false;
                 colorToChange = WaveAttackColor;
                 _enemyAttack.StartAttack();
             }
