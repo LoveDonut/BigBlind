@@ -5,7 +5,7 @@ using UnityEngine;
 public class OutlineColorController : MonoBehaviour
 {
     public SpriteRenderer _spriteRenderer;
-    private Material _instancedMaterial;
+    [SerializeField] Material _instancedMaterial;
     [SerializeField] float _duration;
     [SerializeField] Color _color;
     bool _isPlaying;
@@ -40,15 +40,6 @@ public class OutlineColorController : MonoBehaviour
         if (_spriteRenderer != null && _instancedMaterial != null)
         {
             _spriteRenderer.material = _spriteRenderer.sharedMaterial;
-
-            if (Application.isPlaying)
-            {
-                Destroy(_instancedMaterial);
-            }
-            else
-            {
-                DestroyImmediate(_instancedMaterial);
-            }
         }
     }
 
