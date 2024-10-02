@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ public class Direction : MonoBehaviour
 
     [Header("Revolver_UI")]
     [SerializeField] Revolver_UI _revolverUI;
+    [SerializeField] TextMeshProUGUI _reserveAmmoUI;
 
     [Header("LowBlood_UI")]
     [SerializeField] Image _lowHpImage;
@@ -50,5 +52,5 @@ public class Direction : MonoBehaviour
 
     public void ShowLowHP() => _lowHpImage.GetComponent<Animator>().Play("LowHP");
 
-
+    public void SyncReserveAmmoUI(int ammo) => _reserveAmmoUI.text = ammo.ToString();
 }
