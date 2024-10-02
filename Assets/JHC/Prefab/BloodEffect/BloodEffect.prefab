@@ -58,6 +58,7 @@ MonoBehaviour:
   _createDuration: 0.15
   _maintainDuration: 1
   _deleteDuration: 1
+  NeverDelete: 0
   HasDirection: 0
   IsEnemy: 0
 --- !u!1 &8004930959767579899
@@ -170,7 +171,8 @@ MonoBehaviour:
   - {fileID: -1246306417, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
   - {fileID: 1561193797, guid: 9fc4fa1114c0e1d4986d62b93f375b1e, type: 3}
   _createDuration: 0.15
-  _maintainDuration: 99999
+  _maintainDuration: 1
   _deleteDuration: 5
+  NeverDelete: 1
   HasDirection: 0
   IsEnemy: 1

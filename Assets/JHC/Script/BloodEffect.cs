@@ -16,6 +16,7 @@ public class BloodEffect : MonoBehaviour
     [SerializeField] float _createDuration;
     [SerializeField] float _maintainDuration;
     [SerializeField] float _deleteDuration;
+    public bool NeverDelete;
     public bool HasDirection;
     public bool IsEnemy;
 
@@ -43,14 +44,16 @@ public class BloodEffect : MonoBehaviour
 
         Sequence sequence = DOTween.Sequence();
         sequence.Append(bloodObj.transform.DOScale(UnityEngine.Random.Range(scale/2, scale), _createDuration).SetEase(Ease.InExpo));
-        sequence.AppendInterval(_maintainDuration);
-        sequence.Append(DOTween.ToAlpha(
-            () => bloodObjSr.color, x => bloodObjSr.color = x, 0f, _deleteDuration
-        ).SetEase(Ease.InExpo).OnComplete(() => {
-            bloodObj.transform.DOKill();
-            _bloodEffectPool.ReturnObject(bloodObj);
-        }));
-
+        if (!NeverDelete)
+        {
+            sequence.AppendInterval(_maintainDuration);
+            sequence.Append(DOTween.ToAlpha(
+                () => bloodObjSr.color, x => bloodObjSr.color = x, 0f, _deleteDuration
+            ).SetEase(Ease.InExpo).OnComplete(() => {
+                bloodObj.transform.DOKill();
+                _bloodEffectPool.ReturnObject(bloodObj);
+            }));
+        }
         sequence.Play();
 
     }
