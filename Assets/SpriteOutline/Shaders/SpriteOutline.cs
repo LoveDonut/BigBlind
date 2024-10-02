@@ -4,27 +4,29 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class OutlineColorController : MonoBehaviour
 {
-    SpriteRenderer _spriteRenderer;
-    Material _instancedMaterial;
+    public SpriteRenderer _spriteRenderer;
+    private Material _instancedMaterial;
     [SerializeField] float _duration;
     [SerializeField] Color _color;
     bool _isPlaying;
 
     float elapsedTime, alpha;
-    void OnEnable()
+    private void OnEnable()
     {
         SetupMaterial();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         CleanupMaterial();
     }
 
-    void SetupMaterial()
+    private void SetupMaterial()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-
+        if (_spriteRenderer == null)
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
 
         if (_spriteRenderer != null && _spriteRenderer.sharedMaterial != null)
         {
@@ -33,7 +35,7 @@ public class OutlineColorController : MonoBehaviour
         }
     }
 
-    void CleanupMaterial()
+    private void CleanupMaterial()
     {
         if (_spriteRenderer != null && _instancedMaterial != null)
         {
@@ -56,13 +58,7 @@ public class OutlineColorController : MonoBehaviour
         StartCoroutine(FadeOutline(_color));
     }
 
-    float SetLookRotation()
-    {
-        //Quaternion.LookRotation()
-        return 1f;
-    }
-
-    IEnumerator FadeOutline(Color color)
+    private IEnumerator FadeOutline(Color color)
     {
         _isPlaying = true;
         elapsedTime = 0f;
