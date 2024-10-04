@@ -62,6 +62,14 @@ public class SoundRayWave : MonoBehaviour
                         hit.collider.GetComponent<EnemyMovement>().SpawnSprite();
                         continue;
                     }
+                    if (hit.collider.CompareTag("Ammo"))
+                    {
+                        wavePositions[i] = transform.InverseTransformPoint(transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius);
+                        if (_contactedEnemy.Find(x => x == hit.collider.gameObject)) continue;
+                        _contactedEnemy.Add(hit.collider.gameObject);
+                        hit.collider.GetComponent<SeeByWave>().StartFadeOut();
+                        continue;
+                    }
                     if (hit.collider.CompareTag("Obstacle"))
                     {
                         hit.collider.GetComponent<OutlineColorController>().LookAtWave(transform.position);
