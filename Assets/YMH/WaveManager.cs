@@ -26,6 +26,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] AudioClip _90BPM;
 
     [SerializeField] bool isPlayer;
+    [SerializeField] bool _repeatWave = true;
 
     private GameObject _player;
 
@@ -39,7 +40,10 @@ public class WaveManager : MonoBehaviour
         {
             _player = GameObject.FindGameObjectWithTag("Player");
         }
-        InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
+        if (_repeatWave)
+        {
+            InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
+        }
         _colorBefore = WaveAttackColor;
     }
 

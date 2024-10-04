@@ -281,5 +281,8 @@ MonoBehaviour:
   WaveColor: {r: 0.21176472, g: 0.50980395, b: 0.8000001, a: 0}
   WaveReadyColor: {r: 0, g: 0, b: 0, a: 0}
   WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
+  _blockAlphaAmount: 2
+  _distanceFadeNumerator: 3
   _90BPM: {fileID: 0}
   isPlayer: 1
+  _repeatWave: 0
