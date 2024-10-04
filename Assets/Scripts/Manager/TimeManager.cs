@@ -5,10 +5,17 @@ using UnityEngine;
 // made by KimDaehui
 public class TimeManager : MonoBehaviour
 {
-    public static TimeManager Instance;
-
+    #region PrivateVariables
+    [SerializeField] float BPM = 135;
     Coroutine _coroutine;
+    #endregion
 
+    #region PublicVariables
+    public static TimeManager Instance;
+    [SerializeField] public Queue<WaveManager> _waveManagers;
+    #endregion
+
+    #region PrivateMethods
     void Awake()
     {
         if (Instance == null)
@@ -21,13 +28,21 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    public void DoSlowMotion(float slowDownFactor, float slowDownDuration)
+    void Start()
     {
-        // slow down
-        UnityEngine.Time.timeScale = slowDownFactor;
-        UnityEngine.Time.fixedDeltaTime = slowDownFactor * 0.02f;
+        _waveManagers = new Queue<WaveManager>();
+        StartCoroutine(TurnOnEnemiesWaveByBeat());
+    }
 
-        _coroutine = StartCoroutine(ResetTimeScale(slowDownDuration));
+    IEnumerator TurnOnEnemiesWaveByBeat()
+    {
+        while(_waveManagers.Count > 0)
+        {
+            WaveManager enemyWave = _waveManagers.Dequeue();
+            enemyWave.StartWaveByBeat();
+        }
+        yield return new WaitForSeconds(60 / BPM);
+        StartCoroutine(TurnOnEnemiesWaveByBeat());
     }
 
     IEnumerator ResetTimeScale(float slowDownDuration)
@@ -38,4 +53,16 @@ public class TimeManager : MonoBehaviour
         UnityEngine.Time.timeScale = 1f;
         UnityEngine.Time.fixedDeltaTime = 0.02f; // default fixedDeltaTime is 0.02f
     }
+    #endregion
+
+    #region PublicMethods
+    public void DoSlowMotion(float slowDownFactor, float slowDownDuration)
+    {
+        // slow down
+        UnityEngine.Time.timeScale = slowDownFactor;
+        UnityEngine.Time.fixedDeltaTime = slowDownFactor * 0.02f;
+
+        _coroutine = StartCoroutine(ResetTimeScale(slowDownDuration));
+    }
+    #endregion
 }

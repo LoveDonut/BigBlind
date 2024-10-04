@@ -34,7 +34,19 @@ public class WaveManager : MonoBehaviour
 
     bool _isReadyAttack;
 
-    private void Start()
+    void Start()
+    {
+        if (!CompareTag("Enemy"))
+        {
+            StartWaveByBeat();
+        }
+        else
+        {
+            TimeManager.Instance._waveManagers.Enqueue(this);
+        }
+    }
+
+    public void StartWaveByBeat()
     {
         if (!isPlayer)
         {

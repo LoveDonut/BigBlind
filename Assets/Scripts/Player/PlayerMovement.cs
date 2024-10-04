@@ -8,18 +8,19 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     #region References
-    #endregion
-
-    #region PrivateVariables
     [Header("Move")]
     [SerializeField] float _acceleration = 50f;    // acceleration
     [SerializeField] float _deceleration = 20f;    // decceleration
-    [SerializeField] float _maxSpeed = 5f;         // max move speed
+    [SerializeField] float _maxSpeed = 7.5f;         // max move speed
 
     [Header("SFX")]
     public AudioSource HeartBeat;
     public AudioSource Beat;
-    
+    #endregion
+
+    #region PrivateVariables
+
+
     Rigidbody2D _rb;
     Vector2 _input;
     Vector2 _velocity;

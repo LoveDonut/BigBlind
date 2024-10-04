@@ -109,8 +109,8 @@ public class PlayerHealth : MonoBehaviour, IDamage
             Dead();
         }
 
-        _playerMovement.HeartBeat.volume += .25f;
-        _playerMovement.Beat.volume -= .35f;
+        _playerMovement.HeartBeat.volume += 1f / MaxHp;
+        _playerMovement.Beat.volume -= 1f / MaxHp;
 
         if (CurrentHp <= 1) Direction.Instance.ShowLowHP();
     }
