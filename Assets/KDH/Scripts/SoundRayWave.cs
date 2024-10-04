@@ -19,6 +19,7 @@ public class SoundRayWave : MonoBehaviour
 
     [SerializeField] bool _isPlayerWave;
 
+    List<GameObject> _contactedEnemy = new List<GameObject>();
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -55,12 +56,15 @@ public class SoundRayWave : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("Enemy"))
                     {
-                        hit.collider.GetComponent<OutlineColorController>().ShowOutline();
                         wavePositions[i] = transform.InverseTransformPoint(transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius);
+                        if (_contactedEnemy.Find(x => x == hit.collider.gameObject)) continue;
+                        _contactedEnemy.Add(hit.collider.gameObject);
+                        hit.collider.GetComponent<EnemyMovement>().SpawnSprite();
                         continue;
                     }
                     if (hit.collider.CompareTag("Obstacle"))
                     {
+                        hit.collider.GetComponent<OutlineColorController>().LookAtWave(transform.position);
                         hit.collider.GetComponent<OutlineColorController>().ShowOutline();
                     }
                     wavePositions[i] = transform.InverseTransformPoint(hit.point);
