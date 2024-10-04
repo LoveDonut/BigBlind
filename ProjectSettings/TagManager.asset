@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Attack
   - Obstacle
+  - Ammo
   layers:
   - Default
   - TransparentFX
