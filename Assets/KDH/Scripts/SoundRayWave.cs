@@ -20,6 +20,10 @@ public class SoundRayWave : MonoBehaviour
     [SerializeField] bool _isPlayerWave;
 
     List<GameObject> _contactedEnemy = new List<GameObject>();
+    RaycastHit2D _enemyDetect;
+
+    float _angleStep, _angle;
+
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -45,42 +49,37 @@ public class SoundRayWave : MonoBehaviour
 
     void SpreadRay()
     {
-        float angleStep = 360f / segments;
+        _angleStep = 360f / segments;
         for (int i = 0; i < segments; i++)
         {
-            if (!isPositionFixed[i])  // 이 위치가 아직 고정되지 않았다면
+            if (!isPositionFixed[i])
             {
-                float angle = angleStep * i * Mathf.Deg2Rad;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), radius, LayerMask.GetMask("Wall") | LayerMask.GetMask("Glass") | (_isPlayerWave ? LayerMask.GetMask("Enemy") : 1 << 1));
+                _angle = _angleStep * i * Mathf.Deg2Rad;
+                Vector2 direction = new Vector2(Mathf.Cos(_angle), Mathf.Sin(_angle));
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, radius, LayerMask.GetMask("Wall") | LayerMask.GetMask("Glass"));
+                if (_isPlayerWave)
+                {
+                    _enemyDetect = Physics2D.Raycast(transform.position, direction, radius, LayerMask.GetMask("Enemy") | LayerMask.GetMask("Ammo"));
+                    if (_enemyDetect.collider != null && !_contactedEnemy.Contains(_enemyDetect.collider.gameObject)) {
+                        _contactedEnemy.Add(_enemyDetect.collider.gameObject);
+                        if (_enemyDetect.collider.CompareTag("Enemy")) _enemyDetect.collider.GetComponent<EnemyMovement>().SpawnSprite();
+                        else _enemyDetect.collider.GetComponent<SeeByWave>().StartFadeOut();
+                    }
+                }
+
                 if (hit.collider != null)
                 {
-                    if (hit.collider.CompareTag("Enemy"))
-                    {
-                        wavePositions[i] = transform.InverseTransformPoint(transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius);
-                        if (_contactedEnemy.Find(x => x == hit.collider.gameObject)) continue;
-                        _contactedEnemy.Add(hit.collider.gameObject);
-                        hit.collider.GetComponent<EnemyMovement>().SpawnSprite();
-                        continue;
-                    }
-                    if (hit.collider.CompareTag("Ammo"))
-                    {
-                        wavePositions[i] = transform.InverseTransformPoint(transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius);
-                        if (_contactedEnemy.Find(x => x == hit.collider.gameObject)) continue;
-                        _contactedEnemy.Add(hit.collider.gameObject);
-                        hit.collider.GetComponent<SeeByWave>().StartFadeOut();
-                        continue;
-                    }
                     if (hit.collider.CompareTag("Obstacle"))
                     {
                         hit.collider.GetComponent<OutlineColorController>().LookAtWave(transform.position);
                         hit.collider.GetComponent<OutlineColorController>().ShowOutline();
                     }
                     wavePositions[i] = transform.InverseTransformPoint(hit.point);
-                    isPositionFixed[i] = true;  // 위치를 고정
+                    isPositionFixed[i] = true;
                 }
                 else
                 {
-                    wavePositions[i] = transform.InverseTransformPoint(transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius);
+                    wavePositions[i] = transform.InverseTransformPoint(transform.position + (Vector3)direction * radius);
                 }
             }
         }

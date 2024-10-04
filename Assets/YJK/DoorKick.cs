@@ -15,6 +15,12 @@ public class DoorKick : MonoBehaviour
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
 
+
+    [Header("SFX")]
+    [SerializeField] AudioClip _smashDoor;
+    [SerializeField] AudioClip _enemyBurst;
+    [SerializeField] AudioClip _crashDoor;
+
     private void Start()
     {
         if(GetComponent<Rigidbody2D>() != null) _rb = GetComponent<Rigidbody2D>();
@@ -36,7 +42,7 @@ public class DoorKick : MonoBehaviour
         _rb.bodyType = RigidbodyType2D.Kinematic;
         GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 1f);
         GetComponent<Collider2D>().isTrigger = true;
-        _as.Play();
+        _as.PlayOneShot(_smashDoor);
         if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
         if (Vector2.Distance(_left.position, collision.transform.position) < Vector2.Distance(_right.position, collision.transform.position))
         {
@@ -52,6 +58,7 @@ public class DoorKick : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            _as.PlayOneShot(_enemyBurst);
             collision.gameObject.GetComponent<EnemyHealth>().GetDamaged(collision.transform.position - this.transform.position);
             if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
         }
@@ -65,6 +72,7 @@ public class DoorKick : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
+            _as.PlayOneShot(_crashDoor);
             if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
             _sr.enabled = false;
             _collider.enabled = false;
