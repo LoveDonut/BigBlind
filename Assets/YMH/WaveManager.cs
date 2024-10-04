@@ -48,6 +48,7 @@ public class WaveManager : MonoBehaviour
 
     public void StartWaveByBeat()
     {
+
         if (!isPlayer)
         {
             _player = GameObject.FindGameObjectWithTag("Player");
