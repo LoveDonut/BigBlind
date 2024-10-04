@@ -40,7 +40,8 @@ public class DoorKick : MonoBehaviour
         */
         if (!(collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))) return;
         _rb.bodyType = RigidbodyType2D.Kinematic;
-        GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 1f);
+        _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 3f);
         GetComponent<Collider2D>().isTrigger = true;
         _as.PlayOneShot(_smashDoor);
         if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
@@ -73,10 +74,10 @@ public class DoorKick : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             _as.PlayOneShot(_crashDoor);
-            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
             _sr.enabled = false;
             _collider.enabled = false;
             DelayedDestroy();
+            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
         }
     }
     IEnumerator DelayedDestroy()

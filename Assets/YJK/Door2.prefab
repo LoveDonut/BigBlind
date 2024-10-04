@@ -336,6 +336,9 @@ MonoBehaviour:
   _left: {fileID: 1830075994007777304}
   _right: {fileID: 4991591244478786143}
   _kickSpeed: 400
+  _smashDoor: {fileID: 8300000, guid: de8f4e1df9a0c844fb9e35a6c8b9c53a, type: 3}
+  _enemyBurst: {fileID: 8300000, guid: d727c9736e178974a8b704df44ddd40e, type: 3}
+  _crashDoor: {fileID: 8300000, guid: fb41acad799729743bd027e283b7f074, type: 3}
 --- !u!114 &6934692439392162270
 MonoBehaviour:
   m_ObjectHideFlags: 0
