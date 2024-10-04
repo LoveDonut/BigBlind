@@ -359,3 +359,4 @@ MonoBehaviour:
   _distanceFadeNumerator: 3
   _90BPM: {fileID: 0}
   isPlayer: 1
+  _repeatWave: 0
