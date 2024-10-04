@@ -36,13 +36,18 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator TurnOnEnemiesWaveByBeat()
     {
-        while(_waveManagers.Count > 0)
+        while (true)
         {
-            WaveManager enemyWave = _waveManagers.Dequeue();
-            enemyWave.StartWaveByBeat();
+            while (_waveManagers.Count > 0)
+            {
+                WaveManager enemyWave = _waveManagers.Dequeue();
+                if (enemyWave != null)
+                {
+                    enemyWave.StartWaveByBeat();
+                }
+            }
+            yield return new WaitForSeconds(60 / BPM);
         }
-        yield return new WaitForSeconds(60 / BPM);
-        StartCoroutine(TurnOnEnemiesWaveByBeat());
     }
 
     IEnumerator ResetTimeScale(float slowDownDuration)
