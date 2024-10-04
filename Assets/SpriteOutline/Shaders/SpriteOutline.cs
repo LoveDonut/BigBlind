@@ -33,6 +33,8 @@ public class OutlineColorController : MonoBehaviour
         {
             _instancedMaterial = new Material(_spriteRenderer.sharedMaterial);
             _spriteRenderer.material = _instancedMaterial;
+            _instancedMaterial.SetFloat("_OutlineMode", 1);
+            _instancedMaterial.SetColor("_GradientOutline1", new Color(1, 1, 1, 0));
         }
     }
 
