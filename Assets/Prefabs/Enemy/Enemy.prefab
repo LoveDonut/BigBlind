@@ -186,6 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
+  _enemyShadow: {fileID: 1511232225988076153, guid: 28654835d0bcddf4e92fe1a414fb3fca, type: 3}
+  _stereoPanAmount: -10
+  _finalSoundNumerator: 5
   _audioSource: {fileID: 0}
 --- !u!58 &4786880582538516064
 CircleCollider2D:
@@ -372,8 +375,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 0}
   _instancedMaterial: {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
-  _duration: 1
+  _duration: 0.4
   _color: {r: 0.968729, g: 1, b: 0, a: 1}
+  _offset: 180
 --- !u!1 &1012819312081637314
 GameObject:
   m_ObjectHideFlags: 0
