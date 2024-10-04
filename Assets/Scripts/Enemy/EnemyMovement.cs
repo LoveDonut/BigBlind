@@ -11,20 +11,11 @@ public class EnemyMovement : MonoBehaviour
     #region References
     [Header("References")]
     [SerializeField] protected float _moveSpeed = 5f;
-    [SerializeField] GameObject _enemyShadow;
-
-
-    [Header("SoundPlay")]
-    [SerializeField] float _stereoPanAmount = -10;
-    [SerializeField] float _finalSoundNumerator = 5;
-
-
     #endregion
 
     #region PrivateVariables
     NavMeshAgent _navMeshAgent;
     EnemyAttack _enemyAttack;
-    SpriteRenderer _renderer;
     #endregion
 
     #region ProtectedVariables
@@ -46,7 +37,6 @@ public class EnemyMovement : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _audioSource = GetComponent<AudioSource>();
         _enemyAttack = GetComponent<EnemyAttack>();
-        _renderer = GetComponent<SpriteRenderer>();
     }
     protected virtual void Start()
     {
@@ -98,18 +88,11 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void SpawnSprite()
-    {
-        var shadow = Instantiate(_enemyShadow, transform.position, Quaternion.identity);
-        shadow.GetComponent<SpriteRenderer>().sprite = _renderer.sprite;
-        shadow.GetComponent<EnemyShadow>().StartFadeOut();
-    }
-
     public void CalcSound_Direction_Distance()
     {
         var player = GameObject.FindGameObjectWithTag("Player");
-        _audioSource.panStereo = (player.transform.position.x - transform.position.x) / _stereoPanAmount;
-        float final_Sound = (_finalSoundNumerator / Vector2.Distance(player.transform.position, transform.position));
+        _audioSource.panStereo = (player.transform.position.x - transform.position.x) / -10;
+        float final_Sound = (5f / Vector2.Distance(player.transform.position, transform.position));
         _audioSource.volume = final_Sound >= 1 ? 1 : final_Sound;
     }
     #endregion

@@ -8,10 +8,9 @@ public class OutlineColorController : MonoBehaviour
     [SerializeField] Material _instancedMaterial;
     [SerializeField] float _duration;
     [SerializeField] Color _color;
-    [SerializeField] float _offset;
     bool _isPlaying;
 
-    float elapsedTime, alpha, angle;
+    float elapsedTime, alpha;
     private void OnEnable()
     {
         SetupMaterial();
@@ -53,56 +52,16 @@ public class OutlineColorController : MonoBehaviour
     private IEnumerator FadeOutline(Color color)
     {
         _isPlaying = true;
-        float fullDuration = _duration;
-        float startTime = Time.time;
+        elapsedTime = 0f;
 
-        while (Time.time - startTime < fullDuration)
+        while (elapsedTime < _duration)
         {
-            float t = (Time.time - startTime) / fullDuration;
-            float smoothT = Mathf.SmoothStep(0, 1, t);
-
-            if (t < .25)
-            {
-                // 첫 번째 단계: Outline1 페이드 아웃
-                float alpha1 = Mathf.Lerp(1f, 0f, smoothT * 3);
-                _instancedMaterial.SetColor("_GradientOutline1", new Color(color.r, color.g, color.b, alpha1));
-            }
-            else if (t < .5)
-            {
-                // 두 번째 단계: Outline1 과 Outline2 페이드 인 완료
-                float alpha2 = Mathf.Lerp(0f, 1f, (smoothT - .25f) * 3);
-                _instancedMaterial.SetColor("_GradientOutline1", new Color(color.r, color.g, color.b, 1 - alpha2));
-                _instancedMaterial.SetColor("_GradientOutline2", new Color(color.r, color.g, color.b, alpha2));
-            }
-            else if(t < .75f)
-            {
-                // 세 번쨰 단계 : Outline1 페이드 아웃
-                float alpha3 = Mathf.Lerp(0f, 1f, (smoothT - .5f) * 3);
-                _instancedMaterial.SetColor("_GradientOutline1", new Color(color.r, color.g, color.b, 1 - alpha3));
-
-            }
-            else
-            {
-                // 세 번째 단계: Outline2 페이드 아웃
-                float alpha3 = Mathf.Lerp(1f, 0f, (smoothT - .75f) * 3);
-                _instancedMaterial.SetColor("_GradientOutline2", new Color(color.r, color.g, color.b, alpha3));
-            }
-
-            yield return null;
+            elapsedTime += .01f;
+            alpha = Mathf.Lerp(1f, 0f, elapsedTime / _duration);
+            _instancedMaterial.SetColor("_SolidOutline", new Color(color.r, color.g, color.b, alpha));
+            yield return new WaitForSeconds(.01f);
         }
-
-        // 최종 상태 설정
-        _instancedMaterial.SetColor("_GradientOutline1", new Color(color.r, color.g, color.b, 0));
-        _instancedMaterial.SetColor("_GradientOutline2", new Color(color.r, color.g, color.b, 0));
-
         _isPlaying = false;
-    }
-
-    public void LookAtWave(Vector3 wavePos)
-    {
-        if (_isPlaying) return;
-        angle = Mathf.Atan2(wavePos.y - transform.position.y, wavePos.x - transform.position.x) * Mathf.Rad2Deg;
-        _instancedMaterial.SetFloat("_Angle", angle - _offset);
     }
 
     public void CopySettingsFrom(OutlineColorController other)
