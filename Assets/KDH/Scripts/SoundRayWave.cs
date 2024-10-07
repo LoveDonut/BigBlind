@@ -56,7 +56,7 @@ public class SoundRayWave : MonoBehaviour
             {
                 _angle = _angleStep * i * Mathf.Deg2Rad;
                 Vector2 direction = new Vector2(Mathf.Cos(_angle), Mathf.Sin(_angle));
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, radius, LayerMask.GetMask("Wall") | LayerMask.GetMask("Glass"));
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, radius, LayerMask.GetMask("Wall", "Glass", "Box"));
                 if (_isPlayerWave)
                 {
                     _enemyDetect = Physics2D.Raycast(transform.position, direction, radius, LayerMask.GetMask("Enemy") | LayerMask.GetMask("Ammo"));

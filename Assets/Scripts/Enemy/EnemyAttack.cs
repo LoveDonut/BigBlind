@@ -69,7 +69,7 @@ public class EnemyAttack : MonoBehaviour
             float rayLength = _attackRange > (_playerTransform.position - transform.position).magnitude ?
                                 (_playerTransform.position - transform.position).magnitude : _attackRange;
             // check if there is no wall between enemy and player
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, _playerTransform.position - transform.position, rayLength, LayerMask.GetMask("Wall"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, _playerTransform.position - transform.position, rayLength, LayerMask.GetMask("Wall", "Box"));
 
             if (hit.collider == null)
             {
