@@ -24,7 +24,7 @@ public class PlayerShortWeapon : MonoBehaviour
     #region PublicMethods
     public void AttackCollideWithEnemy()
     {
-        Collider2D hit = Physics2D.OverlapCircle(_hitTransform.position, _hitRadius, LayerMask.GetMask("Enemy", "Glass"));
+        Collider2D hit = Physics2D.OverlapCircle(_hitTransform.position, _hitRadius, LayerMask.GetMask("Enemy", "Glass", "Box"));
         IDamage damagable;
 
         if (hit != null && hit.gameObject != gameObject && hit.TryGetComponent<IDamage>(out damagable))
