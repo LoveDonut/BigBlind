@@ -22,20 +22,22 @@ public class WaveManager : MonoBehaviour
     EnemyMovement _enemyMovement;
     Color _colorBefore;
 
-    [Header("BGM")]
-    [SerializeField] AudioClip _90BPM;
+    [Header("BPM Control")]
+    [SerializeField] float _bpmIncreaseRate;
 
     [SerializeField] bool isPlayer;
     [SerializeField] bool _repeatWave = true;
 
     private GameObject _player;
 
-    float _dist;
+    float _dist, _initialBPM;
 
     bool _isReadyAttack;
 
     void Start()
     {
+
+        _initialBPM = BPM;
         if (!CompareTag("Enemy"))
         {
             StartWaveByBeat();
@@ -53,14 +55,11 @@ public class WaveManager : MonoBehaviour
         {
             _player = GameObject.FindGameObjectWithTag("Player");
         }
-        if (_repeatWave)
-        {
-            InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
-        }
+        if (_repeatWave) Spawn_Wave();
         _colorBefore = WaveAttackColor;
     }
 
-    public void Spawn_Wave()
+    IEnumerator SpawnWaveCoroutine()
     {
         _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
 
@@ -72,12 +71,16 @@ public class WaveManager : MonoBehaviour
         _wave.GetComponent<SoundRayWave>().InitWave();
         _wave.GetComponent<SoundRayWave>().Destroy_Time = DestroyTime;
         ChamgeWaveColorAccordingToState();
-        if(CompareTag("Enemy"))
+        if (CompareTag("Enemy"))
         {
             GetComponent<EnemyWaveOnBlood>().WaveOnBlood();
         }
         Destroy(_wave, DestroyTime);
+        yield return new WaitForSecondsRealtime(60 / BPM);
+        if(_repeatWave) Spawn_Wave();
     }
+
+    public void Spawn_Wave() => StartCoroutine(SpawnWaveCoroutine());
 
     private void ChamgeWaveColorAccordingToState()
     {
@@ -111,6 +114,14 @@ public class WaveManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, Vector2.Distance(transform.position, _player.transform.position), 1 << 8);
 
         return hit.collider != null;
+    }
+
+    public void SetBPM(bool isIncrease)
+    {
+        if (!isPlayer) return;
+        var audio = GetComponent<AudioSource>();
+        audio.pitch = isIncrease ? audio.pitch * (1+(_bpmIncreaseRate / 100f)) : 1;
+        BPM = isIncrease ? BPM * (1 + (_bpmIncreaseRate / 100f)) : _initialBPM;
     }
 
 }

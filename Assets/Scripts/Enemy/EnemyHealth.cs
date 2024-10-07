@@ -52,6 +52,7 @@ public class EnemyHealth : MonoBehaviour, IDamage
         if (CurrentHp <= 0)
         {
             CurrentHp = 0;
+            GameManager.Instance.AdjustBPM(true);
             Dead(attackedDirection);
         }
     }

@@ -17,7 +17,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] int _maxAmmo = 6;
     [SerializeField] int _reserveAmmo = 30;
     [SerializeField] bool _infiniteReserve = false;
-    [SerializeField] float _reloadTime = 1f;
+    [SerializeField] float _reloadTimeBPM = 120/135f;
     [SerializeField] bool _reloadAll = false;
     int _ammo = 6;
     bool _isShootable = true, _isReloadable = false, _isReloading = false;
@@ -61,7 +61,7 @@ public class PlayerShoot : MonoBehaviour
         if (!_isReloadable)
         {
             _elapsedTime += Time.deltaTime;
-            if (_elapsedTime > _reloadTime) _elapsedTime -= _reloadTime;
+            if (_elapsedTime > _reloadTimeBPM) _elapsedTime -= _reloadTimeBPM;
         }
     }
 
@@ -134,7 +134,7 @@ public class PlayerShoot : MonoBehaviour
         {
             _handCannon.PlayOneShot(_OpenCylinder);
 
-            yield return new WaitForSeconds(_reloadTime / 2);
+            yield return new WaitForSeconds(_reloadTimeBPM / 2);
         }
 
         while (_ammo < _maxAmmo && _reserveAmmo > 0)
@@ -177,7 +177,7 @@ public class PlayerShoot : MonoBehaviour
 
                 }
             }
-            yield return new WaitForSeconds(_reloadAll ? _reloadTime : _reloadTime / 2f);
+            yield return new WaitForSeconds(_reloadAll ? _reloadTimeBPM : _reloadTimeBPM / 2f);
         }
 
         if (!_reloadAll) _handCannon.PlayOneShot(_closeCylinder);

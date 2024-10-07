@@ -71,7 +71,7 @@ public class PlayerHealth : MonoBehaviour, IDamage
     public void GetDamaged(Vector2 attackedDirection, int damage = 1)
     {
         if (_isInvincible) return;
-
+        GameManager.Instance.AdjustBPM(false);
         PlayerMovement playerMovement;
 
         if (TryGetComponent<PlayerMovement>(out playerMovement))

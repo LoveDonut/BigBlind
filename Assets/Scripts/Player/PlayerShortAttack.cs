@@ -9,6 +9,7 @@ public class PlayerShortAttack : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject _weapon;
     [SerializeField] Animator _shortWeaponAnimator;
+    [SerializeField] AudioClip _shortAttackClip;
     #endregion
 
     #region PrivateVariables
@@ -18,6 +19,7 @@ public class PlayerShortAttack : MonoBehaviour
 
     bool _canAttack;
     Coroutine _attackCoroutine;
+    AudioSource _audio;
     #endregion
 
     #region PrivateMethods
