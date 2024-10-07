@@ -848,7 +848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapon: {fileID: 1542100310579251458}
   _shortWeaponAnimator: {fileID: 4128236082207522518}
-  _shortAttackCoolTime: 1
+  _shortAttackCoolTime: 0.5
   _weaponOffset: {x: 0, y: 0.55}
 --- !u!114 &6194247190628501016
 MonoBehaviour:
