@@ -11,8 +11,8 @@ public class PatrolEnemy : MonoBehaviour
     [SerializeField] Transform _path;
 
     [Header("°¨Áö")]
-    [SerializeField] private float fadeDuration = 1f;
-    [SerializeField] private float delay = 0.1f;
+//    [SerializeField] private float fadeDuration = 1f;
+//    [SerializeField] private float delay = 0.1f;
     private SpriteRenderer spriteRenderer;
     List<Transform> _paths;
     NavMeshAgent _agent;

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3750670428315882209}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.074999996, y: -7.875, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -120,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 5654355175682110470}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 6.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -147,7 +147,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,6 +202,7 @@ MonoBehaviour:
   _distanceFadeNumerator: 3
   _90BPM: {fileID: 0}
   isPlayer: 0
+  _repeatWave: 1
 --- !u!114 &1102869394010541015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,8 +458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 0}
-  _instancedMaterial: {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
+  _spriteRenderer: {fileID: 1508557546179326919}
+  _instancedMaterial: {fileID: 0}
   _duration: 0.4
   _color: {r: 0.968729, g: 1, b: 0, a: 1}
   _offset: 180
