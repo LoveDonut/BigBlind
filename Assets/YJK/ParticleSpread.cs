@@ -8,7 +8,7 @@ public class ParticleSpread : MonoBehaviour
     [SerializeField] GameObject _particlePrefab;
     #endregion
 
-    GameObject _particle;
+    GameObject _particle, _pastParticle, _firstParticle;
 
     public int Segments = 20;
     public float BPM = 60f;
@@ -29,7 +29,11 @@ public class ParticleSpread : MonoBehaviour
             _particle = Instantiate(_particlePrefab, transform.position, Quaternion.identity);
             _particle.GetComponent<SpriteRenderer>().color = ParticleColor;
             _particle.GetComponent<Particle>().DestroyTime = DestroyTime;
+            if (i != 0) _particle.GetComponent<Particle>().LineEnd = _pastParticle;
+            else _firstParticle = _particle;
             _particle.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(Mathf.Deg2Rad * i), Mathf.Sin(Mathf.Deg2Rad * i)) * Speed;
+            _pastParticle = _particle;
         }
+        _firstParticle.GetComponent<Particle>().LineEnd = _particle;
     }
 }
