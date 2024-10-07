@@ -618,6 +618,7 @@ GameObject:
   - component: {fileID: 6247075768657541853}
   - component: {fileID: 1729256440109526895}
   - component: {fileID: 6756703532751236850}
+  - component: {fileID: 8621409143623023040}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -667,7 +668,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747644532665568231}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89db4292bdee3b0498d7991a2630721d, type: 3}
   m_Name: 
@@ -683,6 +684,7 @@ MonoBehaviour:
   _distanceFadeNumerator: 3
   _90BPM: {fileID: 0}
   isPlayer: 1
+  _repeatWave: 1
 --- !u!114 &8781396948911583693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,6 +950,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8621409143623023040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747644532665568231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036edbeff2cfac9469cd2e0aa965645d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particlePrefab: {fileID: 6576172810013636378, guid: 5f3ae10f1194ad546a1f4d4aaf67743a, type: 3}
+  Segments: 20
+  BPM: 60
+  DestroyTime: 1
+  Speed: 2
+  ParticleColor: {r: 1, g: 1, b: 1, a: 1}
+  Repeat: 1
 --- !u!1 &2131980394706722103
 GameObject:
   m_ObjectHideFlags: 0

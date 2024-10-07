@@ -39,6 +39,6 @@ public class BoxBreak : MonoBehaviour
         _spriteRenderer.enabled = false;
         _collider.enabled = false;
         GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;
-        GameObject.Find("Navmesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
+        GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
     }
 }
