@@ -73,7 +73,7 @@ public class EnemyShortWeapon : MonoBehaviour
 
     public void AttackCollideWithPlayer()
     {
-        Physics2D.OverlapCircleNonAlloc(_hitTransform.position, _hitRadius, _hits, LayerMask.GetMask("Player", "Enemy"));
+        Physics2D.OverlapCircleNonAlloc(_hitTransform.position, _hitRadius, _hits, LayerMask.GetMask("Player", "Enemy", "Glass"));
         IDamage damagable;
 
         for (int i=0; i<_hits.Length; i++)
