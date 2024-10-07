@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 743194026283437530}
   - component: {fileID: 2268396429456334154}
   - component: {fileID: 3711706471307330857}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BreakableBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _brokenBox:
   - {fileID: 8300000, guid: fb41acad799729743bd027e283b7f074, type: 3}
+  CurrentHp: 1
 --- !u!114 &2268396429456334154
 MonoBehaviour:
   m_ObjectHideFlags: 0

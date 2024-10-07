@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Made by JK3WN
-public class BoxBreak : MonoBehaviour
+public class BoxBreak : MonoBehaviour, IDamage
 {
     #region References
     [Header("References")]
     [SerializeField] AudioClip[] _brokenBox;
     #endregion
 
+    [SerializeField] int CurrentHp = 1;
     private AudioSource _as;
     private Collider2D _collider;
     private SpriteRenderer _spriteRenderer;
@@ -27,11 +28,21 @@ public class BoxBreak : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Attack"))
         {
-            Break();
+            Dead();
         }
     }
 
-    void Break()
+    public void GetDamaged(Vector2 attackedDirection, int damage = 1)
+    {
+        CurrentHp -= damage;
+        if(CurrentHp <= 0)
+        {
+            CurrentHp = 0;
+            Dead();
+        }
+    }
+
+    public void Dead()
     {
         _clipNum = Random.Range(0, _brokenBox.Length);
         _as.PlayOneShot(_brokenBox[_clipNum]);
@@ -40,5 +51,11 @@ public class BoxBreak : MonoBehaviour
         _collider.enabled = false;
         GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;
         GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
+        Invoke("DelayedDestroy", _brokenBox.Length * 2);
+    }
+
+    void DelayedDestroy()
+    {
+        Destroy(gameObject);
     }
 }
