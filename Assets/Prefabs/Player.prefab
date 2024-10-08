@@ -612,7 +612,7 @@ Transform:
   m_GameObject: {fileID: 1592245570171357311}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: -1.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -864,6 +864,7 @@ MonoBehaviour:
   _OpenCylinder: {fileID: 8300000, guid: d27c64dd935a83a438e10764f3495147, type: 3}
   _reloadOneSound: {fileID: 8300000, guid: bfb2d5c8299492d488cfdfb972c35271, type: 3}
   _closeCylinder: {fileID: 8300000, guid: defec7b55867ef74292a8c8d340937f8, type: 3}
+  IsHaste: 0
 --- !u!114 &6194247190628501016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitTransform: {fileID: 790458493254983880}
   _shortAttackCoolTime: 1
-  _hitRadius: 1
+  _hitRadius: 0.8
 --- !u!50 &1534208878423213486
 Rigidbody2D:
   serializedVersion: 4

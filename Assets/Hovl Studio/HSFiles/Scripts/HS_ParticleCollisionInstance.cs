@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class HS_ParticleCollisionInstance : MonoBehaviour
 {
-    public GameObject[] EffectsOnCollision;
+    public UnityEngine.GameObject[] EffectsOnCollision;
     public float DestroyTimeDelay = 5;
     public bool UseWorldSpacePosition;
     public float Offset = 0;
@@ -21,14 +21,14 @@ public class HS_ParticleCollisionInstance : MonoBehaviour
     {
         part = GetComponent<ParticleSystem>();
     }
-    void OnParticleCollision(GameObject other)
+    void OnParticleCollision(UnityEngine.GameObject other)
     {      
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);     
         for (int i = 0; i < numCollisionEvents; i++)
         {
             foreach (var effect in EffectsOnCollision)
             {
-                var instance = Instantiate(effect, collisionEvents[i].intersection + collisionEvents[i].normal * Offset, new Quaternion()) as GameObject;
+                var instance = Instantiate(effect, collisionEvents[i].intersection + collisionEvents[i].normal * Offset, new Quaternion()) as UnityEngine.GameObject;
                 if (!UseWorldSpacePosition) instance.transform.parent = transform;
                 if (UseFirePointRotation) { instance.transform.LookAt(transform.position); }
                 else if (rotationOffset != Vector3.zero && useOnlyRotationOffset) { instance.transform.rotation = Quaternion.Euler(rotationOffset); }

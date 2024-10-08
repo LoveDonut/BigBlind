@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
             }
 
             // get a enemyPrefab
-            GameObject enemyPrefab = _enemyPrefabManager.GetPrefabByType(enemyInfo.enemyType);
+            UnityEngine.GameObject enemyPrefab = _enemyPrefabManager.GetPrefabByType(enemyInfo.enemyType);
 
             if (enemyPrefab != null)
             {

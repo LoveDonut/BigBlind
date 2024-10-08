@@ -8,7 +8,7 @@ public class Hovl_Laser : MonoBehaviour
 {
     public int damageOverTime = 30;
 
-    public GameObject HitEffect;
+    public UnityEngine.GameObject HitEffect;
     public float HitOffset = 0;
     public bool useLaserRotation = false;
 

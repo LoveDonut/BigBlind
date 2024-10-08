@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using PlayerState;
 
 // made by KimDaehui
 public class PlayerMovement : MonoBehaviour
@@ -27,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region PublicVariables
-    public bool IsMovable;
+    [HideInInspector] public bool IsMovable;
+    [HideInInspector] public StateMachine CurrentState;
     #endregion
 
     #region PrivateMethods
@@ -44,7 +46,33 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
-    void Move()
+    void OnMove(InputValue value)
+    {
+        if (!IsMovable) return;
+
+        _input = value.Get<Vector2>();
+
+        _input.Normalize(); // keep the speed in the diagonal direction the same
+    }
+
+    void SetStartState()
+    {
+        CurrentState = new IdleState();
+
+        CurrentState.EnterState(gameObject);
+    }
+
+    void FixedUpdate()
+    {
+        if (!IsMovable) return;
+
+        // set speed
+        _rb.MovePosition(_rb.position + _velocity * Time.fixedDeltaTime);
+    }
+    #endregion
+
+    #region PublicMethods
+    public void Move()
     {
         if (!IsMovable) return;
 
@@ -61,25 +89,5 @@ public class PlayerMovement : MonoBehaviour
         // limit max speed
         _velocity = Vector2.ClampMagnitude(_velocity, _maxSpeed);
     }
-
-    void OnMove(InputValue value)
-    {
-        if (!IsMovable) return;
-
-        _input = value.Get<Vector2>();
-
-        _input.Normalize(); // keep the speed in the diagonal direction the same
-    }
-
-    void FixedUpdate()
-    {
-        if (!IsMovable) return;
-
-        // set speed
-        _rb.MovePosition(_rb.position + _velocity * Time.fixedDeltaTime);
-    }
-    #endregion
-
-    #region PublicMethods
     #endregion
 }

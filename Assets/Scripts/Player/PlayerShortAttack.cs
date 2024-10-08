@@ -33,7 +33,7 @@ public class PlayerShortAttack : MonoBehaviour
         if (_animator != null && _canAttack)
         {
             _canAttack = false;
-            _animator.SetTrigger("DoKick");
+            _animator.SetTrigger("DoShortAttack");
 
             if (_attackCoroutine != null)
             {

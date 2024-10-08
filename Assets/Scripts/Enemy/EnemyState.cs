@@ -4,167 +4,180 @@ using UnityEngine;
 using UnityEngine.AI;
 
 // made by KimDaehui
-public class PatrolState : EnemyStateMachine
+
+namespace EnemyState
 {
-    EnemyPatrol _enemyPatrol;
-    float _elapsedTime;
-    
-    public override void EnterState(EnemyMovement enemyMovement)
+    public class PatrolState : StateMachine
     {
-        _enemyPatrol = enemyMovement.GetComponent<EnemyPatrol>();
-        _elapsedTime = _enemyPatrol.GetWaitingTime();
-    }
-    public override void UpdateState(EnemyMovement enemyMovement)
-    {
-        if (_enemyPatrol == null) return;
+        EnemyPatrol _enemyPatrol;
+        EnemyMovement _enemyMovement;
+        float _elapsedTime;
 
-        if (_enemyPatrol.IsFindPlayer)
+        public override void EnterState(GameObject enemy)
         {
-            ChaseState chaseState = new ChaseState();
-            SwitchState(enemyMovement, chaseState);
+            _enemyPatrol = enemy.GetComponent<EnemyPatrol>();
+            _enemyMovement = enemy.GetComponent<EnemyMovement>();
+            _elapsedTime = _enemyPatrol.GetWaitingTime();
         }
-
-
-        if (Vector2.Distance(enemyMovement.transform.position, _enemyPatrol.GetCurrentDestination()) < 0.5f)
+        public override void UpdateState(GameObject enemy)
         {
-            _elapsedTime -= Time.deltaTime;
+            if (_enemyPatrol == null || _enemyMovement == null) return;
 
-            if(_elapsedTime < 0f)
+            if (_enemyPatrol.IsFindPlayer)
             {
-                _enemyPatrol.SetDestination();
-                _elapsedTime = _enemyPatrol.GetWaitingTime();
+                ChaseState chaseState = new ChaseState();
+                SwitchState(enemy, ref _enemyMovement.CurrentState, chaseState);
             }
-        }
-    }
-    public override void ExitState(EnemyMovement enemyMovement)
-    {
-    }
-}
 
-public class ChaseState : EnemyStateMachine
-{
-    EnemyAttack _enemyAttack;
 
-    public override void EnterState(EnemyMovement enemyMovement)
-    {
-        if(enemyMovement == null) return;
-        // start move if no player in attack range
-        if (enemyMovement.TryGetComponent<EnemyAttack>(out _enemyAttack) && !_enemyAttack.IsInAttackRange())
-        {
-            enemyMovement.StartMove();
-        }
-    }
-
-    public override void UpdateState(EnemyMovement enemyMovement)
-    {
-        if (enemyMovement == null) return;
-
-        // switch to ready when find player
-        if (enemyMovement.TryGetComponent<EnemyAttack>(out _enemyAttack) && _enemyAttack.IsInAttackRange())
-        {
-            enemyMovement.StopMove();
-
-            ReadyState readyState = new ReadyState();
-            SwitchState(enemyMovement, readyState);
-        }
-
-        // chase player
-        enemyMovement.Chase();
-    }
-
-    public override void ExitState(EnemyMovement enemyMovement)
-    {
-    }
-}
-
-public class ReadyState : EnemyStateMachine
-{
-    EnemyAttack _enemyAttack;
-    public override void EnterState(EnemyMovement enemyMovement)
-    {
-        if (enemyMovement == null) return;
-
-        // play ready sound
-        if (enemyMovement.TryGetComponent<EnemyAttack>(out _enemyAttack) && _enemyAttack._readySFX != null)
-        {
-            enemyMovement.CalcSound_Direction_Distance();
-            enemyMovement._audioSource.PlayOneShot(_enemyAttack._readySFX);
-        }
-        if (enemyMovement == null) return;
-    }
-
-    public override void UpdateState(EnemyMovement enemyMovement)
-    {
-        if (enemyMovement == null) return;
-    }
-
-    public override void ExitState(EnemyMovement enemyMovement)
-    {
-    }
-}
-
-public class AttackState : EnemyStateMachine
-{
-    EnemyAttack _enemyAttack;
-    float elapsedTime;
-    public override void EnterState(EnemyMovement enemyMovement)
-    {
-        if (enemyMovement == null) return;
-
-        if(enemyMovement.TryGetComponent<EnemyAttack>(out _enemyAttack))
-        {
-            elapsedTime = _enemyAttack.GetAttackDelay();
-
-            // attack differently by enemy's type
-            if (_enemyAttack is LongRangeEnemyAttack)
+            if (Vector2.Distance(enemy.transform.position, _enemyPatrol.GetCurrentDestination()) < 0.5f)
             {
-                LongRangeEnemyAttack enemyAttack_LongRange = (LongRangeEnemyAttack)_enemyAttack;
-                enemyAttack_LongRange.Fire();
-            }
-            else
-            {
-                _enemyAttack.Weapon.SetActive(true);
+                _elapsedTime -= Time.deltaTime;
 
-                EnemyShortWeapon shortWeapon;
-                if (_enemyAttack.Weapon.TryGetComponent<EnemyShortWeapon>(out shortWeapon))
+                if (_elapsedTime < 0f)
                 {
-                    shortWeapon.StartAttack();
+                    _enemyPatrol.SetDestination();
+                    _elapsedTime = _enemyPatrol.GetWaitingTime();
                 }
             }
+        }
+        public override void ExitState(GameObject enemy)
+        {
+        }
+    }
 
-            // player attack sound
-            if (_enemyAttack._attackSFX != null)
+    public class ChaseState : StateMachine
+    {
+        EnemyAttack _enemyAttack;
+        EnemyMovement _enemyMovement;
+
+        public override void EnterState(GameObject enemy)
+        {
+            _enemyMovement = enemy.GetComponent<EnemyMovement>();
+
+            if(_enemyMovement == null) return;
+
+            // start move if no player in attack range
+            if (enemy.TryGetComponent<EnemyAttack>(out _enemyAttack) && !_enemyAttack.IsInAttackRange())
             {
-                enemyMovement.CalcSound_Direction_Distance();
-                enemyMovement._audioSource.PlayOneShot(_enemyAttack._attackSFX);
+                _enemyMovement.StartMove();
             }
         }
-    }
 
-    public override void UpdateState(EnemyMovement enemyMovement)
-    {
-        if (enemyMovement == null) return;
-
-        // wait until attack ends
-        elapsedTime -= Time.deltaTime;
-
-        if (elapsedTime < 0f)
+        public override void UpdateState(GameObject enemy)
         {
-            ChaseState chaseState = new ChaseState();
-            SwitchState(enemyMovement, chaseState);
+            if (_enemyMovement == null) return;
+
+            // switch to ready when find player
+            if (enemy.TryGetComponent<EnemyAttack>(out _enemyAttack) && _enemyAttack.IsInAttackRange())
+            {
+                _enemyMovement.StopMove();
+
+                ReadyState readyState = new ReadyState();
+                SwitchState(enemy, ref _enemyMovement.CurrentState, readyState);
+            }
+
+            // chase player
+            _enemyMovement.Chase();
+        }
+
+        public override void ExitState(GameObject enemy)
+        {
         }
     }
 
-    public override void ExitState(EnemyMovement enemyMovement)
+    public class ReadyState : StateMachine
     {
-        // attack ends
-        if (_enemyAttack is not LongRangeEnemyAttack)
+        EnemyAttack _enemyAttack;
+        EnemyMovement _enemyMovement;
+        public override void EnterState(GameObject enemy)
         {
-            EnemyShortWeapon shortWeapon = _enemyAttack.GetComponentInChildren<EnemyShortWeapon>();
-            if (shortWeapon != null)
+            _enemyMovement = enemy.GetComponent<EnemyMovement>();
+            if (_enemyMovement == null) return;
+
+            // play ready sound
+            if (enemy.TryGetComponent<EnemyAttack>(out _enemyAttack) && _enemyAttack._readySFX != null)
             {
-                shortWeapon.EndAttack();
+                _enemyMovement.CalcSound_Direction_Distance();
+                _enemyMovement.AudioSource.PlayOneShot(_enemyAttack._readySFX);
+            }
+        }
+
+        public override void UpdateState(GameObject enemy)
+        {
+        }
+
+        public override void ExitState(GameObject enemy)
+        {
+        }
+    }
+
+    public class AttackState : StateMachine
+    {
+        EnemyAttack _enemyAttack;
+        EnemyMovement _enemyMovement;
+        float elapsedTime;
+        public override void EnterState(GameObject enemy)
+        {
+            _enemyMovement = enemy.GetComponent<EnemyMovement>();
+            if (_enemyMovement == null) return;
+
+            if (enemy.TryGetComponent<EnemyAttack>(out _enemyAttack))
+            {
+                elapsedTime = _enemyAttack.GetAttackDelay();
+
+                // attack differently by enemy's type
+                if (_enemyAttack is LongRangeEnemyAttack)
+                {
+                    LongRangeEnemyAttack enemyAttack_LongRange = (LongRangeEnemyAttack)_enemyAttack;
+                    enemyAttack_LongRange.Fire();
+                }
+                else
+                {
+                    _enemyAttack.Weapon.SetActive(true);
+
+                    EnemyShortWeapon shortWeapon;
+                    if (_enemyAttack.Weapon.TryGetComponent<EnemyShortWeapon>(out shortWeapon))
+                    {
+                        shortWeapon.StartAttack();
+                    }
+                }
+
+                // player attack sound
+                if (_enemyAttack._attackSFX != null)
+                {
+                    _enemyMovement.CalcSound_Direction_Distance();
+                    _enemyMovement.AudioSource.PlayOneShot(_enemyAttack._attackSFX);
+                }
+            }
+        }
+
+        public override void UpdateState(GameObject enemy)
+        {
+            if (enemy == null) return;
+
+            // wait until attack ends
+            elapsedTime -= Time.deltaTime;
+
+            if (elapsedTime < 0f)
+            {
+                ChaseState chaseState = new ChaseState();
+                SwitchState(enemy, ref _enemyMovement.CurrentState, chaseState);
+            }
+        }
+
+        public override void ExitState(GameObject enemy)
+        {
+            // attack ends
+            if (_enemyAttack is not LongRangeEnemyAttack)
+            {
+                EnemyShortWeapon shortWeapon = _enemyAttack.GetComponentInChildren<EnemyShortWeapon>();
+                if (shortWeapon != null)
+                {
+                    shortWeapon.EndAttack();
+                }
             }
         }
     }
 }
+
