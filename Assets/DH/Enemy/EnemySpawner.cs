@@ -5,23 +5,55 @@ using UnityEngine;
 // made by KimDaehui
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] GameObject[] _enemys;
-    [SerializeField] float _spawnTime = 2f;
+    #region PrivateClasses
+    [System.Serializable]
+    class EnemySpawnInfo
+    {
+        public Transform spawnTransform;
+        public EnemyPrefabManager.EnemyType enemyType;
+        public float spawnTime;
+    }
+    #endregion
+
+    #region PrivateVariables
+    [SerializeField] EnemyPrefabManager _enemyPrefabManager;
+    [SerializeField] List<EnemySpawnInfo> _enemySpawnInfos;
+    #endregion
 
     void Start()
     {
-        StartCoroutine(SpawnEnemy());
+        _enemySpawnInfos.Sort((enemy1, enemy2) => enemy1.spawnTime.CompareTo(enemy2.spawnTime));
+        StartCoroutine(SpawnEnemies());
     }
 
-    IEnumerator SpawnEnemy()
+    IEnumerator SpawnEnemies()
     {
-        while (true)
+        float beforeSpawnTime = 0f;
+
+        foreach (EnemySpawnInfo enemyInfo in _enemySpawnInfos)
         {
-            yield return new WaitForSeconds(_spawnTime);
+            float timeDiff = enemyInfo.spawnTime - beforeSpawnTime;
 
-            int enemyIndex = Random.Range(0, _enemys.Length);
+            if(timeDiff > 0f)
+            {
+                // spawn enemies after spawnTime
+                yield return new WaitForSeconds(timeDiff);
+            }
 
-            Instantiate(_enemys[enemyIndex], this.transform.position, Quaternion.identity);
+            // get a enemyPrefab
+            GameObject enemyPrefab = _enemyPrefabManager.GetPrefabByType(enemyInfo.enemyType);
+
+            if (enemyPrefab != null)
+            {
+                // spawn enemy
+                Instantiate(enemyPrefab, enemyInfo.spawnTransform.position, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogWarning("적 프리팹이 없습니다: " + enemyInfo.enemyType);
+            }
+
+            beforeSpawnTime = enemyInfo.spawnTime;
         }
     }
 }
