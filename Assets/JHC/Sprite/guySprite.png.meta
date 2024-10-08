@@ -235,6 +235,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: guySprite_6
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 268
+        width: 69
+        height: 108
+      alignment: 9
+      pivot: {x: 0.5522395, y: 0.6121193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcdc8138f3c8fc44bab4f9dfb7047e5f
+      internalID: -1137524096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guySprite_7
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 265
+        width: 69
+        height: 108
+      alignment: 9
+      pivot: {x: 0.5597026, y: 0.67410195}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94930abc339cc3c46ba9b5c7a8684d3c
+      internalID: -2087663598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -252,6 +294,8 @@ TextureImporter:
       guySprite_3: 395156267
       guySprite_4: -450541535
       guySprite_5: 1239353697
+      guySprite_6: -1137524096
+      guySprite_7: -2087663598
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
