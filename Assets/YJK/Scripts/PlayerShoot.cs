@@ -40,6 +40,8 @@ public class PlayerShoot : MonoBehaviour
 
     Coroutine _reloadCoroutine;
     float _elapsedTime = 0f;
+
+    public bool IsHaste = false;
     #endregion
 
     #region PublicVariables
@@ -189,5 +191,16 @@ public class PlayerShoot : MonoBehaviour
     {
         _reserveAmmo += count;
         Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
+    }
+
+    public IEnumerator Haste(float mult, float duration)
+    {
+        IsHaste = true;
+        _RPM *= mult;
+        _reloadTime /= mult;
+        yield return new WaitForSeconds(duration);
+        _RPM /= mult;
+        _reloadTime *= mult;
+        IsHaste = false;
     }
 }
