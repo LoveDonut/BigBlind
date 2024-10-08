@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class HS_DemoShooting2D : MonoBehaviour
 {
-    public UnityEngine.GameObject FirePoint;
+    public GameObject FirePoint;
     public Camera Cam;
     public float MaxLength;
-    public UnityEngine.GameObject[] Prefabs;
+    public GameObject[] Prefabs;
 
     private Ray RayMouse;
     private Vector3 direction;
@@ -18,7 +18,7 @@ public class HS_DemoShooting2D : MonoBehaviour
     [Header("GUI")]
     private float windowDpi;
     private int Prefab;
-    private UnityEngine.GameObject Instance;
+    private GameObject Instance;
     private float hSliderValue = 0.1f;
     private float fireCountdown = 0f;
 

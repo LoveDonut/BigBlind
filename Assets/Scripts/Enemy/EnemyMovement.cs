@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     #region References
     [Header("References")]
     [SerializeField] protected float _moveSpeed = 5f;
-    [SerializeField] UnityEngine.GameObject _enemyShadow;
+    [SerializeField] GameObject _enemyShadow;
 
 
     [Header("SoundPlay")]
@@ -108,7 +108,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void CalcSound_Direction_Distance()
     {
-        var player = UnityEngine.GameObject.FindGameObjectWithTag("Player");
+        var player = GameObject.FindGameObjectWithTag("Player");
         AudioSource.panStereo = (player.transform.position.x - transform.position.x) / _stereoPanAmount;
         float final_Sound = (_finalSoundNumerator / Vector2.Distance(player.transform.position, transform.position));
         AudioSource.volume = final_Sound >= 1 ? 1 : final_Sound;

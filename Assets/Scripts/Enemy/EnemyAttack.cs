@@ -25,7 +25,7 @@ public class EnemyAttack : MonoBehaviour
     #endregion
 
     #region PublicVariables
-    public UnityEngine.GameObject Weapon;
+    public GameObject Weapon;
     public int CurrentReadyBeatCount { get; private set; }
     #endregion
 

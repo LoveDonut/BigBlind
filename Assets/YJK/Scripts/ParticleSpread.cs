@@ -5,10 +5,10 @@ using UnityEngine;
 public class ParticleSpread : MonoBehaviour
 {
     #region References
-    [SerializeField] UnityEngine.GameObject _particlePrefab;
+    [SerializeField] GameObject _particlePrefab;
     #endregion
 
-    UnityEngine.GameObject _particle;
+    GameObject _particle;
 
     public int Segments = 20;
     public float BPM = 60f;

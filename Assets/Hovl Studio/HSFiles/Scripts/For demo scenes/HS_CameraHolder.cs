@@ -20,9 +20,9 @@ public class HS_CameraHolder : MonoBehaviour
 
     [Header("GUI")]
     private float windowDpi;
-    public UnityEngine.GameObject[] Prefabs;
+    public GameObject[] Prefabs;
     private int Prefab;
-    private UnityEngine.GameObject Instance;
+    private GameObject Instance;
     private float StartColor;
     private float HueColor;
     public Texture HueTexture;

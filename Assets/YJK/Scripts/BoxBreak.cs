@@ -50,7 +50,7 @@ public class BoxBreak : MonoBehaviour, IDamage
         _spriteRenderer.enabled = false;
         _collider.enabled = false;
         GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;
-        UnityEngine.GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
+        GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
         Invoke("DelayedDestroy", _brokenBox.Length * 2);
     }
 

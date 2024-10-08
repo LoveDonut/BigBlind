@@ -17,12 +17,12 @@ public class EnemyPrefabManager : ScriptableObject
     public class EnemyPrefabData
     {
         public EnemyType EnemyType;
-        public UnityEngine.GameObject EnemyPrefab;
+        public GameObject EnemyPrefab;
     }
 
     [SerializeField] List<EnemyPrefabData> _enemyPrefabDatas;
 
-    public UnityEngine.GameObject GetPrefabByType(EnemyType type)
+    public GameObject GetPrefabByType(EnemyType type)
     {
         foreach (EnemyPrefabData data in _enemyPrefabDatas)
         {

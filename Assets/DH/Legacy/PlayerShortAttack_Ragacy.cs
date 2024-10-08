@@ -7,7 +7,7 @@ public class PlayerShortAttack_Ragacy : MonoBehaviour
 {
     #region References
     [Header("References")]
-    [SerializeField] UnityEngine.GameObject _weapon;
+    [SerializeField] GameObject _weapon;
     [SerializeField] Animator _shortWeaponAnimator;
     #endregion
 
