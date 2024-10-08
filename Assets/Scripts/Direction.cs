@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Direction : MonoBehaviour
@@ -11,6 +12,7 @@ public class Direction : MonoBehaviour
 
     [Header("Direction_UI")]
     [SerializeField] GameObject _flash;
+    [SerializeField] GameObject _gameOverPanel;
 
     Canvas _canvas;
     [SerializeField] RectTransform _crossHair;
@@ -53,4 +55,8 @@ public class Direction : MonoBehaviour
     public void ShowLowHP() => _lowHpImage.GetComponent<Animator>().Play("LowHP");
 
     public void SyncReserveAmmoUI(int ammo) => _reserveAmmoUI.text = ammo.ToString();
+    public void ShowGameOver() => _gameOverPanel.SetActive(true);
+
+    public void RetryClick() => SceneManager.LoadScene(0);
+    public void ExitClick() => Application.Quit();
 }

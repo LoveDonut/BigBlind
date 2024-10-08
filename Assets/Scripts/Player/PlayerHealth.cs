@@ -117,6 +117,7 @@ public class PlayerHealth : MonoBehaviour, IDamage
 
     public void Dead()
     {
+        Direction.Instance.ShowGameOver();
         _playerMovement.IsMovable = false;
     }
     public void DoKnockBack(float duration, Vector2 knockBackDirection)

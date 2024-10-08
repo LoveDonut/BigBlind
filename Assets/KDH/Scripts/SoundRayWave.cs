@@ -59,11 +59,11 @@ public class SoundRayWave : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, radius, LayerMask.GetMask("Wall", "Glass", "Box"));
                 if (_isPlayerWave)
                 {
-                    _enemyDetect = Physics2D.Raycast(transform.position, direction, radius, LayerMask.GetMask("Enemy") | LayerMask.GetMask("Ammo"));
-                    if (_enemyDetect.collider != null && !_contactedEnemy.Contains(_enemyDetect.collider.gameObject)) {
-                        _contactedEnemy.Add(_enemyDetect.collider.gameObject);
-                        if (_enemyDetect.collider.CompareTag("Enemy")) _enemyDetect.collider.GetComponent<EnemyMovement>().SpawnSprite();
-                        else _enemyDetect.collider.GetComponent<SeeByWave>().StartFadeOut();
+                    _enemyDetect = Physics2D.Raycast(transform.position, direction, radius,LayerMask.GetMask("Ammo"));
+                    if (_enemyDetect.collider != null) {
+                        //_contactedEnemy.Add(_enemyDetect.collider.gameObject);
+                        //if (_enemyDetect.collider.CompareTag("Enemy")) _enemyDetect.collider.GetComponent<EnemyMovement>().SpawnSprite();
+                        _enemyDetect.collider.GetComponent<SeeByWave>().StartFadeOut();
                     }
                 }
 
