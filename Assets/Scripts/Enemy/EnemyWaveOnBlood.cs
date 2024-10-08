@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyWaveOnBlood : MonoBehaviour
 {
     #region references
-    [SerializeField] GameObject _circle; // wave prefab
+    [SerializeField] UnityEngine.GameObject _circle; // wave prefab
     #endregion
 
     #region PrivateVariables

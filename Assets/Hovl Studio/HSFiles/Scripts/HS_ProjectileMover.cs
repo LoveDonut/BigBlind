@@ -8,13 +8,13 @@ public class HS_ProjectileMover : MonoBehaviour
     [SerializeField] protected float hitOffset = 0f;
     [SerializeField] protected bool UseFirePointRotation;
     [SerializeField] protected Vector3 rotationOffset = new Vector3(0, 0, 0);
-    [SerializeField] protected GameObject hit;
+    [SerializeField] protected UnityEngine.GameObject hit;
     [SerializeField] protected ParticleSystem hitPS;
-    [SerializeField] protected GameObject flash;
+    [SerializeField] protected UnityEngine.GameObject flash;
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected Collider col;
     [SerializeField] protected Light lightSourse;
-    [SerializeField] protected GameObject[] Detached;
+    [SerializeField] protected UnityEngine.GameObject[] Detached;
     [SerializeField] protected ParticleSystem projectilePS;
     private bool startChecker = false;
     [SerializeField]protected bool notDestroy = false;

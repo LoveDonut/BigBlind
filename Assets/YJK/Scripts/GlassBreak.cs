@@ -51,7 +51,7 @@ public class GlassBreak : MonoBehaviour, IDamage
         _spriteRenderer.enabled = false;
         _collider.enabled = false;
         GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;
-        GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
+        UnityEngine.GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
         Invoke("DelayedDestroy", _brokenGlass[_clipNum].length * 2);
     }
 

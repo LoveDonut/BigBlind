@@ -6,7 +6,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
 
-    [SerializeField] GameObject _waveObject;
+    [SerializeField] UnityEngine.GameObject _waveObject;
     public float BPM = 90;
     public float DestroyTime = .5f;
     public float CannonDestroyTime = .5f;
@@ -17,7 +17,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] float _blockAlphaAmount = 2;
     [SerializeField] float _distanceFadeNumerator = 3;
 
-    GameObject _wave;
+    UnityEngine.GameObject _wave;
     EnemyAttack _enemyAttack;
     EnemyMovement _enemyMovement;
     Color _colorBefore;
@@ -28,7 +28,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] bool isPlayer;
     [SerializeField] bool _repeatWave = true;
 
-    private GameObject _player;
+    private UnityEngine.GameObject _player;
 
     float _dist;
 
@@ -51,7 +51,7 @@ public class WaveManager : MonoBehaviour
 
         if (!isPlayer)
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
+            _player = UnityEngine.GameObject.FindGameObjectWithTag("Player");
         }
         if (_repeatWave)
         {
@@ -84,7 +84,7 @@ public class WaveManager : MonoBehaviour
         if (TryGetComponent<EnemyAttack>(out _enemyAttack) && TryGetComponent<EnemyMovement>(out _enemyMovement))
         {
             Color colorToChange;
-            if (_enemyMovement._currentState.GetType() == typeof(ReadyState))
+            if (_enemyMovement.CurrentState.GetType() == typeof(EnemyState.ReadyState))
             {
                 colorToChange = WaveReadyColor;
                 _isReadyAttack = true;

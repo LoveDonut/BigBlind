@@ -30,7 +30,7 @@ public class BloodEffect : MonoBehaviour
 
     public void InstantiateBloodEffect(Vector2 pos, float rotationZ = 0, float scale = 1f)
     {
-        GameObject bloodObj = _bloodEffectPool.GetObject();
+        UnityEngine.GameObject bloodObj = _bloodEffectPool.GetObject();
         SpriteRenderer bloodObjSr = bloodObj.GetComponent<SpriteRenderer>();
 
         bloodObj.transform.position = pos;

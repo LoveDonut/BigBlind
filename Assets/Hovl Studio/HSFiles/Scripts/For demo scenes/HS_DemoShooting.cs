@@ -12,12 +12,12 @@ public class HS_DemoShooting : MonoBehaviour
     public float fireRate = 0.1f;
     private float fireCountdown = 0f;
 
-    public GameObject FirePoint;
+    public UnityEngine.GameObject FirePoint;
     public Camera Cam;
 
     //How far you can point raycast for projectiles
     public float MaxLength;
-    public GameObject[] Prefabs;
+    public UnityEngine.GameObject[] Prefabs;
 
     private Ray RayMouse;
     private Vector3 direction;
@@ -97,7 +97,7 @@ public class HS_DemoShooting : MonoBehaviour
     }
 
     //To rotate fire point
-    void RotateToMouseDirection(GameObject obj, Vector3 destination)
+    void RotateToMouseDirection(UnityEngine.GameObject obj, Vector3 destination)
     {
         direction = destination - obj.transform.position;
         rotation = Quaternion.LookRotation(direction);

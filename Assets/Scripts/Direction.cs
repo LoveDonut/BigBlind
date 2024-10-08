@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,8 +12,8 @@ public class Direction : MonoBehaviour
     public static Direction Instance { get; private set; }
 
     [Header("Direction_UI")]
-    [SerializeField] GameObject _flash;
-    [SerializeField] GameObject _gameOverPanel;
+    [SerializeField] UnityEngine.GameObject _flash;
+    [SerializeField] UnityEngine.GameObject _gameOverPanel;
 
     Canvas _canvas;
     [SerializeField] RectTransform _crossHair;
@@ -57,6 +58,10 @@ public class Direction : MonoBehaviour
     public void SyncReserveAmmoUI(int ammo) => _reserveAmmoUI.text = ammo.ToString();
     public void ShowGameOver() => _gameOverPanel.SetActive(true);
 
-    public void RetryClick() => SceneManager.LoadScene(0);
+    public void RetryClick() {
+        DOTween.KillAll();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.RestartStage();
+    }
     public void ExitClick() => Application.Quit();
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using EnemyState;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class EnemyAttack : MonoBehaviour
     #endregion
 
     #region PublicVariables
-    public GameObject Weapon;
+    public UnityEngine.GameObject Weapon;
     public int CurrentReadyBeatCount { get; private set; }
     #endregion
 
@@ -58,7 +59,7 @@ public class EnemyAttack : MonoBehaviour
 
         if(TryGetComponent<EnemyMovement>(out enemyMovement))
         {
-            enemyMovement._currentState.SwitchState(enemyMovement, attackState);
+            enemyMovement.CurrentState.SwitchState(gameObject, ref enemyMovement.CurrentState,attackState);
         }
     }
     public virtual bool IsInAttackRange()

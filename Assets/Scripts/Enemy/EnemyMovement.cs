@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using EnemyState;
 
 // made by KimDaehui
 public class EnemyMovement : MonoBehaviour
@@ -11,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     #region References
     [Header("References")]
     [SerializeField] protected float _moveSpeed = 5f;
-    [SerializeField] GameObject _enemyShadow;
+    [SerializeField] UnityEngine.GameObject _enemyShadow;
 
 
     [Header("SoundPlay")]
@@ -32,8 +33,8 @@ public class EnemyMovement : MonoBehaviour
     #endregion
 
     #region PublicVariables
-    [HideInInspector] public EnemyStateMachine _currentState;
-    [HideInInspector] public AudioSource _audioSource;
+    [HideInInspector] public StateMachine CurrentState;
+    [HideInInspector] public AudioSource AudioSource;
     #endregion
 
     #region PrivateVariables
@@ -44,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
     {
         _playerTransform = FindObjectOfType<PlayerMovement>().transform;
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _audioSource = GetComponent<AudioSource>();
+        AudioSource = GetComponent<AudioSource>();
         _enemyAttack = GetComponent<EnemyAttack>();
         _renderer = GetComponent<SpriteRenderer>();
     }
@@ -60,19 +61,19 @@ public class EnemyMovement : MonoBehaviour
 
         if(TryGetComponent<EnemyPatrol>(out enemyPatrol))
         {
-            _currentState = new PatrolState();
+            CurrentState = new PatrolState();
         }
         else
         {
-            _currentState = new ChaseState();
+            CurrentState = new ChaseState();
         }
-        _currentState.EnterState(this);
+        CurrentState.EnterState(gameObject);
     }
 
     protected virtual void Update()
     {
         transform.rotation = Quaternion.identity;
-        _currentState.UpdateState(this);
+        CurrentState.UpdateState(gameObject);
     }
     #endregion
 
@@ -107,10 +108,10 @@ public class EnemyMovement : MonoBehaviour
 
     public void CalcSound_Direction_Distance()
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
-        _audioSource.panStereo = (player.transform.position.x - transform.position.x) / _stereoPanAmount;
+        var player = UnityEngine.GameObject.FindGameObjectWithTag("Player");
+        AudioSource.panStereo = (player.transform.position.x - transform.position.x) / _stereoPanAmount;
         float final_Sound = (_finalSoundNumerator / Vector2.Distance(player.transform.position, transform.position));
-        _audioSource.volume = final_Sound >= 1 ? 1 : final_Sound;
+        AudioSource.volume = final_Sound >= 1 ? 1 : final_Sound;
     }
     #endregion
 }
