@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using PlayerState;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -71,7 +72,8 @@ public class PlayerShoot : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable) return;
+        if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable ||
+            GetComponent<PlayerMovement>().CurrentState.GetType() == typeof(ShortAttackState)) return;
 
         if (_ammo <= 0)
         {
@@ -116,7 +118,8 @@ public class PlayerShoot : MonoBehaviour
 
     void OnReload(InputValue value)
     {
-        if (!GetComponent<PlayerMovement>().IsMovable || _reserveAmmo <= 0) return;
+        if (!GetComponent<PlayerMovement>().IsMovable || _reserveAmmo <= 0 ||
+            GetComponent<PlayerMovement>().CurrentState.GetType() == typeof(ShortAttackState)) return;
 
         if (_ammo == _maxAmmo || _isReloading)
         {
