@@ -192,17 +192,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 58360a0d91ace6448861ae8605dbc909, type: 3}
-  BPM: 90
+  BPM: 67.5
   DestroyTime: 0.4
   CannonDestroyTime: 1
-  WaveColor: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
-  WaveReadyColor: {r: 1, g: 0.828821, b: 0.5330188, a: 1}
-  WaveAttackColor: {r: 1, g: 0, b: 0, a: 1}
+  WaveColor: {r: 1, g: 0, b: 0, a: 1}
+  WaveReadyColor: {r: 1, g: 1, b: 0, a: 1}
+  WaveAttackColor: {r: 0, g: 0, b: 0, a: 1}
   _blockAlphaAmount: 2
   _distanceFadeNumerator: 3
   _90BPM: {fileID: 0}
   isPlayer: 0
   _repeatWave: 1
+  _waveEffect: {fileID: 0}
 --- !u!114 &1102869394010541015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,11 +230,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb2769ebdea62c46966d8f7e21fde99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 8
   _enemyShadow: {fileID: 1511232225988076153, guid: 28654835d0bcddf4e92fe1a414fb3fca, type: 3}
   _stereoPanAmount: -10
   _finalSoundNumerator: 5
-  _audioSource: {fileID: 0}
+  AudioSource: {fileID: 0}
 --- !u!114 &8056600575094492715
 MonoBehaviour:
   m_ObjectHideFlags: 0
