@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 1
-  _deadSound: {fileID: 8300000, guid: 0088508e8717b2c4f97696ba850c8c3e, type: 3}
+  _deadSound: {fileID: 8300000, guid: 3702cb9f0782412499f4f2513175dcd3, type: 3}
 --- !u!195 &4911851406652807806
 NavMeshAgent:
   m_ObjectHideFlags: 0
