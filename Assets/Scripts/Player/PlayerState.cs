@@ -45,7 +45,7 @@ namespace PlayerState
             _animator = gameObject.GetComponent<Animator>();
             if(_animator != null)
             {
-                _animator.SetBool("DoShortAttack", true);
+                _animator.SetTrigger("DoShortAttack");
             }
 
             _shortAttack.CanAttack = false;
@@ -88,11 +88,6 @@ namespace PlayerState
             if(gameObject.TryGetComponent<Rigidbody2D>(out rigidbody))
             {
                 rigidbody.velocity = Vector2.zero;
-            }
-
-            if (_animator != null)
-            {
-                _animator.SetBool("DoShortAttack", false);
             }
         }
 

@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7b39c5a032cc043ab13849a16b3dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
+  _bulletPrefab: {fileID: 1079946990457772, guid: 6ec1f26d36ba83f4591e1b4b045b9518, type: 3}
   _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
   _RPM: 200
   _maxAmmo: 6
