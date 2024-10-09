@@ -15,12 +15,13 @@ public class PlayerShortAttack : MonoBehaviour
     #region PrivateVariables
     [Header("")]
     [SerializeField] float _hitRadius = 0.8f;
-    [SerializeField] float _tackleAcceleration = 10f;
-    [SerializeField] float _tackleDeceleration = 10f;
-    [SerializeField] float _maxTackleSpeed = 10f;
-    [SerializeField] float _tackleAccelerationTime = 0.5f;
-    [SerializeField] float _tackleDecelerationTime = 0.25f;
-    [Tooltip("Must bigger than accelerationTime + decelerationTime")]
+    [SerializeField] float _tackleSpeed = 15f;
+//    [SerializeField] float _tackleAcceleration = 10f;
+//    [SerializeField] float _tackleDeceleration = 10f;
+//    [SerializeField] float _maxTackleSpeed = 10f;
+//    [SerializeField] float _tackleAccelerationTime = 0.5f;
+//    [SerializeField] float _tackleDecelerationTime = 0.25f;
+//    [Tooltip("Must bigger than accelerationTime + decelerationTime")]
     [SerializeField] float _shortAttackCoolTime = 1f;
 
     Coroutine _attackCoroutine;
@@ -30,9 +31,9 @@ public class PlayerShortAttack : MonoBehaviour
     #endregion
 
     #region PublicVariables
-    [HideInInspector] public Vector2 TackleVelocity;
-    [HideInInspector] public float TackleElapsedTime;
+//    [HideInInspector] public Vector2 TackleVelocity;
     [HideInInspector] public bool CanAttack;
+    public float ShortAttackDuration = 0.5f;
     #endregion
 
     #region PrivateMethods
@@ -47,12 +48,11 @@ public class PlayerShortAttack : MonoBehaviour
     void Start()
     {
         CanAttack = true;
-        TackleElapsedTime = _tackleAccelerationTime + _tackleDecelerationTime;
-
-        if(_shortAttackCoolTime < TackleElapsedTime)
-        {
-            _shortAttackCoolTime = TackleElapsedTime;
-        }
+        //TackleElapsedTime = _tackleAccelerationTime + _tackleDecelerationTime;
+        //if(_shortAttackCoolTime < TackleElapsedTime)
+        //{
+        //    _shortAttackCoolTime = TackleElapsedTime;
+        //}
     }
 
     void OnShortAttack()
@@ -100,26 +100,21 @@ public class PlayerShortAttack : MonoBehaviour
     {
         if (_rigidbody == null) return;
 
-        TackleElapsedTime -= Time.deltaTime;
         // set acceleration and decceleration
-        if (TackleElapsedTime > _tackleDecelerationTime)
-        {
-            TackleVelocity += tackleDirection * _tackleAcceleration * Time.deltaTime;
-        }
-        else if (TackleElapsedTime > 0)
-        {
-            TackleVelocity = Vector2.MoveTowards(TackleVelocity, Vector2.zero, _tackleDeceleration * Time.deltaTime);
-        }
-        else
-        {
-            _playerMovement.CurrentState.SwitchState(gameObject, ref _playerMovement.CurrentState, new IdleState());
-        }
+        //if (TackleElapsedTime > _tackleDecelerationTime)
+        //{
+        //    TackleVelocity = Vector2.MoveTowards(TackleVelocity, tackleDirection * _maxTackleSpeed, _tackleAcceleration * Time.fixedDeltaTime);
+        //}
+        //else if (TackleElapsedTime > 0)
+        //{
+        //    TackleVelocity = Vector2.MoveTowards(TackleVelocity, Vector2.zero, _tackleDeceleration * Time.fixedDeltaTime);
+        //}
+        //else
+        //{
+        //    _playerMovement.CurrentState.SwitchState(gameObject, ref _playerMovement.CurrentState, new IdleState());
+        //}
 
-        // limit max speed
-        TackleVelocity = Vector2.ClampMagnitude(TackleVelocity, _maxTackleSpeed);
-
-        // set speed
-        _rigidbody.MovePosition(_rigidbody.position + TackleVelocity * Time.fixedDeltaTime);
+        _rigidbody.velocity = _tackleSpeed * tackleDirection;
     }
     #endregion
 }
