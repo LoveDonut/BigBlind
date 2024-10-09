@@ -27,6 +27,7 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] bool isPlayer;
     [SerializeField] bool _repeatWave = true;
+    [SerializeField] GameObject _waveEffect;
 
     private GameObject _player;
 
@@ -62,6 +63,8 @@ public class WaveManager : MonoBehaviour
 
     public void Spawn_Wave()
     {
+        if (isPlayer && CompareTag("Player")) _waveEffect.GetComponent<Animator>().Play("WaveEffect");
+
         _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
 
         _dist = isPlayer ? 1 : _distanceFadeNumerator / Vector2.Distance(transform.position, _player.transform.position);
