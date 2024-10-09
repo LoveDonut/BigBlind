@@ -24,6 +24,9 @@ public class PlayerShortAttack : MonoBehaviour
 //    [Tooltip("Must bigger than accelerationTime + decelerationTime")]
     [SerializeField] float _shortAttackCoolTime = 1f;
 
+    [SerializeField] float _slowDownDuration = 2f;
+    [SerializeField] float _slowDownOffset = 0.2f;
+
     Coroutine _attackCoroutine;
     Animator _animator;
     PlayerMovement _playerMovement;
@@ -93,6 +96,12 @@ public class PlayerShortAttack : MonoBehaviour
         if (hit != null && hit.gameObject != gameObject && hit.TryGetComponent<IDamage>(out damagable))
         {
             damagable.GetDamaged((_hitTransform.position - transform.position).normalized);
+        }
+
+        if(hit != null && hit.GetComponent<DoorKick>() != null && !hit.GetComponent<Collider2D>().isTrigger)
+        {
+            hit.GetComponent<DoorKick>().DoorKicked(transform);
+            TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
         }
     }
 

@@ -101,7 +101,7 @@ public class PlayerShoot : MonoBehaviour
     IEnumerator WaitNextBullet()
     {
         _isShootable = false;
-        yield return new WaitForSeconds(60f / _RPM);
+        yield return new WaitForSecondsRealtime(60f / _RPM);
         _isShootable = true;
     }
 

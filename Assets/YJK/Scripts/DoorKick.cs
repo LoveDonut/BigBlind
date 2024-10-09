@@ -32,12 +32,6 @@ public class DoorKick : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         /*
-        if (_rb.angularVelocity > 100 || _rb.angularVelocity < -100)
-        {
-            _as.Play();
-            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
-        }
-        */
         if (!(collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))) return;
         _rb.bodyType = RigidbodyType2D.Kinematic;
         _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
@@ -46,6 +40,25 @@ public class DoorKick : MonoBehaviour
         _as.PlayOneShot(_smashDoor);
         if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
         if (Vector2.Distance(_left.position, collision.transform.position) < Vector2.Distance(_right.position, collision.transform.position))
+        {
+            _rb.velocity = (this.transform.position - _left.position) * _kickSpeed;
+        }
+        else
+        {
+            _rb.velocity = (this.transform.position - _right.position) * _kickSpeed;
+        }
+        */
+    }
+
+    public void DoorKicked(Transform kicker)
+    {
+        _rb.bodyType = RigidbodyType2D.Kinematic;
+        _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 3f);
+        GetComponent<Collider2D>().isTrigger = true;
+        _as.PlayOneShot(_smashDoor);
+        if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
+        if (Vector2.Distance(_left.position, kicker.position) < Vector2.Distance(_right.position, kicker.position))
         {
             _rb.velocity = (this.transform.position - _left.position) * _kickSpeed;
         }
