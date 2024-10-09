@@ -15,10 +15,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] GameObject _enemyShadow;
 
 
-    [Header("SoundPlay")]
-    [SerializeField] float _stereoPanAmount = -10;
-    [SerializeField] float _finalSoundNumerator = 5;
-
 
     #endregion
 
@@ -104,14 +100,6 @@ public class EnemyMovement : MonoBehaviour
         var shadow = Instantiate(_enemyShadow, transform.position, Quaternion.identity);
         shadow.GetComponent<SpriteRenderer>().sprite = _renderer.sprite;
         shadow.GetComponent<EnemyShadow>().StartFadeOut();
-    }
-
-    public void CalcSound_Direction_Distance()
-    {
-        var player = GameObject.FindGameObjectWithTag("Player");
-        AudioSource.panStereo = (player.transform.position.x - transform.position.x) / _stereoPanAmount;
-        float final_Sound = (_finalSoundNumerator / Vector2.Distance(player.transform.position, transform.position));
-        AudioSource.volume = final_Sound >= 1 ? 1 : final_Sound;
     }
     #endregion
 }
