@@ -895,13 +895,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitTransform: {fileID: 790458493254983880}
-  _hitRadius: 0.8
+  _playerSpriteTransform: {fileID: 8938188415147047647}
+  ShortAttackAnimationClip: {fileID: 7400000, guid: 7e7490d81185c9f4480ff1d4b160ecaf, type: 2}
+  _hitSize: {x: 1.5, y: 1}
   _tackleSpeed: 15
   _shortAttackCoolTime: 1
   _slowDownDuration: 2
   _slowDownOffset: 0.2
   CanAttack: 0
-  ShortAttackDuration: 0.5
+  ShortAttackDistance: 3
 --- !u!50 &1534208878423213486
 Rigidbody2D:
   serializedVersion: 4
