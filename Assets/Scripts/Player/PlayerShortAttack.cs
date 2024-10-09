@@ -102,6 +102,7 @@ public class PlayerShortAttack : MonoBehaviour
         {
             hit.GetComponent<DoorKick>().DoorKicked(transform);
             TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
+            GameObject.Find("Virtual Camera").GetComponent<CameraZoom>().ZoomCamera(0.8f, 0.01f, 0f, _slowDownDuration);
         }
     }
 
