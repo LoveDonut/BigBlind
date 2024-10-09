@@ -730,8 +730,8 @@ GameObject:
   - component: {fileID: 8781396948911583693}
   - component: {fileID: 5321453073708916642}
   - component: {fileID: 4468351286469248840}
-  - component: {fileID: 6194247190628501016}
   - component: {fileID: 7105949122814053002}
+  - component: {fileID: 6194247190628501016}
   - component: {fileID: 1534208878423213486}
   - component: {fileID: 6247075768657541853}
   - component: {fileID: 1729256440109526895}
@@ -776,6 +776,7 @@ MonoBehaviour:
   _acceleration: 50
   _deceleration: 20
   _maxSpeed: 7.5
+  _stoppingThreshold: 0.1
   HeartBeat: {fileID: 8109789852779394927}
   Beat: {fileID: 6756703532751236850}
   IsMovable: 0
@@ -846,7 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7b39c5a032cc043ab13849a16b3dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
+  _bulletPrefab: {fileID: 1079946990457772, guid: 6ec1f26d36ba83f4591e1b4b045b9518, type: 3}
   _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
   _RPM: 200
   _maxAmmo: 6
@@ -865,19 +866,6 @@ MonoBehaviour:
   _reloadOneSound: {fileID: 8300000, guid: bfb2d5c8299492d488cfdfb972c35271, type: 3}
   _closeCylinder: {fileID: 8300000, guid: defec7b55867ef74292a8c8d340937f8, type: 3}
   IsHaste: 0
---- !u!114 &6194247190628501016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747644532665568231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3e950ab7fdeb784a9e9a80f4b88d6d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteObj: {fileID: 8938188415147047647}
 --- !u!114 &7105949122814053002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,8 +879,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitTransform: {fileID: 790458493254983880}
+  _playerSpriteTransform: {fileID: 8938188415147047647}
+  ShortAttackAnimationClip: {fileID: 7400000, guid: 7e7490d81185c9f4480ff1d4b160ecaf, type: 2}
+  _hitSize: {x: 1.5, y: 1}
+  _tackleSpeed: 30
   _shortAttackCoolTime: 1
-  _hitRadius: 0.8
+  _slowDownDuration: 2
+  _slowDownOffset: 0.2
+  CanAttack: 0
+  ShortAttackDistance: 10
+--- !u!114 &6194247190628501016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747644532665568231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e950ab7fdeb784a9e9a80f4b88d6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteObj: {fileID: 8938188415147047647}
 --- !u!50 &1534208878423213486
 Rigidbody2D:
   serializedVersion: 4
