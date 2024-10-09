@@ -69,7 +69,10 @@ public class EnemyMovement : MonoBehaviour
     protected virtual void Update()
     {
         transform.rotation = Quaternion.identity;
-        CurrentState.UpdateState(gameObject);
+        if (CurrentState != null) 
+        {
+            CurrentState.UpdateState(gameObject);
+        }
     }
     #endregion
 
