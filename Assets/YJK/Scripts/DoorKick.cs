@@ -1,4 +1,3 @@
-using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +14,7 @@ public class DoorKick : MonoBehaviour
     private Collider2D _collider;
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
+
 
     [Header("SFX")]
     [SerializeField] AudioClip _smashDoor;

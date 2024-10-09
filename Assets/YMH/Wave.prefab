@@ -55,8 +55,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e89f6b36fee1836469b69acfe95d2d2c, type: 2}
-  - {fileID: 2100000, guid: 168ab22df269dbc4884313df3183a33d, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -157,7 +156,6 @@ MonoBehaviour:
   WaveColor: {r: 0.07075471, g: 1, b: 0.9732528, a: 1}
   Destroy_Time: 1
   _isPlayerWave: 1
-  maxSegmentDistance: 1
 --- !u!60 &2369123317398446388
 PolygonCollider2D:
   m_ObjectHideFlags: 0

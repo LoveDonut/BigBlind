@@ -8,7 +8,6 @@ public class TimeManager : MonoBehaviour
     #region PrivateVariables
     [SerializeField] float BPM = 135;
     Coroutine _coroutine;
-    bool _isSlowed = false;
     #endregion
 
     #region PublicVariables
@@ -58,20 +57,17 @@ public class TimeManager : MonoBehaviour
         // recover timescale
         UnityEngine.Time.timeScale = 1f;
         UnityEngine.Time.fixedDeltaTime = 0.02f; // default fixedDeltaTime is 0.02f
-        _isSlowed = false;
     }
     #endregion
 
     #region PublicMethods
     public void DoSlowMotion(float slowDownFactor, float slowDownDuration)
     {
-        if (_isSlowed) return;
         // slow down
         UnityEngine.Time.timeScale = slowDownFactor;
         UnityEngine.Time.fixedDeltaTime = slowDownFactor * 0.02f;
 
         _coroutine = StartCoroutine(ResetTimeScale(slowDownDuration));
-        _isSlowed = true;
     }
     #endregion
 }
