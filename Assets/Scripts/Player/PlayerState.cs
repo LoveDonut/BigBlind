@@ -11,16 +11,19 @@ namespace PlayerState
     public class IdleState : StateMachine
     {
         PlayerMovement _playerMovement;
+        PlayerRotate _playerRotate;
 
         public override void EnterState(GameObject gameObject)
         {
             _playerMovement = gameObject.GetComponent<PlayerMovement>();
+            _playerRotate = gameObject.GetComponent<PlayerRotate>();
         }
         public override void UpdateState(GameObject gameObject)
         {
-            if (_playerMovement == null) return;
+            if (_playerMovement == null || _playerRotate == null) return;
 
             _playerMovement.Move();
+            _playerRotate.Rotate();
         }
 
         public override void ExitState(GameObject gameObject)
@@ -33,19 +36,22 @@ namespace PlayerState
         PlayerShortAttack _shortAttack;
         Animator _animator;
         Vector2 _tackleDirection;
-        float _tackleElapsedTime;
+        Vector2 _startPosition;
+        float _elapsedTime;
 
         public override void EnterState(GameObject gameObject)
         {
             _shortAttack = gameObject.GetComponent<PlayerShortAttack>();
-            if(gameObject.TryGetComponent<Animator>(out  _animator))
+            _animator = gameObject.GetComponent<Animator>();
+            if(_animator != null)
             {
-                _animator.SetTrigger("DoShortAttack");
+                _animator.SetBool("DoShortAttack", true);
             }
 
             _shortAttack.CanAttack = false;
-            _tackleElapsedTime = _shortAttack.ShortAttackDuration;
+            _elapsedTime = _shortAttack.ShortAttackAnimationClip.length;
 
+            _startPosition = gameObject.transform.position;
             _tackleDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
 
             //Rigidbody2D rigidbody;
@@ -58,9 +64,11 @@ namespace PlayerState
         {
             if (_shortAttack == null) return;
 
-            _shortAttack.AttackCollideWithEnemy();
+            _shortAttack.CollideWithEnemy();
+            _elapsedTime -= Time.fixedDeltaTime;
 
-            if (_tackleElapsedTime > 0)
+            if (Vector2.Distance(_startPosition, gameObject.transform.position) < _shortAttack.ShortAttackDistance &&
+                _elapsedTime > 0)
             {
                 _shortAttack.Tackle(_tackleDirection);
             }
@@ -72,18 +80,19 @@ namespace PlayerState
                     SwitchState(gameObject, ref playerMovement.CurrentState, new IdleState());
                 }
             }
-
-            _tackleElapsedTime -= Time.fixedDeltaTime;
         }
 
         public override void ExitState(GameObject gameObject)
-        {
-            _tackleElapsedTime = _shortAttack.ShortAttackDuration;
-            
+        {            
             Rigidbody2D rigidbody;
             if(gameObject.TryGetComponent<Rigidbody2D>(out rigidbody))
             {
                 rigidbody.velocity = Vector2.zero;
+            }
+
+            if (_animator != null)
+            {
+                _animator.SetBool("DoShortAttack", false);
             }
         }
 

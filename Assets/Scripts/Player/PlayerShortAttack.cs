@@ -10,24 +10,18 @@ public class PlayerShortAttack : MonoBehaviour
     #region References
     [Header("References")]
     [SerializeField] Transform _hitTransform;
+    [SerializeField] Transform _playerSpriteTransform;
+    public AnimationClip ShortAttackAnimationClip;
     #endregion
 
     #region PrivateVariables
     [Header("")]
-    [SerializeField] float _hitRadius = 0.8f;
+    [SerializeField] Vector2 _hitSize;
     [SerializeField] float _tackleSpeed = 15f;
-//    [SerializeField] float _tackleAcceleration = 10f;
-//    [SerializeField] float _tackleDeceleration = 10f;
-//    [SerializeField] float _maxTackleSpeed = 10f;
-//    [SerializeField] float _tackleAccelerationTime = 0.5f;
-//    [SerializeField] float _tackleDecelerationTime = 0.25f;
-//    [Tooltip("Must bigger than accelerationTime + decelerationTime")]
     [SerializeField] float _shortAttackCoolTime = 1f;
 
     [SerializeField] float _slowDownDuration = 2f;
     [SerializeField] float _slowDownOffset = 0.2f;
-    [SerializeField] float _zoomSizeFactor = 0.8f;
-    [SerializeField] float _startZoomDuration = 0.01f;
 
     Coroutine _attackCoroutine;
     Animator _animator;
@@ -38,7 +32,7 @@ public class PlayerShortAttack : MonoBehaviour
     #region PublicVariables
 //    [HideInInspector] public Vector2 TackleVelocity;
     [HideInInspector] public bool CanAttack;
-    public float ShortAttackDuration = 0.5f;
+    public float ShortAttackDistance = 1f;
     #endregion
 
     #region PrivateMethods
@@ -59,7 +53,6 @@ public class PlayerShortAttack : MonoBehaviour
         //    _shortAttackCoolTime = TackleElapsedTime;
         //}
     }
-
     void OnShortAttack()
     {
         if (!_playerMovement.IsMovable) return;
@@ -85,16 +78,19 @@ public class PlayerShortAttack : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(_hitTransform.position, _hitRadius);
+        Gizmos.matrix = Matrix4x4.TRS(_hitTransform.position, Quaternion.Euler(0, 0, _playerSpriteTransform.eulerAngles.z), Vector3.one);
+
+        Gizmos.DrawWireCube(Vector3.zero, _hitSize);
     }
     #endregion
 
     #region PublicMethods
-    public void AttackCollideWithEnemy()
+    public void CollideWithEnemy()
     {
-        Collider2D hit = Physics2D.OverlapCircle(_hitTransform.position, _hitRadius, LayerMask.GetMask("Enemy", "Glass", "Box"));
+        Collider2D hit = GetHittedColliderAtBox();
         IDamage damagable;
 
+        // Attack
         if (hit != null && hit.gameObject != gameObject && hit.TryGetComponent<IDamage>(out damagable))
         {
             damagable.GetDamaged((_hitTransform.position - transform.position).normalized);
@@ -104,7 +100,12 @@ public class PlayerShortAttack : MonoBehaviour
         {
             hit.GetComponent<DoorKick>().DoorKicked(transform);
             TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
-            GameObject.Find("Virtual Camera").GetComponent<CameraZoom>().ZoomCamera(_zoomSizeFactor, _startZoomDuration, 0f, _slowDownDuration);
+        }
+
+        // Parry
+        if(hit != null && hit.gameObject.CompareTag("Attack"))
+        {
+            Destroy(hit.gameObject);
         }
     }
 
@@ -128,5 +129,7 @@ public class PlayerShortAttack : MonoBehaviour
 
         _rigidbody.velocity = _tackleSpeed * tackleDirection;
     }
+
+    public Collider2D GetHittedColliderAtBox() => Physics2D.OverlapBox(_hitTransform.position, _hitSize, _playerSpriteTransform.eulerAngles.z, LayerMask.GetMask("Enemy", "Glass", "Box", "Attack"));
     #endregion
 }
