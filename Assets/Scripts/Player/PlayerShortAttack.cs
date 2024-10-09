@@ -23,6 +23,10 @@ public class PlayerShortAttack : MonoBehaviour
     [SerializeField] float _slowDownDuration = 2f;
     [SerializeField] float _slowDownOffset = 0.2f;
 
+    [SerializeField] AudioClip _shortAttackSFX;
+    [SerializeField] AudioClip _shortAttackSuccessSFX;
+
+
     Coroutine _attackCoroutine;
     Animator _animator;
     PlayerMovement _playerMovement;
@@ -59,6 +63,7 @@ public class PlayerShortAttack : MonoBehaviour
 
         if (_animator != null && _playerMovement != null && CanAttack)
         {
+            SoundManager.Instance.PlaySound(_shortAttackSFX, Vector2.zero);
             _playerMovement.CurrentState.SwitchState(gameObject, ref _playerMovement.CurrentState, new ShortAttackState());
 
             if (_attackCoroutine != null)
@@ -94,9 +99,10 @@ public class PlayerShortAttack : MonoBehaviour
         if (hit != null && hit.gameObject != gameObject && hit.TryGetComponent<IDamage>(out damagable))
         {
             damagable.GetDamaged((_hitTransform.position - transform.position).normalized);
+            SoundManager.Instance.PlaySound(_shortAttackSuccessSFX, Vector2.zero);
         }
 
-        if(hit != null && hit.GetComponent<DoorKick>() != null && !hit.GetComponent<Collider2D>().isTrigger)
+        if (hit != null && hit.GetComponent<DoorKick>() != null && !hit.GetComponent<Collider2D>().isTrigger)
         {
             hit.GetComponent<DoorKick>().DoorKicked(transform);
             TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);

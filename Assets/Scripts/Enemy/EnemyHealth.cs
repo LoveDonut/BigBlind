@@ -9,12 +9,10 @@ public class EnemyHealth : MonoBehaviour, IDamage
     #region References
     [Header("References")]
     [SerializeField] int _maxHp = 1;
-    [SerializeField] AudioClip _deadSound;
 
     #endregion
     #region PrivateVariables
 
-    AudioSource _audioSource;
     #endregion
 
     #region PublicVariables
@@ -23,10 +21,7 @@ public class EnemyHealth : MonoBehaviour, IDamage
     #endregion
 
     #region PrivateMethods
-    void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
+
     void Start()
     {
         CurrentHp = MaxHp = _maxHp;
@@ -35,7 +30,6 @@ public class EnemyHealth : MonoBehaviour, IDamage
     void MakeBlood(Vector3 aimPos)
     {
         BloodEffect bloodEffect = FindObjectsOfType<BloodEffect>().Where(x => x.IsEnemy).First();
-        _audioSource.PlayOneShot(_deadSound);
         if (bloodEffect != null)
         {
             float angle = Mathf.Atan2(aimPos.y, aimPos.x) * Mathf.Rad2Deg - 90f;

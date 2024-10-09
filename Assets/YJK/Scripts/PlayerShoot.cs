@@ -77,7 +77,8 @@ public class PlayerShoot : MonoBehaviour
 
         if (_ammo <= 0)
         {
-            if (_emptySound != null) _handCannon.PlayOneShot(_emptySound);
+            if (_emptySound != null) SoundManager.Instance.PlaySound(_emptySound, Vector2.zero);
+
             return;
         }
         if (_reloadCoroutine != null)
@@ -89,7 +90,9 @@ public class PlayerShoot : MonoBehaviour
         _ammo--;
         Direction.Instance.Sync_BulletCount_UI(_ammo);
         Direction.Instance.Show_Revolver_Fire_Effect();
-        _handCannon.PlayOneShot(_handCannonSound);
+
+        SoundManager.Instance.PlaySound(_handCannonSound, Vector2.zero);
+
         SpawnHandCannonWave();
         CameraShake.Instance.shakeCamera(7f, .1f);
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -137,7 +140,7 @@ public class PlayerShoot : MonoBehaviour
 
         if (!_reloadAll)
         {
-            _handCannon.PlayOneShot(_OpenCylinder);
+            SoundManager.Instance.PlaySound(_OpenCylinder, Vector2.zero);
 
             yield return new WaitForSeconds(_reloadTime / 2);
         }
@@ -162,7 +165,7 @@ public class PlayerShoot : MonoBehaviour
                     }
 
                     //HandCannon.pitch = ReloadAllSound.length / reloadTime;
-                    _handCannon.PlayOneShot(_reloadAllSound);
+                    SoundManager.Instance.PlaySound(_reloadAllSound, Vector2.zero);
                     Direction.Instance.Show_Revolver_Reload_Effect(true);
 
                 }
@@ -177,7 +180,7 @@ public class PlayerShoot : MonoBehaviour
                     Direction.Instance.Sync_BulletCount_UI(_ammo);
 
                     //HandCannon.pitch = ReloadOneSound.length / reloadTime;
-                    _handCannon.PlayOneShot(_reloadOneSound);
+                    SoundManager.Instance.PlaySound(_reloadOneSound, Vector2.zero);
                     Direction.Instance.Show_Revolver_Reload_Effect(false);
 
                 }
@@ -185,7 +188,8 @@ public class PlayerShoot : MonoBehaviour
             yield return new WaitForSeconds(_reloadAll ? _reloadTime : _reloadTime / 2f);
         }
 
-        if (!_reloadAll) _handCannon.PlayOneShot(_closeCylinder);
+        if (!_reloadAll) SoundManager.Instance.PlaySound(_closeCylinder, Vector2.zero);
+
 
         _isReloading = false;
     }

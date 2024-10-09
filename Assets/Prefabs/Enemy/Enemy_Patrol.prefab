@@ -121,6 +121,7 @@ MonoBehaviour:
   _90BPM: {fileID: 0}
   isPlayer: 0
   _repeatWave: 1
+  _waveEffect: {fileID: 0}
 --- !u!114 &-1293890874375102752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 1
-  _deadSound: {fileID: 8300000, guid: 0088508e8717b2c4f97696ba850c8c3e, type: 3}
+  _deadSound: {fileID: 8300000, guid: 3702cb9f0782412499f4f2513175dcd3, type: 3}
 --- !u!114 &1748687152004927236
 MonoBehaviour:
   m_ObjectHideFlags: 0
