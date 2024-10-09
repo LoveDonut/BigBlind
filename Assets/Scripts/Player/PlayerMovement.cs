@@ -39,13 +39,15 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         _rb = GetComponent<Rigidbody2D>();
         IsMovable = true;
-    }
 
-    void Update()
+        SetStartState();
+    }
+    void FixedUpdate()
     {
-        Move();
-    }
+        if (!IsMovable) return;
 
+        CurrentState.UpdateState(gameObject);
+    }
     void OnMove(InputValue value)
     {
         if (!IsMovable) return;
@@ -58,16 +60,7 @@ public class PlayerMovement : MonoBehaviour
     void SetStartState()
     {
         CurrentState = new IdleState();
-
         CurrentState.EnterState(gameObject);
-    }
-
-    void FixedUpdate()
-    {
-        if (!IsMovable) return;
-
-        // set speed
-        _rb.MovePosition(_rb.position + _velocity * Time.fixedDeltaTime);
     }
     #endregion
 
@@ -88,6 +81,9 @@ public class PlayerMovement : MonoBehaviour
 
         // limit max speed
         _velocity = Vector2.ClampMagnitude(_velocity, _maxSpeed);
+
+        // set speed
+        _rb.MovePosition(_rb.position + _velocity * Time.fixedDeltaTime);
     }
     #endregion
 }
