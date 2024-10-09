@@ -14,7 +14,13 @@ public class PlayerRotate : MonoBehaviour
         _cameraTarget = FindAnyObjectByType<CameraTarget>();
     }
 
-    public void Rotate()
+    void Update()
+    {
+        Rotate();
+    
+    }
+
+    void Rotate()
     {
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(aimPos.y, aimPos.x) * Mathf.Rad2Deg - 270f ;

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayerState;
 
 // made by KimDaehui
 public class PlayerHealth : MonoBehaviour, IDamage
@@ -73,21 +72,13 @@ public class PlayerHealth : MonoBehaviour, IDamage
     {
         if (_isInvincible) return;
 
-        PlayerShortAttack playerShortAttack;
-        if (TryGetComponent<PlayerShortAttack>(out playerShortAttack))
-        {
-            Collider2D hit = playerShortAttack.GetHittedColliderAtBox();
-            if (hit != null && hit.CompareTag("Attack"))
-            {
-                return;
-            }
-        }
+        PlayerMovement playerMovement;
 
-        // do not knockback when tackle
-        if (_playerMovement.CurrentState.GetType() != typeof(ShortAttackState))
+        if (TryGetComponent<PlayerMovement>(out playerMovement))
         {
-            DoKnockBack(_slowDownDuration, attackedDirection);
+            
         }
+        DoKnockBack(_slowDownDuration, attackedDirection);
 
         // shake camera
         CameraShake.Instance.shakeCamera(_cameraShakeIntensity, _slowDownDuration);
@@ -153,7 +144,7 @@ public class PlayerHealth : MonoBehaviour, IDamage
 
             if (rb != null)
             {
-                rb.velocity = playerVelocity;
+                rb.MovePosition(rb.position + playerVelocity * Time.deltaTime);
             }
             elapsedTime -= Time.deltaTime;
         }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 199602846296022876}
   - component: {fileID: 3862256777931148651}
   - component: {fileID: 4581936867510956270}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BulletEffect
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -4999,7 +4999,7 @@ GameObject:
   - component: {fileID: 4899089606134644}
   - component: {fileID: 198442058369866520}
   - component: {fileID: 199288503146715412}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Debris
   m_TagString: Untagged
   m_Icon: {fileID: 0}

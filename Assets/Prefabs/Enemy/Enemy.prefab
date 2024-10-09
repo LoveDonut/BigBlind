@@ -190,7 +190,7 @@ MonoBehaviour:
   _enemyShadow: {fileID: 1511232225988076153, guid: 28654835d0bcddf4e92fe1a414fb3fca, type: 3}
   _stereoPanAmount: -10
   _finalSoundNumerator: 5
-  AudioSource: {fileID: 0}
+  _audioSource: {fileID: 0}
 --- !u!58 &4786880582538516064
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -422,10 +422,9 @@ GameObject:
   - component: {fileID: 622160566012864210}
   - component: {fileID: 2631302503350403850}
   - component: {fileID: 677330599342688994}
-  - component: {fileID: 2061374509831851739}
   m_Layer: 3
   m_Name: Weapon
-  m_TagString: Attack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -532,43 +531,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitTransform: {fileID: 7518002792236143597}
-  _hitRadius: 0.7
+  _hitRadius: 0.4
   _weaponOffset: {x: 0.5, y: 0.5}
---- !u!58 &2061374509831851739
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4087812566467731332}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.9
 --- !u!1 &4565770587666476460
 GameObject:
   m_ObjectHideFlags: 0
