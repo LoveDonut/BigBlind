@@ -22,6 +22,8 @@ public class PlayerShortAttack : MonoBehaviour
 
     [SerializeField] float _slowDownDuration = 2f;
     [SerializeField] float _slowDownOffset = 0.2f;
+    [SerializeField] float _zoomSizeFactor = 0.8f;
+    [SerializeField] float _startZoomDuration = 0.01f;
 
     Coroutine _attackCoroutine;
     Animator _animator;
@@ -100,6 +102,7 @@ public class PlayerShortAttack : MonoBehaviour
         {
             hit.GetComponent<DoorKick>().DoorKicked(transform);
             TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
+            GameObject.Find("Virtual Camera").GetComponent<CameraZoom>().ZoomCamera(_zoomSizeFactor, _startZoomDuration, 0f, _slowDownDuration);
         }
 
         // Parry

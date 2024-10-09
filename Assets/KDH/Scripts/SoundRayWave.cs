@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SoundRayWave : MonoBehaviour
 {
@@ -10,34 +6,64 @@ public class SoundRayWave : MonoBehaviour
     [SerializeField] private float growSpeed = 0.5f;
     [SerializeField] private float radius = 0.5f;
     public Color WaveColor;
-    private LineRenderer lineRenderer;
+    private LineRenderer[] lineRenderers;
+    private LineRenderer singleLineRenderer;
     private Vector3[] wavePositions;
-    private bool[] isPositionFixed;  // 각 위치가 고정되었는지 추적하는 배열
-    private float waveExistTime = 0f;
-    float t_Destroy = 0, alpha;
+    private bool[] isPositionFixed;
+    private float t_Destroy = 0;
     public float Destroy_Time = 1f;
-
     [SerializeField] bool _isPlayerWave;
+    private Vector2 rayDirection = Vector2.zero;
 
-    List<GameObject> _contactedEnemy = new List<GameObject>();
-    RaycastHit2D _enemyDetect;
+    [SerializeField] private float maxSegmentDistance = 1f; // New variable for max distance between segments
 
-    float _angleStep, _angle;
+
+    Material[] _waveMaterials;
 
     void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = segments;
-        lineRenderer.useWorldSpace = false;
-        lineRenderer.loop = true;
-        wavePositions = new Vector3[segments];
-        isPositionFixed = new bool[segments];  // 초기화
+        wavePositions = new Vector3[segments + 1]; // +1 to close the loop
+        isPositionFixed = new bool[segments];
+        _waveMaterials = GetComponent<LineRenderer>().materials;
+        if (_isPlayerWave)
+        {
+            lineRenderers = new LineRenderer[segments];
+            for (int i = 0; i < segments; i++)
+            {
+                GameObject lineObj = new GameObject($"LineRenderer_{i}");
+                lineObj.transform.SetParent(transform);
+                LineRenderer lr = lineObj.AddComponent<LineRenderer>();
+
+                lr.material = _waveMaterials[0];
+                lr.positionCount = 2;
+                lr.useWorldSpace = true;
+                lr.startWidth = lr.endWidth = 0.1f;
+                lineRenderers[i] = lr;
+            }
+        }
+        else
+        {
+            singleLineRenderer = GetComponent<LineRenderer>();
+            singleLineRenderer.positionCount = segments + 1;
+            singleLineRenderer.useWorldSpace = true;
+            singleLineRenderer.startWidth = singleLineRenderer.endWidth = 0.1f;
+            singleLineRenderer.loop = true;
+        }
     }
 
     public void InitWave()
     {
-        lineRenderer.startColor = WaveColor;
-        lineRenderer.endColor = WaveColor;
+        if (_isPlayerWave)
+        {
+            for (int i = 0; i < segments; i++)
+            {
+                lineRenderers[i].startColor = lineRenderers[i].endColor = WaveColor;
+            }
+        }
+        else
+        {
+            singleLineRenderer.startColor = singleLineRenderer.endColor = WaveColor;
+        }
     }
 
     void FixedUpdate()
@@ -49,21 +75,22 @@ public class SoundRayWave : MonoBehaviour
 
     void SpreadRay()
     {
-        _angleStep = 360f / segments;
+        float angleStep = 360f / segments;
         for (int i = 0; i < segments; i++)
         {
+            float angle = angleStep * i * Mathf.Deg2Rad;
+            rayDirection.Set(Mathf.Cos(angle), Mathf.Sin(angle));
+
             if (!isPositionFixed[i])
             {
-                _angle = _angleStep * i * Mathf.Deg2Rad;
-                Vector2 direction = new Vector2(Mathf.Cos(_angle), Mathf.Sin(_angle));
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, radius, LayerMask.GetMask("Wall", "Glass", "Box"));
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, radius, LayerMask.GetMask("Wall", "Glass", "Box"));
+
                 if (_isPlayerWave)
                 {
-                    _enemyDetect = Physics2D.Raycast(transform.position, direction, radius,LayerMask.GetMask("Item"));
-                    if (_enemyDetect.collider != null) {
-                        //_contactedEnemy.Add(_enemyDetect.collider.gameObject);
-                        //if (_enemyDetect.collider.CompareTag("Enemy")) _enemyDetect.collider.GetComponent<EnemyMovement>().SpawnSprite();
-                        _enemyDetect.collider.GetComponent<SeeByWave>().StartFadeOut();
+                    RaycastHit2D enemyHit = Physics2D.Raycast(transform.position, rayDirection, radius, LayerMask.GetMask("Item"));
+                    if (enemyHit.collider != null)
+                    {
+                        enemyHit.collider.GetComponent<SeeByWave>()?.StartFadeOut();
                     }
                 }
 
@@ -71,28 +98,63 @@ public class SoundRayWave : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("Obstacle"))
                     {
-                        hit.collider.GetComponent<OutlineColorController>().LookAtWave(transform.position);
-                        hit.collider.GetComponent<OutlineColorController>().ShowOutline();
+                        OutlineColorController outlineController = hit.collider.GetComponent<OutlineColorController>();
+                        outlineController.LookAtWave(transform.position);
+                        outlineController.ShowOutline();
                     }
-                    wavePositions[i] = transform.InverseTransformPoint(hit.point);
+                    wavePositions[i] = hit.point;
                     isPositionFixed[i] = true;
                 }
                 else
                 {
-                    wavePositions[i] = transform.InverseTransformPoint(transform.position + (Vector3)direction * radius);
+                    wavePositions[i] = (Vector3)rayDirection * radius + transform.position;
                 }
             }
         }
-        lineRenderer.SetPositions(wavePositions);
+
+        // Close the loop
+        wavePositions[segments] = wavePositions[0];
+
+        // Update LineRenderer positions
+        if (_isPlayerWave)
+        {
+            for (int i = 0; i < segments; i++)
+            {
+                int nextIndex = (i + 1) % segments;
+                bool bothSegmentsFixed = isPositionFixed[i] && isPositionFixed[nextIndex];
+                float segmentDistance = Vector3.Distance(wavePositions[i], wavePositions[nextIndex]);
+
+                bool shouldChangeMaterial = bothSegmentsFixed && segmentDistance <= maxSegmentDistance;
+                lineRenderers[i].material = shouldChangeMaterial ? _waveMaterials[1] : _waveMaterials[0];
+
+                lineRenderers[i].SetPosition(0, wavePositions[i]);
+                lineRenderers[i].SetPosition(1, wavePositions[nextIndex]);
+            }
+        }
+        else
+        {
+            singleLineRenderer.SetPositions(wavePositions);
+        }
     }
 
     void UpdateWaveColor()
     {
         t_Destroy += Time.fixedDeltaTime;
-        alpha = WaveColor.a * (1 - (t_Destroy / Destroy_Time));
-        Color waveColor = new(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
-        lineRenderer.startColor = waveColor;
-        lineRenderer.endColor = waveColor;
+        float alpha = WaveColor.a * (1 - (t_Destroy / Destroy_Time));
+        Color waveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
+
+        if (_isPlayerWave)
+        {
+            for (int i = 0; i < segments; i++)
+            {
+                lineRenderers[i].startColor = lineRenderers[i].endColor = waveColor;
+            }
+        }
+        else
+        {
+            singleLineRenderer.startColor = singleLineRenderer.endColor = waveColor;
+        }
+
         if (alpha <= 0) Destroy(gameObject);
     }
 }
