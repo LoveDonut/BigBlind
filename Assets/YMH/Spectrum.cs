@@ -17,7 +17,7 @@ public class Spectrum : MonoBehaviour
     public AudioSource audioSource;
     public SpectrumElement spectrumElementPrefab;
 
-    private SpectrumElement[] spectrumElements = new SpectrumElement[46];
+    private SpectrumElement[] spectrumElements = new SpectrumElement[96];
     private float[] spectrum = new float[1024];
 
 
@@ -26,7 +26,7 @@ public class Spectrum : MonoBehaviour
         CreateElements();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
 
@@ -34,16 +34,6 @@ public class Spectrum : MonoBehaviour
         {
             var value = 20f * Mathf.Log10(spectrum[i + 2] / refValue);
             spectrumElements[i].SetScale(value);
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            AlignElementsCircular();
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            AlignElementsHorizontal();
         }
     }
 
@@ -54,10 +44,10 @@ public class Spectrum : MonoBehaviour
             spectrumElements[i] = Instantiate(spectrumElementPrefab, transform, false);
         }
 
-        //AlignElementsHorizontal();
         AlignElementsCircular();
     }
 
+    /*
     private void AlignElementsHorizontal()
     {
         var shiftPerElement = 1.5f;
@@ -70,6 +60,7 @@ public class Spectrum : MonoBehaviour
             element.transform.localPosition = Vector3.right * (i * shiftPerElement - leftShift);
         }
     }
+    */
 
     private void AlignElementsCircular()
     {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1558182891188089807}
   - component: {fileID: 3637554298248464133}
   - component: {fileID: 2989207269740390097}
+  - component: {fileID: 979029473976872311}
   m_Layer: 0
   m_Name: SpectrumElementPrefab
   m_TagString: Untagged
@@ -80,8 +81,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 830608503
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2989207269740390097
@@ -96,3 +97,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77942741e96e1c47a5a7d40e92dac77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &979029473976872311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2989207269740390096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0816910a03b3242b37a81ae11587cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingLayerName: Wave
+  orderInLayer: 0

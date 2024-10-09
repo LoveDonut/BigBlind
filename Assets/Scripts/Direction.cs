@@ -26,6 +26,10 @@ public class Direction : MonoBehaviour
     [Header("LowBlood_UI")]
     [SerializeField] Image _lowHpImage;
 
+    [Header("FeverTime")]
+    [SerializeField] GameObject AudioSpectrum;
+    Material _mat;
+
     private void Update()
     {
         Vector2 mousePosition = Input.mousePosition;
@@ -44,11 +48,17 @@ public class Direction : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
+    #region Shoot
+
     public void Show_Flash_Effect()
     {
         _flash.GetComponent<Animator>().Play("Flash");
     }
 
+
+    #endregion
+
+    #region RevolverUI
     public void Sync_BulletCount_UI(int ammo) => _revolverUI.Ammo = ammo;
     public void Show_Revolver_Fire_Effect() => _revolverUI.FireBullet();
     public void Show_Revolver_Reload_Effect(bool isReloadAll) => _revolverUI.ReloadBullet(isReloadAll);
@@ -56,7 +66,13 @@ public class Direction : MonoBehaviour
     public void ShowLowHP() => _lowHpImage.GetComponent<Animator>().Play("LowHP");
 
     public void SyncReserveAmmoUI(int ammo) => _reserveAmmoUI.text = ammo.ToString();
+
+    #endregion
+
+    #region GameOver
+
     public void ShowGameOver() => _gameOverPanel.SetActive(true);
+
 
     public void RetryClick() {
         DOTween.KillAll();
@@ -64,4 +80,23 @@ public class Direction : MonoBehaviour
         GameManager.Instance.RestartStage();
     }
     public void ExitClick() => Application.Quit();
+
+    #endregion
+
+    #region FeverTime
+
+    public void ShowAudioSpectrum()
+    {
+        AudioSpectrum.SetActive(true);
+        _mat = AudioSpectrum.GetComponent<Material>();
+    }
+
+    public void SetSpectrumAlphaValue(float value) => _mat.SetFloat("_AlphaValue", value);
+
+    public void HideAudioSpectrum()
+    {
+        AudioSpectrum.SetActive(false);
+    }
+
+    #endregion
 }

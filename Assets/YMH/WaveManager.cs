@@ -63,7 +63,7 @@ public class WaveManager : MonoBehaviour
 
     public void Spawn_Wave()
     {
-        if (isPlayer) _waveEffect.GetComponent<Animator>().Play("WaveEffect");
+        if (isPlayer && CompareTag("Player")) _waveEffect.GetComponent<Animator>().Play("WaveEffect");
 
         _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
 
