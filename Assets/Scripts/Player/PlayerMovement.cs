@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _acceleration = 50f;    // acceleration
     [SerializeField] float _deceleration = 20f;    // decceleration
     [SerializeField] float _maxSpeed = 7.5f;         // max move speed
+    [SerializeField] float _stoppingThreshold = 0.1f; // threshold for stopping deceleration
 
     [Header("SFX")]
     public AudioSource HeartBeat;
@@ -39,13 +40,15 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         _rb = GetComponent<Rigidbody2D>();
         IsMovable = true;
-    }
 
-    void Update()
+        SetStartState();
+    }
+    void FixedUpdate()
     {
-        Move();
-    }
+        if (!IsMovable) return;
 
+        CurrentState.UpdateState(gameObject);
+    }
     void OnMove(InputValue value)
     {
         if (!IsMovable) return;
@@ -58,16 +61,7 @@ public class PlayerMovement : MonoBehaviour
     void SetStartState()
     {
         CurrentState = new IdleState();
-
         CurrentState.EnterState(gameObject);
-    }
-
-    void FixedUpdate()
-    {
-        if (!IsMovable) return;
-
-        // set speed
-        _rb.MovePosition(_rb.position + _velocity * Time.fixedDeltaTime);
     }
     #endregion
 
@@ -76,18 +70,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!IsMovable) return;
 
-        // set acceleration and decceleration
+        // apply acceleration and decceleration
         if (_input.magnitude > 0)
         {
-            _velocity += _input * _acceleration * Time.deltaTime;
+            _velocity = Vector2.MoveTowards(_velocity, _input * _maxSpeed, _acceleration * Time.fixedDeltaTime);
         }
         else
         {
-            _velocity = Vector2.MoveTowards(_velocity, Vector2.zero, _deceleration * Time.deltaTime);
+            _velocity = Vector2.MoveTowards(_velocity, Vector2.zero, _deceleration * Time.fixedDeltaTime);
         }
 
-        // limit max speed
-        _velocity = Vector2.ClampMagnitude(_velocity, _maxSpeed);
+        if(_velocity.magnitude < _stoppingThreshold)
+        {
+            _velocity = Vector2.zero;
+        }
+
+        _rb.velocity = _velocity;
     }
     #endregion
 }
