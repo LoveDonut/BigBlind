@@ -203,6 +203,7 @@ MonoBehaviour:
   _90BPM: {fileID: 0}
   isPlayer: 0
   _repeatWave: 1
+  _waveEffect: {fileID: 0}
 --- !u!114 &1102869394010541015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ MonoBehaviour:
   _enemyShadow: {fileID: 1511232225988076153, guid: 28654835d0bcddf4e92fe1a414fb3fca, type: 3}
   _stereoPanAmount: -10
   _finalSoundNumerator: 5
-  _audioSource: {fileID: 0}
+  AudioSource: {fileID: 0}
 --- !u!114 &8056600575094492715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +252,7 @@ MonoBehaviour:
   _attackRange: 10
   _attackDelay: 1
   _readyBeatCount: 2
+  _bpmMultiplier: 1.5
   Weapon: {fileID: 0}
   _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
 --- !u!195 &4911851406652807806

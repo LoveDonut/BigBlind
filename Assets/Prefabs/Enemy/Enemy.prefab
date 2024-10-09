@@ -120,6 +120,7 @@ MonoBehaviour:
   _90BPM: {fileID: 0}
   isPlayer: 0
   _repeatWave: 1
+  _waveEffect: {fileID: 0}
 --- !u!114 &7702086288267926573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +152,7 @@ MonoBehaviour:
   _attackRange: 1
   _attackDelay: 1
   _readyBeatCount: 2
+  _bpmMultiplier: 1.5
   Weapon: {fileID: 4087812566467731332}
 --- !u!195 &4061514212785497342
 NavMeshAgent:

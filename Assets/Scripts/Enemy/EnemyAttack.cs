@@ -25,6 +25,7 @@ public class EnemyAttack : MonoBehaviour
     #endregion
 
     #region PublicVariables
+    public float _bpmMultiplier = 1.5f; // more bigger, more faster
     public GameObject Weapon;
     public int CurrentReadyBeatCount { get; private set; }
     #endregion

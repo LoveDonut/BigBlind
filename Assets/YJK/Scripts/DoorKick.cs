@@ -57,7 +57,7 @@ public class DoorKick : MonoBehaviour
         GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 3f);
         GetComponent<Collider2D>().isTrigger = true;
         _as.PlayOneShot(_smashDoor);
-        if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
+        if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
         if (Vector2.Distance(_left.position, kicker.position) < Vector2.Distance(_right.position, kicker.position))
         {
             _rb.velocity = (this.transform.position - _left.position) * _kickSpeed;
@@ -74,12 +74,12 @@ public class DoorKick : MonoBehaviour
         {
             _as.PlayOneShot(_enemyBurst);
             collision.gameObject.GetComponent<EnemyHealth>().GetDamaged(collision.transform.position - this.transform.position);
-            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
+            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
         }
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerHealth>().GetDamaged(collision.transform.position - this.transform.position);
-            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
+            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
             _sr.enabled = false;
             _collider.enabled = false;
             DelayedDestroy();
@@ -90,7 +90,7 @@ public class DoorKick : MonoBehaviour
             _sr.enabled = false;
             _collider.enabled = false;
             DelayedDestroy();
-            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
+            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
         }
     }
     IEnumerator DelayedDestroy()

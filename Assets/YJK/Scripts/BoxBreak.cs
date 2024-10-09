@@ -46,7 +46,7 @@ public class BoxBreak : MonoBehaviour, IDamage
     {
         _clipNum = Random.Range(0, _brokenBox.Length);
         _as.PlayOneShot(_brokenBox[_clipNum]);
-        if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
+        if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
         _spriteRenderer.enabled = false;
         _collider.enabled = false;
         GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;

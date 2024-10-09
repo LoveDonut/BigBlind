@@ -93,6 +93,7 @@ namespace EnemyState
         public override void EnterState(GameObject enemy)
         {
             _enemyMovement = enemy.GetComponent<EnemyMovement>();
+
             if (_enemyMovement == null) return;
 
             // play ready sound
@@ -100,6 +101,14 @@ namespace EnemyState
             {
                 _enemyMovement.CalcSound_Direction_Distance();
                 _enemyMovement.AudioSource.PlayOneShot(_enemyAttack._readySFX);
+
+                // change BPM
+                WaveManager waveManager;
+                if (enemy.TryGetComponent(out waveManager))
+                {
+                    waveManager.BPM *= _enemyAttack._bpmMultiplier;
+                    Debug.Log("BPM UP!");
+                }
             }
         }
 
@@ -149,6 +158,14 @@ namespace EnemyState
                     _enemyMovement.CalcSound_Direction_Distance();
                     _enemyMovement.AudioSource.PlayOneShot(_enemyAttack._attackSFX);
                 }
+
+                // recover BPM
+                WaveManager waveManager;
+                if (enemy.TryGetComponent(out waveManager))
+                {
+                    waveManager.BPM /= _enemyAttack._bpmMultiplier;
+                    Debug.Log("BPM DOWN!");
+                }
             }
         }
 
@@ -177,6 +194,14 @@ namespace EnemyState
                     shortWeapon.EndAttack();
                 }
             }
+
+            //// recover BPM
+            //WaveManager waveManager;
+            //if (enemy.TryGetComponent(out waveManager))
+            //{
+            //    waveManager.BPM /= _enemyAttack._bpmMultiplier;
+            //    Debug.Log("BPM DOWN!");
+            //}
         }
     }
 }

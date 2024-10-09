@@ -47,7 +47,7 @@ public class GlassBreak : MonoBehaviour, IDamage
     {
         _clipNum = Random.Range(0, _brokenGlass.Length);
         _as.PlayOneShot(_brokenGlass[_clipNum]);
-        if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().Spawn_Wave();
+        if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
         _spriteRenderer.enabled = false;
         _collider.enabled = false;
         GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;
