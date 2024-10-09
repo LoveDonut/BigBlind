@@ -15,7 +15,8 @@ public class SoundRayWave : MonoBehaviour
     [SerializeField] bool _isPlayerWave;
     private Vector2 rayDirection = Vector2.zero;
 
-    [SerializeField] private float maxSegmentDistance = 1f; // New variable for max distance between segments
+    [SerializeField] float linewidth = .2f;
+    [SerializeField] float maxSegmentDistance = 1f; // New variable for max distance between segments
 
 
     Material[] _waveMaterials;
@@ -34,10 +35,10 @@ public class SoundRayWave : MonoBehaviour
                 lineObj.transform.SetParent(transform);
                 LineRenderer lr = lineObj.AddComponent<LineRenderer>();
 
+                lr.startWidth = linewidth;
                 lr.material = _waveMaterials[0];
                 lr.positionCount = 2;
                 lr.useWorldSpace = true;
-                lr.startWidth = lr.endWidth = 0.1f;
                 lineRenderers[i] = lr;
             }
         }

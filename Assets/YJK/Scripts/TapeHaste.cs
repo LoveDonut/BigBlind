@@ -29,6 +29,7 @@ public class TapeHaste : MonoBehaviour
             _player.GetComponent<WaveManager>().WaveColor = _hasteColor;
 
             // active audio spectrum
+            Direction.Instance.ShowAudioSpectrum();
 
             // Remove these lines if music pitch isn't changed
             _player.GetComponent<WaveManager>().BPM *= _mult;
@@ -45,7 +46,7 @@ public class TapeHaste : MonoBehaviour
     void ResetToNormal()
     {
 
-
+        Direction.Instance.HideAudioSpectrum();
 
         _player.GetComponent<WaveManager>().WaveColor = _normalColor;
 
