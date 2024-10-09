@@ -778,6 +778,7 @@ MonoBehaviour:
   _acceleration: 50
   _deceleration: 20
   _maxSpeed: 7.5
+  _stoppingThreshold: 0.1
   HeartBeat: {fileID: 8109789852779394927}
   Beat: {fileID: 6756703532751236850}
   IsMovable: 0
@@ -894,8 +895,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitTransform: {fileID: 790458493254983880}
-  _shortAttackCoolTime: 1
   _hitRadius: 0.8
+  _tackleSpeed: 15
+  _shortAttackCoolTime: 1
+  _slowDownDuration: 5
+  _slowDownOffset: 0.2
+  CanAttack: 0
+  ShortAttackDuration: 0.5
 --- !u!50 &1534208878423213486
 Rigidbody2D:
   serializedVersion: 4
