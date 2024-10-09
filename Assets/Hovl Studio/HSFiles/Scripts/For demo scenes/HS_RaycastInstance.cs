@@ -5,10 +5,10 @@ using UnityEngine;
 public class HS_RaycastInstance : MonoBehaviour
 {
     public Camera Cam;
-    public UnityEngine.GameObject[] Prefabs;
+    public GameObject[] Prefabs;
     private int Prefab;
     private Ray RayMouse;
-    private UnityEngine.GameObject Instance;
+    private GameObject Instance;
     private float windowDpi;
 
     //Double-click protection

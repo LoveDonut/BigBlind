@@ -7,8 +7,8 @@ public class PlayerShoot : MonoBehaviour
 {
     #region References
     [Header("References")]
-    [SerializeField] UnityEngine.GameObject _bulletPrefab;
-    [SerializeField] UnityEngine.GameObject _handCannonWave;
+    [SerializeField] GameObject _bulletPrefab;
+    [SerializeField] GameObject _handCannonWave;
     #endregion
 
     #region PrivateVariables
@@ -92,7 +92,7 @@ public class PlayerShoot : MonoBehaviour
         CameraShake.Instance.shakeCamera(7f, .1f);
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
-        UnityEngine.GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized * 0.6f, Quaternion.LookRotation(aimPos.normalized));
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized * 0.6f, Quaternion.LookRotation(aimPos.normalized));
         bullet.GetComponent<ProjectileMover2D>().speed = _bulletSpeed;
         bullet.GetComponent<ProjectileMover2D>().aimPos = aimPos;
         Destroy(bullet, 3f);

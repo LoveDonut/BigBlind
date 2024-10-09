@@ -5,25 +5,25 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] UnityEngine.GameObject _objectPrefab;
+    [SerializeField] GameObject _objectPrefab;
     [SerializeField] int _poolSize = 10;
-    [SerializeField] List<UnityEngine.GameObject> _poolObjects;
+    [SerializeField] List<GameObject> _poolObjects;
 
     void Start()
     {
-        _poolObjects = new List<UnityEngine.GameObject>();
+        _poolObjects = new List<GameObject>();
         
         for (int i = 0; i < _poolSize; i++)
         {
-            UnityEngine.GameObject obj = Instantiate(_objectPrefab);
+            GameObject obj = Instantiate(_objectPrefab);
             obj.SetActive(false); 
             _poolObjects.Add(obj);
         }
     }
 
-    public UnityEngine.GameObject GetObject()
+    public GameObject GetObject()
     {
-        foreach (UnityEngine.GameObject obj in _poolObjects)
+        foreach (GameObject obj in _poolObjects)
         {
             if (!obj.activeInHierarchy)
             {
@@ -33,14 +33,14 @@ public class ObjectPool : MonoBehaviour
         }
 
 
-        UnityEngine.GameObject newObj = Instantiate(_objectPrefab);
+        GameObject newObj = Instantiate(_objectPrefab);
         newObj.SetActive(true);
         _poolObjects.Add(newObj);
         return newObj;
     }
 
    
-    public void ReturnObject(UnityEngine.GameObject obj)
+    public void ReturnObject(GameObject obj)
     {
         obj.SetActive(false); 
     }

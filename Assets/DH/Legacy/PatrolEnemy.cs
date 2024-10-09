@@ -18,7 +18,7 @@ public class PatrolEnemy : MonoBehaviour
     NavMeshAgent _agent;
     PlayerMovement _movement;
 
-    [SerializeField] UnityEngine.GameObject prefab;
+    [SerializeField] GameObject prefab;
     bool already_Detected;
     // enemy gets back starting point after arriving end point
     int currentPathIndex;

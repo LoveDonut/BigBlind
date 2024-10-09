@@ -30,7 +30,7 @@ public class BloodEffect : MonoBehaviour
 
     public void InstantiateBloodEffect(Vector2 pos, float rotationZ = 0, float scale = 1f)
     {
-        UnityEngine.GameObject bloodObj = _bloodEffectPool.GetObject();
+        GameObject bloodObj = _bloodEffectPool.GetObject();
         SpriteRenderer bloodObjSr = bloodObj.GetComponent<SpriteRenderer>();
 
         bloodObj.transform.position = pos;
@@ -43,7 +43,7 @@ public class BloodEffect : MonoBehaviour
         bloodObjSr.color = _randomColor;
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(bloodObj.transform.DOScale(UnityEngine.Random.Range(scale/2, scale), _createDuration).SetEase(Ease.InExpo));
+        sequence.Append(bloodObj.transform.DOScale(Random.Range(scale/2, scale), _createDuration).SetEase(Ease.InExpo));
         if (!NeverDelete)
         {
             sequence.AppendInterval(_maintainDuration);

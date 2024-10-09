@@ -7,14 +7,14 @@ public class TapeHaste : MonoBehaviour
     [SerializeField] float _mult = 1.5f;
     [SerializeField] float _duration = 10f;
     [SerializeField] Color _hasteColor = Color.red;
-    private UnityEngine.GameObject _player;
+    private GameObject _player;
     private SpriteRenderer _spriteRenderer;
     private Collider2D _collider;
     private Color _normalColor;
 
     private void Start()
     {
-        _player = UnityEngine.GameObject.Find("Player");
+        _player = GameObject.Find("Player");
         _normalColor = _player.GetComponent<WaveManager>().WaveColor;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();

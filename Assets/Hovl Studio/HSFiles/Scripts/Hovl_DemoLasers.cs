@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class Hovl_DemoLasers : MonoBehaviour
 {
-    public UnityEngine.GameObject FirePoint;
+    public GameObject FirePoint;
     public Camera Cam;
     public float MaxLength;
-    public UnityEngine.GameObject[] Prefabs;
+    public GameObject[] Prefabs;
 
     private Ray RayMouse;
     private Vector3 direction;
@@ -19,7 +19,7 @@ public class Hovl_DemoLasers : MonoBehaviour
     private float windowDpi;
 
     private int Prefab;
-    private UnityEngine.GameObject Instance;
+    private GameObject Instance;
     private Hovl_Laser LaserScript;
     private Hovl_Laser2 LaserScript2;
 
@@ -116,7 +116,7 @@ public class Hovl_DemoLasers : MonoBehaviour
     }
   
     //To rotate fire point
-    void RotateToMouseDirection (UnityEngine.GameObject obj, Vector3 destination)
+    void RotateToMouseDirection (GameObject obj, Vector3 destination)
     {
         direction = destination - obj.transform.position;
         rotation = Quaternion.LookRotation(direction);     

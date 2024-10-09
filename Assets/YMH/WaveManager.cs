@@ -6,7 +6,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
 
-    [SerializeField] UnityEngine.GameObject _waveObject;
+    [SerializeField] GameObject _waveObject;
     public float BPM = 90;
     public float DestroyTime = .5f;
     public float CannonDestroyTime = .5f;
@@ -17,7 +17,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] float _blockAlphaAmount = 2;
     [SerializeField] float _distanceFadeNumerator = 3;
 
-    UnityEngine.GameObject _wave;
+    GameObject _wave;
     EnemyAttack _enemyAttack;
     EnemyMovement _enemyMovement;
     Color _colorBefore;
@@ -28,7 +28,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] bool isPlayer;
     [SerializeField] bool _repeatWave = true;
 
-    private UnityEngine.GameObject _player;
+    private GameObject _player;
 
     float _dist;
 
@@ -51,7 +51,7 @@ public class WaveManager : MonoBehaviour
 
         if (!isPlayer)
         {
-            _player = UnityEngine.GameObject.FindGameObjectWithTag("Player");
+            _player = GameObject.FindGameObjectWithTag("Player");
         }
         if (_repeatWave)
         {

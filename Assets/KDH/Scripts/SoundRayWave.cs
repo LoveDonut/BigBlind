@@ -19,7 +19,7 @@ public class SoundRayWave : MonoBehaviour
 
     [SerializeField] bool _isPlayerWave;
 
-    List<UnityEngine.GameObject> _contactedEnemy = new List<UnityEngine.GameObject>();
+    List<GameObject> _contactedEnemy = new List<GameObject>();
     RaycastHit2D _enemyDetect;
 
     float _angleStep, _angle;

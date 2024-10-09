@@ -12,8 +12,8 @@ public class Direction : MonoBehaviour
     public static Direction Instance { get; private set; }
 
     [Header("Direction_UI")]
-    [SerializeField] UnityEngine.GameObject _flash;
-    [SerializeField] UnityEngine.GameObject _gameOverPanel;
+    [SerializeField] GameObject _flash;
+    [SerializeField] GameObject _gameOverPanel;
 
     Canvas _canvas;
     [SerializeField] RectTransform _crossHair;

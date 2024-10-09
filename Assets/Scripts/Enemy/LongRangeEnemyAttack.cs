@@ -5,7 +5,7 @@ using UnityEngine;
 // made by KimDaehui
 public class LongRangeEnemyAttack : EnemyAttack
 {
-    [SerializeField] UnityEngine.GameObject _bulletPrefab;
+    [SerializeField] GameObject _bulletPrefab;
     float _bulletRadius;
     protected override void Start()
     {
@@ -22,7 +22,7 @@ public class LongRangeEnemyAttack : EnemyAttack
     {
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
-        UnityEngine.GameObject bullet = Instantiate(_bulletPrefab, transform.position + (Vector3)GetdirectionToPlayer(),
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + (Vector3)GetdirectionToPlayer(),
             Quaternion.LookRotation(GetdirectionToPlayer().normalized));
 
         Destroy(bullet, 3f);

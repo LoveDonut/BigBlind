@@ -8,8 +8,8 @@ public class Hovl_Laser2 : MonoBehaviour
 {
     public float laserScale = 1;
     public Color laserColor = new Vector4(1,1,1,1);
-    public UnityEngine.GameObject HitEffect;
-    public UnityEngine.GameObject FlashEffect;
+    public GameObject HitEffect;
+    public GameObject FlashEffect;
     public float HitOffset = 0;
 
     public float MaxLength;
