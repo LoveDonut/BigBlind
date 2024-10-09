@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 // made by KimDaehui
 
@@ -17,35 +18,52 @@ namespace PlayerState
         }
         public override void UpdateState(GameObject gameObject)
         {
-            if (_playerMovement != null)
-            {
+            if (_playerMovement == null) return;
 
-            }
+            _playerMovement.Move();
         }
 
         public override void ExitState(GameObject gameObject)
         {
-            throw new System.NotImplementedException();
         }
-
-
     }
 
     public class ShortAttackState : StateMachine
     {
+        PlayerShortAttack _shortAttack;
+        Animator _animator;
+        Vector2 _tackleDirection;
+        float _tackleTime;
+
         public override void EnterState(GameObject gameObject)
         {
-            throw new System.NotImplementedException();
+            _shortAttack = gameObject.GetComponent<PlayerShortAttack>();
+            if(gameObject.TryGetComponent<Animator>(out  _animator))
+            {
+                _animator.SetTrigger("DoShortAttack");
+            }
+            _shortAttack.CanAttack = false;
+            _tackleDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
+            _tackleTime = _shortAttack.TackleElapsedTime;
+
+            Rigidbody2D rigidbody;
+            if(gameObject.TryGetComponent<Rigidbody2D>(out rigidbody))
+            {
+                rigidbody.velocity = _tackleDirection * rigidbody.velocity.magnitude;
+            }
+        }
+        public override void UpdateState(GameObject gameObject)
+        {
+            if (_shortAttack == null) return;
+
+            _shortAttack.AttackCollideWithEnemy();
+            _shortAttack.Tackle(_tackleDirection);
         }
 
         public override void ExitState(GameObject gameObject)
         {
-            throw new System.NotImplementedException();
+            _shortAttack.TackleElapsedTime = _tackleTime;
         }
 
-        public override void UpdateState(GameObject gameObject)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
