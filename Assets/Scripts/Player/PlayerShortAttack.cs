@@ -20,6 +20,8 @@ public class PlayerShortAttack : MonoBehaviour
     [SerializeField] float _tackleSpeed = 15f;
     [SerializeField] float _shortAttackCoolTime = 1f;
 
+    [Header("Slowmo")]
+    [SerializeField] float _slowDownDelay = 0.2f;
     [SerializeField] float _slowDownDuration = 2f;
     [SerializeField] float _slowDownOffset = 0.2f;
 
@@ -105,7 +107,7 @@ public class PlayerShortAttack : MonoBehaviour
         if (hit != null && hit.GetComponent<DoorKick>() != null && !hit.GetComponent<Collider2D>().isTrigger)
         {
             hit.GetComponent<DoorKick>().DoorKicked(transform);
-            TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
+            Invoke("DelayedSlowMotion", _slowDownDelay);
         }
 
         // Parry
@@ -113,6 +115,11 @@ public class PlayerShortAttack : MonoBehaviour
         {
             Destroy(hit.gameObject);
         }
+    }
+
+    void DelayedSlowMotion()
+    {
+        TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
     }
 
     public void Tackle(Vector2 tackleDirection)
