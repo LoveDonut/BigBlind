@@ -774,8 +774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e31e14c591763c489380db0533cff74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _acceleration: 50
-  _deceleration: 20
+  _acceleration: 500
+  _deceleration: 500
   _maxSpeed: 7.5
   _stoppingThreshold: 0.1
   HeartBeat: {fileID: 8109789852779394927}
@@ -852,15 +852,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 1079946990457772, guid: 6ec1f26d36ba83f4591e1b4b045b9518, type: 3}
   _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
-  _RPM: 200
+  _RPM: 160
   _maxAmmo: 6
-  _reserveAmmo: 30
+  _reserveAmmo: 12
   _infiniteReserve: 0
   _reloadTime: 0.8888889
   _reloadAll: 0
   _cannonColor: {r: 0.9882353, g: 1, b: 0, a: 1}
   _destroyTime: 0.2
-  _bulletSpeed: 60
+  _bulletSpeed: 240
   _handCannon: {fileID: 6528999214826757870}
   _handCannonSound: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
   _emptySound: {fileID: 8300000, guid: af056953c817e92448e70d791acb333f, type: 3}
