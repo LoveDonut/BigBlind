@@ -46,10 +46,11 @@ public class WaveManager : MonoBehaviour
         {
             StartWaveByBeat();
         }
-        else
-        {
-            TimeManager.Instance._waveManagers.Enqueue(this);
-        }
+    }
+
+    public void EnqueueWaveForPlayingByBeat()
+    {
+        TimeManager.Instance._waveManagers.Enqueue(this);
     }
 
     public void StartWaveByBeat()

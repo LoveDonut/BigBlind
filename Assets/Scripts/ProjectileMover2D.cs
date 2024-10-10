@@ -55,7 +55,7 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     void OnCollisionEnter2D(Collision2D collision)
     {
-        IDamage damagable = collision.gameObject.GetComponent<IDamage>();
+        IDamage damagable = collision.gameObject.GetComponentInParent<IDamage>();
 
         // added by KimDaehui
         if (damagable != null && !IsParried)

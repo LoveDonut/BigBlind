@@ -7,6 +7,43 @@ using UnityEngine.AI;
 
 namespace EnemyState
 {
+    public class SleepState : StateMachine
+    {
+        EnemyMovement _enemyMovement;
+        public override void EnterState(GameObject enemy)
+        {
+            _enemyMovement = enemy.GetComponent<EnemyMovement>();
+        }
+        public override void UpdateState(GameObject enemy)
+        {
+            if (_enemyMovement.IsActive)
+            {
+                SetActiveState();
+            }
+        }
+        public override void ExitState(GameObject enemy)
+        {
+            WaveManager waveManager;
+
+            if(enemy.TryGetComponent<WaveManager>(out  waveManager))
+            {
+                waveManager.EnqueueWaveForPlayingByBeat();
+            }
+        }
+        void SetActiveState()
+        {
+            EnemyPatrol enemyPatrol;
+
+            if (_enemyMovement.TryGetComponent<EnemyPatrol>(out enemyPatrol))
+            {
+                _enemyMovement.CurrentState.SwitchState(_enemyMovement.gameObject, ref _enemyMovement.CurrentState, new PatrolState());
+            }
+            else
+            {
+                _enemyMovement.CurrentState.SwitchState(_enemyMovement.gameObject, ref _enemyMovement.CurrentState, new ChaseState());
+            }
+        }
+    }
     public class PatrolState : StateMachine
     {
         EnemyPatrol _enemyPatrol;
@@ -45,7 +82,6 @@ namespace EnemyState
         {
         }
     }
-
     public class ChaseState : StateMachine
     {
         EnemyAttack _enemyAttack;
