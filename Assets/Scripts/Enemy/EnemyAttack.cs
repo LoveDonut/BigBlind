@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using EnemyState;
 
-public class EnemyAttack : MonoBehaviour
+public class EnemyAttack : MonoBehaviour, ILightable
 {
     #region References
     [Header("References")]
@@ -28,6 +28,7 @@ public class EnemyAttack : MonoBehaviour
     public float _bpmMultiplier = 1.5f; // more bigger, more faster
     public GameObject Weapon;
     public int CurrentReadyBeatCount { get; private set; }
+    public bool IsLighted { get; set; }
     #endregion
 
     #region PrivateVariables
@@ -38,23 +39,14 @@ public class EnemyAttack : MonoBehaviour
     {
         _playerTransform = FindObjectOfType<PlayerMovement>().transform;
     }
-
-    protected virtual void Start()
-    {
-        CurrentReadyBeatCount = _readyBeatCount;
-    }
-
     #endregion
 
     #region PublicMethods
     // default : close-range
-    public virtual void ChangeToAttackStateAccordingToBeat()
-    {
-
-    }
+    public virtual void ResetReadyBeatCount() => CurrentReadyBeatCount = IsLighted ? 0 : _readyBeatCount;
     public virtual void StartAttack()
     {
-        CurrentReadyBeatCount = _readyBeatCount;
+        ResetReadyBeatCount();
         AttackState attackState = new AttackState();
         EnemyMovement enemyMovement;
 
@@ -96,7 +88,7 @@ public class EnemyAttack : MonoBehaviour
         return (_playerTransform.position - transform.position).normalized;
     }
 
-    public bool IsReadyToAttack() => --CurrentReadyBeatCount <= 0;
+    public bool IsReadyToAttack() => CurrentReadyBeatCount-- <= 0;
     #endregion
 
 }

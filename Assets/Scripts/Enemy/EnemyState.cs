@@ -23,13 +23,26 @@ namespace EnemyState
         }
         public override void ExitState(GameObject enemy)
         {
+            InitWave(enemy);
+        }
+
+        private static void InitWave(GameObject enemy)
+        {
             WaveManager waveManager;
 
-            if(enemy.TryGetComponent<WaveManager>(out  waveManager))
+            if (enemy.TryGetComponent<WaveManager>(out waveManager))
             {
                 waveManager.EnqueueWaveForPlayingByBeat();
             }
+
+            EnemyAttack enemyAttack;
+
+            if (enemy.TryGetComponent<EnemyAttack>(out enemyAttack))
+            {
+                enemyAttack.ResetReadyBeatCount();
+            }
         }
+
         void SetActiveState()
         {
             EnemyPatrol enemyPatrol;
@@ -140,7 +153,7 @@ namespace EnemyState
                 if (enemy.TryGetComponent(out waveManager))
                 {
                     waveManager.BPM *= _enemyAttack._bpmMultiplier;
-                    Debug.Log("BPM UP!");
+//                    Debug.Log("BPM UP!");
                 }
                 SoundManager.Instance.PlaySound(_enemyAttack._readySFX, _enemyAttack.transform.position);
             }
@@ -197,7 +210,7 @@ namespace EnemyState
                 if (enemy.TryGetComponent(out waveManager))
                 {
                     waveManager.BPM /= _enemyAttack._bpmMultiplier;
-                    Debug.Log("BPM DOWN!");
+//                    Debug.Log("BPM DOWN!");
                 }
             }
         }

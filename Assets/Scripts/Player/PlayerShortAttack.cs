@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerState;
 using UnityEngine.Windows;
+using UnityEngineInternal;
 
 // made by KimDaehui
 public class PlayerShortAttack : MonoBehaviour
@@ -95,10 +96,10 @@ public class PlayerShortAttack : MonoBehaviour
     public void CollideWithEnemy()
     {
         Collider2D hit = GetHittedColliderAtBox();
-        IDamage damagable;
+        IDamage damagable = hit != null ? hit.GetComponentInParent<IDamage>() : null;
 
         // Attack
-        if (hit != null && hit.gameObject != gameObject && hit.TryGetComponent<IDamage>(out damagable))
+        if (hit != null && hit.gameObject != gameObject && damagable != null)
         {
             damagable.GetDamaged((_hitTransform.position - transform.position).normalized);
             SoundManager.Instance.PlaySound(_shortAttackSuccessSFX, Vector2.zero);
