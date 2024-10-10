@@ -56,30 +56,39 @@ public class WaveManager : MonoBehaviour
         }
         if (_repeatWave)
         {
-            InvokeRepeating("Spawn_Wave", 0, 60 / BPM);
+            SpawnWave(true);
         }
         _colorBefore = WaveAttackColor;
     }
 
-    public void Spawn_Wave()
+    public void SpawnWave(bool isRepeat = false)
     {
-        if (isPlayer && CompareTag("Player")) _waveEffect.GetComponent<Animator>().Play("WaveEffect");
+        StartCoroutine(SpawnWaveCoroutine(isRepeat));
+    }
 
-        _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
-
-        _dist = isPlayer ? 1 : _distanceFadeNumerator / Vector2.Distance(transform.position, _player.transform.position);
-        _dist = _dist >= 1 ? 1 : _dist;
-
-        WaveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, (isPlayer || (!isPlayer && _isReadyAttack)) ? 1 : (IsBlockedByWalls() ? _dist / _blockAlphaAmount : _dist));
-        _wave.GetComponent<SoundRayWave>().WaveColor = WaveColor;
-        _wave.GetComponent<SoundRayWave>().InitWave();
-        _wave.GetComponent<SoundRayWave>().Destroy_Time = DestroyTime;
-        ChamgeWaveColorAccordingToState();
-        if(CompareTag("Enemy"))
+    IEnumerator SpawnWaveCoroutine(bool isRepeat = false)
+    {
+        do
         {
-            GetComponent<EnemyWaveOnBlood>().WaveOnBlood();
-        }
-        Destroy(_wave, DestroyTime);
+            if (isPlayer && CompareTag("Player")) _waveEffect.GetComponent<Animator>().Play("WaveEffect");
+
+            _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
+
+            _dist = isPlayer ? 1 : _distanceFadeNumerator / Vector2.Distance(transform.position, _player.transform.position);
+            _dist = _dist >= 1 ? 1 : _dist;
+
+            WaveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, (isPlayer || (!isPlayer && _isReadyAttack)) ? 1 : (IsBlockedByWalls() ? _dist / _blockAlphaAmount : _dist));
+            _wave.GetComponent<SoundRayWave>().WaveColor = WaveColor;
+            _wave.GetComponent<SoundRayWave>().InitWave();
+            _wave.GetComponent<SoundRayWave>().Destroy_Time = DestroyTime;
+            ChamgeWaveColorAccordingToState();
+            if (CompareTag("Enemy"))
+            {
+                GetComponent<EnemyWaveOnBlood>().WaveOnBlood();
+            }
+            Destroy(_wave, DestroyTime);
+            yield return new WaitForSeconds(60 / BPM);
+        } while (isRepeat);
     }
 
     private void ChamgeWaveColorAccordingToState()

@@ -93,13 +93,20 @@ namespace EnemyState
         public override void EnterState(GameObject enemy)
         {
             _enemyMovement = enemy.GetComponent<EnemyMovement>();
+
             if (_enemyMovement == null) return;
 
             // play ready sound
             if (enemy.TryGetComponent<EnemyAttack>(out _enemyAttack) && _enemyAttack._readySFX != null)
             {
-                _enemyMovement.CalcSound_Direction_Distance();
-                _enemyMovement.AudioSource.PlayOneShot(_enemyAttack._readySFX);
+                // change BPM
+                WaveManager waveManager;
+                if (enemy.TryGetComponent(out waveManager))
+                {
+                    waveManager.BPM *= _enemyAttack._bpmMultiplier;
+                    Debug.Log("BPM UP!");
+                }
+                SoundManager.Instance.PlaySound(_enemyAttack._readySFX, _enemyAttack.transform.position);
             }
         }
 
@@ -146,8 +153,15 @@ namespace EnemyState
                 // player attack sound
                 if (_enemyAttack._attackSFX != null)
                 {
-                    _enemyMovement.CalcSound_Direction_Distance();
-                    _enemyMovement.AudioSource.PlayOneShot(_enemyAttack._attackSFX);
+                    SoundManager.Instance.PlaySound(_enemyAttack._attackSFX, _enemyAttack.transform.position);
+                }
+
+                // recover BPM
+                WaveManager waveManager;
+                if (enemy.TryGetComponent(out waveManager))
+                {
+                    waveManager.BPM /= _enemyAttack._bpmMultiplier;
+                    Debug.Log("BPM DOWN!");
                 }
             }
         }
@@ -177,6 +191,14 @@ namespace EnemyState
                     shortWeapon.EndAttack();
                 }
             }
+
+            //// recover BPM
+            //WaveManager waveManager;
+            //if (enemy.TryGetComponent(out waveManager))
+            //{
+            //    waveManager.BPM /= _enemyAttack._bpmMultiplier;
+            //    Debug.Log("BPM DOWN!");
+            //}
         }
     }
 }
