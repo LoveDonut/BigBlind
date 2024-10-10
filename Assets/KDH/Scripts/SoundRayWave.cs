@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SoundRayWave : MonoBehaviour
@@ -21,12 +22,14 @@ public class SoundRayWave : MonoBehaviour
 
     Material[] _waveMaterials;
 
+    public bool isWaveEffect = false;
+
     void Awake()
     {
         wavePositions = new Vector3[segments + 1]; // +1 to close the loop
         isPositionFixed = new bool[segments];
         _waveMaterials = GetComponent<LineRenderer>().materials;
-        if (_isPlayerWave)
+        if (_isPlayerWave && !isWaveEffect)
         {
             lineRenderers = new LineRenderer[segments];
             for (int i = 0; i < segments; i++)
@@ -37,6 +40,7 @@ public class SoundRayWave : MonoBehaviour
 
                 lr.startWidth = linewidth;
                 lr.material = _waveMaterials[0];
+                _waveMaterials[1].SetColor("Tint", WaveColor);
                 lr.positionCount = 2;
                 lr.useWorldSpace = true;
                 lineRenderers[i] = lr;
@@ -54,7 +58,7 @@ public class SoundRayWave : MonoBehaviour
 
     public void InitWave()
     {
-        if (_isPlayerWave)
+        if (_isPlayerWave && !isWaveEffect)
         {
             for (int i = 0; i < segments; i++)
             {
@@ -86,7 +90,7 @@ public class SoundRayWave : MonoBehaviour
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, radius, LayerMask.GetMask("Wall", "Glass", "Box"));
 
-                if (_isPlayerWave)
+                if (_isPlayerWave && !isWaveEffect)
                 {
                     RaycastHit2D enemyHit = Physics2D.Raycast(transform.position, rayDirection, radius, LayerMask.GetMask("Item"));
                     if (enemyHit.collider != null)
@@ -95,7 +99,7 @@ public class SoundRayWave : MonoBehaviour
                     }
                 }
 
-                if (hit.collider != null)
+                if (hit.collider != null && !isWaveEffect)
                 {
                     if (hit.collider.CompareTag("Obstacle"))
                     {
@@ -117,7 +121,7 @@ public class SoundRayWave : MonoBehaviour
         wavePositions[segments] = wavePositions[0];
 
         // Update LineRenderer positions
-        if (_isPlayerWave)
+        if (_isPlayerWave && !isWaveEffect)
         {
             for (int i = 0; i < segments; i++)
             {
@@ -144,7 +148,7 @@ public class SoundRayWave : MonoBehaviour
         float alpha = WaveColor.a * (1 - (t_Destroy / Destroy_Time));
         Color waveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
 
-        if (_isPlayerWave)
+        if (_isPlayerWave && !isWaveEffect)
         {
             for (int i = 0; i < segments; i++)
             {

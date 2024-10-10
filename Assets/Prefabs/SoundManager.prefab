@@ -432,10 +432,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa4aafd5fb9be540873e75427bee8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BPM: 135
   audioSources:
   - {fileID: 7170171184417324434}
   - {fileID: 2455144901727045759}
   - {fileID: 5267874251019301780}
   - {fileID: 4370619382221043312}
-  stereoPanAmount: 10
-  finalSoundNumerator: 5
+  stereoPanAmount: -7
+  finalSoundNumerator: 7.5

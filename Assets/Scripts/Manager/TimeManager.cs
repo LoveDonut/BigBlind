@@ -22,6 +22,7 @@ public class TimeManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            if(SoundManager.Instance != null) BPM = SoundManager.Instance.BPM;
         }
         else
         {

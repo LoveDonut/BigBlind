@@ -7,7 +7,11 @@ public class WaveManager : MonoBehaviour
 {
 
     [SerializeField] GameObject _waveObject;
+
+    [HideInInspector]
     public float BPM = 90;
+
+    [SerializeField] float _bpmMultiplier = 1f;
     public float DestroyTime = .5f;
     public float CannonDestroyTime = .5f;
     public Color WaveColor;
@@ -27,16 +31,17 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] bool isPlayer;
     [SerializeField] bool _repeatWave = true;
-    [SerializeField] GameObject _waveEffect;
 
     private GameObject _player;
 
     float _dist;
 
     bool _isReadyAttack;
+    [SerializeField] GameObject _waveEffect;
 
     void Start()
     {
+        BPM = SoundManager.Instance.BPM * _bpmMultiplier;
         if (!CompareTag("Enemy"))
         {
             StartWaveByBeat();
@@ -70,7 +75,11 @@ public class WaveManager : MonoBehaviour
     {
         do
         {
-            if (isPlayer && CompareTag("Player")) _waveEffect.GetComponent<Animator>().Play("WaveEffect");
+            if (isPlayer && CompareTag("Player"))
+            {
+                var wave = Instantiate(_waveEffect, transform.position, Quaternion.identity);
+                wave.GetComponent<SoundRayWave>().WaveColor = WaveColor;
+            }
 
             _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
 
