@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   _blockAlphaAmount: 2
   _distanceFadeNumerator: 3
   _90BPM: {fileID: 0}
-  isPlayer: 1
+  isPlayer: 0
   _repeatWave: 0
   _waveEffect: {fileID: 0}
 --- !u!114 &3828413859361862506
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 2493002302256899092}
-  _instancedMaterial: {fileID: 0}
+  _instancedMaterial: {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
   _duration: 1
-  _color: {r: 0.39607847, g: 0.18431373, b: 0.003921569, a: 1}
+  _color: {r: 0.39607847, g: 0.18431373, b: 0.003921569, a: 0}
   _offset: 180
