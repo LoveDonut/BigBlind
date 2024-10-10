@@ -900,6 +900,7 @@ MonoBehaviour:
   _hitSize: {x: 1.5, y: 1}
   _tackleSpeed: 15
   _shortAttackCoolTime: 1
+  _slowDownDelay: 0.2
   _slowDownDuration: 2
   _slowDownOffset: 0.2
   _shortAttackSFX: {fileID: 8300000, guid: 3e333e82cd1ab1346b2b65ac93b0d03b, type: 3}
