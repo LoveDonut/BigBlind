@@ -61,6 +61,7 @@ namespace EnemyState
     {
         EnemyPatrol _enemyPatrol;
         EnemyMovement _enemyMovement;
+        WaveManager _waveManager;
         float _elapsedTime;
 
         public override void EnterState(GameObject enemy)
@@ -68,6 +69,12 @@ namespace EnemyState
             _enemyPatrol = enemy.GetComponent<EnemyPatrol>();
             _enemyMovement = enemy.GetComponent<EnemyMovement>();
             _elapsedTime = _enemyPatrol.GetWaitingTime();
+            _waveManager = enemy.GetComponent<WaveManager>();
+
+            if (_waveManager != null && _enemyPatrol != null)
+            {
+                _waveManager.BPM *= _enemyPatrol.PatrolBpmMultiplier;
+            }
         }
         public override void UpdateState(GameObject enemy)
         {
@@ -93,6 +100,10 @@ namespace EnemyState
         }
         public override void ExitState(GameObject enemy)
         {
+            if (_waveManager != null && _enemyPatrol != null)
+            {
+                _waveManager.BPM /= _enemyPatrol.PatrolBpmMultiplier;
+            }
         }
     }
     public class ChaseState : StateMachine
