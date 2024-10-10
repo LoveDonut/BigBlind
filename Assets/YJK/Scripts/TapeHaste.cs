@@ -7,6 +7,10 @@ public class TapeHaste : MonoBehaviour
     [SerializeField] float _mult = 1.5f;
     [SerializeField] float _duration = 10f;
     [SerializeField] Color _hasteColor = Color.red;
+
+    [SerializeField] AudioClip _defaultBGM;
+    [SerializeField] AudioClip _feverBGM;
+
     private GameObject _player;
     private SpriteRenderer _spriteRenderer;
     private Collider2D _collider;
@@ -14,6 +18,8 @@ public class TapeHaste : MonoBehaviour
 
     private void Start()
     {
+        _duration = _feverBGM.length;
+
         _player = GameObject.Find("Player");
         _normalColor = _player.GetComponent<WaveManager>().WaveColor;
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -33,8 +39,10 @@ public class TapeHaste : MonoBehaviour
 
             // Remove these lines if music pitch isn't changed
             _player.GetComponent<WaveManager>().BPM *= _mult;
-            _player.GetComponent<AudioSource>().pitch *= _mult;
-            _player.GetComponent<Animator>().speed *= _mult;
+            _player.GetComponent<AudioSource>().volume *= _mult;
+            _player.GetComponent<AudioSource>().clip = _feverBGM;
+            _player.GetComponent<AudioSource>().loop = false;
+            _player.GetComponent<AudioSource>().Play();
 
             _spriteRenderer.enabled = false;
             _collider.enabled = false;
@@ -51,9 +59,12 @@ public class TapeHaste : MonoBehaviour
         _player.GetComponent<WaveManager>().WaveColor = _normalColor;
 
         // Remove these lines if music pitch isn't changed
+        _player.GetComponent<AudioSource>().volume /= _mult;
         _player.GetComponent<WaveManager>().BPM /= _mult;
-        _player.GetComponent<AudioSource>().pitch /= _mult;
         _player.GetComponent<Animator>().speed /= _mult;
+        _player.GetComponent<AudioSource>().clip = _defaultBGM;
+        _player.GetComponent<AudioSource>().loop = true;
+        _player.GetComponent<AudioSource>().Play();
     }
 
     void DelayedDestroy()
