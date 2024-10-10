@@ -113,7 +113,11 @@ public class PlayerShortAttack : MonoBehaviour
         // Parry
         if(hit != null && hit.gameObject.CompareTag("Attack"))
         {
-            Destroy(hit.gameObject);
+            IParriable parriable;
+            if (hit.TryGetComponent<IParriable>(out parriable))
+            {
+                parriable.IsParried = true;
+            }
         }
     }
 
