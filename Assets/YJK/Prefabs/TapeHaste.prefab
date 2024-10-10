@@ -102,7 +102,9 @@ MonoBehaviour:
   _mult: 1.5
   _duration: 10
   _hasteColor: {r: 1, g: 0, b: 0, a: 1}
-  FeverBGM: {fileID: 8300000, guid: 7c6aabfc4a86ac54d8d0b5d6650bab34, type: 3}
+  _beatSwitchSFX: {fileID: 8300000, guid: 8affa05d6c3ada34ca292a2c89beeb8a, type: 3}
+  _defaultBGM: {fileID: 8300000, guid: ad7d50db9b3afaa4da1602f40d7e18db, type: 3}
+  _feverBGM: {fileID: 8300000, guid: 7c6aabfc4a86ac54d8d0b5d6650bab34, type: 3}
 --- !u!61 &6755648154986928034
 BoxCollider2D:
   m_ObjectHideFlags: 0
