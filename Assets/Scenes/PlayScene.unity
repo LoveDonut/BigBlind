@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 56834268}
-  _instancedMaterial: {fileID: 2039467869}
+  _instancedMaterial: {fileID: 2003003746}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -548,7 +548,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2039467869}
+  - {fileID: 2003003746}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6720,77 +6720,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!21 &101149959
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite-Lit-Default
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - ETC1_EXTERNAL_ALPHA
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 45
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &110159300
 GameObject:
   m_ObjectHideFlags: 0
@@ -6967,6 +6896,150 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d22447decbdd64b9264d36489b58eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!21 &126562328
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!21 &151880763
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &158710345
 GameObject:
   m_ObjectHideFlags: 0
@@ -7031,7 +7104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 158710350}
-  _instancedMaterial: {fileID: 860268422}
+  _instancedMaterial: {fileID: 1259827645}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -7100,7 +7173,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 860268422}
+  - {fileID: 1259827645}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7343,14 +7416,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TapeHaste
       objectReference: {fileID: 0}
-    - target: {fileID: 5908280480509257433, guid: 1e10eaf72a39cee44a1ac04eac687942, type: 3}
-      propertyPath: _feverBGM
-      value: 
-      objectReference: {fileID: 8300000, guid: 7c6aabfc4a86ac54d8d0b5d6650bab34, type: 3}
-    - target: {fileID: 5908280480509257433, guid: 1e10eaf72a39cee44a1ac04eac687942, type: 3}
-      propertyPath: _defaultBGM
-      value: 
-      objectReference: {fileID: 8300000, guid: 8ea387111ffd067488829483a78b666d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7674,19 +7739,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 5}
   m_EdgeRadius: 0
---- !u!21 &297853732
+--- !u!21 &303302905
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
+  m_Name: Sprite-Lit-Default
   m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - ETC1_EXTERNAL_ALPHA
   - _OUTLINEENABLED_ON
   - _OUTLINEMODE_GRADIENT
   - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
@@ -7725,14 +7791,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaThreshold: 0
-    - _Angle: 90
+    - _Angle: 45
     - _ConnectedAlpha: 0
     - _EnableExternalAlpha: 0
     - _OutlineEnabled: 1
     - _OutlineMode: 1
     - _OutlinePosition: 0
     - _OutlineShape: 0
-    - _OutlineSize: 33.09
     - _Thickness: 10
     - _TileMode: 0
     - _Weight: 0.5
@@ -7742,9 +7807,8 @@ Material:
     - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
     - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!1001 &305456292
 PrefabInstance:
@@ -7816,6 +7880,78 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5263252498553381721, guid: 10072571fd056c94493197151aee74c2, type: 3}
   m_PrefabInstance: {fileID: 305456292}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &321667618
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &339758818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7878,6 +8014,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6556709643246107273, guid: 898114edd2ecba94cac552647d7d085c, type: 3}
   m_PrefabInstance: {fileID: 339758818}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &350775859
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprite-Lit-Default
+  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - ETC1_EXTERNAL_ALPHA
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &354570901
 GameObject:
   m_ObjectHideFlags: 0
@@ -7942,7 +8126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 354570906}
-  _instancedMaterial: {fileID: 620503195}
+  _instancedMaterial: {fileID: 126562328}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -8011,7 +8195,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 620503195}
+  - {fileID: 126562328}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8043,6 +8227,78 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &415150205
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &422178881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8281,6 +8537,78 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!21 &439550635
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &443160616
 GameObject:
   m_ObjectHideFlags: 0
@@ -8483,78 +8811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c86408044143e4a8fccdc84abd6ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!21 &466711675
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &498398813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8827,6 +9083,78 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 4}
   m_EdgeRadius: 0
+--- !u!21 &559536073
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &563452806
 GameObject:
   m_ObjectHideFlags: 0
@@ -9228,7 +9556,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8325717187283891408, guid: e95fa7a354437204a8f1aad7c7843f3b, type: 3}
   m_PrefabInstance: {fileID: 588639328}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &620503195
+--- !u!21 &606014824
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -9299,6 +9627,54 @@ Material:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!21 &612897497
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprite-Lit-Default
+  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - ETC1_EXTERNAL_ALPHA
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!1001 &629044377
 PrefabInstance:
@@ -9366,54 +9742,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8325717187283891408, guid: e95fa7a354437204a8f1aad7c7843f3b, type: 3}
   m_PrefabInstance: {fileID: 629044377}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &638452597
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite-Lit-Default
-  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - ETC1_EXTERNAL_ALPHA
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &704094458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9476,150 +9804,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6556709643246107273, guid: 898114edd2ecba94cac552647d7d085c, type: 3}
   m_PrefabInstance: {fileID: 704094458}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &726847118
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
---- !u!21 &747818212
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &773424119
 GameObject:
   m_ObjectHideFlags: 0
@@ -9684,7 +9868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 773424124}
-  _instancedMaterial: {fileID: 1576387434}
+  _instancedMaterial: {fileID: 907752801}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -9753,7 +9937,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1576387434}
+  - {fileID: 907752801}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9921,126 +10105,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8325717187283891408, guid: e95fa7a354437204a8f1aad7c7843f3b, type: 3}
   m_PrefabInstance: {fileID: 845727347}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &860268422
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
---- !u!21 &861126684
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite-Lit-Default
-  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - ETC1_EXTERNAL_ALPHA
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &862826764
 GameObject:
   m_ObjectHideFlags: 0
@@ -10105,7 +10169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 862826769}
-  _instancedMaterial: {fileID: 747818212}
+  _instancedMaterial: {fileID: 909010859}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -10174,7 +10238,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 747818212}
+  - {fileID: 909010859}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10365,6 +10429,150 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8325717187283891408, guid: e95fa7a354437204a8f1aad7c7843f3b, type: 3}
   m_PrefabInstance: {fileID: 906526620}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &907752801
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!21 &909010859
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &932981917
 GameObject:
   m_ObjectHideFlags: 0
@@ -10429,7 +10637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 932981922}
-  _instancedMaterial: {fileID: 1767958459}
+  _instancedMaterial: {fileID: 1351990418}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -10498,7 +10706,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1767958459}
+  - {fileID: 1351990418}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10530,7 +10738,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!21 &1014417325
+--- !u!21 &936378970
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -10538,17 +10746,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sprite-Lit-Default
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
+  m_ValidKeywords:
   - ETC1_EXTERNAL_ALPHA
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -10560,10 +10763,6 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -10581,25 +10780,59 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 45
-    - _ConnectedAlpha: 0
     - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
+--- !u!21 &942211045
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprite-Lit-Default
+  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - ETC1_EXTERNAL_ALPHA
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!1001 &1017014550
 PrefabInstance:
@@ -10801,7 +11034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1036739365}
-  _instancedMaterial: {fileID: 1735046686}
+  _instancedMaterial: {fileID: 321667618}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -10870,7 +11103,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1735046686}
+  - {fileID: 321667618}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10902,6 +11135,77 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &1058752051
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprite-Lit-Default
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - ETC1_EXTERNAL_ALPHA
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 45
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1066357102
 GameObject:
   m_ObjectHideFlags: 0
@@ -11043,6 +11347,78 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6556709643246107273, guid: 898114edd2ecba94cac552647d7d085c, type: 3}
   m_PrefabInstance: {fileID: 1084574520}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1096185125
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &1103760830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11114,7 +11490,7 @@ PrefabInstance:
     - target: {fileID: 2493002302256899092, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1456052650}
+      objectReference: {fileID: 936378970}
     - target: {fileID: 3711706471307330857, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: isPlayer
       value: 0
@@ -11208,7 +11584,7 @@ PrefabInstance:
     - target: {fileID: 2493002302256899092, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 861126684}
+      objectReference: {fileID: 612897497}
     - target: {fileID: 3711706471307330857, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: isPlayer
       value: 0
@@ -11231,7 +11607,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2141874483975911523, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
   m_PrefabInstance: {fileID: 1103966431}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1160448128
+--- !u!21 &1142325722
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -11303,6 +11679,54 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
+--- !u!21 &1157356227
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprite-Lit-Default
+  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - ETC1_EXTERNAL_ALPHA
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1218422963
 GameObject:
   m_ObjectHideFlags: 0
@@ -11367,7 +11791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1218422968}
-  _instancedMaterial: {fileID: 1997038628}
+  _instancedMaterial: {fileID: 1281073444}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -11436,7 +11860,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1997038628}
+  - {fileID: 1281073444}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11628,7 +12052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1257219905}
-  _instancedMaterial: {fileID: 297853732}
+  _instancedMaterial: {fileID: 1984677629}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -11697,7 +12121,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 297853732}
+  - {fileID: 1984677629}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11729,6 +12153,78 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &1259827645
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &1268427345
 GameObject:
   m_ObjectHideFlags: 0
@@ -11774,6 +12270,78 @@ Transform:
   - {fileID: 97668457}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1281073444
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &1282475622
 GameObject:
   m_ObjectHideFlags: 0
@@ -11838,7 +12406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1282475627}
-  _instancedMaterial: {fileID: 1355076377}
+  _instancedMaterial: {fileID: 1916991518}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -11907,7 +12475,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1355076377}
+  - {fileID: 1916991518}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12099,78 +12667,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.5, y: 12.5}
   m_EdgeRadius: 0
---- !u!21 &1304916941
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &1320538580
 GameObject:
   m_ObjectHideFlags: 0
@@ -12327,7 +12823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1332111886}
-  _instancedMaterial: {fileID: 1304916941}
+  _instancedMaterial: {fileID: 151880763}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -12396,7 +12892,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1304916941}
+  - {fileID: 151880763}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12494,7 +12990,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5263252498553381721, guid: 10072571fd056c94493197151aee74c2, type: 3}
   m_PrefabInstance: {fileID: 1350349190}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1355076377
+--- !u!21 &1351990418
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -12628,78 +13124,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6556709643246107273, guid: 898114edd2ecba94cac552647d7d085c, type: 3}
   m_PrefabInstance: {fileID: 1358894469}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1360900284
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &1361095161
 GameObject:
   m_ObjectHideFlags: 0
@@ -12764,7 +13188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1361095166}
-  _instancedMaterial: {fileID: 726847118}
+  _instancedMaterial: {fileID: 606014824}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -12833,7 +13257,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 726847118}
+  - {fileID: 606014824}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12931,7 +13355,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8325717187283891408, guid: e95fa7a354437204a8f1aad7c7843f3b, type: 3}
   m_PrefabInstance: {fileID: 1396167421}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1456052650
+--- !u!21 &1407289658
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!21 &1454302593
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -13043,7 +13539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1457637980}
-  _instancedMaterial: {fileID: 1465993102}
+  _instancedMaterial: {fileID: 1750376526}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -13112,7 +13608,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1465993102}
+  - {fileID: 1750376526}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13144,78 +13640,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!21 &1465993102
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!4 &1481904132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8319063901168868693, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
@@ -13397,54 +13821,6 @@ MonoBehaviour:
   m_AmplitudeGain: 0
   m_FrequencyGain: 5
   mNoiseOffsets: {x: 0, y: 0, z: 0}
---- !u!21 &1510091673
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite-Lit-Default
-  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - ETC1_EXTERNAL_ALPHA
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &1525656804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13511,78 +13887,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8325717187283891408, guid: e95fa7a354437204a8f1aad7c7843f3b, type: 3}
   m_PrefabInstance: {fileID: 1525656804}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1535664274
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &1550601228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13642,7 +13946,7 @@ PrefabInstance:
     - target: {fileID: 2493002302256899092, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1014417325}
+      objectReference: {fileID: 303302905}
     - target: {fileID: 3711706471307330857, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: isPlayer
       value: 0
@@ -13731,150 +14035,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8325717187283891408, guid: e95fa7a354437204a8f1aad7c7843f3b, type: 3}
   m_PrefabInstance: {fileID: 1558938109}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1568511991
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
---- !u!21 &1576387434
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!21 &1587743941
 Material:
   serializedVersion: 8
@@ -13922,77 +14082,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
---- !u!21 &1594691386
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite-Lit-Default
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - ETC1_EXTERNAL_ALPHA
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 45
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!1001 &1597682887
 PrefabInstance:
@@ -14472,7 +14561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1686663983}
-  _instancedMaterial: {fileID: 1812346124}
+  _instancedMaterial: {fileID: 1142325722}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -14541,7 +14630,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1812346124}
+  - {fileID: 1142325722}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14803,7 +14892,172 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5263252498553381721, guid: 10072571fd056c94493197151aee74c2, type: 3}
   m_PrefabInstance: {fileID: 1720912719}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1735046686
+--- !u!1 &1748085468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1748085469}
+  - component: {fileID: 1748085473}
+  - component: {fileID: 1748085472}
+  - component: {fileID: 1748085471}
+  - component: {fileID: 1748085470}
+  m_Layer: 8
+  m_Name: Square (4)
+  m_TagString: Obstacle
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1748085469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748085468}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.10973439, w: 0.993961}
+  m_LocalPosition: {x: -15.125, y: 16.125, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 841990845}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -12.6}
+--- !u!114 &1748085470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748085468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
+--- !u!114 &1748085471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748085468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 1748085473}
+  _instancedMaterial: {fileID: 415150205}
+  _duration: 0.4
+  _color: {r: 0.14179921, g: 1, b: 0, a: 0}
+  _offset: 180
+--- !u!61 &1748085472
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748085468}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!212 &1748085473
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748085468}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 415150205}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!21 &1750376526
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -14875,184 +15129,20 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!1 &1748085468
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1748085469}
-  - component: {fileID: 1748085473}
-  - component: {fileID: 1748085472}
-  - component: {fileID: 1748085471}
-  - component: {fileID: 1748085470}
-  m_Layer: 8
-  m_Name: Square (4)
-  m_TagString: Obstacle
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1748085469
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748085468}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.10973439, w: 0.993961}
-  m_LocalPosition: {x: -15.125, y: 16.125, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 841990845}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -12.6}
---- !u!114 &1748085470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748085468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
---- !u!114 &1748085471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748085468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 1748085473}
-  _instancedMaterial: {fileID: 1360900284}
-  _duration: 0.4
-  _color: {r: 0.14179921, g: 1, b: 0, a: 0}
-  _offset: 180
---- !u!61 &1748085472
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748085468}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!212 &1748085473
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748085468}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 1360900284}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!21 &1767958459
+--- !u!21 &1752500753
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
+  m_Name: Sprite-Lit-Default
   m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - ETC1_EXTERNAL_ALPHA
   - _OUTLINEENABLED_ON
   - _OUTLINEMODE_GRADIENT
   - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
@@ -15091,14 +15181,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaThreshold: 0
-    - _Angle: 90
+    - _Angle: 45
     - _ConnectedAlpha: 0
     - _EnableExternalAlpha: 0
     - _OutlineEnabled: 1
     - _OutlineMode: 1
     - _OutlinePosition: 0
     - _OutlineShape: 0
-    - _OutlineSize: 33.09
     - _Thickness: 10
     - _TileMode: 0
     - _Weight: 0.5
@@ -15108,9 +15197,8 @@ Material:
     - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
     - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!1001 &1777986491
 PrefabInstance:
@@ -15244,19 +15332,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5263252498553381721, guid: 10072571fd056c94493197151aee74c2, type: 3}
   m_PrefabInstance: {fileID: 1785167865}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1812346124
+--- !u!21 &1841040009
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
+  m_Name: Sprite-Lit-Default
   m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - ETC1_EXTERNAL_ALPHA
   - _OUTLINEENABLED_ON
   - _OUTLINEMODE_GRADIENT
   - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
@@ -15295,14 +15384,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaThreshold: 0
-    - _Angle: 90
+    - _Angle: 45
     - _ConnectedAlpha: 0
     - _EnableExternalAlpha: 0
     - _OutlineEnabled: 1
     - _OutlineMode: 1
     - _OutlinePosition: 0
     - _OutlineShape: 0
-    - _OutlineSize: 33.09
     - _Thickness: 10
     - _TileMode: 0
     - _Weight: 0.5
@@ -15312,9 +15400,8 @@ Material:
     - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
     - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!1001 &1847168924
 PrefabInstance:
@@ -15456,6 +15543,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1433184384772576788, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: refValue
+      value: 0.0012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433184384772576788, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: releaseTime
+      value: 0.119
+      objectReference: {fileID: 0}
     - target: {fileID: 1747644532665568231, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -15580,6 +15675,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6071675303296154325, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071675303296154325, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071675303296154325, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6733214731645903830, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -15604,10 +15711,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7866275109016283291, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
-      propertyPath: _waveEffect
+    - target: {fileID: 6756703532751236850, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
+      propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 5202586336991198198, guid: caacfac5ebb82444d97179606c6258af, type: 3}
+      objectReference: {fileID: 8300000, guid: ad7d50db9b3afaa4da1602f40d7e18db, type: 3}
     - target: {fileID: 8319063901168868693, guid: 62a3d682d0aa8ed4696cbe0e08b1e3b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -16039,6 +16146,78 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5263252498553381721, guid: 10072571fd056c94493197151aee74c2, type: 3}
   m_PrefabInstance: {fileID: 1916514682}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1916991518
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &1927230121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16169,7 +16348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1959317760}
-  _instancedMaterial: {fileID: 1535664274}
+  _instancedMaterial: {fileID: 559536073}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -16238,7 +16417,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1535664274}
+  - {fileID: 559536073}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16336,6 +16515,78 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8325717187283891408, guid: e95fa7a354437204a8f1aad7c7843f3b, type: 3}
   m_PrefabInstance: {fileID: 1977623683}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1984677629
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Outline
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
+  - _OUTLINEMODE_GRADIENT
+  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  - _OUTLINESHAPE_CONTOUR
+  - _TILEMODE_STRETCH
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaThreshold: 0
+    - _Angle: 90
+    - _ConnectedAlpha: 0
+    - _EnableExternalAlpha: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 1
+    - _OutlinePosition: 0
+    - _OutlineShape: 0
+    - _OutlineSize: 33.09
+    - _Thickness: 10
+    - _TileMode: 0
+    - _Weight: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &1993653866
 GameObject:
   m_ObjectHideFlags: 0
@@ -16400,7 +16651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1993653871}
-  _instancedMaterial: {fileID: 466711675}
+  _instancedMaterial: {fileID: 1407289658}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -16469,7 +16720,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 466711675}
+  - {fileID: 1407289658}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16563,7 +16814,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6556709643246107273, guid: 898114edd2ecba94cac552647d7d085c, type: 3}
   m_PrefabInstance: {fileID: 1996368081}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1997038628
+--- !u!21 &2003003746
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -16699,7 +16950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 2005474210}
-  _instancedMaterial: {fileID: 1160448128}
+  _instancedMaterial: {fileID: 439550635}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -16768,7 +17019,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1160448128}
+  - {fileID: 439550635}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16899,7 +17150,7 @@ PrefabInstance:
     - target: {fileID: 2493002302256899092, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2052183961}
+      objectReference: {fileID: 1841040009}
     - target: {fileID: 3828413859361862506, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: _instancedMaterial
       value: 
@@ -16918,197 +17169,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2141874483975911523, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
   m_PrefabInstance: {fileID: 2029489362}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &2030308070
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite-Lit-Default
-  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - ETC1_EXTERNAL_ALPHA
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
---- !u!21 &2039467869
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 90
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _OutlineSize: 33.09
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.14179918, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
---- !u!21 &2052183961
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite-Lit-Default
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - ETC1_EXTERNAL_ALPHA
-  - _OUTLINEENABLED_ON
-  - _OUTLINEMODE_GRADIENT
-  - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
-  - _OUTLINESHAPE_CONTOUR
-  - _TILEMODE_STRETCH
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrameTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AlphaThreshold: 0
-    - _Angle: 45
-    - _ConnectedAlpha: 0
-    - _EnableExternalAlpha: 0
-    - _OutlineEnabled: 1
-    - _OutlineMode: 1
-    - _OutlinePosition: 0
-    - _OutlineShape: 0
-    - _Thickness: 10
-    - _TileMode: 0
-    - _Weight: 0.5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline1: {r: 1, g: 1, b: 1, a: 0}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 0}
-    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &2061315737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17180,7 +17240,7 @@ PrefabInstance:
     - target: {fileID: 2493002302256899092, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2128025292}
+      objectReference: {fileID: 942211045}
     - target: {fileID: 3711706471307330857, guid: e86fc276e661fa34ba3cf7511b5dc2a7, type: 3}
       propertyPath: isPlayer
       value: 0
@@ -17267,7 +17327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 2100036478}
-  _instancedMaterial: {fileID: 1568511991}
+  _instancedMaterial: {fileID: 1096185125}
   _duration: 0.4
   _color: {r: 0.14179921, g: 1, b: 0, a: 0}
   _offset: 180
@@ -17336,7 +17396,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1568511991}
+  - {fileID: 1096185125}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17368,54 +17428,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!21 &2128025292
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite-Lit-Default
-  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - ETC1_EXTERNAL_ALPHA
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &1650045854967841576
 PrefabInstance:
   m_ObjectHideFlags: 0

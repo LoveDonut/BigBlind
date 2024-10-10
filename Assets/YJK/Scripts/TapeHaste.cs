@@ -8,6 +8,7 @@ public class TapeHaste : MonoBehaviour
     [SerializeField] float _duration = 10f;
     [SerializeField] Color _hasteColor = Color.red;
 
+    [SerializeField] AudioClip _beatSwitchSFX;
     [SerializeField] AudioClip _defaultBGM;
     [SerializeField] AudioClip _feverBGM;
 
@@ -15,6 +16,8 @@ public class TapeHaste : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Collider2D _collider;
     private Color _normalColor;
+
+    bool _isEnd = false;
 
     private void Start()
     {
@@ -30,32 +33,43 @@ public class TapeHaste : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (_player.GetComponent<PlayerShoot>().IsHaste) return;
-            StartCoroutine(_player.GetComponent<PlayerShoot>().Haste(_mult, _duration));
-            _player.GetComponent<WaveManager>().WaveColor = _hasteColor;
-
-            // active audio spectrum
-            Direction.Instance.ShowAudioSpectrum();
-
-            // Remove these lines if music pitch isn't changed
-            _player.GetComponent<WaveManager>().BPM *= _mult;
-            _player.GetComponent<AudioSource>().volume *= _mult;
-            _player.GetComponent<AudioSource>().clip = _feverBGM;
-            _player.GetComponent<AudioSource>().loop = false;
-            _player.GetComponent<AudioSource>().Play();
-
-            _spriteRenderer.enabled = false;
             _collider.enabled = false;
-            Invoke("ResetToNormal", _duration);
-            Invoke("DelayedDestroy", _duration * 2);
+            PlayBeatSwitch();
         }
+    }
+
+    void PlayBeatSwitch()
+    {
+
+        SoundManager.Instance.PlaySound(_beatSwitchSFX, Vector2.zero);
+        Invoke(_isEnd ? nameof(ResetToNormal) : nameof(NewBeatStart) , _beatSwitchSFX.length);
+        if (_isEnd) Direction.Instance.HideAudioSpectrum();
+        _isEnd = !_isEnd;
+    }
+
+    void NewBeatStart()
+    {
+        if (_player.GetComponent<PlayerShoot>().IsHaste) return;
+        StartCoroutine(_player.GetComponent<PlayerShoot>().Haste(_mult, _duration));
+        _player.GetComponent<WaveManager>().WaveColor = _hasteColor;
+
+        // active audio spectrum
+        Direction.Instance.ShowAudioSpectrum();
+
+        // Remove these lines if music pitch isn't changed
+        _player.GetComponent<WaveManager>().BPM *= _mult;
+        _player.GetComponent<AudioSource>().volume *= _mult;
+        _player.GetComponent<AudioSource>().clip = _feverBGM;
+        _player.GetComponent<AudioSource>().loop = false;
+        _player.GetComponent<AudioSource>().Play();
+
+        _spriteRenderer.enabled = false;
+        Invoke(nameof(PlayBeatSwitch), _duration);
+        Invoke("DelayedDestroy", _duration * 2);
     }
 
     void ResetToNormal()
     {
-
-        Direction.Instance.HideAudioSpectrum();
-
         _player.GetComponent<WaveManager>().WaveColor = _normalColor;
 
         // Remove these lines if music pitch isn't changed
