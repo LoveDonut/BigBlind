@@ -34,6 +34,7 @@ public class TapeHaste : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             _collider.enabled = false;
+            _spriteRenderer.enabled = false;
             PlayBeatSwitch();
         }
     }
@@ -63,7 +64,6 @@ public class TapeHaste : MonoBehaviour
         _player.GetComponent<AudioSource>().loop = false;
         _player.GetComponent<AudioSource>().Play();
 
-        _spriteRenderer.enabled = false;
         Invoke(nameof(PlayBeatSwitch), _duration);
         Invoke("DelayedDestroy", _duration * 2);
     }
