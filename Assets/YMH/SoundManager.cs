@@ -4,6 +4,9 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
+    public float BPM;
+
+
     [SerializeField] private AudioSource[] audioSources;
     [SerializeField] private float stereoPanAmount = 10f;
     [SerializeField] private float finalSoundNumerator = 5f;

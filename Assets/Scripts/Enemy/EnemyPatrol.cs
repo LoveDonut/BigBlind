@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// made by Daehui
 public class EnemyPatrol : MonoBehaviour
 {
     #region References
@@ -12,6 +13,8 @@ public class EnemyPatrol : MonoBehaviour
 
     #region PublicVariables
     [HideInInspector] public bool IsFindPlayer;
+    public float PatrolBpmMultiplier = 0.5f;
+    public float PatrolMoveSpeed = 4f;
     #endregion
 
     #region PrivateVariables

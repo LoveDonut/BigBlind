@@ -11,9 +11,8 @@ public class EnemyMovement : MonoBehaviour
 {
     #region References
     [Header("References")]
-    [SerializeField] protected float _moveSpeed = 5f;
     [SerializeField] GameObject _enemyShadow;
-
+    [Header("")]
 
 
     #endregion
@@ -26,14 +25,13 @@ public class EnemyMovement : MonoBehaviour
 
     #region ProtectedVariables
     protected Transform _playerTransform;
+    [SerializeField] protected float _moveSpeed = 5f;
     #endregion
 
     #region PublicVariables
+    [SerializeField] public bool IsActive = true;
     [HideInInspector] public StateMachine CurrentState;
     [HideInInspector] public AudioSource AudioSource;
-    #endregion
-
-    #region PrivateVariables
     #endregion
 
     #region ProtectedMethods
@@ -51,21 +49,11 @@ public class EnemyMovement : MonoBehaviour
         SetStartState();
     }
 
-    private void SetStartState()
+    void SetStartState()
     {
-        EnemyPatrol enemyPatrol;
-
-        if(TryGetComponent<EnemyPatrol>(out enemyPatrol))
-        {
-            CurrentState = new PatrolState();
-        }
-        else
-        {
-            CurrentState = new ChaseState();
-        }
+        CurrentState = new SleepState();
         CurrentState.EnterState(gameObject);
     }
-
     protected virtual void Update()
     {
         transform.rotation = Quaternion.identity;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerState;
 using UnityEngine.Windows;
+using UnityEngineInternal;
 
 // made by KimDaehui
 public class PlayerShortAttack : MonoBehaviour
@@ -20,6 +21,8 @@ public class PlayerShortAttack : MonoBehaviour
     [SerializeField] float _tackleSpeed = 15f;
     [SerializeField] float _shortAttackCoolTime = 1f;
 
+    [Header("Slowmo")]
+    [SerializeField] float _slowDownDelay = 0.2f;
     [SerializeField] float _slowDownDuration = 2f;
     [SerializeField] float _slowDownOffset = 0.2f;
 
@@ -93,10 +96,10 @@ public class PlayerShortAttack : MonoBehaviour
     public void CollideWithEnemy()
     {
         Collider2D hit = GetHittedColliderAtBox();
-        IDamage damagable;
+        IDamage damagable = hit != null ? hit.GetComponentInParent<IDamage>() : null;
 
         // Attack
-        if (hit != null && hit.gameObject != gameObject && hit.TryGetComponent<IDamage>(out damagable))
+        if (hit != null && hit.gameObject != gameObject && damagable != null)
         {
             damagable.GetDamaged((_hitTransform.position - transform.position).normalized);
             SoundManager.Instance.PlaySound(_shortAttackSuccessSFX, Vector2.zero);
@@ -105,14 +108,23 @@ public class PlayerShortAttack : MonoBehaviour
         if (hit != null && hit.GetComponent<DoorKick>() != null && !hit.GetComponent<Collider2D>().isTrigger)
         {
             hit.GetComponent<DoorKick>().DoorKicked(transform);
-            TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
+            Invoke("DelayedSlowMotion", _slowDownDelay);
         }
 
         // Parry
         if(hit != null && hit.gameObject.CompareTag("Attack"))
         {
-            Destroy(hit.gameObject);
+            IParriable parriable;
+            if (hit.TryGetComponent<IParriable>(out parriable))
+            {
+                parriable.IsParried = true;
+            }
         }
+    }
+
+    void DelayedSlowMotion()
+    {
+        TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
     }
 
     public void Tackle(Vector2 tackleDirection)

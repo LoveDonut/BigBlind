@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 58360a0d91ace6448861ae8605dbc909, type: 3}
-  BPM: 270
+  BPM: 135
+  _bpmMultiplier: 0.75
   DestroyTime: 0.4
   CannonDestroyTime: 1
   WaveColor: {r: 1, g: 0.5019608, b: 0, a: 1}
@@ -134,7 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 1
-  _deadSound: {fileID: 8300000, guid: 3702cb9f0782412499f4f2513175dcd3, type: 3}
 --- !u!114 &-4313632495758409854
 MonoBehaviour:
   m_ObjectHideFlags: 0
