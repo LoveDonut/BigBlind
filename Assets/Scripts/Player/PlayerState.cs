@@ -33,23 +33,37 @@ namespace PlayerState
 
     public class ShortAttackState : StateMachine
     {
+        public bool IsBufferTime;
+        public bool IsClickedOnBuffer;
+
         PlayerShortAttack _shortAttack;
         Animator _animator;
+        Rigidbody2D _rigidbody;
         Vector2 _tackleDirection;
         Vector2 _startPosition;
         float _elapsedTime;
+        float _elapsedDelay;
 
         public override void EnterState(GameObject gameObject)
         {
             _shortAttack = gameObject.GetComponent<PlayerShortAttack>();
             _animator = gameObject.GetComponent<Animator>();
+            _rigidbody = gameObject.GetComponent<Rigidbody2D>();
+
+            IsBufferTime = false;
+            IsClickedOnBuffer = false;
+
             if(_animator != null)
             {
                 _animator.SetTrigger("DoShortAttack");
             }
 
-            _shortAttack.CanAttack = false;
-            _elapsedTime = _shortAttack.ShortAttackAnimationClip.length;
+            if(_shortAttack != null)
+            {
+                _shortAttack.CanAttack = false;
+                _elapsedTime = _shortAttack.ShortAttackAnimationClip.length;
+                _elapsedDelay = _shortAttack._delayAfterTackle;
+            }
 
             _startPosition = gameObject.transform.position;
             _tackleDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
@@ -72,6 +86,24 @@ namespace PlayerState
             {
                 _shortAttack.Tackle(_tackleDirection);
             }
+            else if(_elapsedDelay > 0)
+            {
+                if (_rigidbody != null)
+                {
+                    _rigidbody.velocity = Vector2.zero;
+                }
+
+                PlayerShoot playerShoot;
+                if(gameObject.TryGetComponent<PlayerShoot>(out playerShoot))
+                {
+                    if (_elapsedDelay < playerShoot.BufferDuration)
+                    {
+                        IsBufferTime = true;
+                    }
+                }
+
+                _elapsedDelay -= Time.fixedDeltaTime;
+            }
             else
             {
                 PlayerMovement playerMovement;
@@ -83,11 +115,19 @@ namespace PlayerState
         }
 
         public override void ExitState(GameObject gameObject)
-        {            
-            Rigidbody2D rigidbody;
-            if(gameObject.TryGetComponent<Rigidbody2D>(out rigidbody))
+        {
+            if (_rigidbody != null)
             {
-                rigidbody.velocity = Vector2.zero;
+                _rigidbody.velocity = Vector2.zero;
+            }
+
+            PlayerShoot playerShoot;
+            if (gameObject.TryGetComponent<PlayerShoot>(out playerShoot))
+            {
+                if (IsClickedOnBuffer)
+                {
+                    playerShoot.Shoot();
+                }
             }
         }
 

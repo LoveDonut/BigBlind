@@ -43,9 +43,13 @@ public class PlayerShoot : MonoBehaviour
     float _elapsedTime = 0f;
 
     public bool IsHaste = false;
+
     #endregion
 
     #region PublicVariables
+    [HideInInspector] public bool IsClickedOnBuffer;
+    [Header("Buffer")]
+    public float BufferDuration = 0.2f;
     #endregion
 
     // Start is called before the first frame update
@@ -72,37 +76,19 @@ public class PlayerShoot : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable ||
-            GetComponent<PlayerMovement>().CurrentState.GetType() == typeof(ShortAttackState)) return;
+        if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable) return;
 
-        if (_ammo <= 0)
+        // save OnFire input if made on buffer time
+        if(GetComponent<PlayerMovement>().CurrentState.GetType() == typeof(ShortAttackState))
         {
-            if (_emptySound != null) SoundManager.Instance.PlaySound(_emptySound, Vector2.zero);
+            ShortAttackState shortAttackState = GetComponent<PlayerMovement>().CurrentState as ShortAttackState;
+            shortAttackState.IsClickedOnBuffer = shortAttackState.IsBufferTime ? true : false;
 
             return;
         }
-        if (_reloadCoroutine != null)
-        {
-            _isReloading = false;
-            StopCoroutine(_reloadCoroutine);
-        }
-        StartCoroutine(WaitNextBullet());
-        _ammo--;
-        Direction.Instance.Sync_BulletCount_UI(_ammo);
-        Direction.Instance.Show_Revolver_Fire_Effect();
 
-        SoundManager.Instance.PlaySound(_handCannonSound, Vector2.zero);
-
-        SpawnHandCannonWave();
-        CameraShake.Instance.shakeCamera(7f, .1f);
-        Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        aimPos.z = 0f;
-        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized * 0.6f, Quaternion.LookRotation(aimPos.normalized));
-        bullet.GetComponent<ProjectileMover2D>().speed = _bulletSpeed;
-        bullet.GetComponent<ProjectileMover2D>().aimPos = aimPos;
-        Destroy(bullet, 3f);
+        Shoot();
     }
-
     IEnumerator WaitNextBullet()
     {
         _isShootable = false;
@@ -193,7 +179,35 @@ public class PlayerShoot : MonoBehaviour
 
         _isReloading = false;
     }
+    public void Shoot()
+    {
+        if (_ammo <= 0)
+        {
+            if (_emptySound != null) SoundManager.Instance.PlaySound(_emptySound, Vector2.zero);
 
+            return;
+        }
+        if (_reloadCoroutine != null)
+        {
+            _isReloading = false;
+            StopCoroutine(_reloadCoroutine);
+        }
+        StartCoroutine(WaitNextBullet());
+        _ammo--;
+        Direction.Instance.Sync_BulletCount_UI(_ammo);
+        Direction.Instance.Show_Revolver_Fire_Effect();
+
+        SoundManager.Instance.PlaySound(_handCannonSound, Vector2.zero);
+
+        SpawnHandCannonWave();
+        CameraShake.Instance.shakeCamera(7f, .1f);
+        Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        aimPos.z = 0f;
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized * 0.6f, Quaternion.LookRotation(aimPos.normalized));
+        bullet.GetComponent<ProjectileMover2D>().speed = _bulletSpeed;
+        bullet.GetComponent<ProjectileMover2D>().aimPos = aimPos;
+        Destroy(bullet, 3f);
+    }
     public void AddReserveAmmo(int count)
     {
         _reserveAmmo += count;
