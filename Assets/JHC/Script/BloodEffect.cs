@@ -43,6 +43,7 @@ public class BloodEffect : MonoBehaviour
         bloodObjSr.color = _randomColor;
 
         Sequence sequence = DOTween.Sequence();
+        sequence.SetTarget(bloodObj.transform);
         sequence.Append(bloodObj.transform.DOScale(Random.Range(scale/2, scale), _createDuration).SetEase(Ease.InExpo));
         if (!NeverDelete)
         {
@@ -51,7 +52,10 @@ public class BloodEffect : MonoBehaviour
                 () => bloodObjSr.color, x => bloodObjSr.color = x, 0f, _deleteDuration
             ).SetEase(Ease.InExpo).OnComplete(() => {
                 bloodObj.transform.DOKill();
-                _bloodEffectPool.ReturnObject(bloodObj);
+                if (bloodObj != null)
+                {
+                    _bloodEffectPool.ReturnObject(bloodObj);
+                }
             }));
         }
         sequence.Play();
