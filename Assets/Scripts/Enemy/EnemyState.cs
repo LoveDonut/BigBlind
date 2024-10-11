@@ -7,10 +7,61 @@ using UnityEngine.AI;
 
 namespace EnemyState
 {
+    public class SleepState : StateMachine
+    {
+        EnemyMovement _enemyMovement;
+        public override void EnterState(GameObject enemy)
+        {
+            _enemyMovement = enemy.GetComponent<EnemyMovement>();
+        }
+        public override void UpdateState(GameObject enemy)
+        {
+            if (_enemyMovement.IsActive)
+            {
+                SetActiveState();
+            }
+        }
+        public override void ExitState(GameObject enemy)
+        {
+            InitWave(enemy);
+        }
+
+        private static void InitWave(GameObject enemy)
+        {
+            WaveManager waveManager;
+
+            if (enemy.TryGetComponent<WaveManager>(out waveManager))
+            {
+                waveManager.EnqueueWaveForPlayingByBeat();
+            }
+
+            EnemyAttack enemyAttack;
+
+            if (enemy.TryGetComponent<EnemyAttack>(out enemyAttack))
+            {
+                enemyAttack.ResetReadyBeatCount();
+            }
+        }
+
+        void SetActiveState()
+        {
+            EnemyPatrol enemyPatrol;
+
+            if (_enemyMovement.TryGetComponent<EnemyPatrol>(out enemyPatrol))
+            {
+                _enemyMovement.CurrentState.SwitchState(_enemyMovement.gameObject, ref _enemyMovement.CurrentState, new PatrolState());
+            }
+            else
+            {
+                _enemyMovement.CurrentState.SwitchState(_enemyMovement.gameObject, ref _enemyMovement.CurrentState, new ChaseState());
+            }
+        }
+    }
     public class PatrolState : StateMachine
     {
         EnemyPatrol _enemyPatrol;
         EnemyMovement _enemyMovement;
+        WaveManager _waveManager;
         float _elapsedTime;
 
         public override void EnterState(GameObject enemy)
@@ -18,6 +69,12 @@ namespace EnemyState
             _enemyPatrol = enemy.GetComponent<EnemyPatrol>();
             _enemyMovement = enemy.GetComponent<EnemyMovement>();
             _elapsedTime = _enemyPatrol.GetWaitingTime();
+            _waveManager = enemy.GetComponent<WaveManager>();
+
+            if (_waveManager != null && _enemyPatrol != null)
+            {
+                _waveManager.BPM *= _enemyPatrol.PatrolBpmMultiplier;
+            }
         }
         public override void UpdateState(GameObject enemy)
         {
@@ -43,9 +100,12 @@ namespace EnemyState
         }
         public override void ExitState(GameObject enemy)
         {
+            if (_waveManager != null && _enemyPatrol != null)
+            {
+                _waveManager.BPM /= _enemyPatrol.PatrolBpmMultiplier;
+            }
         }
     }
-
     public class ChaseState : StateMachine
     {
         EnemyAttack _enemyAttack;
@@ -104,7 +164,7 @@ namespace EnemyState
                 if (enemy.TryGetComponent(out waveManager))
                 {
                     waveManager.BPM *= _enemyAttack._bpmMultiplier;
-                    Debug.Log("BPM UP!");
+//                    Debug.Log("BPM UP!");
                 }
                 SoundManager.Instance.PlaySound(_enemyAttack._readySFX, _enemyAttack.transform.position);
             }
@@ -161,7 +221,7 @@ namespace EnemyState
                 if (enemy.TryGetComponent(out waveManager))
                 {
                     waveManager.BPM /= _enemyAttack._bpmMultiplier;
-                    Debug.Log("BPM DOWN!");
+//                    Debug.Log("BPM DOWN!");
                 }
             }
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // made by KimDaehui
-public class EnemyShortWeapon : MonoBehaviour
+public class EnemyShortWeapon : MonoBehaviour, IParriable
 {
     #region References
     [Header("References")]
@@ -18,6 +18,10 @@ public class EnemyShortWeapon : MonoBehaviour
     EnemyAttack _enemyAttack;
     #endregion
 
+    #region PublicVariables
+    public bool IsParried { get; set; }
+    #endregion
+
     #region PrivateMethods
     void Awake()
     {
@@ -28,6 +32,7 @@ public class EnemyShortWeapon : MonoBehaviour
     {
         gameObject.SetActive(false);
         _hits = new Collider2D[5];
+        IsParried = false;
     }
 
     void RotateToPlayer()
@@ -73,6 +78,8 @@ public class EnemyShortWeapon : MonoBehaviour
 
     public void AttackCollideWithPlayer()
     {
+        if (IsParried) return;
+
         Physics2D.OverlapCircleNonAlloc(_hitTransform.position, _hitRadius, _hits, LayerMask.GetMask("Player", "Enemy", "Glass", "Box"));
         IDamage damagable;
 

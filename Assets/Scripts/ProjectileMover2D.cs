@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileMover2D : MonoBehaviour
+public class ProjectileMover2D : MonoBehaviour, IParriable
 {
     public float speed = 15f;
     public float hitOffset = 0f;
@@ -15,8 +15,12 @@ public class ProjectileMover2D : MonoBehaviour
 
     public Vector3 aimPos;
 
+    // added by KimDaehui
+    public bool IsParried { get; set; }
+
     void Start()
     {
+        IsParried = false;
         rb = GetComponent<Rigidbody2D>();
         if (flash != null)
         {
@@ -51,9 +55,10 @@ public class ProjectileMover2D : MonoBehaviour
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     void OnCollisionEnter2D(Collision2D collision)
     {
-        IDamage damagable = collision.gameObject.GetComponent<IDamage>();
+        IDamage damagable = collision.gameObject.GetComponentInParent<IDamage>();
 
-        if (damagable != null)
+        // added by KimDaehui
+        if (damagable != null && !IsParried)
         {
             damagable.GetDamaged(aimPos.normalized);
         }
