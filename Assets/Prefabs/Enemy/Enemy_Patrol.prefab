@@ -339,7 +339,7 @@ MonoBehaviour:
   _path: {fileID: 0}
   IsFindPlayer: 0
   PatrolBpmMultiplier: 0.5
-  PatrolMoveSpeed: 4
+  PatrolMoveSpeed: 3.4
   _waitingTime: 1
 --- !u!50 &3798567980923647224
 Rigidbody2D:

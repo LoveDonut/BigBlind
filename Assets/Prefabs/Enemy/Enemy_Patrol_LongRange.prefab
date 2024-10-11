@@ -366,7 +366,7 @@ MonoBehaviour:
   _path: {fileID: 0}
   IsFindPlayer: 0
   PatrolBpmMultiplier: 0.5
-  PatrolMoveSpeed: 4
+  PatrolMoveSpeed: 2.8
   _waitingTime: 1
 --- !u!114 &5664410953866787646
 MonoBehaviour:
