@@ -206,6 +206,9 @@ public class PlayerShoot : MonoBehaviour
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized * 0.6f, Quaternion.LookRotation(aimPos.normalized));
         bullet.GetComponent<ProjectileMover2D>().speed = _bulletSpeed;
         bullet.GetComponent<ProjectileMover2D>().aimPos = aimPos;
+
+        // for preventing attack player self
+        bullet.GetComponent<ProjectileMover2D>().IsFromPlayer = true;
         Destroy(bullet, 3f);
     }
     public void AddReserveAmmo(int count)

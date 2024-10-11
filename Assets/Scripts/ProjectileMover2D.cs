@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileMover2D : MonoBehaviour, IParriable
@@ -17,6 +18,7 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
 
     // added by KimDaehui
     public bool IsParried { get; set; }
+    public bool IsFromPlayer {  get; set; }
 
     void Start()
     {
@@ -55,10 +57,14 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if(gameObject == null) return;
+
         IDamage damagable = collision.gameObject.GetComponentInParent<IDamage>();
 
+
         // added by KimDaehui
-        if (damagable != null && !IsParried)
+        // prevent attack player self
+        if (damagable != null && !IsParried && !(IsFromPlayer && collision.gameObject.CompareTag("Player")))
         {
             damagable.GetDamaged(aimPos.normalized);
         }
