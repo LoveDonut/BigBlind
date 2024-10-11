@@ -43,14 +43,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Blood
-    uniqueID: 3573340749
+  - name: Map
+    uniqueID: 3234636447
+    locked: 0
+  - name: Wave
+    uniqueID: 830608503
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Wave
-    uniqueID: 830608503
+  - name: Blood
+    uniqueID: 3573340749
     locked: 0
   - name: UI
     uniqueID: 4049357291
