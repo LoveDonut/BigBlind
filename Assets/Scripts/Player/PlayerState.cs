@@ -122,9 +122,11 @@ namespace PlayerState
             }
 
             PlayerShoot playerShoot;
-            if (gameObject.TryGetComponent<PlayerShoot>(out playerShoot))
+            PlayerShortAttack playerShortAttack;
+            if (gameObject.TryGetComponent<PlayerShoot>(out playerShoot) && gameObject.TryGetComponent<PlayerShortAttack>(out playerShortAttack))
             {
-                if (IsClickedOnBuffer)
+                // do not shoot if player will tackle instantly
+                if (IsClickedOnBuffer && !playerShortAttack.IsClickedOnBuffer)
                 {
                     playerShoot.Shoot();
                 }

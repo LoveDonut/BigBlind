@@ -47,7 +47,6 @@ public class PlayerShoot : MonoBehaviour
     #endregion
 
     #region PublicVariables
-    [HideInInspector] public bool IsClickedOnBuffer;
     [Header("Buffer")]
     public float BufferDuration = 0.2f;
     #endregion

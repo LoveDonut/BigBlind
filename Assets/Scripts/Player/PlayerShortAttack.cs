@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerState;
-using UnityEngine.Windows;
 using UnityEngineInternal;
+using UnityEditor.ShaderGraph.Internal;
 
 // made by KimDaehui
 public class PlayerShortAttack : MonoBehaviour
@@ -29,17 +29,20 @@ public class PlayerShortAttack : MonoBehaviour
     [Header("ShortAttack")]
     [SerializeField] AudioClip _shortAttackSFX;
     [SerializeField] AudioClip _shortAttackSuccessSFX;
+    [SerializeField] float _ShortAttackBufferDuration = 0.2f;
 
 
     Coroutine _attackCoroutine;
     Animator _animator;
     PlayerMovement _playerMovement;
     Rigidbody2D _rigidbody;
+
     #endregion
 
     #region PublicVariables
-//    [HideInInspector] public Vector2 TackleVelocity;
+    //    [HideInInspector] public Vector2 TackleVelocity;
     [HideInInspector] public bool CanAttack;
+    [HideInInspector] public bool IsClickedOnBuffer = false;
     public float ShortAttackDistance = 1f;
     public float _delayAfterTackle = 0.5f;
     #endregion
@@ -81,8 +84,24 @@ public class PlayerShortAttack : MonoBehaviour
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(_shortAttackCoolTime);
+        float elapsedTime = _ShortAttackBufferDuration;
+        yield return new WaitForSeconds(_shortAttackCoolTime - _ShortAttackBufferDuration);
+        while(elapsedTime > 0)
+        {
+            elapsedTime -= Time.fixedDeltaTime;
+            if (Input.GetMouseButtonDown(1))
+            {
+                IsClickedOnBuffer = true;
+            }
+            yield return new WaitForFixedUpdate();
+        }
         CanAttack = true;
+        if(IsClickedOnBuffer)
+        {
+            Debug.Log("Start Tackle Again!");
+            IsClickedOnBuffer = false;
+            OnShortAttack();
+        }
     }
 
     void OnDrawGizmos()

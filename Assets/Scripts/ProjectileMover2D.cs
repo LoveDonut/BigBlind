@@ -70,7 +70,10 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
         }
 
         //Lock all axes movement and rotation
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        if(rb != null)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
         speed = 0;
 
         ContactPoint2D contact = collision.contacts[0];
