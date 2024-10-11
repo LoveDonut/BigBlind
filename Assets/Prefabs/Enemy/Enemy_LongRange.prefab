@@ -195,8 +195,8 @@ MonoBehaviour:
   BPM: 270
   DestroyTime: 0.4
   CannonDestroyTime: 1
-  WaveColor: {r: 1, g: 0, b: 0, a: 1}
-  WaveReadyColor: {r: 1, g: 1, b: 0, a: 1}
+  WaveColor: {r: 1, g: 0.5019608, b: 0, a: 1}
+  WaveReadyColor: {r: 1, g: 0, b: 0, a: 1}
   WaveAttackColor: {r: 0, g: 0, b: 0, a: 1}
   _blockAlphaAmount: 2
   _distanceFadeNumerator: 3
@@ -230,10 +230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb2769ebdea62c46966d8f7e21fde99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 7
   _enemyShadow: {fileID: 1511232225988076153, guid: 28654835d0bcddf4e92fe1a414fb3fca, type: 3}
-  _stereoPanAmount: -10
-  _finalSoundNumerator: 5
+  _moveSpeed: 7
+  IsActive: 1
   AudioSource: {fileID: 0}
 --- !u!114 &8056600575094492715
 MonoBehaviour:
@@ -251,8 +250,8 @@ MonoBehaviour:
   _attackSFX: {fileID: 8300000, guid: 1a38c04298b996a4c8625bf2d80577cd, type: 3}
   _attackRange: 10
   _attackDelay: 1
-  _readyBeatCount: 2
-  _bpmMultiplier: 1.5
+  _readyBeatCount: 1
+  _bpmMultiplier: 0.5
   Weapon: {fileID: 0}
   _bulletPrefab: {fileID: 1079946990457772, guid: 5eb504f016e53284f88becd88c299758, type: 3}
 --- !u!195 &4911851406652807806
