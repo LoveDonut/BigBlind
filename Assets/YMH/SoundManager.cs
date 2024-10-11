@@ -8,8 +8,8 @@ public class SoundManager : MonoBehaviour
 
 
     [SerializeField] private AudioSource[] audioSources;
-    [SerializeField] private float stereoPanAmount = 10f;
-    [SerializeField] private float finalSoundNumerator = 5f;
+    public float stereoPanAmount = 10f;
+    public float finalSoundNumerator = 5f;
 
     private int currentAudioSourceIndex = 0;
 

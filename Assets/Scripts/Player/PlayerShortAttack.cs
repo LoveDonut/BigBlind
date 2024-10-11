@@ -21,11 +21,12 @@ public class PlayerShortAttack : MonoBehaviour
     [SerializeField] float _tackleSpeed = 15f;
     [SerializeField] float _shortAttackCoolTime = 1f;
 
-    [Header("Slowmo")]
+    [Header("SlowMotion")]
     [SerializeField] float _slowDownDelay = 0.2f;
     [SerializeField] float _slowDownDuration = 2f;
     [SerializeField] float _slowDownOffset = 0.2f;
 
+    [Header("ShortAttack")]
     [SerializeField] AudioClip _shortAttackSFX;
     [SerializeField] AudioClip _shortAttackSuccessSFX;
 
@@ -40,6 +41,7 @@ public class PlayerShortAttack : MonoBehaviour
 //    [HideInInspector] public Vector2 TackleVelocity;
     [HideInInspector] public bool CanAttack;
     public float ShortAttackDistance = 1f;
+    public float _delayAfterTackle = 0.5f;
     #endregion
 
     #region PrivateMethods
