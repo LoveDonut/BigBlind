@@ -84,7 +84,33 @@ public class DoorKick : MonoBehaviour
             _collider.enabled = false;
             DelayedDestroy();
         }
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Obstacle"))
+        {
+            _as.PlayOneShot(_crashDoor);
+            _sr.enabled = false;
+            _collider.enabled = false;
+            DelayedDestroy();
+            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            _as.PlayOneShot(_enemyBurst);
+            collision.gameObject.GetComponent<EnemyHealth>().GetDamaged(collision.transform.position - this.transform.position);
+            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerHealth>().GetDamaged(collision.transform.position - this.transform.position);
+            if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
+            _sr.enabled = false;
+            _collider.enabled = false;
+            DelayedDestroy();
+        }
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Obstacle"))
         {
             _as.PlayOneShot(_crashDoor);
             _sr.enabled = false;

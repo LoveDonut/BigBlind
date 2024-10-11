@@ -10,7 +10,7 @@ public class Generator : MonoBehaviour, IDamage
     #region References
     [Header("References")]
     [Tooltip("don't have to allocate this yet. it will be used after implement light change shader")]
-    [SerializeField] GameObject _light;
+    [SerializeField] GameObject[] _light;
     #endregion
 
     #region PrivateVariables
@@ -65,6 +65,10 @@ public class Generator : MonoBehaviour, IDamage
     public void Dead()
     {
         DetectLightables().ForEach(lightable => lightable.IsLighted = false);
+        foreach(var invertBox in _light)
+        {
+            invertBox.SetActive(false);
+        }
         Destroy(gameObject);
     }
 
