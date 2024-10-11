@@ -25,9 +25,6 @@ public class WaveManager : MonoBehaviour
     EnemyAttack _enemyAttack;
     EnemyMovement _enemyMovement;
 
-    [Header("BGM")]
-    [SerializeField] AudioClip _90BPM;
-
     [SerializeField] bool isPlayer;
     [SerializeField] bool _repeatWave = true;
 
