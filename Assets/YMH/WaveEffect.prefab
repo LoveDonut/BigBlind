@@ -151,12 +151,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 60
-  growSpeed: 30
+  growSpeed: 40
   radius: 0.5
   WaveColor: {r: 0.07075471, g: 1, b: 0.9732528, a: 1}
-  Destroy_Time: 1
+  Destroy_Time: 0.45
   _isPlayerWave: 1
-  linewidth: 0.5
+  linewidth: 0.1
   maxSegmentDistance: 1
   isWaveEffect: 1
 --- !u!60 &2369123317398446388

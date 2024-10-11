@@ -106,6 +106,7 @@ public class SoundRayWave : MonoBehaviour
                         OutlineColorController outlineController = hit.collider.GetComponent<OutlineColorController>();
                         outlineController.LookAtWave(transform.position);
                         outlineController.ShowOutline();
+                        continue;
                     }
                     wavePositions[i] = hit.point;
                     isPositionFixed[i] = true;
