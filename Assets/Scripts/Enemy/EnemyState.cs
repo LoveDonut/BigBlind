@@ -62,7 +62,9 @@ namespace EnemyState
         EnemyPatrol _enemyPatrol;
         EnemyMovement _enemyMovement;
         WaveManager _waveManager;
+        NavMeshAgent _navMeshAgent;
         float _elapsedTime;
+        float _originalSpeed;
 
         public override void EnterState(GameObject enemy)
         {
@@ -70,10 +72,13 @@ namespace EnemyState
             _enemyMovement = enemy.GetComponent<EnemyMovement>();
             _elapsedTime = _enemyPatrol.GetWaitingTime();
             _waveManager = enemy.GetComponent<WaveManager>();
+            _navMeshAgent = enemy.GetComponent<NavMeshAgent>();
 
-            if (_waveManager != null && _enemyPatrol != null)
+            if (_waveManager != null && _enemyPatrol != null && _navMeshAgent != null)
             {
                 _waveManager.BPM *= _enemyPatrol.PatrolBpmMultiplier;
+                _originalSpeed = _navMeshAgent.speed;
+                _navMeshAgent.speed = _enemyPatrol.PatrolMoveSpeed;
             }
         }
         public override void UpdateState(GameObject enemy)
@@ -100,9 +105,10 @@ namespace EnemyState
         }
         public override void ExitState(GameObject enemy)
         {
-            if (_waveManager != null && _enemyPatrol != null)
+            if (_waveManager != null && _enemyPatrol != null && _navMeshAgent != null)
             {
                 _waveManager.BPM /= _enemyPatrol.PatrolBpmMultiplier;
+                _navMeshAgent.speed = _originalSpeed;
             }
         }
     }
