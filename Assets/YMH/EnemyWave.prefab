@@ -74,7 +74,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 830608503
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 2
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -208,4 +208,4 @@ MonoBehaviour:
   _isPlayerWave: 0
   linewidth: 0.2
   maxSegmentDistance: 1
-  isWaveEffect: 0
+  isWaveEffect: 1
