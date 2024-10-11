@@ -7,9 +7,8 @@ public class LongRangeEnemyAttack : EnemyAttack
 {
     [SerializeField] GameObject _bulletPrefab;
     float _bulletRadius;
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();
         CircleCollider2D bulletCollider;
 
         if (_bulletPrefab.TryGetComponent<CircleCollider2D>(out bulletCollider))

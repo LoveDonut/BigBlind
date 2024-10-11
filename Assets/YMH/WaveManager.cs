@@ -24,7 +24,6 @@ public class WaveManager : MonoBehaviour
     GameObject _wave;
     EnemyAttack _enemyAttack;
     EnemyMovement _enemyMovement;
-    Color _colorBefore;
 
     [Header("BGM")]
     [SerializeField] AudioClip _90BPM;
@@ -64,7 +63,6 @@ public class WaveManager : MonoBehaviour
         {
             SpawnWave(true);
         }
-        _colorBefore = WaveAttackColor;
     }
 
     public void SpawnWave(bool isRepeat = false)
@@ -110,20 +108,19 @@ public class WaveManager : MonoBehaviour
             {
                 colorToChange = WaveReadyColor;
                 _isReadyAttack = true;
+                if (_enemyAttack.IsReadyToAttack())
+                {
+                    _isReadyAttack = false;
+                    colorToChange = WaveAttackColor;
+                    _enemyAttack.StartAttack();
+                }
             }
             else
             {
                 colorToChange = WaveColor;
             }
-            if (_colorBefore == WaveReadyColor && _enemyAttack.IsReadyToAttack())
-            {
-                _isReadyAttack = false;
-                colorToChange = WaveAttackColor;
-                _enemyAttack.StartAttack();
-            }
             _wave.GetComponent<SoundRayWave>().WaveColor = colorToChange;
         }
-        _colorBefore = _wave.GetComponent<SoundRayWave>().WaveColor;
     }
 
     bool IsBlockedByWalls()

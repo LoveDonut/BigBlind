@@ -34,9 +34,6 @@ public class EnemyMovement : MonoBehaviour
     [HideInInspector] public AudioSource AudioSource;
     #endregion
 
-    #region PrivateVariables
-    #endregion
-
     #region ProtectedMethods
     protected virtual void Awake()
     {
