@@ -12,8 +12,9 @@ public class EnemyPatrol : MonoBehaviour
     #endregion
 
     #region PublicVariables
-    [HideInInspector] public bool IsFindPlayer;
+    public bool IsFindPlayer;
     public float PatrolBpmMultiplier = 0.5f;
+    public float PatrolMoveSpeed = 4f;
     #endregion
 
     #region PrivateVariables
