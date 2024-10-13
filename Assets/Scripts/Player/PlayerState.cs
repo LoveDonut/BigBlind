@@ -66,7 +66,7 @@ namespace PlayerState
             }
 
             _startPosition = gameObject.transform.position;
-            _tackleDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
+            _tackleDirection = ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position)).normalized;
 
             //Rigidbody2D rigidbody;
             //if(gameObject.TryGetComponent<Rigidbody2D>(out rigidbody))
