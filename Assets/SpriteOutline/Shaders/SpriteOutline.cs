@@ -48,7 +48,7 @@ public class OutlineColorController : MonoBehaviour
 
     public void ShowOutline()
     {
-        if (_isPlaying) return;
+        if (_isPlaying || _instancedMaterial == null) return;
         StartCoroutine(FadeOutline(_color));
     }
 
@@ -102,7 +102,7 @@ public class OutlineColorController : MonoBehaviour
 
     public void LookAtWave(Vector3 wavePos)
     {
-        if (_isPlaying) return;
+        if (_isPlaying || _instancedMaterial == null) return;
         angle = Mathf.Atan2(wavePos.y - transform.position.y, wavePos.x - transform.position.x) * Mathf.Rad2Deg;
         _instancedMaterial.SetFloat("_Angle", angle - _offset);
     }
