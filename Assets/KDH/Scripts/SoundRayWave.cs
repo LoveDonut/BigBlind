@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundRayWave : MonoBehaviour
@@ -26,6 +27,8 @@ public class SoundRayWave : MonoBehaviour
 
     [HideInInspector]
     public bool isCannonWave = false;
+
+    List<GameObject> detectedObj = new List<GameObject>();
 
     void Awake()
     {
@@ -104,13 +107,15 @@ public class SoundRayWave : MonoBehaviour
 
                 if (hit.collider != null && !isWaveEffect)
                 {
-                    if (hit.collider.CompareTag("Obstacle"))
+                    if (hit.collider.CompareTag("Obstacle") && !detectedObj.Contains(hit.collider.gameObject))
                     {
+                        detectedObj.Add(hit.collider.gameObject);
                         OutlineColorController outlineController = hit.collider.GetComponent<OutlineColorController>();
                         outlineController.LookAtWave(transform.position);
                         outlineController.ShowOutline();
                         if(!isCannonWave) continue;
                     }
+
                     if (hit.collider.CompareTag("Wall"))
                     {
                         wavePositions[i] = hit.point;
