@@ -57,6 +57,7 @@ public class PlayerShoot : MonoBehaviour
         GetComponent<AudioSource>().Play();
         _ammo = _maxAmmo;
         Direction.Instance.Sync_BulletCount_UI(_ammo);
+        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
         InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
 
     }
