@@ -15,6 +15,7 @@ public class DoorKick : MonoBehaviour
     private Collider2D _collider;
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
+    private bool _isMoving = false;
 
     [Header("SFX")]
     [SerializeField] AudioClip _smashDoor;
@@ -45,10 +46,12 @@ public class DoorKick : MonoBehaviour
         {
             _rb.velocity = (this.transform.position - _right.position) * _kickSpeed;
         }
+        _isMoving = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!_isMoving) return;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             _as.PlayOneShot(_enemyBurst);
@@ -77,6 +80,7 @@ public class DoorKick : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if(!_isMoving) return;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             _as.PlayOneShot(_enemyBurst);
