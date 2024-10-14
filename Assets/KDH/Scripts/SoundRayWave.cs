@@ -24,6 +24,9 @@ public class SoundRayWave : MonoBehaviour
 
     public bool isWaveEffect = false;
 
+    [HideInInspector]
+    public bool isCannonWave = false;
+
     void Awake()
     {
         wavePositions = new Vector3[segments + 1]; // +1 to close the loop
@@ -106,10 +109,15 @@ public class SoundRayWave : MonoBehaviour
                         OutlineColorController outlineController = hit.collider.GetComponent<OutlineColorController>();
                         outlineController.LookAtWave(transform.position);
                         outlineController.ShowOutline();
-                        continue;
+                        if(!isCannonWave) continue;
                     }
-                    wavePositions[i] = hit.point;
-                    isPositionFixed[i] = true;
+                    if (hit.collider.CompareTag("Wall"))
+                    {
+                        wavePositions[i] = hit.point;
+                        isPositionFixed[i] = true;
+                    }
+                    else wavePositions[i] = (Vector3)rayDirection * radius + transform.position;
+
                 }
                 else
                 {

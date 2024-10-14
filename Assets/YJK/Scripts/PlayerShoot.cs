@@ -98,7 +98,7 @@ public class PlayerShoot : MonoBehaviour
     void SpawnHandCannonWave()
     {
         var wave = Instantiate(_handCannonWave, transform.position, Quaternion.identity);
-
+        wave.GetComponent<SoundRayWave>().isCannonWave = true;
         wave.GetComponent<SoundRayWave>().WaveColor = _cannonColor;
         wave.GetComponent<SoundRayWave>().InitWave();
         wave.GetComponent<SoundRayWave>().Destroy_Time = _destroyTime;
