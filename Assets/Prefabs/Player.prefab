@@ -803,7 +803,6 @@ MonoBehaviour:
   WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
   _blockAlphaAmount: 2
   _distanceFadeNumerator: 3
-  _90BPM: {fileID: 0}
   isPlayer: 1
   _repeatWave: 1
   _waveEffect: {fileID: 5202586336991198198, guid: caacfac5ebb82444d97179606c6258af, type: 3}
@@ -869,6 +868,7 @@ MonoBehaviour:
   _reloadOneSound: {fileID: 8300000, guid: bfb2d5c8299492d488cfdfb972c35271, type: 3}
   _closeCylinder: {fileID: 8300000, guid: defec7b55867ef74292a8c8d340937f8, type: 3}
   IsHaste: 0
+  BufferDuration: 0.1
 --- !u!114 &6194247190628501016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,15 +898,18 @@ MonoBehaviour:
   _playerSpriteTransform: {fileID: 8938188415147047647}
   ShortAttackAnimationClip: {fileID: 7400000, guid: 7e7490d81185c9f4480ff1d4b160ecaf, type: 2}
   _hitSize: {x: 1.5, y: 1}
-  _tackleSpeed: 15
+  _tackleSpeed: 30
   _shortAttackCoolTime: 1
   _slowDownDelay: 0.2
-  _slowDownDuration: 2
+  _slowDownDuration: 1
   _slowDownOffset: 0.2
   _shortAttackSFX: {fileID: 8300000, guid: 3e333e82cd1ab1346b2b65ac93b0d03b, type: 3}
   _shortAttackSuccessSFX: {fileID: 8300000, guid: 3702cb9f0782412499f4f2513175dcd3, type: 3}
+  _ShortAttackBufferDuration: 0.2
   CanAttack: 0
-  ShortAttackDistance: 3
+  IsClickedOnBuffer: 0
+  ShortAttackDistance: 4
+  _delayAfterTackle: 0.1
 --- !u!50 &1534208878423213486
 Rigidbody2D:
   serializedVersion: 4
@@ -1512,7 +1515,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8319063901168868693}
@@ -1529,9 +1532,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c417329e8f0af414a83c1a5c4d8a3282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refValue: 0.0067
+  refValue: 0.0018
   scaleMultiplier: 0.1
-  releaseTime: 0.378
+  releaseTime: 0.167
   audioSource: {fileID: 6756703532751236850}
   spectrumElementPrefab: {fileID: 2989207269740390097, guid: 4e891db5fe4727f469d679506a924cf0, type: 3}
 --- !u!1 &5946437100466743159
