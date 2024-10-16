@@ -32,7 +32,7 @@ public class SoundManager : MonoBehaviour
             x.outputAudioMixerGroup = _amg;
         }
 
-        BurstFlashBang();
+        //BurstFlashBang();
 
     }
 

@@ -826,6 +826,7 @@ MonoBehaviour:
   BPM: 135
   BGMaudio: {fileID: 7128799976301411730}
   HeartBeatAudio: {fileID: 632800854796860553}
+  FlashBang: {fileID: 6718724437805686429}
   audioSources:
   - {fileID: 7170171184417324434}
   - {fileID: 2455144901727045759}
@@ -838,6 +839,7 @@ MonoBehaviour:
   stereoPanAmount: -7
   finalSoundNumerator: 7.5
   _mixer: {fileID: 24100000, guid: 02fed167676b0134c8cc8a8ae3dea1ae, type: 2}
+  _amg: {fileID: 24300002, guid: 02fed167676b0134c8cc8a8ae3dea1ae, type: 2}
 --- !u!82 &7128799976301411730
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1041,7 +1043,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 338632b9b5829f348ad6c2c6b3b890cc, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
