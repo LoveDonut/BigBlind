@@ -73,7 +73,7 @@ public class PlayerShoot : MonoBehaviour
 
     void startCheckReloadable() => _isReloadable = !_isReloadable;
 
-    void OnFire(InputValue value)
+    void OnFire()
     {
         if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable) return;
 

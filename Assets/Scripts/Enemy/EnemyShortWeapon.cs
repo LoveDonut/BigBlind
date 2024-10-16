@@ -39,7 +39,7 @@ public class EnemyShortWeapon : MonoBehaviour, IParriable
     {
         if (_enemyAttack != null)
         {
-            Vector2 direction = _enemyAttack.GetdirectionToPlayer();
+            Vector2 direction = _enemyAttack.GetDirectionToPlayer();
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 

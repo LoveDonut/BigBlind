@@ -43,11 +43,18 @@ public class PlayerMovement : MonoBehaviour
 
         SetStartState();
     }
-    void FixedUpdate()
+
+    void Update()
     {
         if (!IsMovable) return;
 
         CurrentState.UpdateState(gameObject);
+    }
+    void FixedUpdate()
+    {
+        if (!IsMovable) return;
+
+        CurrentState.FixedUpdateState(gameObject);
     }
     void OnMove(InputValue value)
     {

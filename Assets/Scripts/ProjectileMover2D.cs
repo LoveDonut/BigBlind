@@ -59,13 +59,14 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
     {
         if(gameObject == null) return;
 
-        IDamage damagable = collision.gameObject.GetComponentInParent<IDamage>();
-
+//        IDamage damagable = collision.gameObject.GetComponentInParent<IDamage>();
+        IDamage damagable = collision.gameObject.GetComponent<IDamage>();
 
         // added by KimDaehui
         // prevent attack player self
         if (damagable != null && !IsParried && !(IsFromPlayer && collision.gameObject.CompareTag("Player")))
         {
+            Debug.Log($"Damaged! {collision.gameObject.name}");
             damagable.GetDamaged(aimPos.normalized);
         }
 

@@ -98,7 +98,6 @@ public class PlayerShortAttack : MonoBehaviour
         CanAttack = true;
         if(IsClickedOnBuffer)
         {
-            Debug.Log("Start Tackle Again!");
             IsClickedOnBuffer = false;
             OnShortAttack();
         }
@@ -118,12 +117,26 @@ public class PlayerShortAttack : MonoBehaviour
     {
         Collider2D hit = GetHittedColliderAtBox();
         IDamage damagable = hit != null ? hit.GetComponentInParent<IDamage>() : null;
+        IKnockback knockbackable = hit != null ? hit.GetComponentInParent<IKnockback>() : null;
+
+        if (knockbackable == null)
+        {
+            Debug.Log("I can be knocked back");
+        }
+
 
         // Attack
-        if (hit != null && hit.gameObject != gameObject && damagable != null)
+        if (hit != null && hit.gameObject != gameObject)
         {
-            damagable.GetDamaged((_hitTransform.position - transform.position).normalized);
-            SoundManager.Instance.PlaySound(_shortAttackSuccessSFX, Vector2.zero);
+            if(knockbackable != null) // knockback
+            {
+                knockbackable.Knockback((hit.transform.position - _playerMovement.transform.position).normalized, _playerMovement.CurrentState);
+            }
+            else if (damagable != null) // damage
+            {
+                damagable.GetDamaged((_hitTransform.position - transform.position).normalized);
+                SoundManager.Instance.PlaySound(_shortAttackSuccessSFX, Vector2.zero);
+            }
         }
 
         if (hit != null && hit.GetComponent<DoorKick>() != null && !hit.GetComponent<Collider2D>().isTrigger)
@@ -169,6 +182,6 @@ public class PlayerShortAttack : MonoBehaviour
         _rigidbody.velocity = _tackleSpeed * tackleDirection;
     }
 
-    public Collider2D GetHittedColliderAtBox() => Physics2D.OverlapBox(_hitTransform.position, _hitSize, _playerSpriteTransform.eulerAngles.z, LayerMask.GetMask("Enemy", "Glass", "Box", "Attack"));
+    public Collider2D GetHittedColliderAtBox() => Physics2D.OverlapBox(_hitTransform.position, _hitSize, _playerSpriteTransform.eulerAngles.z, LayerMask.GetMask("Enemy", "Glass", "Box", "Attack", "Shield"));
     #endregion
 }

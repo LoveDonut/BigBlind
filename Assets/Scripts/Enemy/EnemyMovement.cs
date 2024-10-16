@@ -54,12 +54,20 @@ public class EnemyMovement : MonoBehaviour
         CurrentState = new SleepState();
         CurrentState.EnterState(gameObject);
     }
-    protected virtual void Update()
+    void Update()
     {
         transform.rotation = Quaternion.identity;
-        if (CurrentState != null) 
+
+        if (CurrentState != null)
         {
             CurrentState.UpdateState(gameObject);
+        }
+    }
+    void FixedUpdate()
+    {
+        if (CurrentState != null)
+        {
+            CurrentState.FixedUpdateState(gameObject);
         }
     }
     #endregion

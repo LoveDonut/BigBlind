@@ -22,8 +22,11 @@ namespace PlayerState
         {
             if (_playerMovement == null || _playerRotate == null) return;
 
-            _playerMovement.Move();
             _playerRotate.Rotate();
+        }
+        public override void FixedUpdateState(GameObject gameObject)
+        {
+            _playerMovement.Move();
         }
 
         public override void ExitState(GameObject gameObject)
@@ -35,6 +38,7 @@ namespace PlayerState
     {
         public bool IsBufferTime;
         public bool IsClickedOnBuffer;
+        public bool IsPrevented;
 
         PlayerShortAttack _shortAttack;
         Animator _animator;
@@ -52,6 +56,7 @@ namespace PlayerState
 
             IsBufferTime = false;
             IsClickedOnBuffer = false;
+
 
             if(_animator != null)
             {
@@ -76,17 +81,23 @@ namespace PlayerState
         }
         public override void UpdateState(GameObject gameObject)
         {
-            if (_shortAttack == null) return;
+            if (_shortAttack == null || IsPrevented) return;
 
             _shortAttack.CollideWithEnemy();
+
+        }
+        public override void FixedUpdateState(GameObject gameObject)
+        {
+            if (_shortAttack == null) return;
+
             _elapsedTime -= Time.fixedDeltaTime;
 
-            if (Vector2.Distance(_startPosition, gameObject.transform.position) < _shortAttack.ShortAttackDistance &&
+            if (!IsPrevented && Vector2.Distance(_startPosition, gameObject.transform.position) < _shortAttack.ShortAttackDistance &&
                 _elapsedTime > 0)
             {
                 _shortAttack.Tackle(_tackleDirection);
             }
-            else if(_elapsedDelay > 0)
+            else if (_elapsedDelay > 0)
             {
                 if (_rigidbody != null)
                 {
@@ -94,7 +105,7 @@ namespace PlayerState
                 }
 
                 PlayerShoot playerShoot;
-                if(gameObject.TryGetComponent<PlayerShoot>(out playerShoot))
+                if (gameObject.TryGetComponent<PlayerShoot>(out playerShoot))
                 {
                     if (_elapsedDelay < playerShoot.BufferDuration)
                     {
@@ -113,6 +124,7 @@ namespace PlayerState
                 }
             }
         }
+
 
         public override void ExitState(GameObject gameObject)
         {

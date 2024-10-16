@@ -17,12 +17,17 @@ public class LongRangeEnemyAttack : EnemyAttack
         }
     }
 
+    public override void InitAttack()
+    {
+        Fire();
+    }
+
     public void Fire()
     {
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
-        GameObject bullet = Instantiate(_bulletPrefab, transform.position + (Vector3)GetdirectionToPlayer(),
-            Quaternion.LookRotation(GetdirectionToPlayer().normalized));
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + (Vector3)GetDirectionToPlayer(),
+            Quaternion.LookRotation(GetDirectionToPlayer().normalized));
 
         Destroy(bullet, 3f);
     }

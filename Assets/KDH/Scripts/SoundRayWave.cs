@@ -88,7 +88,7 @@ public class SoundRayWave : MonoBehaviour
 
             if (!isPositionFixed[i])
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, radius, LayerMask.GetMask("Wall", "Glass", "Box"));
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, radius, LayerMask.GetMask("Wall", "Glass", "Box", "Shield"));
 
                 if (_isPlayerWave && !isWaveEffect)
                 {

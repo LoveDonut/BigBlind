@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class StateMachine
 {
     public abstract void EnterState(GameObject gameObject);
+    public abstract void FixedUpdateState(GameObject gameObject);
     public abstract void UpdateState(GameObject gameObject);
     public abstract void ExitState(GameObject gameObject);
     public void SwitchState(GameObject gameObject, ref StateMachine currentState, StateMachine nextState)

@@ -11,7 +11,7 @@ public class WaveManager : MonoBehaviour
     [HideInInspector]
     public float BPM = 90;
 
-    [SerializeField] float _bpmMultiplier = 1f;
+    public float _bpmMultiplier = 1f;
     public float DestroyTime = .5f;
     public float CannonDestroyTime = .5f;
     public Color WaveColor;

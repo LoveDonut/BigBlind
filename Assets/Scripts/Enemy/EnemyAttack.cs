@@ -34,11 +34,14 @@ public class EnemyAttack : MonoBehaviour, ILightable
     #region PrivateVariables
     #endregion
 
-    #region ProtectedMethods
-    void Awake()
+    #region PrivateMethods
+    protected virtual void Awake()
     {
         _playerTransform = FindObjectOfType<PlayerMovement>().transform;
     }
+    #endregion
+
+    #region ProtectedMethods
     #endregion
 
     #region PublicMethods
@@ -55,8 +58,38 @@ public class EnemyAttack : MonoBehaviour, ILightable
             enemyMovement.CurrentState.SwitchState(gameObject, ref enemyMovement.CurrentState,attackState);
         }
     }
+
+    public virtual void InitAttack()
+    {
+        Weapon.SetActive(true);
+
+        EnemyShortWeapon shortWeapon = GetComponentInChildren<EnemyShortWeapon>();
+        if (shortWeapon != null)
+        {
+            shortWeapon.StartAttack();
+        }
+    }
+
+    public virtual void UpdateAttack()
+    {
+
+    }
+    public virtual void FixedUpdateAttack()
+    {
+
+    }
+    public virtual void EndAttack()
+    {
+        EnemyShortWeapon shortWeapon = GetComponentInChildren<EnemyShortWeapon>();
+        if (shortWeapon != null)
+        {
+            shortWeapon.EndAttack();
+        }
+    }
+
     public virtual bool IsInAttackRange()
     {
+        if(_playerTransform == null) return false;
         // check if the player is closed to enemy enough to attack
         if (_attackRange >= Vector2.Distance(transform.position, _playerTransform.position))
         {
@@ -83,7 +116,7 @@ public class EnemyAttack : MonoBehaviour, ILightable
     {
         return _attackDelay;
     }
-    public Vector2 GetdirectionToPlayer()
+    public Vector2 GetDirectionToPlayer()
     {
         return (_playerTransform.position - transform.position).normalized;
     }

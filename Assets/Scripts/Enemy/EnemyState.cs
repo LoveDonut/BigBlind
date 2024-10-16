@@ -21,6 +21,9 @@ namespace EnemyState
                 SetActiveState();
             }
         }
+        public override void FixedUpdateState(GameObject enemy)
+        {
+        }
         public override void ExitState(GameObject enemy)
         {
             InitWave(enemy);
@@ -91,7 +94,6 @@ namespace EnemyState
                 SwitchState(enemy, ref _enemyMovement.CurrentState, chaseState);
             }
 
-
             if (Vector2.Distance(enemy.transform.position, _enemyPatrol.GetCurrentDestination()) < 0.5f)
             {
                 _elapsedTime -= Time.deltaTime;
@@ -102,6 +104,9 @@ namespace EnemyState
                     _elapsedTime = _enemyPatrol.GetWaitingTime();
                 }
             }
+        }
+        public override void FixedUpdateState(GameObject enemy)
+        {
         }
         public override void ExitState(GameObject enemy)
         {
@@ -120,11 +125,12 @@ namespace EnemyState
         public override void EnterState(GameObject enemy)
         {
             _enemyMovement = enemy.GetComponent<EnemyMovement>();
+            _enemyAttack = enemy.GetComponent<EnemyAttack>();
 
-            if(_enemyMovement == null) return;
+            if (_enemyMovement == null) return;
 
             // start move if no player in attack range
-            if (enemy.TryGetComponent<EnemyAttack>(out _enemyAttack) && !_enemyAttack.IsInAttackRange())
+            if (_enemyAttack != null && !_enemyAttack.IsInAttackRange())
             {
                 _enemyMovement.StartMove();
             }
@@ -135,16 +141,18 @@ namespace EnemyState
             if (_enemyMovement == null) return;
 
             // switch to ready when find player
-            if (enemy.TryGetComponent<EnemyAttack>(out _enemyAttack) && _enemyAttack.IsInAttackRange())
+            if (_enemyAttack != null && _enemyAttack.IsInAttackRange())
             {
                 _enemyMovement.StopMove();
 
                 ReadyState readyState = new ReadyState();
                 SwitchState(enemy, ref _enemyMovement.CurrentState, readyState);
             }
-
             // chase player
             _enemyMovement.Chase();
+        }
+        public override void FixedUpdateState(GameObject enemy)
+        {
         }
 
         public override void ExitState(GameObject enemy)
@@ -159,24 +167,27 @@ namespace EnemyState
         public override void EnterState(GameObject enemy)
         {
             _enemyMovement = enemy.GetComponent<EnemyMovement>();
+            _enemyAttack = enemy.GetComponent<EnemyAttack>();
 
-            if (_enemyMovement == null) return;
+            if (_enemyMovement == null || _enemyAttack == null) return;
 
-            // play ready sound
-            if (enemy.TryGetComponent<EnemyAttack>(out _enemyAttack) && _enemyAttack._readySFX != null)
+            // change BPM
+            WaveManager waveManager;
+            if (enemy.TryGetComponent<WaveManager>(out waveManager))
             {
-                // change BPM
-                WaveManager waveManager;
-                if (enemy.TryGetComponent(out waveManager))
-                {
-                    waveManager.BPM *= _enemyAttack._bpmMultiplier;
-//                    Debug.Log("BPM UP!");
-                }
+                waveManager.BPM *= _enemyAttack._bpmMultiplier;
+            }
+            // play ready sound
+            if (_enemyAttack._readySFX != null)
+            {
                 SoundManager.Instance.PlaySound(_enemyAttack._readySFX, _enemyAttack.transform.position);
             }
         }
 
         public override void UpdateState(GameObject enemy)
+        {
+        }
+        public override void FixedUpdateState(GameObject enemy)
         {
         }
 
@@ -193,48 +204,32 @@ namespace EnemyState
         public override void EnterState(GameObject enemy)
         {
             _enemyMovement = enemy.GetComponent<EnemyMovement>();
-            if (_enemyMovement == null) return;
+            _enemyAttack = enemy.GetComponent<EnemyAttack>();
+            if (_enemyMovement == null || _enemyAttack == null) return;
 
-            if (enemy.TryGetComponent<EnemyAttack>(out _enemyAttack))
+            elapsedTime = _enemyAttack.GetAttackDelay();
+
+            // attack differently by enemy's type
+            _enemyAttack.InitAttack();
+
+            // player attack sound
+            if (_enemyAttack._attackSFX != null)
             {
-                elapsedTime = _enemyAttack.GetAttackDelay();
-
-                // attack differently by enemy's type
-                if (_enemyAttack is LongRangeEnemyAttack)
-                {
-                    LongRangeEnemyAttack enemyAttack_LongRange = (LongRangeEnemyAttack)_enemyAttack;
-                    enemyAttack_LongRange.Fire();
-                }
-                else
-                {
-                    _enemyAttack.Weapon.SetActive(true);
-
-                    EnemyShortWeapon shortWeapon;
-                    if (_enemyAttack.Weapon.TryGetComponent<EnemyShortWeapon>(out shortWeapon))
-                    {
-                        shortWeapon.StartAttack();
-                    }
-                }
-
-                // player attack sound
-                if (_enemyAttack._attackSFX != null)
-                {
-                    SoundManager.Instance.PlaySound(_enemyAttack._attackSFX, _enemyAttack.transform.position);
-                }
-
-                // recover BPM
-                WaveManager waveManager;
-                if (enemy.TryGetComponent(out waveManager))
-                {
-                    waveManager.BPM /= _enemyAttack._bpmMultiplier;
-//                    Debug.Log("BPM DOWN!");
-                }
+                SoundManager.Instance.PlaySound(_enemyAttack._attackSFX, _enemyAttack.transform.position);
+            }
+            // recover BPM
+            WaveManager waveManager;
+            if (enemy.TryGetComponent<WaveManager>(out waveManager))
+            {
+                waveManager.BPM /= _enemyAttack._bpmMultiplier;
             }
         }
 
         public override void UpdateState(GameObject enemy)
         {
             if (enemy == null) return;
+
+            _enemyAttack.UpdateAttack();
 
             // wait until attack ends
             elapsedTime -= Time.deltaTime;
@@ -245,18 +240,15 @@ namespace EnemyState
                 SwitchState(enemy, ref _enemyMovement.CurrentState, chaseState);
             }
         }
+        public override void FixedUpdateState(GameObject enemy)
+        {
+            _enemyAttack.FixedUpdateAttack();
+        }
 
         public override void ExitState(GameObject enemy)
         {
             // attack ends
-            if (_enemyAttack is not LongRangeEnemyAttack)
-            {
-                EnemyShortWeapon shortWeapon = _enemyAttack.GetComponentInChildren<EnemyShortWeapon>();
-                if (shortWeapon != null)
-                {
-                    shortWeapon.EndAttack();
-                }
-            }
+            _enemyAttack.EndAttack();
 
             //// recover BPM
             //WaveManager waveManager;
@@ -265,6 +257,64 @@ namespace EnemyState
             //    waveManager.BPM /= _enemyAttack._bpmMultiplier;
             //    Debug.Log("BPM DOWN!");
             //}
+        }
+    }
+
+    public class KnockbackState : StateMachine
+    {
+        EnemyMovement _enemyMovement;
+        ShielderAttack _shielderAttack;
+        Rigidbody2D _rigidbody;
+
+        Vector2 _startPosition;
+        Vector2 velocity;
+        float elapsedTime;
+        float knockbackDuration = 1f;
+        public override void EnterState(GameObject enemy)
+        {
+            _enemyMovement = enemy.GetComponent<EnemyMovement>();
+            _shielderAttack = enemy.GetComponent<ShielderAttack>();
+            _rigidbody = enemy.GetComponent<Rigidbody2D>();
+
+            elapsedTime = knockbackDuration;
+            _startPosition = enemy.transform.position;
+            velocity = _shielderAttack.KnockbackSpeed * _shielderAttack.KnockbackDirection;
+        }
+
+        public override void UpdateState(GameObject enemy)
+        {
+        }
+        public override void FixedUpdateState(GameObject enemy)
+        {
+            if(Vector2.Distance(_startPosition, enemy.transform.position) < _shielderAttack.KnockbackDistance && elapsedTime > 0f)
+            {
+                if (_shielderAttack != null && _rigidbody != null)
+                {
+                    velocity = Vector2.MoveTowards(velocity, Vector2.zero, _shielderAttack.KnockbackDecceleration * Time.fixedDeltaTime);
+//                    _rigidbody.velocity = _shielderAttack.KnockbackSpeed * _shielderAttack.KnockbackDirection;
+                    _rigidbody.velocity = velocity;
+                }
+            }
+            else
+            {
+                if(_enemyMovement != null)
+                {
+                    SwitchState(_enemyMovement.gameObject, ref _enemyMovement.CurrentState, new ChaseState());
+                }
+            }
+
+            elapsedTime -= Time.fixedDeltaTime;
+        }
+
+        public override void ExitState(GameObject enemy)
+        {
+            _rigidbody.velocity = Vector2.zero;
+            // recover BPM
+            WaveManager waveManager;
+            if (enemy.TryGetComponent<WaveManager>(out waveManager))
+            {
+                waveManager.BPM = SoundManager.Instance.BPM * waveManager._bpmMultiplier;
+            }
         }
     }
 }

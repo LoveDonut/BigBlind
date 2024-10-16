@@ -144,7 +144,7 @@ public class PlayerHealth : MonoBehaviour, IDamage
 
             if (rb != null)
             {
-                rb.MovePosition(rb.position + playerVelocity * Time.deltaTime);
+                rb.velocity = playerVelocity;
             }
             elapsedTime -= Time.deltaTime;
         }
