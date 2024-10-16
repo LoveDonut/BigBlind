@@ -4,6 +4,12 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class OutlineColorController : MonoBehaviour
 {
+    [Header("<color=red><b>Check if this object is moving platform")]
+    public bool isMovingPlatform = false;
+    [ConditionalField(nameof(isMovingPlatform))]
+    [SerializeField] GameObject platformShadow;
+
+    //[ConditionalField(nameof(_duration2), 1, ComparisonType.GreaterThan)]
     public SpriteRenderer _spriteRenderer;
     [SerializeField] Material _instancedMaterial;
     [SerializeField] float _duration;
@@ -52,6 +58,19 @@ public class OutlineColorController : MonoBehaviour
     {
 
         if (_isPlaying || _instancedMaterial == null) return;
+
+
+        if (isMovingPlatform)
+        {
+            var _shadow = Instantiate(platformShadow, transform.position, Quaternion.identity);
+            _shadow.transform.rotation = transform.rotation;
+            var outline = _shadow.GetComponent<OutlineColorController>();
+            outline.LookAtWave(transform.position);
+            outline.ShowOutline();
+
+            Destroy(_shadow, outline._duration);
+            return;
+        }
 
         if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
 
