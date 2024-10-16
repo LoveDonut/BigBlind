@@ -53,6 +53,8 @@ public class TapeHaste : MonoBehaviour
 
     void NewBeatStart()
     {
+        var bgm = SoundManager.Instance.BGMaudio;
+
         if (_player.GetComponent<PlayerShoot>().IsHaste) return;
         StartCoroutine(_player.GetComponent<PlayerShoot>().Haste(_mult, _duration));
         _player.GetComponent<WaveManager>().WaveColor = _hasteColor;
@@ -62,10 +64,10 @@ public class TapeHaste : MonoBehaviour
 
         // Remove these lines if music pitch isn't changed
         _player.GetComponent<WaveManager>().BPM *= _mult;
-        _player.GetComponent<AudioSource>().volume *= _mult;
-        _player.GetComponent<AudioSource>().clip = _feverBGM;
-        _player.GetComponent<AudioSource>().loop = false;
-        _player.GetComponent<AudioSource>().Play();
+        bgm.volume *= _mult;
+        bgm.clip = _feverBGM;
+        bgm.loop = false;
+        bgm.Play();
 
         Invoke(nameof(PlayBeatSwitch), _duration);
         Invoke("DelayedDestroy", _duration * 2);
@@ -73,15 +75,17 @@ public class TapeHaste : MonoBehaviour
 
     void ResetToNormal()
     {
+        var bgm = SoundManager.Instance.BGMaudio;
+
         _player.GetComponent<WaveManager>().WaveColor = _normalColor;
 
         // Remove these lines if music pitch isn't changed
-        _player.GetComponent<AudioSource>().volume /= _mult;
+        bgm.volume /= _mult;
         _player.GetComponent<WaveManager>().BPM /= _mult;
         _player.GetComponent<Animator>().speed /= _mult;
-        _player.GetComponent<AudioSource>().clip = _defaultBGM;
-        _player.GetComponent<AudioSource>().loop = true;
-        _player.GetComponent<AudioSource>().Play();
+        bgm.clip = _defaultBGM;
+        bgm.loop = true;
+        bgm.Play();
     }
 
     void DelayedDestroy()

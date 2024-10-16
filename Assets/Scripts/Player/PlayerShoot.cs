@@ -54,7 +54,6 @@ public class PlayerShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<AudioSource>().Play();
         _ammo = _maxAmmo;
         Direction.Instance.Sync_BulletCount_UI(_ammo);
         Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);

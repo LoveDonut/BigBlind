@@ -14,7 +14,7 @@ public class Spectrum : MonoBehaviour
     public float releaseTime = 0.2f;
 
 
-    public AudioSource audioSource;
+    AudioSource audioSource;
     public SpectrumElement spectrumElementPrefab;
 
     private SpectrumElement[] spectrumElements = new SpectrumElement[96];
@@ -23,6 +23,8 @@ public class Spectrum : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = SoundManager.Instance.BGMaudio;
+
         CreateElements();
     }
 
