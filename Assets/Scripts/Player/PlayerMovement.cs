@@ -16,7 +16,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _stoppingThreshold = 0.1f; // threshold for stopping deceleration
 
     [Header("SFX")]
+    [HideInInspector]
     public AudioSource HeartBeat;
+    [HideInInspector]
     public AudioSource Beat;
     #endregion
 
@@ -36,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
     #region PrivateMethods
     void Start()
     {
+        HeartBeat = SoundManager.Instance.HeartBeatAudio;
+        Beat = SoundManager.Instance.BGMaudio;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         _rb = GetComponent<Rigidbody2D>();

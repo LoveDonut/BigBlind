@@ -4842,15 +4842,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797c4a912e82e34418d7b084ef4645fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
-  hitOffset: 0.1
-  UseFirePointRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 0}
-  hit: {fileID: 1714524745656972, guid: b66a3ba975fcdc94cb038738f689b595, type: 3}
-  flash: {fileID: 1258350160538612, guid: 2d458d906f8804042af3587e2cf20d61, type: 3}
+  Hit: {fileID: 1714524745656972, guid: b66a3ba975fcdc94cb038738f689b595, type: 3}
+  Flash: {fileID: 1258350160538612, guid: 2d458d906f8804042af3587e2cf20d61, type: 3}
   Detached:
   - {fileID: 1666296132266488}
-  aimPos: {x: 0, y: 0, z: 0}
+  Speed: 60
+  HitOffset: 0.1
+  UseFirePointRotation: 0
+  RotationOffset: {x: 0, y: 0, z: 0}
+  AimPos: {x: 0, y: 0, z: 0}
 --- !u!199 &199602846296022876
 ParticleSystemRenderer:
   serializedVersion: 6

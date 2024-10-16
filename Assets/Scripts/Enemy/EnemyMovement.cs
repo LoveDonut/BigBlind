@@ -94,11 +94,5 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void SpawnSprite()
-    {
-        var shadow = Instantiate(_enemyShadow, transform.position, Quaternion.identity);
-        shadow.GetComponent<SpriteRenderer>().sprite = _renderer.sprite;
-        shadow.GetComponent<EnemyShadow>().StartFadeOut();
-    }
     #endregion
 }

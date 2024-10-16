@@ -95,7 +95,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 0.15, z: 1}
+  m_LocalScale: {x: 2, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1830075994007777304}
@@ -336,10 +336,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _left: {fileID: 1830075994007777304}
   _right: {fileID: 4991591244478786143}
-  _kickSpeed: 400
   _smashDoor: {fileID: 8300000, guid: de8f4e1df9a0c844fb9e35a6c8b9c53a, type: 3}
   _enemyBurst: {fileID: 8300000, guid: d727c9736e178974a8b704df44ddd40e, type: 3}
   _crashDoor: {fileID: 8300000, guid: fb41acad799729743bd027e283b7f074, type: 3}
+  _kickSpeed: 400
 --- !u!114 &6934692439392162270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +362,6 @@ MonoBehaviour:
   WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
   _blockAlphaAmount: 2
   _distanceFadeNumerator: 3
-  _90BPM: {fileID: 0}
   isPlayer: 1
   _repeatWave: 0
   _waveEffect: {fileID: 0}

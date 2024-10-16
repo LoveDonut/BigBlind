@@ -1,11 +1,16 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
     public float BPM;
+    [Space]
 
+    public AudioSource BGMaudio, HeartBeatAudio, FlashBang;
+    [Space]
 
     [SerializeField] private AudioSource[] audioSources;
     public float stereoPanAmount = 10f;
@@ -13,7 +18,23 @@ public class SoundManager : MonoBehaviour
 
     private int currentAudioSourceIndex = 0;
 
+    [Space]
+
+    [SerializeField] AudioMixer _mixer;
+    [SerializeField] AudioMixerGroup _amg;
+
     private void Awake() => Instance = this;
+
+    private void Start()
+    {
+        foreach (var x in audioSources)
+        {
+            x.outputAudioMixerGroup = _amg;
+        }
+
+        //BurstFlashBang();
+
+    }
 
     public void PlaySound(AudioClip clip, Vector2 enemyPos)
     {
@@ -47,4 +68,48 @@ public class SoundManager : MonoBehaviour
             audioSource.volume = Mathf.Min(finalSoundNumerator / distance, 1f);
         }
     }
+
+    public void BurstFlashBang()
+    {
+        FlashBang.Play();
+
+        StartCoroutine(VolumeControl(BGMaudio, 0, BGMaudio.volume, 5));
+        StartCoroutine(VolumeControl(HeartBeatAudio, 0, HeartBeatAudio.volume, 5));
+        StartCoroutine(StartLowPass(5));
+    }
+
+
+    IEnumerator StartLowPass(float time)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / time;
+            _mixer.SetFloat("lowpass", Mathf.Lerp(1500, 5000, t));
+
+            yield return null;
+        }
+    }
+
+    IEnumerator VolumeControl(AudioSource _as,float firstVolume, float targetVolume, float time)
+    {
+        _as.volume = firstVolume;
+        float elapsedTime = 0f;
+
+
+
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / time;
+            _as.volume = Mathf.Lerp(firstVolume, targetVolume, t);
+            yield return null;
+        }
+
+        _as.volume = targetVolume;
+    }
+
+
 }
