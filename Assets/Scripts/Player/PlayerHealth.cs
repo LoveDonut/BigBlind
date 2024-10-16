@@ -25,6 +25,8 @@ public class PlayerHealth : MonoBehaviour, IDamage
     public bool IsFullHealth => CurrentHp == MaxHp;
     #region PriavteMethods
 
+    AudioSource _bgm, _heartbeat;
+
     void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
@@ -35,6 +37,9 @@ public class PlayerHealth : MonoBehaviour, IDamage
         _isInvincible = false;
         CurrentHp = MaxHp = _maxHp;
         _originalAlpha = _spriteRenderer.color.a;
+
+        _bgm = SoundManager.Instance.BGMaudio;
+        _heartbeat = SoundManager.Instance.HeartBeatAudio;
     }
 
     IEnumerator ResetInvincible(float invincibleDuration, bool isBlink)
@@ -109,8 +114,10 @@ public class PlayerHealth : MonoBehaviour, IDamage
             Dead();
         }
 
-        _playerMovement.HeartBeat.volume += GetComponent<AudioSource>().volume / MaxHp;
-        _playerMovement.Beat.volume -= GetComponent<AudioSource>().volume / MaxHp;
+
+
+        _heartbeat.volume += _heartbeat.volume / MaxHp;
+        _bgm.volume -= _bgm.volume / MaxHp;
 
         if (CurrentHp <= 1) Direction.Instance.ShowLowHP();
     }
