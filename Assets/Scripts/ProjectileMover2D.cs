@@ -5,29 +5,41 @@ using UnityEngine;
 
 public class ProjectileMover2D : MonoBehaviour, IParriable
 {
-    public float speed = 15f;
-    public float hitOffset = 0f;
-    public bool UseFirePointRotation;
-    public Vector3 rotationOffset = new Vector3(0, 0, 0);
-    public GameObject hit;
-    public GameObject flash;
-    private Rigidbody2D rb;
-    public GameObject[] Detached;
+    #region References
+    [Header("References")]
+    public GameObject Hit;
+    public GameObject Flash;
 
-    public Vector3 aimPos;
+    public GameObject[] Detached;
+    #endregion
+
+    #region PrivateVariables
+    private Rigidbody2D _rb;
+    #endregion
+
+    #region PublicVariables
+    public float Speed = 15f;
+    public float HitOffset = 0f;
+    public bool UseFirePointRotation;
+    public Vector3 RotationOffset = new Vector3(0, 0, 0);
+
+    public Vector3 AimPos;
 
     // added by KimDaehui
     public bool IsParried { get; set; }
-    public bool IsFromPlayer {  get; set; }
+    public bool IsFromPlayer { get; set; }
+    #endregion
+
+
 
     void Start()
     {
         IsParried = false;
-        rb = GetComponent<Rigidbody2D>();
-        if (flash != null)
+        _rb = GetComponent<Rigidbody2D>();
+        if (Flash != null)
         {
             //Instantiate flash effect on projectile position
-            var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
+            var flashInstance = Instantiate(Flash, transform.position, Quaternion.identity);
             flashInstance.transform.forward = gameObject.transform.forward;
 
             //Destroy flash effect depending on particle Duration time
@@ -47,9 +59,9 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
 
     void FixedUpdate()
     {
-        if (speed != 0)
+        if (Speed != 0)
         {
-            rb.velocity = transform.forward * speed;
+            _rb.velocity = transform.forward * Speed;
             //transform.position += transform.forward * (speed * Time.deltaTime);         
         }
     }
@@ -66,26 +78,26 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
         // prevent attack player self
         if (damagable != null && !IsParried && !(IsFromPlayer && collision.gameObject.CompareTag("Player")))
         {
-            damagable.GetDamaged(aimPos.normalized);
+            damagable.GetDamaged(AimPos.normalized);
         }
 
         //Lock all axes movement and rotation
-        if(rb != null)
+        if(_rb != null)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-        speed = 0;
+        Speed = 0;
 
         ContactPoint2D contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-        Vector3 pos = contact.point + contact.normal * hitOffset;
+        Vector3 pos = contact.point + contact.normal * HitOffset;
 
         //Spawn hit effect on collision
-        if (hit != null)
+        if (Hit != null)
         {
-            var hitInstance = Instantiate(hit, pos, rot);
+            var hitInstance = Instantiate(Hit, pos, rot);
             if (UseFirePointRotation) { hitInstance.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
-            else if (rotationOffset != Vector3.zero) { hitInstance.transform.rotation = Quaternion.Euler(rotationOffset); }
+            else if (RotationOffset != Vector3.zero) { hitInstance.transform.rotation = Quaternion.Euler(RotationOffset); }
             else { hitInstance.transform.LookAt(contact.point + contact.normal); }
 
             //Destroy hit effects depending on particle Duration time

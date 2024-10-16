@@ -203,8 +203,8 @@ public class PlayerShoot : MonoBehaviour
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized * 0.6f, Quaternion.LookRotation(aimPos.normalized));
-        bullet.GetComponent<ProjectileMover2D>().speed = _bulletSpeed;
-        bullet.GetComponent<ProjectileMover2D>().aimPos = aimPos;
+        bullet.GetComponent<ProjectileMover2D>().Speed = _bulletSpeed;
+        bullet.GetComponent<ProjectileMover2D>().AimPos = aimPos;
 
         // for preventing attack player self
         bullet.GetComponent<ProjectileMover2D>().IsFromPlayer = true;

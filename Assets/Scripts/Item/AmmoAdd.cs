@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Made by JK3WN
 public class AmmoAdd : MonoBehaviour
 {
     [SerializeField] int _ammo = 6;

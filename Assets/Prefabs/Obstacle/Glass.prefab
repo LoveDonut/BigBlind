@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 9183986829506907392}
   - component: {fileID: 7431650233515939676}
   - component: {fileID: 1737125046951953416}
-  - component: {fileID: 4171693716620686658}
   - component: {fileID: 7937604969774526819}
   - component: {fileID: 8060289483732360982}
+  - component: {fileID: -800181369763910482}
   m_Layer: 10
   m_Name: Glass
   m_TagString: Wall
@@ -230,22 +230,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4171693716620686658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5265297225063049290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2c90154ec6b9d94281edfbaf80b5a2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _brokenGlass:
-  - {fileID: 8300000, guid: a84cedb68a4e21d419a309aafad76315, type: 3}
-  - {fileID: 8300000, guid: 459125cfdbb1b794ba6e74529f64c829, type: 3}
-  - {fileID: 8300000, guid: 7a78f393ef9cd4e4c8099908208c18ca, type: 3}
 --- !u!114 &7937604969774526819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +268,23 @@ MonoBehaviour:
   WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
   _blockAlphaAmount: 2
   _distanceFadeNumerator: 3
-  _90BPM: {fileID: 0}
   isPlayer: 1
   _repeatWave: 0
   _waveEffect: {fileID: 0}
+--- !u!114 &-800181369763910482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5265297225063049290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b7fceeaffa8dc42984823f6ef293b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _breakSound:
+  - {fileID: 8300000, guid: a84cedb68a4e21d419a309aafad76315, type: 3}
+  - {fileID: 8300000, guid: 459125cfdbb1b794ba6e74529f64c829, type: 3}
+  - {fileID: 8300000, guid: 7a78f393ef9cd4e4c8099908208c18ca, type: 3}
+  MaxHp: 1

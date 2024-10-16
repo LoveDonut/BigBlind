@@ -1,38 +1,44 @@
-using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.AI.Navigation;
 using UnityEngine;
 
-// Made By JK3WN
-public class GlassBreak : MonoBehaviour, IDamage
+// Made by JK3WN
+public class ObstacleHealth : MonoBehaviour, IDamage
 {
     #region References
     [Header("References")]
-    [SerializeField] AudioClip[] _brokenGlass;
+    [SerializeField] AudioClip[] _breakSound;
     #endregion
 
-    int CurrentHp = 1;
-    private AudioSource _as;
-    private Collider2D _collider;
-    private SpriteRenderer _spriteRenderer;
-    int _clipNum;
+    #region PrivateVariables
+    AudioSource _audioSource;
+    Collider2D _collider;
+    SpriteRenderer _spriteRenderer;
 
-    // Start is called before the first frame update
-    void Start()
+    int CurrentHp;
+    int _clipNum;
+    #endregion
+
+    #region PublicVariables
+    public int MaxHp = 1;
+    #endregion
+
+    #region PrivateMethods
+    private void Start()
     {
-        if(GetComponent<AudioSource>() != null) _as = GetComponent<AudioSource>();
+        if(GetComponent<AudioSource>() != null) _audioSource = GetComponent<AudioSource>();
         if(GetComponent<Collider2D>() != null) _collider = GetComponent<Collider2D>();
         if(GetComponent<SpriteRenderer>() != null) _spriteRenderer = GetComponent<SpriteRenderer>();
+        CurrentHp = MaxHp;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void DelayedDestroy()
     {
-        if (collision.gameObject.CompareTag("Attack")) {
-            Dead();
-        }
+        Destroy(gameObject);
     }
+    #endregion
 
+    #region PublicMethods
     public void GetDamaged(Vector2 attackedDirection, int damage = 1)
     {
         CurrentHp -= damage;
@@ -45,18 +51,14 @@ public class GlassBreak : MonoBehaviour, IDamage
 
     public void Dead()
     {
-        _clipNum = Random.Range(0, _brokenGlass.Length);
-        _as.PlayOneShot(_brokenGlass[_clipNum]);
+        _clipNum = Random.Range(0, _breakSound.Length);
+        _audioSource.PlayOneShot(_breakSound[_clipNum]);
         if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
         _spriteRenderer.enabled = false;
         _collider.enabled = false;
         GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;
         GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
-        Invoke("DelayedDestroy", _brokenGlass[_clipNum].length * 2);
+        Invoke("DelayedDestroy", _breakSound[_clipNum].length * 2);
     }
-
-    void DelayedDestroy()
-    {
-        Destroy(gameObject);
-    }
+    #endregion
 }
