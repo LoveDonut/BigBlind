@@ -49,7 +49,7 @@ public class ObstacleHealth : MonoBehaviour, IDamage
         }
     }
 
-    public void Dead()
+    public virtual void Dead()
     {
         _clipNum = Random.Range(0, _breakSound.Length);
         _audioSource.PlayOneShot(_breakSound[_clipNum]);

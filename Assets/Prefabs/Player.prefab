@@ -924,8 +924,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _flashBomb: {fileID: 7961150668039563791}
+  _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
   _flashBombCount: 10
   _coolTime: 1
+  _waveColor: {r: 1, g: 0.9225851, b: 0, a: 1}
+  _waveDestoryTime: 1
 --- !u!50 &1534208878423213486
 Rigidbody2D:
   serializedVersion: 4
@@ -2153,6 +2156,10 @@ PrefabInstance:
     - target: {fileID: 5958858402301014798, guid: 9d8b9dd523a06b340a9dc00031778c49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8154427309260858861, guid: 9d8b9dd523a06b340a9dc00031778c49, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
