@@ -11,16 +11,14 @@ public class Generator : MonoBehaviour, IDamage
     [Header("References")]
     [Tooltip("don't have to allocate this yet. it will be used after implement light change shader")]
     [SerializeField] GameObject[] _light;
+    [SerializeField] AudioClip _generatorSFX;
+    [SerializeField] AudioClip _generatorDestroyedSFX;
     #endregion
 
     #region PrivateVariables
     [Header("")]
     [SerializeField] Vector2 _lightSize;
     [SerializeField] Vector2 _lightCenter;
-
-    [SerializeField] AudioClip _generatorSFX;
-    [SerializeField] AudioClip _generatorDestroyedSFX;
-
 
     private AudioSource _as;
     float _stereoPanAmount, _finalSoundNumerator;

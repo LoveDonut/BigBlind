@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Made By JK3WN, original code from GGSS
+// Made by JK3WN, original code from GGSS
 public class CameraZoom : MonoBehaviour
 {
     CinemachineVirtualCamera _virtualCamera;

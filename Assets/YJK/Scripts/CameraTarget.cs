@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Made By JK3WN
+// Made by JK3WN
 public class CameraTarget : MonoBehaviour
 {
     #region References

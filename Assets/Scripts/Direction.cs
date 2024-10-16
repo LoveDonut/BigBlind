@@ -27,7 +27,7 @@ public class Direction : MonoBehaviour
     [SerializeField] Image _lowHpImage;
 
     [Header("FeverTime")]
-    [SerializeField] GameObject AudioSpectrum;
+    [SerializeField] GameObject _audioSpectrum;
     Material _mat;
 
     private void Update()
@@ -49,13 +49,10 @@ public class Direction : MonoBehaviour
     }
 
     #region Shoot
-
     public void Show_Flash_Effect()
     {
         _flash.GetComponent<Animator>().Play("Flash");
     }
-
-
     #endregion
 
     #region RevolverUI
@@ -87,15 +84,15 @@ public class Direction : MonoBehaviour
 
     public void ShowAudioSpectrum()
     {
-        AudioSpectrum.SetActive(true);
-        _mat = AudioSpectrum.GetComponent<Material>();
+        _audioSpectrum.SetActive(true);
+        _mat = _audioSpectrum.GetComponent<Material>();
     }
 
     public void SetSpectrumAlphaValue(float value) => _mat.SetFloat("_AlphaValue", value);
 
     public void HideAudioSpectrum()
     {
-        AudioSpectrum.SetActive(false);
+        _audioSpectrum.SetActive(false);
     }
 
     #endregion

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Made by JK3WN
-
 public class ObstacleHealth : MonoBehaviour, IDamage
 {
     #region References

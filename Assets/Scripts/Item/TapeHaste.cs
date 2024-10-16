@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Made by JK3WN
 public class TapeHaste : MonoBehaviour
 {
-    [SerializeField] float _mult = 1.5f;
-    [SerializeField] float _duration = 10f;
-    [SerializeField] Color _hasteColor = Color.red;
-
+    #region References
+    [Header("References")]
     [SerializeField] AudioClip _beatSwitchSFX;
     [SerializeField] AudioClip _defaultBGM;
     [SerializeField] AudioClip _feverBGM;
+    #endregion
+
+    [SerializeField] float _mult = 1.5f;
+    [SerializeField] float _duration = 10f;
+    [SerializeField] Color _hasteColor = Color.red;
 
     private GameObject _player;
     private SpriteRenderer _spriteRenderer;
@@ -41,7 +45,6 @@ public class TapeHaste : MonoBehaviour
 
     void PlayBeatSwitch()
     {
-
         SoundManager.Instance.PlaySound(_beatSwitchSFX, Vector2.zero);
         Invoke(_isEnd ? nameof(ResetToNormal) : nameof(NewBeatStart) , _beatSwitchSFX.length);
         if (_isEnd) Direction.Instance.HideAudioSpectrum();
@@ -54,7 +57,7 @@ public class TapeHaste : MonoBehaviour
         StartCoroutine(_player.GetComponent<PlayerShoot>().Haste(_mult, _duration));
         _player.GetComponent<WaveManager>().WaveColor = _hasteColor;
 
-        // active audio spectrum
+        // Activate audio spectrum
         Direction.Instance.ShowAudioSpectrum();
 
         // Remove these lines if music pitch isn't changed

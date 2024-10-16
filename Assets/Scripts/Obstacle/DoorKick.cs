@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Made By JK3WN
+// Made by JK3WN
 public class DoorKick : MonoBehaviour
 {
     #region References
