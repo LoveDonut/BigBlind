@@ -159,7 +159,6 @@ namespace EnemyState
         {
         }
     }
-
     public class ReadyState : StateMachine
     {
         EnemyAttack _enemyAttack;
@@ -192,10 +191,15 @@ namespace EnemyState
         }
 
         public override void ExitState(GameObject enemy)
-        {
+        {            
+            // recover BPM
+            WaveManager waveManager;
+            if (enemy.TryGetComponent<WaveManager>(out waveManager))
+            {
+                waveManager.BPM /= _enemyAttack._bpmMultiplier;
+            }
         }
     }
-
     public class AttackState : StateMachine
     {
         EnemyAttack _enemyAttack;
@@ -216,12 +220,6 @@ namespace EnemyState
             if (_enemyAttack._attackSFX != null)
             {
                 SoundManager.Instance.PlaySound(_enemyAttack._attackSFX, _enemyAttack.transform.position);
-            }
-            // recover BPM
-            WaveManager waveManager;
-            if (enemy.TryGetComponent<WaveManager>(out waveManager))
-            {
-                waveManager.BPM /= _enemyAttack._bpmMultiplier;
             }
         }
 
@@ -259,7 +257,6 @@ namespace EnemyState
             //}
         }
     }
-
     public class KnockbackState : StateMachine
     {
         EnemyMovement _enemyMovement;
@@ -314,6 +311,50 @@ namespace EnemyState
             if (enemy.TryGetComponent<WaveManager>(out waveManager))
             {
                 waveManager.BPM = SoundManager.Instance.BPM * waveManager._bpmMultiplier;
+            }
+        }
+    }
+    public class StunState : StateMachine
+    {
+        public float ElapsedTime;
+        EnemyMovement _enemyMovement;
+        public override void EnterState(GameObject gameObject)
+        {
+            _enemyMovement = gameObject.GetComponent<EnemyMovement>();
+            if (_enemyMovement != null)
+            {
+                _enemyMovement.StopMove();
+            }
+        }
+        public override void FixedUpdateState(GameObject gameObject)
+        {
+        }
+        public override void UpdateState(GameObject gameObject)
+        {
+            if(ElapsedTime < 0)
+            {
+                SetActiveState();
+            }
+            ElapsedTime -= Time.deltaTime;
+        }
+        public override void ExitState(GameObject gameObject)
+        {
+            if (_enemyMovement != null)
+            {
+                _enemyMovement.StartMove();
+            }
+        }
+        void SetActiveState()
+        {
+            EnemyPatrol enemyPatrol;
+
+            if (_enemyMovement.TryGetComponent<EnemyPatrol>(out enemyPatrol))
+            {
+                _enemyMovement.CurrentState.SwitchState(_enemyMovement.gameObject, ref _enemyMovement.CurrentState, new PatrolState());
+            }
+            else
+            {
+                _enemyMovement.CurrentState.SwitchState(_enemyMovement.gameObject, ref _enemyMovement.CurrentState, new ChaseState());
             }
         }
     }

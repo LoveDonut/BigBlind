@@ -101,7 +101,7 @@ public class WaveManager : MonoBehaviour
         if (TryGetComponent<EnemyAttack>(out _enemyAttack) && TryGetComponent<EnemyMovement>(out _enemyMovement))
         {
             Color colorToChange;
-            if (_enemyMovement.CurrentState.GetType() == typeof(EnemyState.ReadyState))
+            if (_enemyMovement.CurrentState != null && _enemyMovement.CurrentState.GetType() == typeof(EnemyState.ReadyState))
             {
                 colorToChange = WaveReadyColor;
                 _isReadyAttack = true;
