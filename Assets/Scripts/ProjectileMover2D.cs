@@ -20,6 +20,7 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
     #region PublicVariables
     public float Speed = 15f;
     public float HitOffset = 0f;
+    public GameObject fromObject;
     public bool UseFirePointRotation;
     public Vector3 RotationOffset = new Vector3(0, 0, 0);
 
@@ -78,7 +79,7 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
         // prevent attack player self
         if (damagable != null && !IsParried && !(IsFromPlayer && collision.gameObject.CompareTag("Player")))
         {
-            damagable.GetDamaged(AimPos.normalized);
+            damagable.GetDamaged(AimPos.normalized, fromObject != null ? fromObject : gameObject);
         }
 
         //Lock all axes movement and rotation

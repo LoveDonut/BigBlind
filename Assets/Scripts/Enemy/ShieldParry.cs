@@ -32,7 +32,6 @@ public class ShieldParry : MonoBehaviour, IKnockback
         IParriable parriable;
         if (collision.gameObject.TryGetComponent<IParriable>(out parriable))
         {
-            Debug.Log($"parriable! I'm {gameObject.name}");
             parriable.IsParried = true;
         }
     }

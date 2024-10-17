@@ -39,8 +39,34 @@ public class EnemyHealth : MonoBehaviour, IDamage
     #endregion
 
     #region PublicMethods
-    public void GetDamaged(Vector2 attackedDirection, int damage = 1, bool WillBeInvincible = true)
+    public void GetDamaged(Vector2 attackedDirection, GameObject from, int damage = 1)
     {
+        // for shielder
+        ShielderAttack shielderAttack;
+        if (TryGetComponent<ShielderAttack>(out shielderAttack))
+        {
+            Vector2 attackDirection = (from.transform.position - transform.position).normalized;
+
+            float angleBetween = Vector2.Angle(shielderAttack._hitTransform.gameObject.transform.up, attackDirection);
+
+            Debug.Log($"angle Between : {angleBetween}");
+            if(angleBetween <= shielderAttack.defenseAngle / 2f)
+            {
+                return;
+            }
+
+            //    Collider2D[] hits = shielderAttack.GetHittedColliderAtBox();
+            //    foreach (Collider2D hit in hits)
+            //    {
+            //        if(from == hit.gameObject)
+            //        {
+            //            Debug.Log("Parry!");
+            //            return;
+            //        }
+            //    }
+        }
+
+
         CurrentHp -= damage;
 
         if (CurrentHp <= 0)

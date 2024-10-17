@@ -206,6 +206,9 @@ public class PlayerShoot : MonoBehaviour
         bullet.GetComponent<ProjectileMover2D>().Speed = _bulletSpeed;
         bullet.GetComponent<ProjectileMover2D>().AimPos = aimPos;
 
+        //editted by Daehui
+        bullet.GetComponent<ProjectileMover2D>().fromObject = gameObject;
+
         // for preventing attack player self
         bullet.GetComponent<ProjectileMover2D>().IsFromPlayer = true;
         Destroy(bullet, 3f);

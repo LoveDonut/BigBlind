@@ -73,7 +73,7 @@ public class PlayerHealth : MonoBehaviour, IDamage
 
 
     #region PublicMethods
-    public void GetDamaged(Vector2 attackedDirection, int damage = 1, bool WillBeInvincible = true)
+    public void GetDamaged(Vector2 attackedDirection, GameObject from, int damage = 1)
     {
         if (_isInvincible) return;
 
@@ -86,7 +86,7 @@ public class PlayerHealth : MonoBehaviour, IDamage
         DoKnockBack(_slowDownDuration, attackedDirection);
 
         // be invincible for a while
-        if (WillBeInvincible)
+        if (damage != 0)
         {
             MakeInvincible(_damagedDuration, true);
         }
@@ -141,7 +141,6 @@ public class PlayerHealth : MonoBehaviour, IDamage
         float elapsedTime = duration;
 
         Vector2 playerVelocity = knockBackDirection * _knockbackSpeed;
-        Debug.Log($"Time Scale : {Time.timeScale}");
         do
         {
             yield return new WaitForSecondsRealtime(Time.deltaTime);

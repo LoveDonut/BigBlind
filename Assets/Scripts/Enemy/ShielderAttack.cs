@@ -9,7 +9,7 @@ public class ShielderAttack : EnemyAttack
 {
     #region References
     [Header("References")]
-    [SerializeField] GameObject _hitTransform;
+    public GameObject _hitTransform;
     [Header("")]
     #endregion
 
@@ -32,6 +32,7 @@ public class ShielderAttack : EnemyAttack
     public float KnockbackDistance = 3f;
     public float KnockbackDecceleration = 50f;
     [HideInInspector] public Vector2 KnockbackDirection;
+    [HideInInspector] public float defenseAngle = 90f;
     #endregion
     protected override void Awake()
     {
@@ -58,7 +59,7 @@ public class ShielderAttack : EnemyAttack
             // Attack
             if (hit.gameObject != gameObject && damagable != null)
             {
-                damagable.GetDamaged((Weapon.transform.position - transform.position).normalized);
+                damagable.GetDamaged((Weapon.transform.position - transform.position).normalized, gameObject);
             }
         }
 

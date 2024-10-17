@@ -42,7 +42,8 @@ public class BossShielder : MonoBehaviour, IKnockback
         // knockback player
         if (playerHealth != null)
         {
-            playerHealth.GetDamaged(-knockBackDirection * 20f, 0, false);
+            EnemyMovement enemyMovement = GetComponentInParent<EnemyMovement>();
+            playerHealth.GetDamaged(-knockBackDirection * 20f, enemyMovement != null ? enemyMovement.gameObject : gameObject,0);
         }
     }
 

@@ -127,7 +127,7 @@ public class PlayerShortAttack : MonoBehaviour
             }
             else if (damagable != null) // damage
             {
-                damagable.GetDamaged((_hitTransform.position - transform.position).normalized);
+                damagable.GetDamaged((_hitTransform.position - transform.position).normalized, gameObject);
                 SoundManager.Instance.PlaySound(_shortAttackSuccessSFX, Vector2.zero);
             }
         }

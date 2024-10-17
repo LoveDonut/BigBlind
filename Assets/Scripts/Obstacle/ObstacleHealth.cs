@@ -39,7 +39,7 @@ public class ObstacleHealth : MonoBehaviour, IDamage
     #endregion
 
     #region PublicMethods
-    public void GetDamaged(Vector2 attackedDirection, int damage = 1, bool WillBeInvincible = true)
+    public void GetDamaged(Vector2 attackedDirection, GameObject gameObject, int damage = 1)
     {
         CurrentHp -= damage;
         if (CurrentHp <= 0)
