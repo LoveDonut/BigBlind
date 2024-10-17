@@ -108,7 +108,7 @@ public class PlayerShoot : MonoBehaviour
     void OnReload(InputValue value)
     {
         if (!GetComponent<PlayerMovement>().IsMovable || _reserveAmmo <= 0 ||
-            GetComponent<PlayerMovement>().CurrentState.GetType() == typeof(ShortAttackState)) return;
+            GetComponent<PlayerMovement>().CurrentState.GetType() == typeof(ShortAttackState) || _currentWeapon.CompareTo("Revolver") != 0) return;
 
         if (_ammo == _maxAmmo || _isReloading)
         {
@@ -207,7 +207,24 @@ public class PlayerShoot : MonoBehaviour
         CameraShake.Instance.shakeCamera(7f, .1f);
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
-        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized * 0.6f, Quaternion.LookRotation(aimPos.normalized));
+        GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized * 1.5f, Quaternion.LookRotation(aimPos.normalized));
+        List<Transform> children = new List<Transform>();
+        foreach(Transform child in bullet.transform)
+        {
+            if(child.GetComponent<ProjectileMover2D>() != null)
+            {
+                children.Add(child);
+                child.GetComponent<ProjectileMover2D>().Speed = _bulletSpeed;
+                child.GetComponent<ProjectileMover2D>().AimPos = aimPos;
+                child.GetComponent<ProjectileMover2D>().IsFromPlayer = true;
+            }
+        }
+        foreach(Transform child in children)
+        {
+            child.parent = null;
+        }
+        Destroy(bullet, 3f);
+        /*
         bullet.GetComponent<ProjectileMover2D>().Speed = _bulletSpeed;
         bullet.GetComponent<ProjectileMover2D>().AimPos = aimPos;
 
@@ -216,8 +233,9 @@ public class PlayerShoot : MonoBehaviour
 
         // for preventing attack player self
         bullet.GetComponent<ProjectileMover2D>().IsFromPlayer = true;
+        
         Destroy(bullet, 3f);
-
+        */
         if (_ammo <= 0 && _currentWeapon.CompareTo("Revolver") != 0) ReturnToRevolver();
     }
     public void AddReserveAmmo(int count)
@@ -239,6 +257,11 @@ public class PlayerShoot : MonoBehaviour
 
     public void ChangeWeapon(Weapon weapon)
     {
+        if (_reloadCoroutine != null)
+        {
+            _isReloading = false;
+            StopCoroutine(_reloadCoroutine);
+        }
         RevolverData.Ammo = _ammo;
         _currentWeapon = weapon.WeaponName;
         _bulletPrefab = weapon.BulletPrefab;
