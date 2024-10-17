@@ -46,11 +46,11 @@ TagManager:
   - name: Map
     uniqueID: 3234636447
     locked: 0
-  - name: Wave
-    uniqueID: 830608503
-    locked: 0
   - name: Blood
     uniqueID: 3573340749
+    locked: 0
+  - name: Wave
+    uniqueID: 830608503
     locked: 0
   - name: Default
     uniqueID: 0

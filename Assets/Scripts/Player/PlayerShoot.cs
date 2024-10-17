@@ -8,12 +8,14 @@ public class PlayerShoot : MonoBehaviour
 {
     #region References
     [Header("References")]
+    public Weapon RevolverData;
     [SerializeField] GameObject _bulletPrefab;
     [SerializeField] GameObject _handCannonWave;
     #endregion
 
     #region PrivateVariables
     [Header("HandCannon")]
+    [SerializeField] string _currentWeapon = "Revolver";
     [SerializeField] float _RPM = 200f;
     [SerializeField] int _maxAmmo = 6;
     [SerializeField] int _reserveAmmo = 30;
@@ -41,12 +43,10 @@ public class PlayerShoot : MonoBehaviour
 
     Coroutine _reloadCoroutine;
     float _elapsedTime = 0f;
-
-    public bool IsHaste = false;
-
     #endregion
 
     #region PublicVariables
+    [HideInInspector] public bool IsHaste = false;
     [Header("Buffer")]
     public float BufferDuration = 0.2f;
     #endregion
@@ -54,6 +54,7 @@ public class PlayerShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _currentWeapon = "Revolver";
         _ammo = _maxAmmo;
         Direction.Instance.Sync_BulletCount_UI(_ammo);
         Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
@@ -193,8 +194,12 @@ public class PlayerShoot : MonoBehaviour
         }
         StartCoroutine(WaitNextBullet());
         _ammo--;
-        Direction.Instance.Sync_BulletCount_UI(_ammo);
-        Direction.Instance.Show_Revolver_Fire_Effect();
+        
+        if(_currentWeapon.CompareTo("Revolver") == 0)
+        {
+            Direction.Instance.Sync_BulletCount_UI(_ammo);
+            Direction.Instance.Show_Revolver_Fire_Effect();
+        }
 
         SoundManager.Instance.PlaySound(_handCannonSound, Vector2.zero);
 
@@ -209,6 +214,8 @@ public class PlayerShoot : MonoBehaviour
         // for preventing attack player self
         bullet.GetComponent<ProjectileMover2D>().IsFromPlayer = true;
         Destroy(bullet, 3f);
+
+        if (_ammo <= 0 && _currentWeapon.CompareTo("Revolver") != 0) ReturnToRevolver();
     }
     public void AddReserveAmmo(int count)
     {
@@ -225,5 +232,33 @@ public class PlayerShoot : MonoBehaviour
         _RPM /= mult;
         _reloadTime *= mult;
         IsHaste = false;
+    }
+
+    public void ChangeWeapon(Weapon weapon)
+    {
+        RevolverData.Ammo = _ammo;
+        _currentWeapon = weapon.WeaponName;
+        _bulletPrefab = weapon.BulletPrefab;
+        _handCannonWave = weapon.WavePrefab;
+        _RPM = weapon.RPM;
+        _ammo = weapon.Ammo;
+        _bulletSpeed = weapon.BulletSpeed;
+        _handCannonSound = weapon.FireSound;
+        _cannonColor = weapon.WaveColor;
+        _destroyTime = weapon.DestroyTime;
+    }
+
+    public void ReturnToRevolver()
+    {
+        _ammo = RevolverData.Ammo;
+        _currentWeapon = RevolverData.WeaponName;
+        _bulletPrefab = RevolverData.BulletPrefab;
+        _handCannonWave = RevolverData.WavePrefab;
+        _RPM = RevolverData.RPM;
+        _ammo = RevolverData.Ammo;
+        _bulletSpeed = RevolverData.BulletSpeed;
+        _handCannonSound = RevolverData.FireSound;
+        _cannonColor = RevolverData.WaveColor;
+        _destroyTime = RevolverData.DestroyTime;
     }
 }

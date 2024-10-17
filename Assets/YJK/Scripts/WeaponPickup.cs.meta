@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: cf8ce27b74976ff45aaff1f47365dcbf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - WeaponData: {instanceID: 0}
+  - _pickUpSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
