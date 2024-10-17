@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnemyState;
 
+// made by Daehui
 public class FlashStun : MonoBehaviour
 {
     #region PrivateVariables
@@ -14,11 +15,11 @@ public class FlashStun : MonoBehaviour
     public float StunDuration = 2f;
     #endregion
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, _effectRadius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawSphere(transform.position, _effectRadius);
+    //}
 
     public void Stun()
     {

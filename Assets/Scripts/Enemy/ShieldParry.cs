@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnemyState;
 
+// made by Daehui
 public class ShieldParry : MonoBehaviour, IKnockback
 {
     public void Knockback(Vector2 knockBackDirection, GameObject gameObject)

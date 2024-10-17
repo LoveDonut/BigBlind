@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +36,9 @@ public class WaveManager : MonoBehaviour
     bool _isReadyAttack;
     [SerializeField] GameObject _waveEffect;
 
+    // editted by Daehui
+    Coroutine _waveCoroutine;
+
     void Start()
     {
         BPM = SoundManager.Instance.BPM * _bpmMultiplier;
@@ -62,9 +66,39 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    // editted by Daehui
+    public void StopWave()
+    {
+        if(_waveCoroutine != null)
+        {
+            StopCoroutine(_waveCoroutine);
+        }
+    }
+
     public void SpawnWave(bool isRepeat = false)
     {
-        StartCoroutine(SpawnWaveCoroutine(isRepeat));
+        // editted by Daehui
+        if (_waveCoroutine != null)
+        {
+            StopCoroutine(_waveCoroutine);
+        }
+        _waveCoroutine = StartCoroutine(SpawnWaveCoroutine(isRepeat));
+    }
+
+    // editted by Daehui
+    public void RestartWave(Collider2D hit, float EMPDuration)
+    {
+        if (_waveCoroutine != null)
+        {
+            StopCoroutine(_waveCoroutine);
+        }
+        _waveCoroutine = StartCoroutine(RestartWaveCoroutine(hit, EMPDuration));
+    }
+
+    IEnumerator RestartWaveCoroutine(Collider2D hit, float EMPDuration)
+    {
+        yield return new WaitForSeconds(EMPDuration);
+        StartWaveByBeat();
     }
 
     IEnumerator SpawnWaveCoroutine(bool isRepeat = false)
