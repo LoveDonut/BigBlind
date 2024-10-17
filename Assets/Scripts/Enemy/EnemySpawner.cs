@@ -18,6 +18,9 @@ public class EnemySpawner : MonoBehaviour
     #region PrivateVariables
     [SerializeField] EnemyPrefabManager _enemyPrefabManager;
     [SerializeField] List<EnemySpawnInfo> _enemySpawnInfos;
+
+    //made by JHC
+    [SerializeField] bool _isRepeating = false;
     #endregion
 
     void Start()
@@ -28,32 +31,36 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
-        float beforeSpawnTime = 0f;
-
-        foreach (EnemySpawnInfo enemyInfo in _enemySpawnInfos)
+        while (_isRepeating)
         {
-            float timeDiff = enemyInfo.spawnTime - beforeSpawnTime;
+            float beforeSpawnTime = 0f;
 
-            if(timeDiff > 0f)
+            foreach (EnemySpawnInfo enemyInfo in _enemySpawnInfos)
             {
-                // spawn enemies after spawnTime
-                yield return new WaitForSeconds(timeDiff);
-            }
+                float timeDiff = enemyInfo.spawnTime - beforeSpawnTime;
 
-            // get a enemyPrefab
-            GameObject enemyPrefab = _enemyPrefabManager.GetPrefabByType(enemyInfo.enemyType);
+                if (timeDiff > 0f)
+                {
+                    // spawn enemies after spawnTime
+                    yield return new WaitForSeconds(timeDiff);
+                }
 
-            if (enemyPrefab != null)
-            {
-                // spawn enemy
-                Instantiate(enemyPrefab, enemyInfo.spawnTransform.position, Quaternion.identity);
-            }
-            else
-            {
-                Debug.LogWarning("적 프리팹이 없습니다: " + enemyInfo.enemyType);
-            }
+                // get a enemyPrefab
+                GameObject enemyPrefab = _enemyPrefabManager.GetPrefabByType(enemyInfo.enemyType);
 
-            beforeSpawnTime = enemyInfo.spawnTime;
+                if (enemyPrefab != null)
+                {
+                    // spawn enemy
+                    Instantiate(enemyPrefab, enemyInfo.spawnTransform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Debug.LogWarning("적 프리팹이 없습니다: " + enemyInfo.enemyType);
+                }
+
+                beforeSpawnTime = enemyInfo.spawnTime;
+            }
+            yield return new WaitForSeconds(1f);
         }
     }
 }
