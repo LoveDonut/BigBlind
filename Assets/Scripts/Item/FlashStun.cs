@@ -13,13 +13,6 @@ public class FlashStun : MonoBehaviour
     #region PublicVariables
     public float StunDuration = 2f;
     #endregion
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            Stun();
-        }
-    }
 
     private void OnDrawGizmos()
     {

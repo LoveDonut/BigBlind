@@ -476,7 +476,6 @@ GameObject:
   - component: {fileID: 742531363355941660}
   - component: {fileID: 7137160470741159000}
   - component: {fileID: 4128236082207522518}
-  - component: {fileID: 3291537250048062481}
   m_Layer: 3
   m_Name: Weapon
   m_TagString: Untagged
@@ -573,20 +572,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3291537250048062481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542100310579251458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7bcd87f62f2a444c8f54c336672babd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hitTransform: {fileID: 6996437798060540693}
-  _hitRadius: 0.8
 --- !u!1 &1592245570171357311
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +722,7 @@ GameObject:
   - component: {fileID: 6247075768657541853}
   - component: {fileID: 1729256440109526895}
   - component: {fileID: 1232057091533666351}
+  - component: {fileID: 1262687303019038898}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1044,6 +1030,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1262687303019038898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747644532665568231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c115bb0ffe342bc4a8181bb5429ab668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectRadius: 5
+  StunDuration: 2
 --- !u!1 &2131980394706722103
 GameObject:
   m_ObjectHideFlags: 0
