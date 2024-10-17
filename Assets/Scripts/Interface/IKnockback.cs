@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IKnockback
 {
-    public void Knockback(Vector2 knockBackDirection, StateMachine playerState);
+    public void Knockback(Vector2 knockBackDirection, GameObject gameObject);
 }

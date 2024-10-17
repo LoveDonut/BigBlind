@@ -70,7 +70,7 @@ public class Generator : MonoBehaviour, IDamage
         Destroy(gameObject);
     }
 
-    public void GetDamaged(Vector2 attackedDirection, int damage = 1)
+    public void GetDamaged(Vector2 attackedDirection, int damage = 1, bool WillBeInvincible = true)
     {
         Dead();
     }

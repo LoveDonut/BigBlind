@@ -45,7 +45,10 @@ public class EnemyMovement : MonoBehaviour
     }
     protected virtual void Start()
     {
-        _navMeshAgent.speed = _moveSpeed;
+        if (_navMeshAgent != null)
+        {
+            _navMeshAgent.speed = _moveSpeed;
+        }
         SetStartState();
     }
 

@@ -118,18 +118,12 @@ public class PlayerShortAttack : MonoBehaviour
         IDamage damagable = hit != null ? hit.GetComponentInParent<IDamage>() : null;
         IKnockback knockbackable = hit != null ? hit.GetComponentInParent<IKnockback>() : null;
 
-        if (knockbackable == null)
-        {
-            Debug.Log("I can be knocked back");
-        }
-
-
         // Attack
         if (hit != null && hit.gameObject != gameObject)
         {
             if(knockbackable != null) // knockback
             {
-                knockbackable.Knockback((hit.transform.position - _playerMovement.transform.position).normalized, _playerMovement.CurrentState);
+                knockbackable.Knockback((hit.transform.position - _playerMovement.transform.position).normalized, gameObject);
             }
             else if (damagable != null) // damage
             {

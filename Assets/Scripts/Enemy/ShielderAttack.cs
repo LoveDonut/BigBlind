@@ -63,7 +63,7 @@ public class ShielderAttack : EnemyAttack
         }
 
     }
-    Collider2D[] GetHittedColliderAtBox() => Physics2D.OverlapBoxAll(_hitTransform.transform.position, _hitSize, Weapon.transform.localEulerAngles.z, LayerMask.GetMask("Enemy", "Player", "Attack"));
+    public Collider2D[] GetHittedColliderAtBox() => Physics2D.OverlapBoxAll(_hitTransform.transform.position, _hitSize, Weapon.transform.localEulerAngles.z, LayerMask.GetMask("Enemy", "Player", "Attack"));
 
     public override void InitAttack()
     {

@@ -3,14 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnemyState;
 
-public class ShieldParry : MonoBehaviour, IKnockback
+public class BossShielder : MonoBehaviour, IKnockback
 {
-    public void Knockback(Vector2 knockBackDirection, GameObject gameObject)
+    void Start()
     {
+        StartCoroutine(StartWave());
+    }
+
+    IEnumerator StartWave()
+    {
+        WaveManager waveManager = GetComponentInParent<WaveManager>();
+
+        while (waveManager == null || TimeManager.Instance._waveManagers == null)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        waveManager.EnqueueWaveForPlayingByBeat();
+    }
+
+    public void Knockback(Vector2 knockBackDirection, GameObject gameObject)
+    {        
         PlayerMovement playerMovement = gameObject.GetComponent<PlayerMovement>();
-        EnemyMovement enemyMovement = GetComponentInParent<EnemyMovement>();
-        ShielderAttack shielderAttack = GetComponentInParent<ShielderAttack>();
-        
+        PlayerHealth playerHealth = gameObject.GetComponent<PlayerHealth>();
+
+        if (playerMovement != null)
+        {
+        }
+
         // stop player tackle
         if (playerMovement.CurrentState is PlayerState.ShortAttackState)
         {
@@ -19,11 +39,10 @@ public class ShieldParry : MonoBehaviour, IKnockback
             shortAttackState.IsPrevented = true;
         }
 
-        // knockback
-        if (enemyMovement != null && shielderAttack != null)
+        // knockback player
+        if (playerHealth != null)
         {
-            shielderAttack.KnockbackDirection = knockBackDirection;
-            enemyMovement.CurrentState.SwitchState(enemyMovement.gameObject, ref enemyMovement.CurrentState, new KnockbackState());
+            playerHealth.GetDamaged(-knockBackDirection * 20f, 0, false);
         }
     }
 

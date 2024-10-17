@@ -73,17 +73,9 @@ public class PlayerHealth : MonoBehaviour, IDamage
 
 
     #region PublicMethods
-    public void GetDamaged(Vector2 attackedDirection, int damage = 1)
+    public void GetDamaged(Vector2 attackedDirection, int damage = 1, bool WillBeInvincible = true)
     {
         if (_isInvincible) return;
-
-        PlayerMovement playerMovement;
-
-        if (TryGetComponent<PlayerMovement>(out playerMovement))
-        {
-            
-        }
-        DoKnockBack(_slowDownDuration, attackedDirection);
 
         // shake camera
         CameraShake.Instance.shakeCamera(_cameraShakeIntensity, _slowDownDuration);
@@ -91,9 +83,13 @@ public class PlayerHealth : MonoBehaviour, IDamage
         // slow down during get damaged
         TimeManager.Instance.DoSlowMotion(_slowDownOffset, _slowDownDuration);
 
+        DoKnockBack(_slowDownDuration, attackedDirection);
 
         // be invincible for a while
-        MakeInvincible(_damagedDuration, true);
+        if (WillBeInvincible)
+        {
+            MakeInvincible(_damagedDuration, true);
+        }
 
         // Update Hp
         CurrentHp -= damage;
@@ -145,7 +141,8 @@ public class PlayerHealth : MonoBehaviour, IDamage
         float elapsedTime = duration;
 
         Vector2 playerVelocity = knockBackDirection * _knockbackSpeed;
-        while (elapsedTime > 0 && Time.timeScale < 1f)
+        Debug.Log($"Time Scale : {Time.timeScale}");
+        do
         {
             yield return new WaitForSecondsRealtime(Time.deltaTime);
 
@@ -154,7 +151,7 @@ public class PlayerHealth : MonoBehaviour, IDamage
                 rb.velocity = playerVelocity;
             }
             elapsedTime -= Time.deltaTime;
-        }
+        } while (elapsedTime > 0 && Time.timeScale < 1f);
 
         if (rb != null)
         {
