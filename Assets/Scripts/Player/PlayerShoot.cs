@@ -24,6 +24,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] bool _reloadAll = false;
     int _ammo = 6;
     bool _isShootable = true, _isReloadable = false, _isReloading = false;
+    [SerializeField] bool _isFiring = false;
 
     [Header("Bullet")]
     [SerializeField] Color _cannonColor;
@@ -56,10 +57,10 @@ public class PlayerShoot : MonoBehaviour
     {
         _currentWeapon = "Revolver";
         _ammo = _maxAmmo;
+        _isFiring = false;
         Direction.Instance.Sync_BulletCount_UI(_ammo);
         Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
         InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
-
     }
 
     // Update is called once per frame
@@ -70,12 +71,31 @@ public class PlayerShoot : MonoBehaviour
             _elapsedTime += Time.deltaTime;
             if (_elapsedTime > _reloadTime) _elapsedTime -= _reloadTime;
         }
+
+        if(_isFiring && _isShootable)
+        {
+            Shoot();
+        }
     }
 
     void startCheckReloadable() => _isReloadable = !_isReloadable;
 
-    void OnFire()
+    void OnFire(InputValue value)
     {
+        if (value.isPressed)
+        {
+            _isFiring = true;
+            if(_ammo <= 0 && _emptySound != null) SoundManager.Instance.PlaySound(_emptySound, Vector2.zero);
+            if (_reloadCoroutine != null)
+            {
+                _isReloading = false;
+                StopCoroutine(_reloadCoroutine);
+            }
+        }
+        else
+        {
+            _isFiring = false;
+        }
         if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable) return;
 
         // save OnFire input if made on buffer time
@@ -183,15 +203,9 @@ public class PlayerShoot : MonoBehaviour
     {
         if (_ammo <= 0)
         {
-            if (_emptySound != null) SoundManager.Instance.PlaySound(_emptySound, Vector2.zero);
-
             return;
         }
-        if (_reloadCoroutine != null)
-        {
-            _isReloading = false;
-            StopCoroutine(_reloadCoroutine);
-        }
+        
         StartCoroutine(WaitNextBullet());
         _ammo--;
         
