@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6443805765564028767}
   - component: {fileID: -2997419109658892947}
   - component: {fileID: 3054366696401162801}
+  - component: {fileID: 3373625978527719460}
   m_Layer: 3
   m_Name: Enemy_Shielder_InBoss
   m_TagString: Enemy
@@ -338,6 +339,36 @@ MonoBehaviour:
   _moveSpeed: 5
   IsActive: 0
   AudioSource: {fileID: 0}
+--- !u!114 &3373625978527719460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388095470878118029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1338a005eb4d3408aaab35cfb94a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _readySFX: {fileID: 0}
+  _attackSFX: {fileID: 0}
+  _attackRange: 1
+  _attackDelay: 1
+  _readyBeatCount: 2
+  _bpmMultiplier: 1.5
+  Weapon: {fileID: 2752440015349494783}
+  _hitTransform: {fileID: 4087812566467731332}
+  _hitSize: {x: 0, y: 0}
+  _rushSpeed: 20
+  ShortAttackDistance: 3
+  angleThreshold: 20
+  ShieldRotationSpeed: 100
+  KnockbackSpeed: 20
+  KnockbackDistance: 3
+  KnockbackDecceleration: 50
+  KnockbackDirection: {x: 0, y: 0}
+  defenseAngle: 90
 --- !u!1 &2752440015349494783
 GameObject:
   m_ObjectHideFlags: 0

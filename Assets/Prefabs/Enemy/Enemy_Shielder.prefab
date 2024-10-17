@@ -64,7 +64,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   KnockbackDistance: 3
   KnockbackDecceleration: 50
   KnockbackDirection: {x: 0, y: 0}
+  defenseAngle: 90
 --- !u!195 &4061514212785497342
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -384,6 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMovingPlatform: 0
+  platformShadow: {fileID: 0}
   _spriteRenderer: {fileID: 6940595732247966516}
   _instancedMaterial: {fileID: 0}
   _duration: 0.4
@@ -464,7 +467,7 @@ Transform:
   m_GameObject: {fileID: 4087812566467731332}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.87, z: 0}
   m_LocalScale: {x: 2, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -618,6 +621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMovingPlatform: 0
+  platformShadow: {fileID: 0}
   _spriteRenderer: {fileID: 622160566012864210}
   _instancedMaterial: {fileID: 0}
   _duration: 1

@@ -55,26 +55,34 @@ public class ConditionalFieldAttributeDrawer : PropertyDrawer
 
     private bool GetConditionalFieldResult(SerializedProperty property, ConditionalFieldAttribute condAttr)
     {
-        SerializedProperty conditionalFieldProperty = property.serializedObject.FindProperty(condAttr.conditionalFieldName);
-
-        if (conditionalFieldProperty == null)
-            return true;
-
-        switch (conditionalFieldProperty.propertyType)
+        if(property.serializedObject != null)
         {
-            case SerializedPropertyType.Boolean:
-                return CompareValues(conditionalFieldProperty.boolValue, Convert.ToBoolean(condAttr.comparisonValue), condAttr.comparisonType);
-            case SerializedPropertyType.Enum:
-                return CompareValues(conditionalFieldProperty.enumValueIndex, Convert.ToInt32(condAttr.comparisonValue), condAttr.comparisonType);
-            case SerializedPropertyType.Integer:
-                return CompareValues(conditionalFieldProperty.intValue, Convert.ToInt32(condAttr.comparisonValue), condAttr.comparisonType);
-            case SerializedPropertyType.Float:
-                return CompareValues(conditionalFieldProperty.floatValue, Convert.ToSingle(condAttr.comparisonValue), condAttr.comparisonType);
-            case SerializedPropertyType.String:
-                return CompareValues(conditionalFieldProperty.stringValue, condAttr.comparisonValue.ToString(), condAttr.comparisonType);
-            default:
+            SerializedProperty conditionalFieldProperty = property.serializedObject.FindProperty(condAttr.conditionalFieldName);
+
+            if (conditionalFieldProperty == null)
                 return true;
+
+            switch (conditionalFieldProperty.propertyType)
+            {
+                case SerializedPropertyType.Boolean:
+                    return CompareValues(conditionalFieldProperty.boolValue, Convert.ToBoolean(condAttr.comparisonValue), condAttr.comparisonType);
+                case SerializedPropertyType.Enum:
+                    return CompareValues(conditionalFieldProperty.enumValueIndex, Convert.ToInt32(condAttr.comparisonValue), condAttr.comparisonType);
+                case SerializedPropertyType.Integer:
+                    return CompareValues(conditionalFieldProperty.intValue, Convert.ToInt32(condAttr.comparisonValue), condAttr.comparisonType);
+                case SerializedPropertyType.Float:
+                    return CompareValues(conditionalFieldProperty.floatValue, Convert.ToSingle(condAttr.comparisonValue), condAttr.comparisonType);
+                case SerializedPropertyType.String:
+                    return CompareValues(conditionalFieldProperty.stringValue, condAttr.comparisonValue.ToString(), condAttr.comparisonType);
+                default:
+                    return true;
+            }
         }
+        else
+        {
+            return false; 
+        }
+
     }
 
     private bool CompareValues<T>(T value1, T value2, ComparisonType comparisonType) where T : IComparable
