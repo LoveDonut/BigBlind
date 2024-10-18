@@ -287,4 +287,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a84cedb68a4e21d419a309aafad76315, type: 3}
   - {fileID: 8300000, guid: 459125cfdbb1b794ba6e74529f64c829, type: 3}
   - {fileID: 8300000, guid: 7a78f393ef9cd4e4c8099908208c18ca, type: 3}
+  _soundMaker: {fileID: 1316856662835991520, guid: 28a5fdc1836a1ca46ac1fa48a757d82a, type: 3}
   MaxHp: 1

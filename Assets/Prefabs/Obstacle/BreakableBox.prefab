@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMovingPlatform: 0
+  platformShadow: {fileID: 0}
   _spriteRenderer: {fileID: 2493002302256899092}
   _instancedMaterial: {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
   _duration: 1
@@ -303,4 +305,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _breakSound:
   - {fileID: 8300000, guid: fb41acad799729743bd027e283b7f074, type: 3}
+  _soundMaker: {fileID: 1316856662835991520, guid: 28a5fdc1836a1ca46ac1fa48a757d82a, type: 3}
   MaxHp: 1
