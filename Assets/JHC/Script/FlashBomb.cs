@@ -16,6 +16,7 @@ public class FlashBomb : MonoBehaviour
   //  [SerializeField] float _scaleSize;
     [SerializeField] float _invertDuration;
     [SerializeField] float _flashIntensity;
+    FlashStun flashStun;
 
     [Header("UpscaleVariable")]
     [SerializeField] float _upscaleDuration;
@@ -26,7 +27,11 @@ public class FlashBomb : MonoBehaviour
     [SerializeField] float _deleteDuration;
     [SerializeField] Ease _deleteEase;
 
-    
+    private void Awake()
+    {
+        flashStun = GetComponent<FlashStun>();  
+    }
+
     public void TriggerScreenFlash()
     {
         _flashImage.DOKill();
@@ -46,15 +51,17 @@ public class FlashBomb : MonoBehaviour
         _InvertImage.transform.localScale = Vector3.zero;
     }
 
-    //public void TriggerGlowParticles()
-    //{
-    //    foreach(var particle in _glowParticleSystems)
-    //        particle.Play();
-    //}
+    public void TriggerGlowParticles()
+    {
+        foreach (var particle in _glowParticleSystems)
+            particle.Play();
+    }
 
     [ContextMenu("Flash")]
     public void Flash()
     {
+        flashStun.Stun();
+        TriggerGlowParticles();
         TriggerScreenFlash();
     }
 }
