@@ -22,6 +22,7 @@ public class Direction : MonoBehaviour
     [Header("Revolver_UI")]
     [SerializeField] Revolver_UI _revolverUI;
     [SerializeField] TextMeshProUGUI _reserveAmmoUI;
+    [SerializeField] Image _bulletImage;
 
     [Header("LowBlood_UI")]
     [SerializeField] Image _lowHpImage;
@@ -63,6 +64,7 @@ public class Direction : MonoBehaviour
     public void ShowLowHP() => _lowHpImage.GetComponent<Animator>().Play("LowHP");
 
     public void SyncReserveAmmoUI(int ammo) => _reserveAmmoUI.text = ammo.ToString();
+    public void SyncBulletImage(Sprite sprite) => _bulletImage.GetComponent<Image>().sprite = sprite;
 
     #endregion
 

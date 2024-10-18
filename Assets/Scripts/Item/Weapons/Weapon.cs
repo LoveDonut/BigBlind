@@ -11,6 +11,7 @@ public class Weapon : ScriptableObject
     [Header("References")]
     public GameObject BulletPrefab;
     public GameObject WavePrefab;
+    public Sprite BulletImage;
     [Header("Weapon Info")]
     public float RPM;
     public int Ammo;
