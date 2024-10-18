@@ -45,7 +45,14 @@ public class TimeManager : MonoBehaviour
                 WaveManager enemyWave = _waveManagers.Dequeue();
                 if (enemyWave != null)
                 {
-                    enemyWave.StartWaveByBeat();
+                    if(!enemyWave.WillBeOff)
+                    {
+                        enemyWave.StartWaveByBeat();
+                    }
+                    else
+                    {
+                        enemyWave.WillBeOff = false;
+                    }
                 }
             }
             yield return new WaitForSeconds(60 / BPM);

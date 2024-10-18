@@ -9,6 +9,9 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] GameObject _waveObject;
 
+    // editted by Daehui
+    [HideInInspector] public bool WillBeOff;
+
     [HideInInspector]
     public float BPM = 90;
 
@@ -72,6 +75,11 @@ public class WaveManager : MonoBehaviour
         if(_waveCoroutine != null)
         {
             StopCoroutine(_waveCoroutine);
+            WillBeOff = false;
+        }
+        else
+        {
+            WillBeOff = true;
         }
     }
 

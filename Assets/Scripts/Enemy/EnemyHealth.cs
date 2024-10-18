@@ -49,7 +49,7 @@ public class EnemyHealth : MonoBehaviour, IDamage
 
             float angleBetween = Vector2.Angle(shielderAttack._hitTransform.gameObject.transform.up, attackDirection);
 
-            Debug.Log($"angle Between : {angleBetween}");
+//            Debug.Log($"angle Between : {angleBetween}");
             if(angleBetween <= shielderAttack.defenseAngle / 2f)
             {
                 return;
