@@ -26,23 +26,11 @@ namespace EnemyState
         }
         public override void ExitState(GameObject enemy)
         {
-            InitWave(enemy);
-        }
-
-        private static void InitWave(GameObject enemy)
-        {
-            WaveManager waveManager;
-
-            if (enemy.TryGetComponent<WaveManager>(out waveManager))
-            {
-                waveManager.EnqueueWaveForPlayingByBeat();
-            }
-
             EnemyAttack enemyAttack;
 
             if (enemy.TryGetComponent<EnemyAttack>(out enemyAttack))
             {
-                enemyAttack.ResetReadyBeatCount();
+                enemyAttack.EndSleep();
             }
         }
 
@@ -124,16 +112,15 @@ namespace EnemyState
 
         public override void EnterState(GameObject enemy)
         {
-            _enemyMovement = enemy.GetComponent<EnemyMovement>();
             _enemyAttack = enemy.GetComponent<EnemyAttack>();
-
-            if (_enemyMovement == null) return;
+            _enemyMovement = enemy.GetComponent<EnemyMovement>();
 
             // start move if no player in attack range
-            if (_enemyAttack != null && !_enemyAttack.IsInAttackRange())
+            if (_enemyAttack != null)
             {
-                _enemyMovement.StartMove();
+                _enemyAttack.InitChase();
             }
+
         }
 
         public override void UpdateState(GameObject enemy)
@@ -157,6 +144,10 @@ namespace EnemyState
 
         public override void ExitState(GameObject enemy)
         {
+            if (_enemyAttack != null)
+            {
+                _enemyAttack.EndChase();
+            }
         }
     }
     public class ReadyState : StateMachine

@@ -81,10 +81,6 @@ namespace PlayerState
         }
         public override void UpdateState(GameObject gameObject)
         {
-            if (_shortAttack == null || IsPrevented) return;
-
-            _shortAttack.CollideWithEnemy();
-
         }
         public override void FixedUpdateState(GameObject gameObject)
         {
@@ -95,10 +91,13 @@ namespace PlayerState
             if (!IsPrevented && Vector2.Distance(_startPosition, gameObject.transform.position) < _shortAttack.ShortAttackDistance &&
                 _elapsedTime > 0)
             {
+                _shortAttack.CollideWithEnemy();
                 _shortAttack.Tackle(_tackleDirection);
             }
             else if (_elapsedDelay > 0)
             {
+                _shortAttack.CollideWithEnemy();
+
                 if (_rigidbody != null)
                 {
                     _rigidbody.velocity = Vector2.zero;

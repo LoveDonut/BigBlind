@@ -98,7 +98,7 @@ public class WaveManager : MonoBehaviour
     IEnumerator RestartWaveCoroutine(Collider2D hit, float EMPDuration)
     {
         yield return new WaitForSeconds(EMPDuration);
-        StartWaveByBeat();
+        TimeManager.Instance._waveManagers.Enqueue(this);
     }
 
     IEnumerator SpawnWaveCoroutine(bool isRepeat = false)
@@ -120,7 +120,7 @@ public class WaveManager : MonoBehaviour
             _wave.GetComponent<SoundRayWave>().WaveColor = WaveColor;
             _wave.GetComponent<SoundRayWave>().InitWave();
             _wave.GetComponent<SoundRayWave>().Destroy_Time = DestroyTime;
-            ChamgeWaveColorAccordingToState();
+            ChangeWaveColorAccordingToState();
             if (CompareTag("Enemy"))
             {
                 GetComponent<EnemyWaveOnBlood>().WaveOnBlood();
@@ -130,7 +130,7 @@ public class WaveManager : MonoBehaviour
         } while (isRepeat);
     }
 
-    private void ChamgeWaveColorAccordingToState()
+    private void ChangeWaveColorAccordingToState()
     {
         if (TryGetComponent<EnemyAttack>(out _enemyAttack) && TryGetComponent<EnemyMovement>(out _enemyMovement))
         {

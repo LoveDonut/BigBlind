@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using EnemyState;
 
-public class EnemyAttack : MonoBehaviour, ILightable
+public abstract class EnemyAttack : MonoBehaviour, ILightable
 {
     #region References
     [Header("References")]
@@ -35,13 +35,23 @@ public class EnemyAttack : MonoBehaviour, ILightable
     #endregion
 
     #region PrivateMethods
+
+    #endregion
+
+    #region ProtectedMethods
     protected virtual void Awake()
     {
         _playerTransform = FindObjectOfType<PlayerMovement>().transform;
     }
-    #endregion
+    protected void InitWave()
+    {
+        WaveManager waveManager;
 
-    #region ProtectedMethods
+        if (TryGetComponent<WaveManager>(out waveManager))
+        {
+            waveManager.EnqueueWaveForPlayingByBeat();
+        }
+    }
     #endregion
 
     #region PublicMethods
@@ -53,21 +63,40 @@ public class EnemyAttack : MonoBehaviour, ILightable
         AttackState attackState = new AttackState();
         EnemyMovement enemyMovement;
 
-        if(TryGetComponent<EnemyMovement>(out enemyMovement))
+        if (TryGetComponent<EnemyMovement>(out enemyMovement))
         {
-            enemyMovement.CurrentState.SwitchState(gameObject, ref enemyMovement.CurrentState,attackState);
+            enemyMovement.CurrentState.SwitchState(gameObject, ref enemyMovement.CurrentState, attackState);
         }
+    }
+    public virtual void EndSleep()
+    {
+        InitWave();
+    }
+
+    public virtual void InitChase()
+    {
+        EnemyMovement enemyMovement = GetComponent<EnemyMovement>();
+
+
+        ResetReadyBeatCount();
+
+        // start move if no player in attack range
+        if (!IsInAttackRange())
+        {
+            if (enemyMovement != null)
+            {
+                enemyMovement.StartMove();
+            }
+        }
+    }
+    public virtual void EndChase()
+    {
+
     }
 
     public virtual void InitAttack()
     {
-        Weapon.SetActive(true);
 
-        EnemyShortWeapon shortWeapon = GetComponentInChildren<EnemyShortWeapon>();
-        if (shortWeapon != null)
-        {
-            shortWeapon.StartAttack();
-        }
     }
 
     public virtual void UpdateAttack()
@@ -80,11 +109,7 @@ public class EnemyAttack : MonoBehaviour, ILightable
     }
     public virtual void EndAttack()
     {
-        EnemyShortWeapon shortWeapon = GetComponentInChildren<EnemyShortWeapon>();
-        if (shortWeapon != null)
-        {
-            shortWeapon.EndAttack();
-        }
+
     }
 
     public virtual bool IsInAttackRange()
