@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6940595732247966516}
   - component: {fileID: 3534211307138092006}
   - component: {fileID: 7702086288267926573}
-  - component: {fileID: -4313632495758409854}
   - component: {fileID: 4061514212785497342}
   - component: {fileID: 7260336702425476403}
   - component: {fileID: 4786880582538516064}
@@ -20,6 +19,7 @@ GameObject:
   - component: {fileID: -7257909280031456150}
   - component: {fileID: 6443805765564028767}
   - component: {fileID: -2997419109658892947}
+  - component: {fileID: 8444543886545078636}
   m_Layer: 3
   m_Name: Enemy_Silent
   m_TagString: Enemy
@@ -134,25 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 1
---- !u!114 &-4313632495758409854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 388095470878118029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0170a1a4e595ef141a031718bc36c42f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _readySFX: {fileID: 8300000, guid: 289d18b214d91d1468ed9fbc1c7d699e, type: 3}
-  _attackSFX: {fileID: 8300000, guid: 91e7cc7b3c43dd74e8940558b4d1defb, type: 3}
-  _attackRange: 1
-  _attackDelay: 1
-  _readyBeatCount: 1
-  _bpmMultiplier: 0.5
-  Weapon: {fileID: 4087812566467731332}
 --- !u!195 &4061514212785497342
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -381,6 +362,25 @@ MonoBehaviour:
   _duration: 0.4
   _color: {r: 0.968729, g: 1, b: 0, a: 1}
   _offset: 180
+--- !u!114 &8444543886545078636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388095470878118029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e979ce63b73c09945aa90b08d4ae1d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _readySFX: {fileID: 0}
+  _attackSFX: {fileID: 0}
+  _attackRange: 1
+  _attackDelay: 1
+  _readyBeatCount: 2
+  _bpmMultiplier: 1.5
+  Weapon: {fileID: 4087812566467731332}
 --- !u!1 &1012819312081637314
 GameObject:
   m_ObjectHideFlags: 0
