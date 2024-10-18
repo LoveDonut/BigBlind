@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f933893f2d14d6443ab4866577023982, type: 3}
+  m_Name: RocketLauncher
+  m_EditorClassIdentifier: 
+  WeaponName: RocketLauncher
+  BulletPrefab: {fileID: 1079946990457772, guid: 6aca0569c88b441449cfb5dbe417a3a2, type: 3}
+  WavePrefab: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
+  BulletImage: {fileID: 21300000, guid: c223f1b4ef0027441a50506b528d6208, type: 3}
+  RPM: 48
+  Ammo: 4
+  BulletSpeed: 40
+  FireSound: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
+  WaveColor: {r: 0.9882353, g: 1, b: 0, a: 1}
+  DestroyTime: 0.2

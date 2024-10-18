@@ -250,12 +250,16 @@ public class PlayerShoot : MonoBehaviour
         
         Destroy(bullet, 3f);
         */
-        if (_ammo <= 0 && _currentWeapon.CompareTo("Revolver") != 0) ReturnToRevolver();
+        if(_currentWeapon.CompareTo("Revolver") != 0)
+        {
+            if (_ammo <= 0) ReturnToRevolver();
+            else Direction.Instance.SyncReserveAmmoUI(_ammo);
+        }
     }
     public void AddReserveAmmo(int count)
     {
         _reserveAmmo += count;
-        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
+        if(_currentWeapon.CompareTo("Revolver") == 0) Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
     }
 
     public IEnumerator Haste(float mult, float duration)
@@ -286,6 +290,8 @@ public class PlayerShoot : MonoBehaviour
         _handCannonSound = weapon.FireSound;
         _cannonColor = weapon.WaveColor;
         _destroyTime = weapon.DestroyTime;
+        Direction.Instance.SyncReserveAmmoUI(_ammo);
+        Direction.Instance.SyncBulletImage(weapon.BulletImage);
     }
 
     public void ReturnToRevolver()
@@ -300,5 +306,7 @@ public class PlayerShoot : MonoBehaviour
         _handCannonSound = RevolverData.FireSound;
         _cannonColor = RevolverData.WaveColor;
         _destroyTime = RevolverData.DestroyTime;
+        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
+        Direction.Instance.SyncBulletImage(RevolverData.BulletImage);
     }
 }

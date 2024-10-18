@@ -9,6 +9,7 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
     [Header("References")]
     public GameObject Hit;
     public GameObject Flash;
+    [SerializeField] GameObject Explosion;
 
     public GameObject[] Detached;
     #endregion
@@ -30,8 +31,6 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
     public bool IsParried { get; set; }
     public bool IsFromPlayer { get; set; }
     #endregion
-
-
 
     void Start()
     {
@@ -123,6 +122,11 @@ public class ProjectileMover2D : MonoBehaviour, IParriable
                 Destroy(detachedPrefab, 1);
             }
         }
+
+        // Made by JK3WN
+        // Cause explosion when Gameobject Explosion exists
+        if (Explosion != null) Instantiate(Explosion, transform.position, Quaternion.identity);
+
         //Destroy projectile on collision
         Destroy(gameObject);
     }
