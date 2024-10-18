@@ -8,6 +8,7 @@ public class ObstacleHealth : MonoBehaviour, IDamage
     #region References
     [Header("References")]
     [SerializeField] AudioClip[] _breakSound;
+    [SerializeField] GameObject _soundMaker;
     #endregion
 
     #region PrivateVariables
@@ -31,11 +32,6 @@ public class ObstacleHealth : MonoBehaviour, IDamage
         if(GetComponent<SpriteRenderer>() != null) _spriteRenderer = GetComponent<SpriteRenderer>();
         CurrentHp = MaxHp;
     }
-
-    void DelayedDestroy()
-    {
-        Destroy(gameObject);
-    }
     #endregion
 
     #region PublicMethods
@@ -52,13 +48,12 @@ public class ObstacleHealth : MonoBehaviour, IDamage
     public virtual void Dead()
     {
         _clipNum = Random.Range(0, _breakSound.Length);
-        _audioSource.PlayOneShot(_breakSound[_clipNum]);
         if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
-        _spriteRenderer.enabled = false;
-        _collider.enabled = false;
         GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;
         GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
-        Invoke("DelayedDestroy", _breakSound[_clipNum].length * 2);
+        GameObject sound = Instantiate(_soundMaker, transform.position, Quaternion.identity);
+        sound.GetComponent<SoundMaker>().Clip = _breakSound[_clipNum];
+        Destroy(gameObject);
     }
     #endregion
 }

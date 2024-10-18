@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 58b7fceeaffa8dc42984823f6ef293b7
+guid: 878f5c9553dce5d4dabc853cc8384d5f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - _soundMaker: {fileID: 1316856662835991520, guid: 28a5fdc1836a1ca46ac1fa48a757d82a, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
