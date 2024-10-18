@@ -227,6 +227,7 @@ public class PlayerShoot : MonoBehaviour
             bullet.GetComponent<ProjectileMover2D>().Speed = _bulletSpeed;
             bullet.GetComponent<ProjectileMover2D>().AimPos = aimPos;
             bullet.GetComponent<ProjectileMover2D>().IsFromPlayer = true;
+            bullet.GetComponent<ProjectileMover2D>().FromObject = gameObject;
         }
         List<Transform> children = new List<Transform>();
         foreach(Transform child in bullet.transform)
@@ -237,6 +238,7 @@ public class PlayerShoot : MonoBehaviour
                 child.GetComponent<ProjectileMover2D>().Speed = _bulletSpeed;
                 child.GetComponent<ProjectileMover2D>().AimPos = aimPos;
                 child.GetComponent<ProjectileMover2D>().IsFromPlayer = true;
+                child.GetComponent<ProjectileMover2D>().FromObject = gameObject;
             }
         }
         foreach(Transform child in children)
@@ -244,18 +246,7 @@ public class PlayerShoot : MonoBehaviour
             child.parent = null;
         }
         Destroy(bullet, 3f);
-        /*
-        bullet.GetComponent<ProjectileMover2D>().Speed = _bulletSpeed;
-        bullet.GetComponent<ProjectileMover2D>().AimPos = aimPos;
 
-        //editted by Daehui
-        bullet.GetComponent<ProjectileMover2D>().fromObject = gameObject;
-
-        // for preventing attack player self
-        bullet.GetComponent<ProjectileMover2D>().IsFromPlayer = true;
-        
-        Destroy(bullet, 3f);
-        */
         if(_currentWeapon.CompareTo("Revolver") != 0)
         {
             if (_ammo <= 0) ReturnToRevolver();

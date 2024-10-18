@@ -6,27 +6,6 @@ using EnemyState;
 
 public class SilentShortAttack : ShortAttack
 {
-    #region References
-    #endregion
-
-    #region PrivateVariables
-    #endregion
-
-    #region ProtectedVariables
-    #endregion
-
-    #region PublicVariables
-    #endregion
-
-    #region PrivateVariables
-    #endregion
-
-    #region PrivateMethods
-    #endregion
-
-    #region ProtectedMethods
-    #endregion
-
     #region PublicMethods
     public override void EndSleep()
     {

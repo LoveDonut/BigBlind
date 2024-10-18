@@ -35,6 +35,8 @@ public class ShieldRotate : MonoBehaviour
     {
         if(_playerTransform == null || _shielderAttack == null) return;
 
+        if (_shielderAttack.IsTrick) return;
+
         Vector2 direction = (_playerTransform.position - transform.position).normalized;
 
         float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;

@@ -27,6 +27,7 @@ public class ShielderAttack : EnemyAttack
 
     #region PublicVariables
     public float ShieldRotationSpeed = 100f;
+    public bool IsTrick;
 
     [Header("Knockback")]
     public float KnockbackSpeed = 20f;
@@ -66,10 +67,45 @@ public class ShielderAttack : EnemyAttack
 
     }
     public Collider2D[] GetHittedColliderAtBox() => Physics2D.OverlapBoxAll(_hitTransform.transform.position, _hitSize, Weapon.transform.localEulerAngles.z, LayerMask.GetMask("Enemy", "Player", "Attack"));
-
+    public override void EndSleep()
+    {
+        if(!IsTrick)
+        {
+            InitWave();
+        }
+    }
+    public override void InitChase()
+    {
+        base.InitChase();
+        if (IsTrick)
+        {
+            EnemyMovement enemyMovement;
+            if(TryGetComponent<EnemyMovement>(out enemyMovement))
+            {
+                enemyMovement.StopMove();
+            }
+        }
+    }
+    public override void EndChase()
+    {
+        if (IsTrick)
+        {
+            InitWave();
+        }
+    }
     public override void InitAttack()
     {
-        _directionToPlayer = GetDirectionToPlayer();
+        _directionToPlayer = IsTrick ? Weapon.transform.up : GetDirectionToPlayer();
+
+        if (IsTrick)
+        {
+            EnemyMovement enemyMovement;
+            if (TryGetComponent<EnemyMovement>(out enemyMovement))
+            {
+                enemyMovement.StartMove();
+            }
+        }
+
         _startPosition = transform.position;
     }
 
@@ -80,6 +116,9 @@ public class ShielderAttack : EnemyAttack
     public override void EndAttack()
     {
         if (_rigidbody == null) return;
+
+        // if first attack ends, become original shielder
+        IsTrick = false;
 
         _rigidbody.velocity = Vector3.zero;
     }
