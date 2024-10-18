@@ -222,6 +222,12 @@ public class PlayerShoot : MonoBehaviour
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + aimPos.normalized * 1.5f, Quaternion.LookRotation(aimPos.normalized));
+        if(bullet.GetComponent<ProjectileMover2D>() != null)
+        {
+            bullet.GetComponent<ProjectileMover2D>().Speed = _bulletSpeed;
+            bullet.GetComponent<ProjectileMover2D>().AimPos = aimPos;
+            bullet.GetComponent<ProjectileMover2D>().IsFromPlayer = true;
+        }
         List<Transform> children = new List<Transform>();
         foreach(Transform child in bullet.transform)
         {
