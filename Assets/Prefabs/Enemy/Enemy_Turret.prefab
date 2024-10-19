@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyShadow: {fileID: 1511232225988076153, guid: 28654835d0bcddf4e92fe1a414fb3fca, type: 3}
-  _moveSpeed: 7
+  _moveSpeed: 0
   IsActive: 1
   AudioSource: {fileID: 0}
 --- !u!114 &8056600575094492715

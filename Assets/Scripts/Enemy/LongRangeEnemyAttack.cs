@@ -17,6 +17,12 @@ public class LongRangeEnemyAttack : EnemyAttack
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, _attackRange);
+    }
+
     public override void InitAttack()
     {
         Fire();

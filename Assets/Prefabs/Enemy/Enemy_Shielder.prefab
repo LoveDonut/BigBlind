@@ -51,7 +51,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388095470878118029}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 58360a0d91ace6448861ae8605dbc909, type: 3}
+  WillBeOff: 0
   BPM: 135
   _bpmMultiplier: 2
   DestroyTime: 0.4
@@ -146,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1338a005eb4d3408aaab35cfb94a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _readySFX: {fileID: 0}
-  _attackSFX: {fileID: 0}
+  _readySFX: {fileID: 8300000, guid: 289d18b214d91d1468ed9fbc1c7d699e, type: 3}
+  _attackSFX: {fileID: 8300000, guid: 289d18b214d91d1468ed9fbc1c7d699e, type: 3}
   _attackRange: 5
   _attackDelay: 1
   _readyBeatCount: 2
@@ -159,6 +160,7 @@ MonoBehaviour:
   ShortAttackDistance: 5
   angleThreshold: 20
   ShieldRotationSpeed: 100
+  IsTrick: 0
   KnockbackSpeed: 20
   KnockbackDistance: 3
   KnockbackDecceleration: 50
@@ -493,7 +495,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -699,7 +701,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 830608503
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 419ff7b67de476c4d92ac6936b9fc5dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

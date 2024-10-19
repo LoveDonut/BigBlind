@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1338a005eb4d3408aaab35cfb94a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _readySFX: {fileID: 0}
-  _attackSFX: {fileID: 0}
+  _readySFX: {fileID: 8300000, guid: 289d18b214d91d1468ed9fbc1c7d699e, type: 3}
+  _attackSFX: {fileID: 8300000, guid: 91e7cc7b3c43dd74e8940558b4d1defb, type: 3}
   _attackRange: 5
   _attackDelay: 1
   _readyBeatCount: 1
