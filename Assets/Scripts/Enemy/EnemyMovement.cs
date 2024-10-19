@@ -79,19 +79,22 @@ public class EnemyMovement : MonoBehaviour
 
     public virtual void Chase()
     {
-        if (_enemyAttack != null && !_enemyAttack.IsInAttackRange())
+        if (_navMeshAgent != null && _enemyAttack != null && !_enemyAttack.IsInAttackRange())
         {
             _navMeshAgent.SetDestination(_playerTransform.position);
         }
     }
     public void StopMove()
     {
-        _navMeshAgent.isStopped = true;
+        if(_navMeshAgent != null)
+        {
+            _navMeshAgent.isStopped = true;
+        }
     }
 
     public void StartMove()
     {
-        if (_navMeshAgent.isStopped)
+        if (_navMeshAgent != null && _navMeshAgent.isStopped)
         {
             _navMeshAgent.isStopped = false;
         }

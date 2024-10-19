@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 58360a0d91ace6448861ae8605dbc909, type: 3}
+  WillBeOff: 0
   BPM: 135
   _bpmMultiplier: 2
   DestroyTime: 0.4
@@ -181,7 +182,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 2.51
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -364,6 +365,7 @@ MonoBehaviour:
   ShortAttackDistance: 3
   angleThreshold: 20
   ShieldRotationSpeed: 100
+  IsTrick: 0
   KnockbackSpeed: 20
   KnockbackDistance: 3
   KnockbackDecceleration: 50
@@ -663,7 +665,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 830608503
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 419ff7b67de476c4d92ac6936b9fc5dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

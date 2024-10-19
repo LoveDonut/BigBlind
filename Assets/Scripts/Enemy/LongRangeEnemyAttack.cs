@@ -27,9 +27,9 @@ public class LongRangeEnemyAttack : EnemyAttack
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aimPos.z = 0f;
         GameObject bullet = Instantiate(_bulletPrefab, transform.position + (Vector3)GetDirectionToPlayer(),
-            Quaternion.LookRotation(GetDirectionToPlayer().normalized));
+            Quaternion.LookRotation(GetDirectionToPlayer()));
 
-        Destroy(bullet, 3f);
+//        Destroy(bullet, 3f);
     }
 
     public override bool IsInAttackRange()
@@ -41,7 +41,7 @@ public class LongRangeEnemyAttack : EnemyAttack
                                 (_playerTransform.position - transform.position).magnitude : _attackRange;
             // check if there is no wall between enemy and player
             RaycastHit2D hit = Physics2D.CircleCast(transform.position, _bulletRadius,
-                _playerTransform.position - transform.position, rayLength, LayerMask.GetMask("Wall"));
+                _playerTransform.position - transform.position, rayLength, LayerMask.GetMask("Wall", "Box"));
 
             if (hit.collider == null)
             {

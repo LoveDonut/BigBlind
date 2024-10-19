@@ -125,18 +125,22 @@ namespace EnemyState
 
         public override void UpdateState(GameObject enemy)
         {
-            if (_enemyMovement == null) return;
-
             // switch to ready when find player
             if (_enemyAttack != null && _enemyAttack.IsInAttackRange())
             {
-                _enemyMovement.StopMove();
+                if(_enemyMovement != null)
+                {
+                    _enemyMovement.StopMove();
+                }
 
                 ReadyState readyState = new ReadyState();
                 SwitchState(enemy, ref _enemyMovement.CurrentState, readyState);
             }
             // chase player
-            _enemyMovement.Chase();
+            if(_enemyMovement !=null)
+            {
+                _enemyMovement.Chase();
+            }
         }
         public override void FixedUpdateState(GameObject enemy)
         {
@@ -153,13 +157,11 @@ namespace EnemyState
     public class ReadyState : StateMachine
     {
         EnemyAttack _enemyAttack;
-        EnemyMovement _enemyMovement;
         public override void EnterState(GameObject enemy)
         {
-            _enemyMovement = enemy.GetComponent<EnemyMovement>();
             _enemyAttack = enemy.GetComponent<EnemyAttack>();
 
-            if (_enemyMovement == null || _enemyAttack == null) return;
+            if (_enemyAttack == null) return;
 
             // change BPM
             WaveManager waveManager;
@@ -200,7 +202,7 @@ namespace EnemyState
         {
             _enemyMovement = enemy.GetComponent<EnemyMovement>();
             _enemyAttack = enemy.GetComponent<EnemyAttack>();
-            if (_enemyMovement == null || _enemyAttack == null) return;
+            if (_enemyAttack == null) return;
 
             elapsedTime = _enemyAttack.GetAttackDelay();
 
