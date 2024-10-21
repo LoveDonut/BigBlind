@@ -14,6 +14,7 @@ public class TimeManager : MonoBehaviour
     #region PublicVariables
     public static TimeManager Instance;
     [SerializeField] public Queue<WaveManager> _waveManagers;
+    public bool IsClickRight;
     #endregion
 
     #region PrivateMethods
@@ -39,20 +40,29 @@ public class TimeManager : MonoBehaviour
     IEnumerator TurnOnEnemiesWaveByBeat()
     {
         PlayerShoot playershoot = FindAnyObjectByType<PlayerShoot>();
-
         while (true)
         {
-            if (playershoot != null && playershoot.IsShootable)
+            if (playershoot != null)
             {
-                if (playershoot.ShootCount > 1)
+                yield return new WaitForSeconds((60 - 60 * playershoot.ShootBPMBufferMultiplier) / BPM - Time.deltaTime);
+                IsClickRight = true;
+                yield return new WaitForSeconds((60 * playershoot.ShootBPMBufferMultiplier) / BPM + Time.deltaTime);
+                IsClickRight = false;
+                if(!playershoot.ShouldClickShootByBeat)
                 {
-                    playershoot.ShootCount--;
-                }
-                else
-                {
-                    playershoot.Shoot();
-                    playershoot.IsShootable = false;
-                    playershoot.ShootCount = playershoot.ShootBPMMuitiplier;
+                    if (playershoot.IsShootable)
+                    {
+                        if (playershoot.ShootCount > 1)
+                        {
+                            playershoot.ShootCount--;
+                        }
+                        else
+                        {
+                            playershoot.Shoot();
+                            playershoot.IsShootable = false;
+                            playershoot.ShootCount = playershoot.ShootBPMMultiplier;
+                        }
+                    }
                 }
             }
 
@@ -73,7 +83,6 @@ public class TimeManager : MonoBehaviour
                     }
                 }
             }
-            yield return new WaitForSeconds(60 / BPM);
         }
     }
 

@@ -710,11 +710,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8319063901168868693}
+  - component: {fileID: 4468351286469248840}
   - component: {fileID: 3400016723742585044}
   - component: {fileID: 7866275109016283291}
   - component: {fileID: 8781396948911583693}
   - component: {fileID: 5321453073708916642}
-  - component: {fileID: 4468351286469248840}
   - component: {fileID: 6194247190628501016}
   - component: {fileID: 7105949122814053002}
   - component: {fileID: 334412349778017334}
@@ -749,6 +749,46 @@ Transform:
   - {fileID: 1685240475225091344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4468351286469248840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747644532665568231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7b39c5a032cc043ab13849a16b3dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RevolverData: {fileID: 11400000, guid: f61b66e0155bc604899e47278d464024, type: 2}
+  _bulletPrefab: {fileID: 1079946990457772, guid: 6ec1f26d36ba83f4591e1b4b045b9518, type: 3}
+  _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
+  ShootBPMMultiplier: 2
+  ShouldClickShootByBeat: 0
+  ShootBPMBufferMultiplier: 0.2
+  ShootCount: 0
+  _currentWeapon: Revolver
+  _RPM: 160
+  _maxAmmo: 6
+  _reserveAmmo: 12
+  _infiniteReserve: 0
+  _reloadTime: 0.8888889
+  _reloadAll: 0
+  _isFiring: 0
+  _cannonColor: {r: 0.9882353, g: 1, b: 0, a: 1}
+  _destroyTime: 0.2
+  _bulletSpeed: 240
+  _handCannon: {fileID: 0}
+  _handCannonSound: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
+  _emptySound: {fileID: 8300000, guid: af056953c817e92448e70d791acb333f, type: 3}
+  _reloadAllSound: {fileID: 8300000, guid: 94257015e6abe114ea579e53557b5aa6, type: 3}
+  _OpenCylinder: {fileID: 8300000, guid: d27c64dd935a83a438e10764f3495147, type: 3}
+  _reloadOneSound: {fileID: 8300000, guid: bfb2d5c8299492d488cfdfb972c35271, type: 3}
+  _closeCylinder: {fileID: 8300000, guid: defec7b55867ef74292a8c8d340937f8, type: 3}
+  IsHaste: 0
+  BufferDuration: 0.1
+  IsShootable: 0
 --- !u!114 &3400016723742585044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 127a663366e1068499c02d940e52c808, type: 3}
+  WillBeOff: 0
   BPM: 33.75
   _bpmMultiplier: 0.25
   DestroyTime: 1.1
@@ -824,40 +865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b155d6415d5614944a6a828e7202ae91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4468351286469248840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747644532665568231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e7b39c5a032cc043ab13849a16b3dec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RevolverData: {fileID: 11400000, guid: f61b66e0155bc604899e47278d464024, type: 2}
-  _bulletPrefab: {fileID: 1079946990457772, guid: 6ec1f26d36ba83f4591e1b4b045b9518, type: 3}
-  _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
-  _currentWeapon: Revolver
-  _RPM: 160
-  _maxAmmo: 6
-  _reserveAmmo: 12
-  _infiniteReserve: 0
-  _reloadTime: 0.8888889
-  _reloadAll: 0
-  _cannonColor: {r: 0.9882353, g: 1, b: 0, a: 1}
-  _destroyTime: 0.2
-  _bulletSpeed: 240
-  _handCannon: {fileID: 0}
-  _handCannonSound: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
-  _emptySound: {fileID: 8300000, guid: af056953c817e92448e70d791acb333f, type: 3}
-  _reloadAllSound: {fileID: 8300000, guid: 94257015e6abe114ea579e53557b5aa6, type: 3}
-  _OpenCylinder: {fileID: 8300000, guid: d27c64dd935a83a438e10764f3495147, type: 3}
-  _reloadOneSound: {fileID: 8300000, guid: bfb2d5c8299492d488cfdfb972c35271, type: 3}
-  _closeCylinder: {fileID: 8300000, guid: defec7b55867ef74292a8c8d340937f8, type: 3}
-  IsHaste: 0
-  BufferDuration: 0.1
 --- !u!114 &6194247190628501016
 MonoBehaviour:
   m_ObjectHideFlags: 0

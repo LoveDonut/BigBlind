@@ -16,6 +16,8 @@ public class PlayerShoot : MonoBehaviour
     #region PrivateVariables
     [Header("BeatTest")]
     public int ShootBPMMultiplier = 2;
+    public bool ShouldClickShootByBeat;
+    public float ShootBPMBufferMultiplier = 0.2f;
     [HideInInspector] public int ShootCount;
 
     [Header("HandCannon")]
@@ -67,7 +69,7 @@ public class PlayerShoot : MonoBehaviour
         Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
         InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
 
-        ShootCount = ShootBPMMuitiplier;
+        ShootCount = ShootBPMMultiplier;
     }
 
     // Update is called once per frame
@@ -95,6 +97,18 @@ public class PlayerShoot : MonoBehaviour
                 StopCoroutine(_reloadCoroutine);
             }
             IsShootable = true;
+
+            if (ShouldClickShootByBeat)
+            {
+                if(TimeManager.Instance.IsClickRight)
+                {
+                    Shoot();
+                }
+                else
+                {
+                    SoundManager.Instance.PlaySound(_emptySound, Vector2.zero);
+                }
+            }
         }
         else
         {
@@ -111,7 +125,6 @@ public class PlayerShoot : MonoBehaviour
 
             return;
         }
-
 //        Shoot();
     }
     IEnumerator WaitNextBullet()
