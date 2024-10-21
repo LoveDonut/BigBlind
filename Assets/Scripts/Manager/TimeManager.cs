@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // made by KimDaehui
@@ -14,6 +15,7 @@ public class TimeManager : MonoBehaviour
     #region PublicVariables
     public static TimeManager Instance;
     [SerializeField] public Queue<WaveManager> _waveManagers;
+    [SerializeField] SpriteRenderer _playerSprite;
     public bool IsClickRight;
     #endregion
 
@@ -40,30 +42,37 @@ public class TimeManager : MonoBehaviour
     IEnumerator TurnOnEnemiesWaveByBeat()
     {
         PlayerShoot playershoot = FindAnyObjectByType<PlayerShoot>();
+        float bpm = BPM;
+
+        if (playershoot != null)
+        {
+            bpm = BPM / playershoot.ShootBPMDivider;
+        }
+
         while (true)
         {
             if (playershoot != null)
             {
-                yield return new WaitForSeconds((60 - 60 * playershoot.ShootBPMBufferMultiplier) / BPM - Time.deltaTime);
+                yield return new WaitForSeconds(24/ bpm);
+                _playerSprite.color = Color.yellow;
+                yield return new WaitForSeconds(6 / bpm);
+                _playerSprite.color = Color.white;
+                yield return new WaitForSeconds((24 - (60 * playershoot.ShootBPMBufferMultiplier >= 24 ? 24 : 60 * playershoot.ShootBPMBufferMultiplier)) / bpm);
                 IsClickRight = true;
-                yield return new WaitForSeconds((60 * playershoot.ShootBPMBufferMultiplier) / BPM + Time.deltaTime);
+                yield return new WaitForSeconds((60 * playershoot.ShootBPMBufferMultiplier >= 24 ? 24 : 60 * playershoot.ShootBPMBufferMultiplier) / bpm);
+                _playerSprite.color = Color.red;
+                yield return new WaitForSeconds(6 / bpm);
+                _playerSprite.color = Color.white;
                 IsClickRight = false;
-                if(!playershoot.ShouldClickShootByBeat)
+                if (!playershoot.ShouldClickShootByBeat)
                 {
                     if (playershoot.IsShootable)
                     {
-                        if (playershoot.ShootCount > 1)
-                        {
-                            playershoot.ShootCount--;
-                        }
-                        else
-                        {
-                            playershoot.Shoot();
-                            playershoot.IsShootable = false;
-                            playershoot.ShootCount = playershoot.ShootBPMMultiplier;
-                        }
+                        playershoot.Shoot();
+                        playershoot.IsShootable = false;
                     }
                 }
+                bpm = BPM / playershoot.ShootBPMDivider;
             }
 
 

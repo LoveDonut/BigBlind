@@ -15,7 +15,7 @@ public class PlayerShoot : MonoBehaviour
 
     #region PrivateVariables
     [Header("BeatTest")]
-    public int ShootBPMMultiplier = 2;
+    public int ShootBPMDivider = 2;
     public bool ShouldClickShootByBeat;
     public float ShootBPMBufferMultiplier = 0.2f;
     [HideInInspector] public int ShootCount;
@@ -69,7 +69,7 @@ public class PlayerShoot : MonoBehaviour
         Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
         InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
 
-        ShootCount = ShootBPMMultiplier;
+        ShootCount = ShootBPMDivider;
     }
 
     // Update is called once per frame
