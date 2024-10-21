@@ -765,7 +765,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1079946990457772, guid: 6ec1f26d36ba83f4591e1b4b045b9518, type: 3}
   _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
   ShootBPMMultiplier: 2
-  ShouldClickShootByBeat: 0
+  ShouldClickShootByBeat: 1
   ShootBPMBufferMultiplier: 0.2
   ShootCount: 0
   _currentWeapon: Revolver
