@@ -43,13 +43,13 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _GlowIntensity: 10
-    - _NoiseScale: 151.14
-    - _NoiseSpeed: 153.9
+    - _NoiseScale: 19
+    - _NoiseSpeed: 100.7
     - _NoiseStrength: 0.006
     - _OutlineWidth: 0.02
     - _Radius: 0.4
     - _RingRadius: 0.449
-    - _RingWidth: 0.01
+    - _RingWidth: 0.256
     - _RotationSpeed: 1
     - _WaveAmplitude: 0.0188
     - _WaveFrequency: 21.17
@@ -58,6 +58,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 0.92993367, g: 1, b: 0, a: 1}
+    - _MainColor: {r: 0, g: 0.84677315, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

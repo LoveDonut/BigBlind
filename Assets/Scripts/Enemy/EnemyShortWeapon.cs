@@ -87,7 +87,7 @@ public class EnemyShortWeapon : MonoBehaviour, IParriable
         {
             if(_hits[i] != null && _hits[i].gameObject != _enemyAttack.gameObject &&_hits[i].TryGetComponent<IDamage>(out damagable))
             {
-                Debug.Log("Damaged!");
+//                Debug.Log("Damaged!");
                 damagable.GetDamaged(transform.position, _enemyAttack.gameObject);
             }
         }

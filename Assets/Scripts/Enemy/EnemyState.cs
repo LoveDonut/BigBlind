@@ -314,6 +314,15 @@ namespace EnemyState
         public override void EnterState(GameObject gameObject)
         {
             _enemyMovement = gameObject.GetComponent<EnemyMovement>();
+
+            SpriteRenderer spriteRenderer;
+
+            if (gameObject.TryGetComponent<SpriteRenderer>(out spriteRenderer))
+            {
+                Debug.Log("Sprite On!!");
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+
             if (_enemyMovement != null)
             {
                 _enemyMovement.StopMove();
@@ -332,6 +341,8 @@ namespace EnemyState
         }
         public override void ExitState(GameObject gameObject)
         {
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
             if (_enemyMovement != null)
             {
                 _enemyMovement.StartMove();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,13 +24,15 @@ public class FlashStun : MonoBehaviour
 
     public void Stun()
     {
+        Array.Clear(hits, 0, hits.Length);
         Physics2D.OverlapCircleNonAlloc(transform.position, _effectRadius, hits, LayerMask.GetMask("Enemy"));
 
         foreach (Collider2D hit in hits)
         {
             if (hit == null) continue;
             // check if there is no wall between enemy and player
-            RaycastHit2D wallHit = Physics2D.Raycast(transform.position, hit.transform.position - transform.position, _effectRadius, LayerMask.GetMask("Wall", "Box"));
+            float detectRadius = (hit.transform.position - transform.position).magnitude > _effectRadius ? _effectRadius : (hit.transform.position - transform.position).magnitude;
+            RaycastHit2D wallHit = Physics2D.Raycast(transform.position, hit.transform.position - transform.position, detectRadius, LayerMask.GetMask("Wall", "Box"));
 
             if(wallHit.collider == null)
             {
