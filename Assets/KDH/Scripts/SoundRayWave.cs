@@ -30,6 +30,7 @@ public class SoundRayWave : MonoBehaviour
 
     List<GameObject> detectedObj = new List<GameObject>();
 
+
     void Awake()
     {
         wavePositions = new Vector3[segments + 1]; // +1 to close the loop
@@ -155,6 +156,7 @@ public class SoundRayWave : MonoBehaviour
             singleLineRenderer.SetPositions(wavePositions);
         }
     }
+
 
     void UpdateWaveColor()
     {

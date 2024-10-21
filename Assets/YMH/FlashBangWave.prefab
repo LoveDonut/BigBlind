@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5851966990935035938}
   - component: {fileID: 8176889907395216734}
-  - component: {fileID: 8992428666310101698}
+  - component: {fileID: 6187203666370297230}
   m_Layer: 0
-  m_Name: Wave
+  m_Name: FlashBangWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,8 +54,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e89f6b36fee1836469b69acfe95d2d2c, type: 2}
-  - {fileID: 2100000, guid: b9c14c8774038bc44bcf23db8ffd1cdb, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,7 +137,7 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &8992428666310101698
+--- !u!114 &6187203666370297230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,16 +146,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5202586336991198198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0b16d1edbd3164b82fe1d12ba6203e, type: 3}
+  m_Script: {fileID: 11500000, guid: 20c08d7f530947245a6bd23e9e040671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segments: 180
-  growSpeed: 30
+  segments: 360
+  growSpeed: 1000
   radius: 0.5
-  WaveColor: {r: 0.07075471, g: 1, b: 0.9732528, a: 1}
-  Destroy_Time: 1
-  _isPlayerWave: 1
-  linewidth: 0.3
-  maxSegmentDistance: 5
-  isWaveEffect: 0
-  isCannonWave: 0
+  WaveColor: {r: 1, g: 1, b: 1, a: 1}
+  Destroy_Time: 0.3
+  _isPlayerWave: 0
+  maxRadius: 10

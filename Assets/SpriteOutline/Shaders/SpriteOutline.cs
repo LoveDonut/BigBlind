@@ -64,6 +64,7 @@ public class OutlineColorController : MonoBehaviour
         {
             var _shadow = Instantiate(platformShadow, transform.position, Quaternion.identity);
             _shadow.transform.rotation = transform.rotation;
+            _shadow.transform.localScale = transform.localScale;
             var outline = _shadow.GetComponent<OutlineColorController>();
             outline.LookAtWave(transform.position);
             outline.ShowOutline();

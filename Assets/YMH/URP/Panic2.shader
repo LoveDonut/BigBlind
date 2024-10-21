@@ -4,10 +4,10 @@ Shader "Custom/DynamicNeonEnergyRing"
     {
         _MainColor ("Main Color", Color) = (0,1,1,1)
         _RingRadius ("Ring Radius", Range(0, 0.5)) = 0.4
-        _RingWidth ("Ring Width", Range(0, 0.1)) = 0.05
+        _RingWidth ("Ring Width", Range(0, 1)) = 0.05
         _GlowIntensity ("Glow Intensity", Range(0, 10)) = 2
         _NoiseScale ("Noise Scale", Float) = 10
-        _NoiseStrength ("Noise Strength", Range(0, 0.1)) = 0.02
+        _NoiseStrength ("Noise Strength", Range(0, 1)) = 0.02
         _NoiseSpeed ("Noise Speed", Float) = 0.5
     }
     
