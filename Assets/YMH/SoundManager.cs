@@ -71,8 +71,6 @@ public class SoundManager : MonoBehaviour
 
     public void BurstFlashBang()
     {
-        FlashBang.Play();
-
         StartCoroutine(VolumeControl(BGMaudio, 0, BGMaudio.volume, 5));
         StartCoroutine(VolumeControl(HeartBeatAudio, 0, HeartBeatAudio.volume, 5));
         StartCoroutine(StartLowPass(5));

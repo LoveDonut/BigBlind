@@ -27,6 +27,11 @@ public class FlashBomb : MonoBehaviour
     [SerializeField] float _deleteDuration;
     [SerializeField] Ease _deleteEase;
 
+    [SerializeField] AudioClip _flashBangBurstSFX;
+    [SerializeField] AudioClip _flashBangSFX;
+
+    [SerializeField] GameObject _flashBangWave;
+
     private void Awake()
     {
         flashStun = GetComponent<FlashStun>();  
@@ -60,8 +65,20 @@ public class FlashBomb : MonoBehaviour
     [ContextMenu("Flash")]
     public void Flash()
     {
+        StartCoroutine(PlayFlashBurstSound());
         flashStun.Stun();
-        TriggerGlowParticles();
-        TriggerScreenFlash();
+        //TriggerGlowParticles();
+        //TriggerScreenFlash();
+
+        var flb = Instantiate(_flashBangWave, transform.position, Quaternion.identity);
+    }
+
+    IEnumerator PlayFlashBurstSound()
+    {
+        SoundManager.Instance.PlaySound(_flashBangBurstSFX, Vector2.zero);
+        SoundManager.Instance.BurstFlashBang();
+
+        yield return new WaitForSeconds(_flashBangBurstSFX.length / 3);
+        SoundManager.Instance.PlaySound(_flashBangSFX, Vector2.zero);
     }
 }

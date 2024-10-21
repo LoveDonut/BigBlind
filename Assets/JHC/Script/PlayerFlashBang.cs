@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // made by JHC
@@ -14,12 +15,22 @@ public class PlayerFlashBang : MonoBehaviour
     [SerializeField] float _coolTime;
     [SerializeField] Color _waveColor;
     [SerializeField] float _waveDestoryTime;
+
+
+    [SerializeField] TMP_Text _flashBangCountText;
     bool _isPlaying;
+
+    private void Start()
+    {
+        _flashBangCountText.text = _flashBombCount.ToString();
+    }
+
     void OnFlashBang()
     {
         if (_flashBombCount > 0 && !_isPlaying)
         {
             _flashBombCount--;
+            _flashBangCountText.text = _flashBombCount.ToString();
             _flashBomb.Flash();
             SpawnWave();
             StartCoroutine(coolTime());

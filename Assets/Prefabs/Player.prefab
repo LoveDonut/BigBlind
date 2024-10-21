@@ -722,7 +722,6 @@ GameObject:
   - component: {fileID: 6247075768657541853}
   - component: {fileID: 1729256440109526895}
   - component: {fileID: 1232057091533666351}
-  - component: {fileID: 1262687303019038898}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -781,6 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 127a663366e1068499c02d940e52c808, type: 3}
+  WillBeOff: 0
   BPM: 33.75
   _bpmMultiplier: 0.25
   DestroyTime: 1.1
@@ -846,6 +846,7 @@ MonoBehaviour:
   _infiniteReserve: 0
   _reloadTime: 0.8888889
   _reloadAll: 0
+  _isFiring: 0
   _cannonColor: {r: 0.9882353, g: 1, b: 0, a: 1}
   _destroyTime: 0.2
   _bulletSpeed: 240
@@ -917,6 +918,7 @@ MonoBehaviour:
   _coolTime: 1
   _waveColor: {r: 1, g: 0.9225851, b: 0, a: 1}
   _waveDestoryTime: 1
+  _flashBangCountText: {fileID: 0}
 --- !u!50 &1534208878423213486
 Rigidbody2D:
   serializedVersion: 4
@@ -1030,20 +1032,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1262687303019038898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747644532665568231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c115bb0ffe342bc4a8181bb5429ab668, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _effectRadius: 5
-  StunDuration: 2
 --- !u!1 &2131980394706722103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,6 +2099,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3146471564287587345, guid: 9d8b9dd523a06b340a9dc00031778c49, type: 3}
+      propertyPath: _flashBangSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 338632b9b5829f348ad6c2c6b3b890cc, type: 3}
+    - target: {fileID: 3146471564287587345, guid: 9d8b9dd523a06b340a9dc00031778c49, type: 3}
+      propertyPath: _flashBangWave
+      value: 
+      objectReference: {fileID: 5202586336991198198, guid: c47ae707d9c1d9d46983f585946fb14d, type: 3}
+    - target: {fileID: 3146471564287587345, guid: 9d8b9dd523a06b340a9dc00031778c49, type: 3}
+      propertyPath: _flashBangBurstSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: af2d5856f93951d4ea38215fa001db68, type: 3}
     - target: {fileID: 5958858402301014798, guid: 9d8b9dd523a06b340a9dc00031778c49, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.25
