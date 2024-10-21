@@ -17,8 +17,9 @@ public class ShielderAttack : EnemyAttack
     #region PrivateVariables
     [SerializeField] Vector2 _hitSize;
     [SerializeField] float _rushSpeed = 20f;
-    [SerializeField] float ShortAttackDistance = 3f;
-    [SerializeField] float angleThreshold = 20f;
+    [SerializeField] float _shortAttackDistance = 3f;
+    [SerializeField] float _angleThreshold = 20f;
+    [SerializeField] float _firstAngleThresholdWhenTrick = 40f;
 
     Rigidbody2D _rigidbody;
     Vector2 _directionToPlayer;
@@ -125,7 +126,7 @@ public class ShielderAttack : EnemyAttack
 
     public override void FixedUpdateAttack()
     {
-        if (Vector2.Distance(_startPosition, transform.position) < ShortAttackDistance)
+        if (Vector2.Distance(_startPosition, transform.position) < _shortAttackDistance)
         {
             Tackle(_directionToPlayer);
             CollideWithShield();
@@ -150,7 +151,8 @@ public class ShielderAttack : EnemyAttack
         float angleToPlayer = Vector2.Angle(Weapon.transform.up, GetDirectionToPlayer());
 
         // check if the player is closed to enemy enough to attack
-        if (_attackRange >= Vector2.Distance(transform.position, _playerTransform.position) && angleToPlayer < angleThreshold)
+        if (_attackRange >= Vector2.Distance(transform.position, _playerTransform.position) 
+            && angleToPlayer < (IsTrick? _firstAngleThresholdWhenTrick : _angleThreshold))
         {
             float rayLength = _attackRange > (_playerTransform.position - transform.position).magnitude ?
                                 (_playerTransform.position - transform.position).magnitude : _attackRange;
