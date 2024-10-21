@@ -139,7 +139,7 @@ namespace PlayerState
                 // do not shoot if player will tackle instantly
                 if (IsClickedOnBuffer && !playerShortAttack.IsClickedOnBuffer)
                 {
-                    playerShoot.Shoot();
+//                    playerShoot.Shoot();
                 }
             }
         }

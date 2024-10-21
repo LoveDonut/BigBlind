@@ -38,10 +38,28 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator TurnOnEnemiesWaveByBeat()
     {
+        PlayerShoot playershoot = FindAnyObjectByType<PlayerShoot>();
+
         while (true)
         {
+            if (playershoot != null && playershoot.IsShootable)
+            {
+                if (playershoot.ShootCount > 1)
+                {
+                    playershoot.ShootCount--;
+                }
+                else
+                {
+                    playershoot.Shoot();
+                    playershoot.IsShootable = false;
+                    playershoot.ShootCount = playershoot.ShootBPMMuitiplier;
+                }
+            }
+
+
             while (_waveManagers.Count > 0)
             {
+
                 WaveManager enemyWave = _waveManagers.Dequeue();
                 if (enemyWave != null)
                 {

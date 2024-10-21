@@ -14,6 +14,10 @@ public class PlayerShoot : MonoBehaviour
     #endregion
 
     #region PrivateVariables
+    [Header("BeatTest")]
+    public int ShootBPMMultiplier = 2;
+    [HideInInspector] public int ShootCount;
+
     [Header("HandCannon")]
     [SerializeField] string _currentWeapon = "Revolver";
     [SerializeField] float _RPM = 200f;
@@ -23,7 +27,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] float _reloadTime = 1f;
     [SerializeField] bool _reloadAll = false;
     int _ammo = 6;
-    bool _isShootable = true, _isReloadable = false, _isReloading = false;
+    bool _isReloadable = false, _isReloading = false;
     [SerializeField] bool _isFiring = false;
 
     [Header("Bullet")]
@@ -50,6 +54,7 @@ public class PlayerShoot : MonoBehaviour
     [HideInInspector] public bool IsHaste = false;
     [Header("Buffer")]
     public float BufferDuration = 0.2f;
+    public bool IsShootable;
     #endregion
 
     // Start is called before the first frame update
@@ -61,6 +66,8 @@ public class PlayerShoot : MonoBehaviour
         Direction.Instance.Sync_BulletCount_UI(_ammo);
         Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
         InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
+
+        ShootCount = ShootBPMMuitiplier;
     }
 
     // Update is called once per frame
@@ -72,10 +79,6 @@ public class PlayerShoot : MonoBehaviour
             if (_elapsedTime > _reloadTime) _elapsedTime -= _reloadTime;
         }
 
-        if(_isFiring && _isShootable)
-        {
-            Shoot();
-        }
     }
 
     void startCheckReloadable() => _isReloadable = !_isReloadable;
@@ -91,12 +94,14 @@ public class PlayerShoot : MonoBehaviour
                 _isReloading = false;
                 StopCoroutine(_reloadCoroutine);
             }
+            IsShootable = true;
         }
         else
         {
             _isFiring = false;
         }
-        if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable) return;
+        if (!GetComponent<PlayerMovement>().IsMovable) return;
+
 
         // save OnFire input if made on buffer time
         if(GetComponent<PlayerMovement>().CurrentState.GetType() == typeof(ShortAttackState))
@@ -107,13 +112,12 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
 
-        Shoot();
+//        Shoot();
     }
     IEnumerator WaitNextBullet()
     {
-        _isShootable = false;
         yield return new WaitForSecondsRealtime(60f / _RPM);
-        _isShootable = true;
+        IsShootable = true;
     }
 
     void SpawnHandCannonWave()
@@ -206,7 +210,7 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
         
-        StartCoroutine(WaitNextBullet());
+//        StartCoroutine(WaitNextBullet());
         _ammo--;
         
         if(_currentWeapon.CompareTo("Revolver") == 0)
