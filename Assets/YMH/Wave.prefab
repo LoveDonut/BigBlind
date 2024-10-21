@@ -74,7 +74,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 830608503
-  m_SortingLayer: 1
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -151,11 +151,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 180
-  growSpeed: 30
+  growSpeed: 100
   radius: 0.5
   WaveColor: {r: 0.07075471, g: 1, b: 0.9732528, a: 1}
   Destroy_Time: 1
   _isPlayerWave: 1
   linewidth: 0.3
-  maxSegmentDistance: 1
+  maxSegmentDistance: 0.015
   isWaveEffect: 0
+  isCannonWave: 0
+  waveLayerMask:
+    serializedVersion: 2
+    m_Bits: 50432
+  itemMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 256
