@@ -11,7 +11,8 @@ public class ShieldParry : MonoBehaviour, IKnockback
         PlayerMovement playerMovement = gameObject.GetComponent<PlayerMovement>();
         EnemyMovement enemyMovement = GetComponentInParent<EnemyMovement>();
         ShielderAttack shielderAttack = GetComponentInParent<ShielderAttack>();
-        
+        PlayerHealth playerHealth = gameObject.GetComponent<PlayerHealth>();
+
         // stop player tackle
         if (playerMovement.CurrentState is PlayerState.ShortAttackState)
         {
@@ -20,9 +21,16 @@ public class ShieldParry : MonoBehaviour, IKnockback
             shortAttackState.IsPrevented = true;
         }
 
+
         // knockback
         if (enemyMovement != null && shielderAttack != null)
         {
+            // knockback player
+            if (playerHealth != null)
+            {
+                playerHealth.GetDamaged(-knockBackDirection * 20f, enemyMovement != null ? enemyMovement.gameObject : gameObject, 0);
+            }
+
             shielderAttack.KnockbackDirection = knockBackDirection;
             enemyMovement.CurrentState.SwitchState(enemyMovement.gameObject, ref enemyMovement.CurrentState, new KnockbackState());
         }

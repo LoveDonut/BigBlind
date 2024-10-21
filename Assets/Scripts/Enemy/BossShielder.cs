@@ -27,10 +27,6 @@ public class BossShielder : MonoBehaviour, IKnockback
         PlayerMovement playerMovement = gameObject.GetComponent<PlayerMovement>();
         PlayerHealth playerHealth = gameObject.GetComponent<PlayerHealth>();
 
-        if (playerMovement != null)
-        {
-        }
-
         // stop player tackle
         if (playerMovement.CurrentState is PlayerState.ShortAttackState)
         {
