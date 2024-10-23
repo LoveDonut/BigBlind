@@ -186,10 +186,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosionCircle: {fileID: 693139865952554209, guid: a90890ba9e5c26e4c8ecd5236dc1036d, type: 3}
-  _detectRadius: 4
+  _detectRadius: 8
   _triggerRadius: 1
-  _audioIncreaseOffset: 0.5
-  _bpmIncreaseOffset: 2
+  _audioIncreaseOffset: 0.4
+  _bpmIncreaseOffset: 1
 --- !u!114 &6741163056141765716
 MonoBehaviour:
   m_ObjectHideFlags: 0
