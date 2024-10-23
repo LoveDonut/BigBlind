@@ -55,7 +55,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b9c14c8774038bc44bcf23db8ffd1cdb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,7 +74,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 830608503
-  m_SortingLayer: 1
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -205,3 +205,17 @@ MonoBehaviour:
   radius: 0.25
   WaveColor: {r: 0, g: 0, b: 0, a: 1}
   Destroy_Time: 1
+  _isPlayerWave: 0
+  linewidth: 0.2
+  maxSegmentDistance: 1
+  isWaveEffect: 0
+  isCannonWave: 0
+  waveLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  itemMask:
+    serializedVersion: 2
+    m_Bits: 0
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0

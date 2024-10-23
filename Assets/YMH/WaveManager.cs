@@ -131,6 +131,7 @@ public class WaveManager : MonoBehaviour
             ChangeWaveColorAccordingToState();
             if (CompareTag("Enemy"))
             {
+                _wave.GetComponent<LineRenderer>().material.SetColor("_BaseColor", WaveColor);
                 GetComponent<EnemyWaveOnBlood>().WaveOnBlood();
             }
             Destroy(_wave, DestroyTime);
