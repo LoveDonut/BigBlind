@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 1265184299772119961}
   - component: {fileID: 2588478091310600830}
   - component: {fileID: 8226294469183663011}
-  - component: {fileID: 3682730666333228902}
+  - component: {fileID: 760765242492996026}
   m_Layer: 5
   m_Name: Low_HP
   m_TagString: Untagged
@@ -1198,7 +1198,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &3682730666333228902
+--- !u!95 &760765242492996026
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -1556,7 +1556,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &5090854057332217973
 MonoBehaviour:

@@ -106,6 +106,8 @@ public class PlayerHealth : MonoBehaviour, IDamage
 
         if (CurrentHp <= 0)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             CurrentHp = 0;
             Dead();
         }
