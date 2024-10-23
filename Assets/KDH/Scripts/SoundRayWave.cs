@@ -232,7 +232,13 @@ public class SoundRayWave : MonoBehaviour
             segmentDistance <= Mathf.Min(detectRadius[currentIndex], detectRadius[nextIndex]) * 0.8f &&
             wallCheck != null;
 
-        lineRenderers[currentIndex].material = shouldChangeMaterial ? _waveMaterials[1] : _waveMaterials[0];
+        if (shouldChangeMaterial)
+        {
+            lineRenderers[currentIndex].material = _waveMaterials[1];
+            lineRenderers[currentIndex].material.SetColor("_BaseColor", WaveColor);
+        }
+        else lineRenderers[currentIndex].material = _waveMaterials[0];
+
         lineRenderers[currentIndex].SetPosition(0, wavePositions[currentIndex]);
         lineRenderers[currentIndex].SetPosition(1, wavePositions[nextIndex]);
     }
@@ -241,18 +247,17 @@ public class SoundRayWave : MonoBehaviour
     {
         t_Destroy += Time.fixedDeltaTime;
         float alpha = WaveColor.a * (1 - (t_Destroy / Destroy_Time));
-        Color waveColor = new Color(WaveColor.r, WaveColor.g, WaveColor.b, alpha);
 
         if (_isPlayerWave && !isWaveEffect)
         {
             foreach (var lr in lineRenderers)
             {
-                lr.startColor = lr.endColor = waveColor;
+                lr.material.SetFloat("_Alpha", alpha);
             }
         }
         else
         {
-            singleLineRenderer.startColor = singleLineRenderer.endColor = waveColor;
+            singleLineRenderer.material.SetFloat("_Alpha", alpha);
         }
 
         if (alpha <= 0) Destroy(gameObject);
