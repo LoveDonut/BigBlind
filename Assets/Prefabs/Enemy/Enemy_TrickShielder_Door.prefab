@@ -151,14 +151,15 @@ MonoBehaviour:
   _attackSFX: {fileID: 8300000, guid: 91e7cc7b3c43dd74e8940558b4d1defb, type: 3}
   _attackRange: 5
   _attackDelay: 1
-  _readyBeatCount: 1
+  _readyBeatCount: 2
   _bpmMultiplier: 0.5
   Weapon: {fileID: 2752440015349494783}
   _hitTransform: {fileID: 4087812566467731332}
   _hitSize: {x: 3.8, y: 1}
   _rushSpeed: 20
-  ShortAttackDistance: 5
-  angleThreshold: 20
+  _shortAttackDistance: 3
+  _angleThreshold: 20
+  _firstAngleThresholdWhenTrick: 40
   ShieldRotationSpeed: 100
   IsTrick: 1
   KnockbackSpeed: 20
