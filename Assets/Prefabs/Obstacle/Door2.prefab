@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 7744754082715233307}
   - component: {fileID: 6934692439392162270}
   - component: {fileID: 4069264000949956520}
+  - component: {fileID: 136722484909290891}
   m_Layer: 14
   m_Name: Door2
   m_TagString: Obstacle
@@ -353,6 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 127a663366e1068499c02d940e52c808, type: 3}
+  WillBeOff: 0
   BPM: 90
   _bpmMultiplier: 1
   DestroyTime: 0.5
@@ -377,8 +379,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMovingPlatform: 0
+  platformShadow: {fileID: 0}
   _spriteRenderer: {fileID: 8526634147401635917}
   _instancedMaterial: {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
   _duration: 1
   _color: {r: 1, g: 0, b: 0, a: 0}
   _offset: 180
+--- !u!208 &136722484909290891
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659427889380152877}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
