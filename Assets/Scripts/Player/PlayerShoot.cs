@@ -42,6 +42,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] AudioClip _reloadOneSound;
     [SerializeField] AudioClip _closeCylinder;
 
+    PlayerMovement _playerMovement;
     Coroutine _reloadCoroutine;
     float _elapsedTime = 0f;
     #endregion
@@ -82,6 +83,10 @@ public class PlayerShoot : MonoBehaviour
 
     void OnFire(InputValue value)
     {
+        if(TryGetComponent<PlayerMovement>(out _playerMovement))
+        {
+            if(!_playerMovement.IsMovable) return;
+        }
         if (value.isPressed)
         {
             _isFiring = true;
