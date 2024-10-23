@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 9183986829506907392}
   - component: {fileID: 7431650233515939676}
   - component: {fileID: 1737125046951953416}
-  - component: {fileID: 7937604969774526819}
   - component: {fileID: 8060289483732360982}
   - component: {fileID: -800181369763910482}
+  - component: {fileID: -6961481383461622692}
   m_Layer: 10
   m_Name: Glass
   m_TagString: Wall
@@ -230,22 +230,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7937604969774526819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5265297225063049290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!114 &8060289483732360982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 127a663366e1068499c02d940e52c808, type: 3}
+  WillBeOff: 0
   BPM: 90
   _bpmMultiplier: 1
   DestroyTime: 0.5
@@ -289,3 +274,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7a78f393ef9cd4e4c8099908208c18ca, type: 3}
   _soundMaker: {fileID: 1316856662835991520, guid: 28a5fdc1836a1ca46ac1fa48a757d82a, type: 3}
   MaxHp: 1
+--- !u!208 &-6961481383461622692
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5265297225063049290}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

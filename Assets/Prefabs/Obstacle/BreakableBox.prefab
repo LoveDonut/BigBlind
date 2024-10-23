@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2493002302256899092}
   - component: {fileID: 8976928209776739124}
   - component: {fileID: 8679288705824730185}
-  - component: {fileID: 2268396429456334154}
   - component: {fileID: 3711706471307330857}
   - component: {fileID: 3828413859361862506}
   - component: {fileID: -1812459465017645813}
+  - component: {fileID: 4942350391782028918}
   m_Layer: 14
   m_Name: BreakableBox
   m_TagString: Obstacle
@@ -231,22 +231,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2268396429456334154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7358820779854103785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!114 &3711706471307330857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveObject: {fileID: 5202586336991198198, guid: 127a663366e1068499c02d940e52c808, type: 3}
+  WillBeOff: 0
   BPM: 90
   _bpmMultiplier: 1
   DestroyTime: 0.5
@@ -307,3 +292,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fb41acad799729743bd027e283b7f074, type: 3}
   _soundMaker: {fileID: 1316856662835991520, guid: 28a5fdc1836a1ca46ac1fa48a757d82a, type: 3}
   MaxHp: 1
+--- !u!208 &4942350391782028918
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358820779854103785}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
