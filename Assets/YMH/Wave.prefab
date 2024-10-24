@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 180
-  growSpeed: 200
+  growSpeed: 100
   _detectRadius: 0.2
   WaveColor: {r: 0.07075471, g: 1, b: 0.9732528, a: 1}
   Destroy_Time: 1

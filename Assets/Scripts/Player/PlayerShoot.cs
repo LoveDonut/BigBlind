@@ -38,6 +38,8 @@ public class PlayerShoot : MonoBehaviour
     [Header("UI")]
     [SerializeField] Image _ammoUI;
     [SerializeField] TMP_Text _leftAmmoText;
+    [SerializeField] TMP_Text _leftAmmoTextShadow;
+
 
     [Header("SFX")]
     [SerializeField] AudioSource _handCannon;
@@ -55,7 +57,7 @@ public class PlayerShoot : MonoBehaviour
     float _elapsedTime = 0f, _reloadingTime = 0f;
     private float _velocity;
 
-    Weapon _curreHoldnWeapon;
+    Weapon _currentHoldWeapon;
     #endregion
 
     #region PublicVariables
@@ -68,7 +70,7 @@ public class PlayerShoot : MonoBehaviour
     void Start()
     {
         _currentWeapon = "Revolver";
-        _curreHoldnWeapon = RevolverData;
+        _currentHoldWeapon = RevolverData;
         _ammo = _maxAmmo;
         _isFiring = false;
         _localMult = 1f;
@@ -92,15 +94,14 @@ public class PlayerShoot : MonoBehaviour
         if (_isReloading)
         {
             _reloadingTime += Time.deltaTime;
-            if (_reloadingTime >= _reloadTime) _reloadingTime = 0f;
             _ammoUI.fillAmount = Mathf.Lerp(_ammoUI.fillAmount, _reloadingTime / _reloadTime, 20 * Time.deltaTime);
-            _leftAmmoText.text = "-";
+            _leftAmmoText.text = _leftAmmoTextShadow.text = "-";
         }
         else
         {
-            float target = (float)_ammo / _curreHoldnWeapon.Ammo;
+            float target = (float)_ammo / _currentHoldWeapon.Ammo;
             _ammoUI.fillAmount = Mathf.SmoothDamp(_ammoUI.fillAmount, target, ref _velocity, 0.1f);
-            _leftAmmoText.text = _ammo.ToString();
+            _leftAmmoText.text = _leftAmmoTextShadow.text = _ammo.ToString();
         }
     }
 
@@ -235,6 +236,7 @@ public class PlayerShoot : MonoBehaviour
 
 
         _isReloading = false;
+        _reloadingTime = 0;
     }
     public void Shoot()
     {
@@ -242,7 +244,9 @@ public class PlayerShoot : MonoBehaviour
         {
             return;
         }
-        
+        _leftAmmoTextShadow.transform.parent.GetComponent<Animator>().Play("Bullet_Shoot");
+
+
         StartCoroutine(WaitNextBullet());
         _ammo--;
         if (!_automatic) _isFiring = false;
@@ -307,7 +311,7 @@ public class PlayerShoot : MonoBehaviour
             StopCoroutine(_reloadCoroutine);
             _reloadCoroutine = null;
         }
-        _curreHoldnWeapon = weapon;
+        _currentHoldWeapon = weapon;
         _isFiring = false;
         RevolverData.Ammo = _ammo;
         _currentWeapon = weapon.WeaponName;
@@ -324,7 +328,8 @@ public class PlayerShoot : MonoBehaviour
 
     public void ReturnToRevolver()
     {
-        _curreHoldnWeapon = RevolverData;
+        _currentHoldWeapon = RevolverData;
+        _currentHoldWeapon.Ammo = _maxAmmo;
         _isFiring = false;
         _ammo = RevolverData.Ammo;
         _currentWeapon = RevolverData.WeaponName;
