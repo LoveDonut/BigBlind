@@ -95,6 +95,7 @@ public class PlayerShoot : MonoBehaviour
             {
                 _isReloading = false;
                 StopCoroutine(_reloadCoroutine);
+                SoundManager.Instance.ReloadAudio.Stop();
             }
         }
         else
@@ -135,7 +136,7 @@ public class PlayerShoot : MonoBehaviour
         if (!GetComponent<PlayerMovement>().IsMovable || _reserveAmmo <= 0 ||
             GetComponent<PlayerMovement>().CurrentState.GetType() == typeof(ShortAttackState) || _currentWeapon.CompareTo("Revolver") != 0) return;
 
-        if (_ammo == _maxAmmo || _isReloading)
+        if (_ammo >= _maxAmmo || _isReloading)
         {
             return;
         }
@@ -147,7 +148,6 @@ public class PlayerShoot : MonoBehaviour
         yield return new WaitUntil(() => _isReloadable);
         _isReloading = true;
         _elapsedTime = 0f;
-        //if (_handCannon.isPlaying) _handCannon.Stop();
 
         if (!_reloadAll)
         {
@@ -158,6 +158,16 @@ public class PlayerShoot : MonoBehaviour
 
         while (_ammo < _maxAmmo && _reserveAmmo > 0)
         {
+            if (_reloadAll)
+            {
+                SoundManager.Instance.ReloadAudio.pitch = _reloadAllSound.length / _reloadTime;
+                SoundManager.Instance.ReloadAudio.Play();
+            }
+            else
+            {
+                SoundManager.Instance.PlaySound(_reloadOneSound, Vector2.zero);
+            }
+            yield return new WaitForSeconds(_reloadAll ? _reloadTime : _reloadTime / 2f);
             if (_reloadAll)
             {
                 if (_reloadAllSound != null)
@@ -176,7 +186,6 @@ public class PlayerShoot : MonoBehaviour
                     }
 
                     //HandCannon.pitch = ReloadAllSound.length / reloadTime;
-                    SoundManager.Instance.PlaySound(_reloadAllSound, Vector2.zero);
                     Direction.Instance.Show_Revolver_Reload_Effect(true);
 
                 }
@@ -191,12 +200,10 @@ public class PlayerShoot : MonoBehaviour
                     Direction.Instance.Sync_BulletCount_UI(_ammo);
 
                     //HandCannon.pitch = ReloadOneSound.length / reloadTime;
-                    SoundManager.Instance.PlaySound(_reloadOneSound, Vector2.zero);
                     Direction.Instance.Show_Revolver_Reload_Effect(false);
 
                 }
             }
-            yield return new WaitForSeconds(_reloadAll ? _reloadTime : _reloadTime / 2f);
         }
 
         if (!_reloadAll) SoundManager.Instance.PlaySound(_closeCylinder, Vector2.zero);
