@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 라인 렌더러 풀 매니저
 public class LineRendererPool : MonoBehaviour
 {
     private static LineRendererPool instance;
@@ -28,6 +27,7 @@ public class LineRendererPool : MonoBehaviour
         {
             instance = this;
             InitializePool();
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -58,7 +58,6 @@ public class LineRendererPool : MonoBehaviour
         {
             CreateNewLineRenderer();
         }
-
         LineRenderer lr = pooledObjects.Dequeue();
         lr.gameObject.SetActive(true);
         return lr;
@@ -69,5 +68,16 @@ public class LineRendererPool : MonoBehaviour
         lr.gameObject.SetActive(false);
         lr.transform.SetParent(transform);
         pooledObjects.Enqueue(lr);
+    }
+    public void ClearPool()
+    {
+        while (pooledObjects.Count > 0)
+        {
+            LineRenderer lr = pooledObjects.Dequeue();
+            if (lr != null)
+            {
+                Destroy(lr.gameObject);
+            }
+        }
     }
 }
