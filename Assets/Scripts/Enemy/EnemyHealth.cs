@@ -71,7 +71,7 @@ public class EnemyHealth : MonoBehaviour, IDamage
 
         if (CurrentHp <= 0)
         {
-            CurrentHp = 0;
+            // CurrentHp = 0;
             Dead(attackedDirection);
         }
     }
@@ -84,7 +84,7 @@ public class EnemyHealth : MonoBehaviour, IDamage
     }
     void Dead(Vector3 attackedDirection)
     {
-        MakeBlood(attackedDirection);
+        if(CurrentHp == 0) MakeBlood(attackedDirection);
 
         Dead();
     }

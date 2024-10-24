@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 // Made by JK3WN
 public class DoorKick : MonoBehaviour
@@ -70,6 +71,7 @@ public class DoorKick : MonoBehaviour
         GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 3f);
         GetComponent<Collider2D>().isTrigger = true;
         _as.PlayOneShot(_smashDoor);
+        if (GetComponent<NavMeshObstacle>() != null) GetComponent<NavMeshObstacle>().enabled = false;
         if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
         if (Vector2.Distance(_left.position, kicker.position) < Vector2.Distance(_right.position, kicker.position))
         {

@@ -14,9 +14,10 @@ public class PlayerShoot : MonoBehaviour
     #endregion
 
     #region PrivateVariables
-    [Header("HandCannon")]
+    [Header("Weapon")]
     [SerializeField] string _currentWeapon = "Revolver";
     [SerializeField] float _RPM = 200f;
+    [SerializeField] bool _automatic = false;
     [SerializeField] int _maxAmmo = 6;
     [SerializeField] int _reserveAmmo = 30;
     [SerializeField] bool _infiniteReserve = false;
@@ -24,6 +25,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] bool _reloadAll = false;
     int _ammo = 6;
     bool _isShootable = true, _isReloadable = false, _isReloading = false;
+    float _localMult = 1f;
     [SerializeField] bool _isFiring = false;
 
     [Header("Bullet")]
@@ -59,6 +61,7 @@ public class PlayerShoot : MonoBehaviour
         _currentWeapon = "Revolver";
         _ammo = _maxAmmo;
         _isFiring = false;
+        _localMult = 1f;
         Direction.Instance.Sync_BulletCount_UI(_ammo);
         Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
         InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
@@ -70,7 +73,7 @@ public class PlayerShoot : MonoBehaviour
         if (!_isReloadable)
         {
             _elapsedTime += Time.deltaTime;
-            if (_elapsedTime > _reloadTime) _elapsedTime -= _reloadTime;
+            if (_elapsedTime > _reloadTime / _localMult) _elapsedTime -= _reloadTime / _localMult;
         }
 
         if(_isFiring && _isShootable)
@@ -107,6 +110,7 @@ public class PlayerShoot : MonoBehaviour
         else
         {
             _isFiring = false;
+            return;
         }
         if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable) return;
 
@@ -124,7 +128,7 @@ public class PlayerShoot : MonoBehaviour
     IEnumerator WaitNextBullet()
     {
         _isShootable = false;
-        yield return new WaitForSecondsRealtime(60f / _RPM);
+        yield return new WaitForSeconds(60f / _RPM / _localMult);
         _isShootable = true;
     }
 
@@ -159,21 +163,21 @@ public class PlayerShoot : MonoBehaviour
         {
             SoundManager.Instance.PlaySound(_OpenCylinder, Vector2.zero);
 
-            yield return new WaitForSeconds(_reloadTime / 2);
+            yield return new WaitForSeconds(_reloadTime / _localMult / 2);
         }
 
         while (_ammo < _maxAmmo && _reserveAmmo > 0)
         {
             if (_reloadAll)
             {
-                SoundManager.Instance.ReloadAudio.pitch = _reloadAllSound.length / _reloadTime;
+                SoundManager.Instance.ReloadAudio.pitch = _reloadAllSound.length / _reloadTime * _localMult;
                 SoundManager.Instance.ReloadAudio.Play();
             }
             else
             {
                 SoundManager.Instance.PlaySound(_reloadOneSound, Vector2.zero);
             }
-            yield return new WaitForSeconds(_reloadAll ? _reloadTime : _reloadTime / 2f);
+            yield return new WaitForSeconds(_reloadAll ? _reloadTime / _localMult : _reloadTime / _localMult / 2f);
             if (_reloadAll)
             {
                 if (_reloadAllSound != null)
@@ -226,6 +230,7 @@ public class PlayerShoot : MonoBehaviour
         
         StartCoroutine(WaitNextBullet());
         _ammo--;
+        if (!_automatic) _isFiring = false;
         
         if(_currentWeapon.CompareTo("Revolver") == 0)
         {
@@ -280,11 +285,9 @@ public class PlayerShoot : MonoBehaviour
     public IEnumerator Haste(float mult, float duration)
     {
         IsHaste = true;
-        _RPM *= mult;
-        _reloadTime /= mult;
+        _localMult = mult;
         yield return new WaitForSeconds(duration);
-        _RPM /= mult;
-        _reloadTime *= mult;
+        _localMult = 1f;
         IsHaste = false;
     }
 
@@ -301,6 +304,7 @@ public class PlayerShoot : MonoBehaviour
         _bulletPrefab = weapon.BulletPrefab;
         _handCannonWave = weapon.WavePrefab;
         _RPM = weapon.RPM;
+        _automatic = weapon.Automatic;
         _ammo = weapon.Ammo;
         _bulletSpeed = weapon.BulletSpeed;
         _handCannonSound = weapon.FireSound;
@@ -317,6 +321,7 @@ public class PlayerShoot : MonoBehaviour
         _bulletPrefab = RevolverData.BulletPrefab;
         _handCannonWave = RevolverData.WavePrefab;
         _RPM = RevolverData.RPM;
+        _automatic = RevolverData.Automatic;
         _ammo = RevolverData.Ammo;
         _bulletSpeed = RevolverData.BulletSpeed;
         _handCannonSound = RevolverData.FireSound;
