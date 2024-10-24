@@ -15,11 +15,11 @@ MonoBehaviour:
   WeaponName: AssaultRifle
   BulletPrefab: {fileID: 1079946990457772, guid: 6ec1f26d36ba83f4591e1b4b045b9518, type: 3}
   WavePrefab: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
-  BulletImage: {fileID: 21300000, guid: 05ea80bb5f1061e42b07c13ae3291933, type: 3}
+  BulletImage: {fileID: 21300000, guid: aca9ef59b7d4a5a4ebe2cda16babc2c1, type: 3}
   RPM: 560
   Automatic: 1
   Ammo: 30
   BulletSpeed: 240
-  FireSound: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
+  FireSound: {fileID: 8300000, guid: 78c01a8d448283d49b643ee01c65b3e4, type: 3}
   WaveColor: {r: 0.9882353, g: 1, b: 0, a: 1}
   DestroyTime: 0.2

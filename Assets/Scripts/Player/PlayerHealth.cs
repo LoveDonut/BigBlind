@@ -114,8 +114,8 @@ public class PlayerHealth : MonoBehaviour, IDamage
 
 
 
-        _heartbeat.volume += _heartbeat.volume / MaxHp;
-        _bgm.volume -= _bgm.volume / MaxHp;
+        _heartbeat.volume += .35f;
+        _bgm.volume -= .2f;
 
         if (CurrentHp <= 1) Direction.Instance.ShowLowHP();
     }

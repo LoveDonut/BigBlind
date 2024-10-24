@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using PlayerState;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -33,6 +35,10 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] float _destroyTime;
     [SerializeField] float _bulletSpeed = 60f;
 
+    [Header("UI")]
+    [SerializeField] Image _ammoUI;
+    [SerializeField] TMP_Text _leftAmmoText;
+
     [Header("SFX")]
     [SerializeField] AudioSource _handCannon;
 
@@ -46,7 +52,10 @@ public class PlayerShoot : MonoBehaviour
 
     PlayerMovement _playerMovement;
     Coroutine _reloadCoroutine;
-    float _elapsedTime = 0f;
+    float _elapsedTime = 0f, _reloadingTime = 0f;
+    private float _velocity;
+
+    Weapon _curreHoldnWeapon;
     #endregion
 
     #region PublicVariables
@@ -59,11 +68,10 @@ public class PlayerShoot : MonoBehaviour
     void Start()
     {
         _currentWeapon = "Revolver";
+        _curreHoldnWeapon = RevolverData;
         _ammo = _maxAmmo;
         _isFiring = false;
         _localMult = 1f;
-        Direction.Instance.Sync_BulletCount_UI(_ammo);
-        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
         InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
     }
 
@@ -79,6 +87,20 @@ public class PlayerShoot : MonoBehaviour
         if(_isFiring && _isShootable)
         {
             Shoot();
+        }
+
+        if (_isReloading)
+        {
+            _reloadingTime += Time.deltaTime;
+            if (_reloadingTime >= _reloadTime) _reloadingTime = 0f;
+            _ammoUI.fillAmount = Mathf.Lerp(_ammoUI.fillAmount, _reloadingTime / _reloadTime, 20 * Time.deltaTime);
+            _leftAmmoText.text = "-";
+        }
+        else
+        {
+            float target = (float)_ammo / _curreHoldnWeapon.Ammo;
+            _ammoUI.fillAmount = Mathf.SmoothDamp(_ammoUI.fillAmount, target, ref _velocity, 0.1f);
+            _leftAmmoText.text = _ammo.ToString();
         }
     }
 
@@ -186,18 +208,15 @@ public class PlayerShoot : MonoBehaviour
                     if(_reserveAmmo < (_maxAmmo - _ammo))
                     {
                         if (!_infiniteReserve) _reserveAmmo = 0;
-                        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
                         _ammo += _reserveAmmo;
                     }
                     else
                     {
                         if(!_infiniteReserve) _reserveAmmo -= (_maxAmmo - _ammo);
-                        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
                         _ammo = _maxAmmo;
                     }
 
                     //HandCannon.pitch = ReloadAllSound.length / reloadTime;
-                    Direction.Instance.Show_Revolver_Reload_Effect(true);
 
                 }
             }
@@ -206,12 +225,7 @@ public class PlayerShoot : MonoBehaviour
                 if (_reloadOneSound != null)
                 {
                     if(!_infiniteReserve) _reserveAmmo--;
-                    Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
                     _ammo++;
-                    Direction.Instance.Sync_BulletCount_UI(_ammo);
-
-                    //HandCannon.pitch = ReloadOneSound.length / reloadTime;
-                    Direction.Instance.Show_Revolver_Reload_Effect(false);
 
                 }
             }
@@ -232,12 +246,7 @@ public class PlayerShoot : MonoBehaviour
         StartCoroutine(WaitNextBullet());
         _ammo--;
         if (!_automatic) _isFiring = false;
-        
-        if(_currentWeapon.CompareTo("Revolver") == 0)
-        {
-            Direction.Instance.Sync_BulletCount_UI(_ammo);
-            Direction.Instance.Show_Revolver_Fire_Effect();
-        }
+       
 
         SoundManager.Instance.PlaySound(_handCannonSound, Vector2.zero);
 
@@ -274,13 +283,11 @@ public class PlayerShoot : MonoBehaviour
         if(_currentWeapon.CompareTo("Revolver") != 0)
         {
             if (_ammo <= 0) ReturnToRevolver();
-            else Direction.Instance.SyncReserveAmmoUI(_ammo);
         }
     }
     public void AddReserveAmmo(int count)
     {
         _reserveAmmo += count;
-        if(_currentWeapon.CompareTo("Revolver") == 0) Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
     }
 
     public IEnumerator Haste(float mult, float duration)
@@ -300,6 +307,7 @@ public class PlayerShoot : MonoBehaviour
             StopCoroutine(_reloadCoroutine);
             _reloadCoroutine = null;
         }
+        _curreHoldnWeapon = weapon;
         _isFiring = false;
         RevolverData.Ammo = _ammo;
         _currentWeapon = weapon.WeaponName;
@@ -312,12 +320,11 @@ public class PlayerShoot : MonoBehaviour
         _handCannonSound = weapon.FireSound;
         _cannonColor = weapon.WaveColor;
         _destroyTime = weapon.DestroyTime;
-        Direction.Instance.SyncReserveAmmoUI(_ammo);
-        Direction.Instance.SyncBulletImage(weapon.BulletImage);
     }
 
     public void ReturnToRevolver()
     {
+        _curreHoldnWeapon = RevolverData;
         _isFiring = false;
         _ammo = RevolverData.Ammo;
         _currentWeapon = RevolverData.WeaponName;
@@ -329,7 +336,5 @@ public class PlayerShoot : MonoBehaviour
         _handCannonSound = RevolverData.FireSound;
         _cannonColor = RevolverData.WaveColor;
         _destroyTime = RevolverData.DestroyTime;
-        Direction.Instance.SyncReserveAmmoUI(_reserveAmmo);
-        Direction.Instance.SyncBulletImage(RevolverData.BulletImage);
     }
 }

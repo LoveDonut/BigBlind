@@ -19,8 +19,7 @@ public class Direction : MonoBehaviour
     [SerializeField] RectTransform _crossHair;
     [SerializeField] float _smoothness = 0.1f;
 
-    [Header("Revolver_UI")]
-    [SerializeField] Revolver_UI _revolverUI;
+    [Header("Ammo_UI")]
     [SerializeField] TextMeshProUGUI _reserveAmmoUI;
     [SerializeField] Image _bulletImage;
 
@@ -57,26 +56,31 @@ public class Direction : MonoBehaviour
     #endregion
 
     #region RevolverUI
-    public void Sync_BulletCount_UI(int ammo) => _revolverUI.Ammo = ammo;
-    public void Show_Revolver_Fire_Effect() => _revolverUI.FireBullet();
-    public void Show_Revolver_Reload_Effect(bool isReloadAll) => _revolverUI.ReloadBullet(isReloadAll);
 
-    public void ShowLowHP() => _lowHpImage.GetComponent<Animator>().Play("LowHP");
 
-    public void SyncReserveAmmoUI(int ammo) => _reserveAmmoUI.text = ammo.ToString();
-    public void SyncBulletImage(Sprite sprite) => _bulletImage.GetComponent<Image>().sprite = sprite;
 
     #endregion
 
     #region GameOver
+
+    public void ShowLowHP() => _lowHpImage.GetComponent<Animator>().Play("LowHP");
+
 
     public void ShowGameOver() => _gameOverPanel.SetActive(true);
 
 
     public void RetryClick() {
         DOTween.KillAll();
+
+        if (LineRendererPool.Instance != null)
+        {
+            LineRendererPool.Instance.ClearPool();
+            Destroy(LineRendererPool.Instance.gameObject);
+        }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.Instance.RestartStage();
+
     }
     public void ExitClick() => Application.Quit();
 
