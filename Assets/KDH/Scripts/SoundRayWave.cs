@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
 
 public class SoundRayWave : MonoBehaviour
 {
     [SerializeField] private int segments = 100;
     [SerializeField] private float growSpeed = 0.5f;
-    [SerializeField] private float radius = 0.5f;
     [SerializeField] private float _detectRadius = .2f;
 
 
@@ -22,18 +20,13 @@ public class SoundRayWave : MonoBehaviour
     private Vector2 rayDirection;
 
     [SerializeField] float linewidth = .2f;
-    [SerializeField] float maxSegmentDistance = 1f;
 
     Material[] _waveMaterials;
 
     public bool isWaveEffect = false;
 
-    private float[] detectRadius;
-
     [HideInInspector]
     public bool isCannonWave = false;
-
-    private readonly Collider2D[] overlapResults = new Collider2D[5];
 
     [SerializeField] float raycastCheckInterval = 0.05f;
 
@@ -43,10 +36,11 @@ public class SoundRayWave : MonoBehaviour
     [SerializeField] LayerMask itemMask;
     [SerializeField] LayerMask wallMask;
 
+    private float radius = 0.5f;
+
     private float angleStep;
     private float currentAngle;
 
-    // 각 라인 렌더러의 중간점 위치와 고정 상태를 저장
     private Vector3[] middlePoints;
     private bool[] isMiddlePointFixed;
 
@@ -64,7 +58,6 @@ public class SoundRayWave : MonoBehaviour
     {
         wavePositions = new Vector3[segments + 1];
         isPositionFixed = new bool[segments];
-        detectRadius = new float[segments];
         middlePoints = new Vector3[segments];
         isMiddlePointFixed = new bool[segments];
     }
@@ -167,8 +160,6 @@ public class SoundRayWave : MonoBehaviour
                 {
                     ProcessSegment(i, position);
                 }
-
-                // 중점에 대한 레이캐스트 처리
                 if (!isMiddlePointFixed[i])
                 {
                     ProcessMiddlePoint(i, position);
@@ -255,7 +246,6 @@ public class SoundRayWave : MonoBehaviour
         {
             wavePositions[index] = hit.point;
             isPositionFixed[index] = true;
-            if (_isPlayerWave) detectRadius[index] = radius;
         }
         else
         {
@@ -287,14 +277,16 @@ public class SoundRayWave : MonoBehaviour
     {
         for (int i = 0; i < segments; i++)
         {
-            int nextIndex = (i + 1) % segments;
             if (lineRenderers[i].material == _waveMaterials[1]) continue;
+            int nextIndex = (i + 1) % segments;
 
             lineRenderers[i].SetPosition(0, wavePositions[i]);
             lineRenderers[i].SetPosition(1, middlePoints[i]);
             lineRenderers[i].SetPosition(2, wavePositions[nextIndex]);
 
             bool allPointsFixed = isPositionFixed[i] && isMiddlePointFixed[i] && isPositionFixed[nextIndex];
+
+            if (!allPointsFixed) continue;
 
             float distancePole = Vector2.Distance(wavePositions[i], wavePositions[nextIndex]);
             float distanceStart = Vector2.Distance(wavePositions[i], middlePoints[i]);
@@ -318,10 +310,6 @@ public class SoundRayWave : MonoBehaviour
             {
                 lineRenderers[i].material = _waveMaterials[1];
                 lineRenderers[i].material.SetColor("_BaseColor", new Color(WaveColor.r, WaveColor.g, WaveColor.b, alpha));
-            }
-            else
-            {
-                lineRenderers[i].material = _waveMaterials[0];
             }
         }
     }
