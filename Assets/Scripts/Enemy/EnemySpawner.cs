@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     //made by JHC
     [SerializeField] bool _isRepeating = false;
+    bool _hasSpawn = false;
     #endregion
 
     void Start()
@@ -29,10 +30,17 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemies());
     }
 
+    public void Spawn()
+    {
+        _hasSpawn = false;
+        StopAllCoroutines();
+        StartCoroutine(SpawnEnemies());
+    }
     IEnumerator SpawnEnemies()
     {
-        while (_isRepeating)
+        while (!_hasSpawn || _isRepeating)
         {
+            _hasSpawn = true;
             float beforeSpawnTime = 0f;
 
             foreach (EnemySpawnInfo enemyInfo in _enemySpawnInfos)

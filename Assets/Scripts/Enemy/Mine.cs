@@ -84,10 +84,6 @@ public class Mine : MonoBehaviour
                 _waveManager.BPM = _startBpm * distanceDiff * _bpmIncreaseOffset;
             }
         }
-        else
-        {
-            Explode();
-        }
     }
 
     void TurnOffWave()
@@ -116,12 +112,20 @@ public class Mine : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _detectRadius);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _triggerRadius);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player") || collision.CompareTag("Enemy"))
+        {
+            Explode();
+        }
     }
     #endregion
 }
