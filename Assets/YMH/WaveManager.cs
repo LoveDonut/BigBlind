@@ -119,6 +119,7 @@ public class WaveManager : MonoBehaviour
         {
             if (isPlayer && CompareTag("Player"))
             {
+                if (GetComponent<PlayerHealth>().CurrentHp <= 0) break;
                 var wave = Instantiate(_waveEffect, transform.position, Quaternion.identity);
                 wave.GetComponent<LineRenderer>().material.SetColor("_BaseColor", WaveColor);
 
