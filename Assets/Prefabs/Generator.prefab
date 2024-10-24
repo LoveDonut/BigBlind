@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,8 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff85c3a24a598c946bfaa0a5891dc357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMovingPlatform: 0
+  platformShadow: {fileID: 0}
   _spriteRenderer: {fileID: 1694771750214464343}
-  _instancedMaterial: {fileID: 0}
+  _instancedMaterial: {fileID: 2100000, guid: 38d209f62153e574a94f0a727c94c0a8, type: 2}
   _duration: 1
   _color: {r: 0, g: 1, b: 1, a: 1}
   _offset: 180
@@ -221,8 +223,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8661283373066260509}
-  - component: {fileID: 5470800776313979609}
   - component: {fileID: 795820786284708077}
+  - component: {fileID: 2702562740656947274}
   m_Layer: 14
   m_Name: Generator
   m_TagString: Obstacle
@@ -246,23 +248,6 @@ Transform:
   - {fileID: 4407634592640707513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5470800776313979609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8869212791467596183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d89c4dafa87bd4a8830f75365dceb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _light: []
-  _lightSize: {x: 1, y: 1}
-  _lightCenter: {x: 0, y: 0}
-  _generatorSFX: {fileID: 8300000, guid: 1065517192988c847ac1c76d4fb8b2a6, type: 3}
-  _generatorDestroyedSFX: {fileID: 8300000, guid: d0d0f1610670cc74abab20c26686ac53, type: 3}
 --- !u!82 &795820786284708077
 AudioSource:
   m_ObjectHideFlags: 0
@@ -359,3 +344,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2702562740656947274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869212791467596183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b7fceeaffa8dc42984823f6ef293b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _breakSound:
+  - {fileID: 8300000, guid: fb41acad799729743bd027e283b7f074, type: 3}
+  MaxHp: 1
