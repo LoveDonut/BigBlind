@@ -8,6 +8,9 @@ public class SoundRayWave : MonoBehaviour
     [SerializeField] private int segments = 100;
     [SerializeField] private float growSpeed = 0.5f;
     [SerializeField] private float radius = 0.5f;
+    [SerializeField] private float _detectRadius = .2f;
+
+
     public Color WaveColor;
     private LineRenderer[] lineRenderers;
     private LineRenderer singleLineRenderer;
@@ -32,7 +35,7 @@ public class SoundRayWave : MonoBehaviour
 
     private readonly Collider2D[] overlapResults = new Collider2D[5];
 
-    [SerializeField] float raycastCheckInterval = 0.1f;
+    [SerializeField] float raycastCheckInterval = 0.05f;
 
     List<GameObject> detectedObj = new List<GameObject>();
 
@@ -85,11 +88,24 @@ public class SoundRayWave : MonoBehaviour
         lineRenderers = new LineRenderer[segments];
         for (int i = 0; i < segments; i++)
         {
-            GameObject lineObj = new GameObject($"LineRenderer_{i}");
-            lineObj.transform.SetParent(transform);
-            LineRenderer lr = lineObj.AddComponent<LineRenderer>();
+            LineRenderer lr = LineRendererPool.Instance.GetLineRenderer();
+            lr.transform.SetParent(transform);
             SetupLineRendererProperties(lr);
             lineRenderers[i] = lr;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_isPlayerWave && !isWaveEffect && lineRenderers != null)
+        {
+            foreach (var lr in lineRenderers)
+            {
+                if (lr != null)
+                {
+                    LineRendererPool.Instance.ReturnToPool(lr);
+                }
+            }
         }
     }
 
@@ -284,8 +300,19 @@ public class SoundRayWave : MonoBehaviour
             float distanceStart = Vector2.Distance(wavePositions[i], middlePoints[i]);
             float distanceEnd = Vector2.Distance(middlePoints[i], wavePositions[nextIndex]);
 
-            bool isLong = Mathf.Max(distanceStart, distanceEnd) >= distancePole ||
-                Mathf.Max(distanceStart, distanceEnd) / Mathf.Min(distanceStart, distanceEnd) >= 5;
+            bool middleWallcheck;
+            if(distanceStart > distanceEnd)
+            {
+                middleWallcheck = Physics2D.OverlapCircle((wavePositions[i] + middlePoints[i]) / 2, _detectRadius,  LayerMask.GetMask("Wall")) ;
+            }
+            else
+            {
+                middleWallcheck = Physics2D.OverlapCircle((wavePositions[nextIndex] + middlePoints[i]) / 2, _detectRadius,  LayerMask.GetMask("Wall"));
+            }
+
+ 
+            bool isLong = Mathf.Max(distanceStart, distanceEnd) >= distancePole || !middleWallcheck;
+
 
             if (allPointsFixed && !isLong)
             {
