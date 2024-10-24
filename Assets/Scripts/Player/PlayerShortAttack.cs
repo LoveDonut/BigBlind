@@ -72,6 +72,7 @@ public class PlayerShortAttack : MonoBehaviour
         {
             SoundManager.Instance.PlaySound(_shortAttackSFX, Vector2.zero);
             _playerMovement.CurrentState.SwitchState(gameObject, ref _playerMovement.CurrentState, new ShortAttackState());
+            GetComponent<PlayerShoot>()._isFiring = false;
 
             if (_attackCoroutine != null)
             {

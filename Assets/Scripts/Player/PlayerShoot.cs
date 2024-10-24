@@ -28,7 +28,7 @@ public class PlayerShoot : MonoBehaviour
     int _ammo = 6;
     bool _isShootable = true, _isReloadable = false, _isReloading = false;
     float _localMult = 1f;
-    [SerializeField] bool _isFiring = false;
+    public bool _isFiring = false;
 
     [Header("Bullet")]
     [SerializeField] Color _cannonColor;
@@ -172,6 +172,7 @@ public class PlayerShoot : MonoBehaviour
         {
             return;
         }
+        _isFiring = false;
         _reloadCoroutine = StartCoroutine(WaitReload());
     }
 
@@ -307,6 +308,7 @@ public class PlayerShoot : MonoBehaviour
             _reloadCoroutine = null;
         }
         _curreHoldnWeapon = weapon;
+        _isFiring = false;
         RevolverData.Ammo = _ammo;
         _currentWeapon = weapon.WeaponName;
         _bulletPrefab = weapon.BulletPrefab;
@@ -323,13 +325,13 @@ public class PlayerShoot : MonoBehaviour
     public void ReturnToRevolver()
     {
         _curreHoldnWeapon = RevolverData;
+        _isFiring = false;
         _ammo = RevolverData.Ammo;
         _currentWeapon = RevolverData.WeaponName;
         _bulletPrefab = RevolverData.BulletPrefab;
         _handCannonWave = RevolverData.WavePrefab;
         _RPM = RevolverData.RPM;
         _automatic = RevolverData.Automatic;
-        _ammo = RevolverData.Ammo;
         _bulletSpeed = RevolverData.BulletSpeed;
         _handCannonSound = RevolverData.FireSound;
         _cannonColor = RevolverData.WaveColor;
