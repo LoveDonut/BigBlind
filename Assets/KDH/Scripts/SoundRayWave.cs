@@ -6,7 +6,9 @@ public class SoundRayWave : MonoBehaviour
 {
     [SerializeField] private int segments = 100;
     [SerializeField] private float growSpeed = 0.5f;
-    [SerializeField] private float radius = 0.5f;
+    [SerializeField] private float _detectRadius = .2f;
+
+
     public Color WaveColor;
     private LineRenderer[] lineRenderers;
     private LineRenderer singleLineRenderer;
@@ -18,20 +20,15 @@ public class SoundRayWave : MonoBehaviour
     private Vector2 rayDirection;
 
     [SerializeField] float linewidth = .2f;
-    [SerializeField] float maxSegmentDistance = 1f;
 
     Material[] _waveMaterials;
 
     public bool isWaveEffect = false;
 
-    private float[] detectRadius;
-
     [HideInInspector]
     public bool isCannonWave = false;
 
-    private readonly Collider2D[] overlapResults = new Collider2D[5];
-
-    [SerializeField] float raycastCheckInterval = 0.1f;
+    [SerializeField] float raycastCheckInterval = 0.05f;
 
     List<GameObject> detectedObj = new List<GameObject>();
 
@@ -39,8 +36,15 @@ public class SoundRayWave : MonoBehaviour
     [SerializeField] LayerMask itemMask;
     [SerializeField] LayerMask wallMask;
 
+    private float radius = 0.5f;
+
     private float angleStep;
     private float currentAngle;
+
+    private Vector3[] middlePoints;
+    private bool[] isMiddlePointFixed;
+
+    float alpha;
 
     void Awake()
     {
@@ -54,7 +58,8 @@ public class SoundRayWave : MonoBehaviour
     {
         wavePositions = new Vector3[segments + 1];
         isPositionFixed = new bool[segments];
-        detectRadius = new float[segments];
+        middlePoints = new Vector3[segments];
+        isMiddlePointFixed = new bool[segments];
     }
 
     private void SetupLineRenderers()
@@ -76,11 +81,24 @@ public class SoundRayWave : MonoBehaviour
         lineRenderers = new LineRenderer[segments];
         for (int i = 0; i < segments; i++)
         {
-            GameObject lineObj = new GameObject($"LineRenderer_{i}");
-            lineObj.transform.SetParent(transform);
-            LineRenderer lr = lineObj.AddComponent<LineRenderer>();
+            LineRenderer lr = LineRendererPool.Instance.GetLineRenderer();
+            lr.transform.SetParent(transform);
             SetupLineRendererProperties(lr);
             lineRenderers[i] = lr;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_isPlayerWave && !isWaveEffect && lineRenderers != null)
+        {
+            foreach (var lr in lineRenderers)
+            {
+                if (lr != null)
+                {
+                    LineRendererPool.Instance.ReturnToPool(lr);
+                }
+            }
         }
     }
 
@@ -98,7 +116,7 @@ public class SoundRayWave : MonoBehaviour
         lr.startWidth = linewidth;
         lr.material = _waveMaterials[0];
         _waveMaterials[1].SetColor("Tint", WaveColor);
-        lr.positionCount = 2;
+        lr.positionCount = 3;
         lr.useWorldSpace = true;
     }
 
@@ -125,7 +143,6 @@ public class SoundRayWave : MonoBehaviour
     void FixedUpdate()
     {
         radius += growSpeed * Time.fixedDeltaTime;
-        UpdateWaveColor();
     }
 
     IEnumerator SpreadRay()
@@ -137,19 +154,56 @@ public class SoundRayWave : MonoBehaviour
 
             for (int i = 0; i < segments; i++)
             {
+                rayDirection.Set(Mathf.Cos(currentAngle), Mathf.Sin(currentAngle));
+
                 if (!isPositionFixed[i])
                 {
-                    rayDirection.Set(Mathf.Cos(currentAngle), Mathf.Sin(currentAngle));
                     ProcessSegment(i, position);
                 }
+                if (!isMiddlePointFixed[i])
+                {
+                    ProcessMiddlePoint(i, position);
+                }
+
                 currentAngle += angleStep;
             }
 
             wavePositions[segments] = wavePositions[0];
             UpdateLineRendererPositions();
+            UpdateWaveColor();
             yield return new WaitForSeconds(raycastCheckInterval);
         }
         while (true);
+    }
+
+    private void ProcessMiddlePoint(int index, Vector3 position)
+    {
+        // 중간 각도 계산
+
+        int nextIndex = (index + 1) % segments;
+
+        float middleAngle = currentAngle + (angleStep * 0.5f);
+        Vector3 midPoint = (wavePositions[index] + wavePositions[nextIndex]) * 0.5f;
+        Vector2 middleDirection = new Vector2(Mathf.Cos(middleAngle), Mathf.Sin(middleAngle));
+
+        RaycastHit2D hit = Physics2D.Raycast(position, middleDirection, radius, waveLayerMask);
+
+        if (hit.collider != null && !isWaveEffect)
+        {
+            if (hit.collider.CompareTag("Wall"))
+            {
+                middlePoints[index] = hit.point;
+                isMiddlePointFixed[index] = true;
+            }
+            else
+            {
+                middlePoints[index] = midPoint;
+            }
+        }
+        else
+        {
+            middlePoints[index] = (Vector3)(middleDirection * radius) + position;
+        }
     }
 
     private void ProcessSegment(int index, Vector3 position)
@@ -192,7 +246,6 @@ public class SoundRayWave : MonoBehaviour
         {
             wavePositions[index] = hit.point;
             isPositionFixed[index] = true;
-            if (_isPlayerWave) detectRadius[index] = radius;
         }
         else
         {
@@ -225,44 +278,46 @@ public class SoundRayWave : MonoBehaviour
         for (int i = 0; i < segments; i++)
         {
             if (lineRenderers[i].material == _waveMaterials[1]) continue;
-
             int nextIndex = (i + 1) % segments;
-            UpdateLineRendererSegment(i, nextIndex);
+
+            lineRenderers[i].SetPosition(0, wavePositions[i]);
+            lineRenderers[i].SetPosition(1, middlePoints[i]);
+            lineRenderers[i].SetPosition(2, wavePositions[nextIndex]);
+
+            bool allPointsFixed = isPositionFixed[i] && isMiddlePointFixed[i] && isPositionFixed[nextIndex];
+
+            if (!allPointsFixed) continue;
+
+            float distancePole = Vector2.Distance(wavePositions[i], wavePositions[nextIndex]);
+            float distanceStart = Vector2.Distance(wavePositions[i], middlePoints[i]);
+            float distanceEnd = Vector2.Distance(middlePoints[i], wavePositions[nextIndex]);
+
+            bool middleWallcheck;
+            if(distanceStart > distanceEnd)
+            {
+                middleWallcheck = Physics2D.OverlapCircle((wavePositions[i] + middlePoints[i]) / 2, _detectRadius,  LayerMask.GetMask("Wall")) ;
+            }
+            else
+            {
+                middleWallcheck = Physics2D.OverlapCircle((wavePositions[nextIndex] + middlePoints[i]) / 2, _detectRadius,  LayerMask.GetMask("Wall"));
+            }
+
+ 
+            bool isLong = Mathf.Max(distanceStart, distanceEnd) >= distancePole || !middleWallcheck;
+
+
+            if (allPointsFixed && !isLong)
+            {
+                lineRenderers[i].material = _waveMaterials[1];
+                lineRenderers[i].material.SetColor("_BaseColor", new Color(WaveColor.r, WaveColor.g, WaveColor.b, alpha));
+            }
         }
-    }
-
-    private void UpdateLineRendererSegment(int currentIndex, int nextIndex)
-    {
-        bool bothSegmentsFixed = isPositionFixed[currentIndex] && isPositionFixed[nextIndex];
-        float segmentDistance = Vector3.Distance(wavePositions[currentIndex], wavePositions[nextIndex]);
-
-        // OverlapCircleNonAlloc 사용
-        int hitCount = Physics2D.OverlapCircleNonAlloc(
-            (wavePositions[currentIndex] + wavePositions[nextIndex]) * 0.5f,
-            Mathf.Min(detectRadius[currentIndex], detectRadius[nextIndex]) * maxSegmentDistance,
-            overlapResults,
-            wallMask
-        );
-
-        bool shouldChangeMaterial = bothSegmentsFixed &&
-            segmentDistance <= Mathf.Min(detectRadius[currentIndex], detectRadius[nextIndex]) * 0.8f &&
-            hitCount > 0;
-
-        if (shouldChangeMaterial)
-        {
-            lineRenderers[currentIndex].material = _waveMaterials[1];
-            lineRenderers[currentIndex].material.SetColor("_BaseColor", WaveColor);
-        }
-        else lineRenderers[currentIndex].material = _waveMaterials[0];
-
-        lineRenderers[currentIndex].SetPosition(0, wavePositions[currentIndex]);
-        lineRenderers[currentIndex].SetPosition(1, wavePositions[nextIndex]);
     }
 
     void UpdateWaveColor()
     {
-        t_Destroy += Time.fixedDeltaTime;
-        float alpha = WaveColor.a * (1 - (t_Destroy / Destroy_Time));
+        t_Destroy += raycastCheckInterval;
+        alpha = WaveColor.a * (1 - (t_Destroy / Destroy_Time));
 
         if (_isPlayerWave && !isWaveEffect)
         {
