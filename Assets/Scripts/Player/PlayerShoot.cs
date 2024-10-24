@@ -14,9 +14,10 @@ public class PlayerShoot : MonoBehaviour
     #endregion
 
     #region PrivateVariables
-    [Header("HandCannon")]
+    [Header("Weapon")]
     [SerializeField] string _currentWeapon = "Revolver";
     [SerializeField] float _RPM = 200f;
+    [SerializeField] bool _automatic = false;
     [SerializeField] int _maxAmmo = 6;
     [SerializeField] int _reserveAmmo = 30;
     [SerializeField] bool _infiniteReserve = false;
@@ -109,6 +110,7 @@ public class PlayerShoot : MonoBehaviour
         else
         {
             _isFiring = false;
+            return;
         }
         if (!GetComponent<PlayerMovement>().IsMovable || !_isShootable) return;
 
@@ -126,7 +128,7 @@ public class PlayerShoot : MonoBehaviour
     IEnumerator WaitNextBullet()
     {
         _isShootable = false;
-        yield return new WaitForSecondsRealtime(60f / _RPM / _localMult);
+        yield return new WaitForSeconds(60f / _RPM / _localMult);
         _isShootable = true;
     }
 
@@ -228,6 +230,7 @@ public class PlayerShoot : MonoBehaviour
         
         StartCoroutine(WaitNextBullet());
         _ammo--;
+        if (!_automatic) _isFiring = false;
         
         if(_currentWeapon.CompareTo("Revolver") == 0)
         {
@@ -301,6 +304,7 @@ public class PlayerShoot : MonoBehaviour
         _bulletPrefab = weapon.BulletPrefab;
         _handCannonWave = weapon.WavePrefab;
         _RPM = weapon.RPM;
+        _automatic = weapon.Automatic;
         _ammo = weapon.Ammo;
         _bulletSpeed = weapon.BulletSpeed;
         _handCannonSound = weapon.FireSound;
@@ -317,6 +321,7 @@ public class PlayerShoot : MonoBehaviour
         _bulletPrefab = RevolverData.BulletPrefab;
         _handCannonWave = RevolverData.WavePrefab;
         _RPM = RevolverData.RPM;
+        _automatic = RevolverData.Automatic;
         _ammo = RevolverData.Ammo;
         _bulletSpeed = RevolverData.BulletSpeed;
         _handCannonSound = RevolverData.FireSound;
