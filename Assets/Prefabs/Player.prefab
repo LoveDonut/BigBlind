@@ -785,7 +785,7 @@ MonoBehaviour:
   _bpmMultiplier: 0.25
   DestroyTime: 1.1
   CannonDestroyTime: 0.5
-  WaveColor: {r: 1, g: 1, b: 1, a: 1}
+  WaveColor: {r: 0.8862745, g: 0.5411765, b: 0.8719343, a: 1}
   WaveReadyColor: {r: 0, g: 0, b: 0, a: 0}
   WaveAttackColor: {r: 0, g: 0, b: 0, a: 0}
   _blockAlphaAmount: 2
@@ -2161,7 +2161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8154427309260858861, guid: 9d8b9dd523a06b340a9dc00031778c49, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
