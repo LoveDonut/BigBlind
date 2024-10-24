@@ -14,6 +14,7 @@ public class Weapon : ScriptableObject
     public Sprite BulletImage;
     [Header("Weapon Info")]
     public float RPM;
+    public bool Automatic;
     public int Ammo;
     public float BulletSpeed;
     public AudioClip FireSound;

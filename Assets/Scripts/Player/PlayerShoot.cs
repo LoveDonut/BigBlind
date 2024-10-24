@@ -89,12 +89,18 @@ public class PlayerShoot : MonoBehaviour
         }
         if (value.isPressed)
         {
+            if (_ammo <= 0)
+            {
+                // Reload when player tries to fire when mag is empty
+                if(_reloadCoroutine == null) _reloadCoroutine = StartCoroutine(WaitReload());
+                return;
+            }
             _isFiring = true;
-            if(_ammo <= 0 && _emptySound != null) SoundManager.Instance.PlaySound(_emptySound, Vector2.zero);
             if (_reloadCoroutine != null)
             {
                 _isReloading = false;
                 StopCoroutine(_reloadCoroutine);
+                _reloadCoroutine = null;
                 SoundManager.Instance.ReloadAudio.Stop();
             }
         }
@@ -288,6 +294,7 @@ public class PlayerShoot : MonoBehaviour
         {
             _isReloading = false;
             StopCoroutine(_reloadCoroutine);
+            _reloadCoroutine = null;
         }
         RevolverData.Ammo = _ammo;
         _currentWeapon = weapon.WeaponName;
