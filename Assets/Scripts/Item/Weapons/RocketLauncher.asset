@@ -17,8 +17,9 @@ MonoBehaviour:
   WavePrefab: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
   BulletImage: {fileID: 21300000, guid: c223f1b4ef0027441a50506b528d6208, type: 3}
   RPM: 48
+  Automatic: 0
   Ammo: 4
   BulletSpeed: 40
-  FireSound: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}
+  FireSound: {fileID: 8300000, guid: bd85903e17442ec48a70b5316a58a0e6, type: 3}
   WaveColor: {r: 0.9882353, g: 1, b: 0, a: 1}
   DestroyTime: 0.2

@@ -120,7 +120,8 @@ public class WaveManager : MonoBehaviour
             if (isPlayer && CompareTag("Player"))
             {
                 var wave = Instantiate(_waveEffect, transform.position, Quaternion.identity);
-                wave.GetComponent<SoundRayWave>().WaveColor = WaveColor;
+                wave.GetComponent<LineRenderer>().material.SetColor("_BaseColor", WaveColor);
+
             }
 
             _wave = Instantiate(_waveObject, transform.position, Quaternion.identity);
