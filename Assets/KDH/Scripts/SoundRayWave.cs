@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,10 @@ public class SoundRayWave : MonoBehaviour
 
     [HideInInspector]
     public bool isCannonWave = false;
+
+    private readonly Collider2D[] overlapResults = new Collider2D[5];
+
+    [SerializeField] float raycastCheckInterval = 0.1f;
 
     List<GameObject> detectedObj = new List<GameObject>();
 
@@ -112,30 +117,39 @@ public class SoundRayWave : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        StartCoroutine(SpreadRay());
+    }
+
     void FixedUpdate()
     {
         radius += growSpeed * Time.fixedDeltaTime;
-        SpreadRay();
         UpdateWaveColor();
     }
 
-    void SpreadRay()
+    IEnumerator SpreadRay()
     {
-        Vector3 position = transform.position;
-        currentAngle = 0f;
-
-        for (int i = 0; i < segments; i++)
+        do
         {
-            if (!isPositionFixed[i])
-            {
-                rayDirection.Set(Mathf.Cos(currentAngle), Mathf.Sin(currentAngle));
-                ProcessSegment(i, position);
-            }
-            currentAngle += angleStep;
-        }
+            Vector3 position = transform.position;
+            currentAngle = 0f;
 
-        wavePositions[segments] = wavePositions[0];
-        UpdateLineRendererPositions();
+            for (int i = 0; i < segments; i++)
+            {
+                if (!isPositionFixed[i])
+                {
+                    rayDirection.Set(Mathf.Cos(currentAngle), Mathf.Sin(currentAngle));
+                    ProcessSegment(i, position);
+                }
+                currentAngle += angleStep;
+            }
+
+            wavePositions[segments] = wavePositions[0];
+            UpdateLineRendererPositions();
+            yield return new WaitForSeconds(raycastCheckInterval);
+        }
+        while (true);
     }
 
     private void ProcessSegment(int index, Vector3 position)
@@ -222,15 +236,17 @@ public class SoundRayWave : MonoBehaviour
         bool bothSegmentsFixed = isPositionFixed[currentIndex] && isPositionFixed[nextIndex];
         float segmentDistance = Vector3.Distance(wavePositions[currentIndex], wavePositions[nextIndex]);
 
-        var wallCheck = Physics2D.OverlapCircle(
+        // OverlapCircleNonAlloc »ç¿ë
+        int hitCount = Physics2D.OverlapCircleNonAlloc(
             (wavePositions[currentIndex] + wavePositions[nextIndex]) * 0.5f,
             Mathf.Min(detectRadius[currentIndex], detectRadius[nextIndex]) * maxSegmentDistance,
+            overlapResults,
             wallMask
         );
 
         bool shouldChangeMaterial = bothSegmentsFixed &&
             segmentDistance <= Mathf.Min(detectRadius[currentIndex], detectRadius[nextIndex]) * 0.8f &&
-            wallCheck != null;
+            hitCount > 0;
 
         if (shouldChangeMaterial)
         {
