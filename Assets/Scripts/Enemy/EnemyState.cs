@@ -269,6 +269,7 @@ namespace EnemyState
             elapsedTime = knockbackDuration;
             _startPosition = enemy.transform.position;
             velocity = _shielderAttack.KnockbackSpeed * _shielderAttack.KnockbackDirection;
+            enemy.GetComponent<SpriteRenderer>().enabled = true;
         }
 
         public override void UpdateState(GameObject enemy)
@@ -287,9 +288,11 @@ namespace EnemyState
             }
             else
             {
-                if(_enemyMovement != null)
+                if(_enemyMovement != null && _shielderAttack != null)
                 {
-                    SwitchState(_enemyMovement.gameObject, ref _enemyMovement.CurrentState, new ChaseState());
+                    StunState stunState = new StunState();
+                    stunState.ElapsedTime = _shielderAttack.StunedDuration;
+                    SwitchState(_enemyMovement.gameObject, ref _enemyMovement.CurrentState, stunState);
                 }
             }
 
@@ -305,6 +308,7 @@ namespace EnemyState
             {
                 waveManager.BPM = SoundManager.Instance.BPM * waveManager._bpmMultiplier;
             }
+            enemy.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
     public class StunState : StateMachine

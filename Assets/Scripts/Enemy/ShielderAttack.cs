@@ -34,6 +34,7 @@ public class ShielderAttack : EnemyAttack
     public float KnockbackSpeed = 20f;
     public float KnockbackDistance = 3f;
     public float KnockbackDecceleration = 50f;
+    public float StunedDuration = 1f;
     [HideInInspector] public Vector2 KnockbackDirection;
     [HideInInspector] public float defenseAngle = 90f;
     #endregion

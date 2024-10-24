@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -80,6 +81,7 @@ public class EnemyShortWeapon : MonoBehaviour, IParriable
     {
         if (IsParried) return;
 
+        Array.Clear(_hits, 0, _hits.Length);
         Physics2D.OverlapCircleNonAlloc(_hitTransform.position, _hitRadius, _hits, LayerMask.GetMask("Player", "Enemy", "Glass", "Box"));
         IDamage damagable;
 

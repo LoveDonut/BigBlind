@@ -41,6 +41,7 @@ public class WaveManager : MonoBehaviour
 
     // editted by Daehui
     Coroutine _waveCoroutine;
+    Color _startColor;
 
     void Start()
     {
@@ -49,6 +50,9 @@ public class WaveManager : MonoBehaviour
         {
             StartWaveByBeat();
         }
+
+        // editted by Daehui
+        _startColor = WaveColor;
     }
 
     public void EnqueueWaveForPlayingByBeat()
@@ -157,9 +161,10 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
-                colorToChange = WaveColor;
+                colorToChange = _startColor;
             }
-            _wave.GetComponent<SoundRayWave>().WaveColor = colorToChange;
+
+            WaveColor = colorToChange;
         }
     }
 
