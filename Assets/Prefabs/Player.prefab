@@ -841,6 +841,7 @@ MonoBehaviour:
   _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
   _currentWeapon: Revolver
   _RPM: 160
+  _automatic: 0
   _maxAmmo: 6
   _reserveAmmo: 12
   _infiniteReserve: 1

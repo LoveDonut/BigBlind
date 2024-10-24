@@ -49,8 +49,6 @@ public class ObstacleHealth : MonoBehaviour, IDamage
     {
         _clipNum = Random.Range(0, _breakSound.Length);
         if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
-        GetComponent<NavMeshPlus.Components.NavMeshModifier>().overrideArea = false;
-        GameObject.Find("NavMesh").GetComponent<NavMeshPlus.Components.NavMeshSurface>().BuildNavMesh();
         GameObject sound = Instantiate(_soundMaker, transform.position, Quaternion.identity);
         sound.GetComponent<SoundMaker>().Clip = _breakSound[_clipNum];
         Destroy(gameObject);
