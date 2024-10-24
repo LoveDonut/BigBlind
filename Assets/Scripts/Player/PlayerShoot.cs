@@ -37,7 +37,7 @@ public class PlayerShoot : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] Image _ammoUI;
-    [SerializeField] TMP_Text _leftAmmoText;
+    [SerializeField] TMP_Text _leftAmmoText, _canvasLeftAmmoText;
     [SerializeField] TMP_Text _leftAmmoTextShadow;
 
 
@@ -95,13 +95,16 @@ public class PlayerShoot : MonoBehaviour
         {
             _reloadingTime += Time.deltaTime;
             _ammoUI.fillAmount = Mathf.Lerp(_ammoUI.fillAmount, _reloadingTime / _reloadTime, 20 * Time.deltaTime);
-            _leftAmmoText.text = _leftAmmoTextShadow.text = "-";
+            _leftAmmoText.text = _leftAmmoTextShadow.text = _canvasLeftAmmoText.text = "-";
         }
         else
         {
             float target = (float)_ammo / _currentHoldWeapon.Ammo;
             _ammoUI.fillAmount = Mathf.SmoothDamp(_ammoUI.fillAmount, target, ref _velocity, 0.1f);
-            _leftAmmoText.text = _leftAmmoTextShadow.text = _ammo.ToString();
+            _leftAmmoText.text = _leftAmmoTextShadow.text = _canvasLeftAmmoText.text = _ammo.ToString();
+            _leftAmmoText.color = new Color(1, target, target, _leftAmmoText.color.a);
+            _leftAmmoTextShadow.color = _leftAmmoText.color;
+            _canvasLeftAmmoText.color = _leftAmmoText.color;
         }
     }
 
@@ -245,7 +248,7 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
         _leftAmmoTextShadow.transform.parent.GetComponent<Animator>().Play("Bullet_Shoot");
-
+        Direction.Instance._crossHair.GetComponent<Animator>().Play("Canvas_Shoot");
 
         StartCoroutine(WaitNextBullet());
         _ammo--;

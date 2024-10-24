@@ -16,7 +16,7 @@ public class Direction : MonoBehaviour
     [SerializeField] GameObject _gameOverPanel;
 
     Canvas _canvas;
-    [SerializeField] RectTransform _crossHair;
+    public RectTransform _crossHair;
     [SerializeField] float _smoothness = 0.1f;
 
     [Header("Ammo_UI")]
