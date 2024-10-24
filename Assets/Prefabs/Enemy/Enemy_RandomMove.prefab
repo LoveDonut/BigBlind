@@ -10,18 +10,18 @@ GameObject:
   m_Component:
   - component: {fileID: 5263252498553381721}
   - component: {fileID: 6940595732247966516}
+  - component: {fileID: -3908951464505956958}
   - component: {fileID: 3534211307138092006}
   - component: {fileID: 7702086288267926573}
   - component: {fileID: -4313632495758409854}
   - component: {fileID: 4061514212785497342}
-  - component: {fileID: 7260336702425476403}
   - component: {fileID: 4786880582538516064}
   - component: {fileID: 7018472285391731851}
   - component: {fileID: -7257909280031456150}
   - component: {fileID: 6443805765564028767}
   - component: {fileID: -2997419109658892947}
   m_Layer: 3
-  m_Name: Enemy_Avoider
+  m_Name: Enemy_RandomMove
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +96,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3908951464505956958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388095470878118029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d937ef59204132438e1ec7cbfc8cf03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyShadow: {fileID: 0}
+  _moveSpeed: 8.5
+  IsActive: 1
+  AudioSource: {fileID: 0}
+  _randomMoveDistance: 6
+  _randomMoveCooldown: 1
+  _randomMoveDuration: 0.5
+  _randomSpeedMultiplier: 1.5
 --- !u!114 &3534211307138092006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,22 +196,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7260336702425476403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 388095470878118029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdb2769ebdea62c46966d8f7e21fde99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyShadow: {fileID: 1511232225988076153, guid: 28654835d0bcddf4e92fe1a414fb3fca, type: 3}
-  _moveSpeed: 8.5
-  IsActive: 1
-  AudioSource: {fileID: 0}
 --- !u!58 &4786880582538516064
 CircleCollider2D:
   m_ObjectHideFlags: 0

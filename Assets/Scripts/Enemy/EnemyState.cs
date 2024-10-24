@@ -105,6 +105,63 @@ namespace EnemyState
             }
         }
     }
+    public class MoveToDestState : StateMachine
+    {
+        public float SpeedMultiplier { get; set; }
+        public float MoveDistance { get; set; }
+
+        public float MoveDuration { get; set; }
+        public bool IsCollided { get; set; }
+
+        EnemyMovement _enemyMovement;
+        NavMeshAgent _navMeshAgent;
+        float _elapsedTime;
+        Vector2 _randomDestination;
+
+        public override void EnterState(GameObject enemy)
+        {
+            _enemyMovement = enemy.GetComponent<EnemyMovement>();
+            _navMeshAgent = enemy.GetComponent<NavMeshAgent>();
+
+            _elapsedTime = MoveDuration;
+
+            if (_navMeshAgent != null)
+            {
+                // set randomMove destination
+                float randomAngle = Random.Range(-45f, 45f);
+                _randomDestination = enemy.transform.position +
+                                (Quaternion.Euler(0,0, randomAngle) * (_navMeshAgent.destination - enemy.transform.position).normalized * MoveDistance);
+                _navMeshAgent.SetDestination(_randomDestination);
+
+                // set randomMove speed
+                _navMeshAgent.speed *= SpeedMultiplier;
+            }
+
+            Debug.Log("Move Randomly...");
+        }
+        public override void UpdateState(GameObject enemy)
+        {
+        }
+        public override void FixedUpdateState(GameObject enemy)
+        {
+            if (_enemyMovement == null) return;
+            if (Vector2.Distance(enemy.transform.position, _randomDestination) < 0.5f || IsCollided || _elapsedTime < 0f)
+            {
+                SwitchState(enemy, ref _enemyMovement.CurrentState, new ChaseState());
+            }
+            _elapsedTime -= Time.fixedDeltaTime;
+        }
+        public override void ExitState(GameObject enemy)
+        {
+            if(_navMeshAgent !=null)
+            {
+                // recover speed
+                _navMeshAgent.speed /= SpeedMultiplier;
+            }
+
+            Debug.Log("end RandomMove...");
+        }
+    }
     public class ChaseState : StateMachine
     {
         EnemyAttack _enemyAttack;
