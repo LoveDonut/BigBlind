@@ -843,9 +843,9 @@ MonoBehaviour:
   _RPM: 160
   _maxAmmo: 6
   _reserveAmmo: 12
-  _infiniteReserve: 0
-  _reloadTime: 0.8888889
-  _reloadAll: 0
+  _infiniteReserve: 1
+  _reloadTime: 2.5
+  _reloadAll: 1
   _isFiring: 0
   _cannonColor: {r: 0.9882353, g: 1, b: 0, a: 1}
   _destroyTime: 0.2

@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     public float BPM;
     [Space]
 
-    public AudioSource BGMaudio, HeartBeatAudio, FlashBang;
+    public AudioSource BGMaudio, HeartBeatAudio, FlashBang, ReloadAudio;
     [Space]
 
     [SerializeField] private AudioSource[] audioSources;
