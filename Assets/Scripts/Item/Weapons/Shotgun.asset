@@ -21,5 +21,6 @@ MonoBehaviour:
   Ammo: 8
   BulletSpeed: 240
   FireSound: {fileID: 8300000, guid: f02222c5b0ecc874fb2f9e1804c8f9f9, type: 3}
-  WaveColor: {r: 0.9882353, g: 1, b: 0, a: 1}
+  WeaponColor: {r: 0.043137256, g: 1, b: 0, a: 1}
+  WaveColor: {r: 1, g: 1, b: 0, a: 1}
   DestroyTime: 0.2

@@ -801,8 +801,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RevolverData: {fileID: 11400000, guid: f61b66e0155bc604899e47278d464024, type: 2}
+  _bulletUIObj: {fileID: 5255225173008504866}
   _bulletPrefab: {fileID: 1079946990457772, guid: 6ec1f26d36ba83f4591e1b4b045b9518, type: 3}
   _handCannonWave: {fileID: 5202586336991198198, guid: 730caf221815e0c4db1c0146c05e936b, type: 3}
+  _revolverColor: {r: 0.05490196, g: 1, b: 1, a: 1}
   _currentWeapon: Revolver
   _RPM: 160
   _automatic: 0
@@ -817,6 +819,7 @@ MonoBehaviour:
   _bulletSpeed: 240
   _ammoUI: {fileID: 5255225173008504866}
   _leftAmmoText: {fileID: 6476011146982715771}
+  _canvasLeftAmmoText: {fileID: 0}
   _leftAmmoTextShadow: {fileID: 4788636918397713757}
   _handCannon: {fileID: 0}
   _handCannonSound: {fileID: 8300000, guid: 0cf2b92143cab434484b9661b05a7ba9, type: 3}

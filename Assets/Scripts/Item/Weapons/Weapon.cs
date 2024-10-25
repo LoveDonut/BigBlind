@@ -18,6 +18,7 @@ public class Weapon : ScriptableObject
     public int Ammo;
     public float BulletSpeed;
     public AudioClip FireSound;
+    public Color WeaponColor;
     [Header("Wave Info")]
     public Color WaveColor;
     public float DestroyTime;
