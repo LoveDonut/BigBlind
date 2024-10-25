@@ -42,7 +42,7 @@ public class DoorKick : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             _as.PlayOneShot(_enemyBurst);
-            collision.gameObject.GetComponent<EnemyHealth>().GetDamaged(collision.transform.position - this.transform.position, gameObject);
+            if(collision.GetComponent<EnemyHealth>() != null) collision.gameObject.GetComponent<EnemyHealth>().GetDamaged(collision.transform.position - this.transform.position, gameObject);
             if (GetComponent<WaveManager>() != null) GetComponent<WaveManager>().SpawnWave();
         }
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Obstacle"))
