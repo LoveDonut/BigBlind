@@ -57,7 +57,13 @@ public class Direction : MonoBehaviour
 
     #region RevolverUI
 
-
+    public void SyncReserveAmmoUI(int ammo) => _reserveAmmoUI.text = ammo.ToString();
+    public void SyncReserveAmmoUI(float ammo) => _reserveAmmoUI.text = ammo.ToString();
+    public void SyncBulletImage(Weapon weapon) {
+        _bulletImage.GetComponent<Image>().sprite = weapon.BulletImage;
+        _bulletImage.GetComponent<Image>().color = weapon.WeaponColor;
+        _reserveAmmoUI.color = weapon.WeaponColor;
+    }
 
     #endregion
 

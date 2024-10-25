@@ -75,6 +75,7 @@ public class PlayerShoot : MonoBehaviour
         _isFiring = false;
         _localMult = 1f;
         InvokeRepeating(nameof(startCheckReloadable), 0, 30 / (GetComponent<WaveManager>().BPM * 8));
+        ReturnToRevolver();
     }
 
     // Update is called once per frame
@@ -109,7 +110,13 @@ public class PlayerShoot : MonoBehaviour
     }
 
     void startCheckReloadable() => _isReloadable = !_isReloadable;
-
+    void UpdateAmmoUI()
+    {
+        if (_currentWeapon.Equals(RevolverData.WeaponName))
+            Direction.Instance.SyncReserveAmmoUI(float.PositiveInfinity);
+        else
+            Direction.Instance.SyncReserveAmmoUI(_ammo);
+    }
     void OnFire(InputValue value)
     {
         if(TryGetComponent<PlayerMovement>(out _playerMovement))
@@ -212,12 +219,14 @@ public class PlayerShoot : MonoBehaviour
                     if(_reserveAmmo < (_maxAmmo - _ammo))
                     {
                         if (!_infiniteReserve) _reserveAmmo = 0;
+                        UpdateAmmoUI();
                         _ammo += _reserveAmmo;
                     }
                     else
                     {
                         if(!_infiniteReserve) _reserveAmmo -= (_maxAmmo - _ammo);
                         _ammo = _maxAmmo;
+                        UpdateAmmoUI();
                     }
 
                     //HandCannon.pitch = ReloadAllSound.length / reloadTime;
@@ -230,6 +239,7 @@ public class PlayerShoot : MonoBehaviour
                 {
                     if(!_infiniteReserve) _reserveAmmo--;
                     _ammo++;
+                    UpdateAmmoUI();
 
                 }
             }
@@ -252,6 +262,7 @@ public class PlayerShoot : MonoBehaviour
 
         StartCoroutine(WaitNextBullet());
         _ammo--;
+        UpdateAmmoUI();
         if (!_automatic) _isFiring = false;
        
 
@@ -315,6 +326,7 @@ public class PlayerShoot : MonoBehaviour
             _reloadCoroutine = null;
         }
         _currentHoldWeapon = weapon;
+        _ammoUI.color = weapon.WeaponColor;
         _isFiring = false;
         RevolverData.Ammo = _ammo;
         _currentWeapon = weapon.WeaponName;
@@ -327,11 +339,14 @@ public class PlayerShoot : MonoBehaviour
         _handCannonSound = weapon.FireSound;
         _cannonColor = weapon.WaveColor;
         _destroyTime = weapon.DestroyTime;
+        UpdateAmmoUI();
+        Direction.Instance.SyncBulletImage(weapon);
     }
 
     public void ReturnToRevolver()
     {
         _currentHoldWeapon = RevolverData;
+        _ammoUI.color = RevolverData.WeaponColor;
         _currentHoldWeapon.Ammo = _maxAmmo;
         _isFiring = false;
         _ammo = RevolverData.Ammo;
@@ -344,5 +359,9 @@ public class PlayerShoot : MonoBehaviour
         _handCannonSound = RevolverData.FireSound;
         _cannonColor = RevolverData.WaveColor;
         _destroyTime = RevolverData.DestroyTime;
+        UpdateAmmoUI();
+        Direction.Instance.SyncBulletImage(RevolverData);
     }
+
+    
 }

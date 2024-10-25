@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Made by JK3WN
 public class WeaponPickup : MonoBehaviour
@@ -28,6 +30,7 @@ public class WeaponPickup : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             if(_pickUpSound != null) collision.GetComponent<AudioSource>().PlayOneShot(_pickUpSound);
+
             _spriteRenderer.enabled = false;
             _collider.enabled = false;
             collision.GetComponent<PlayerShoot>().ChangeWeapon(WeaponData);
